@@ -1,5 +1,5 @@
 /* ============================================================
-   styles.css — Ministerio de Seguridad PBA (réplica)
+  styles.css — Ministerio de Seguridad PBA (réplica)
    ============================================================ */
 
 /* ---------- Variables & Reset ---------- */
@@ -69,8 +69,7 @@ ul { list-style: none; }
   background: var(--color-accent);
 }
 
-/* ============================================================
-   HEADER
+/* ============================================================ HEADER
    ============================================================ */
 .header {
   position: sticky;
@@ -158,7 +157,7 @@ ul { list-style: none; }
 .header__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
 /* ============================================================
-   HERO CAROUSEL
+  HERO CAROUSEL
    ============================================================ */
 .hero {
   position: relative;
@@ -272,7 +271,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   INGRESOS
+  INGRESOS
    ============================================================ */
 .ingresos {
   padding: 48px 0;
@@ -329,7 +328,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   NOTICIAS INSTITUCIONALES
+  NOTICIAS INSTITUCIONALES
    ============================================================ */
 .noticias {
   padding: 56px 0;
@@ -375,7 +374,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   ACTIVIDADES POLICIALES
+  ACTIVIDADES POLICIALES
    ============================================================ */
 .policiales {
   padding: 56px 0;
@@ -429,7 +428,7 @@ ul { list-style: none; }
 .read-more:hover { color: var(--color-primary); }
 
 /* ============================================================
-   GÉNERO
+  GÉNERO
    ============================================================ */
 .genero {
   background: var(--color-primary);

@@ -1,11 +1,11 @@
-/* ============================================================
-   script.js — Ministerio de Seguridad PBA (réplica)
+/* ============================================================ script.js — 
+Ministerio de Desarrollo SDE (réplica)
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ─────────────────────────────────────────
-     1. HERO CAROUSEL
+  1. HERO CAROUSEL
   ───────────────────────────────────────── */
   const slides    = document.querySelectorAll('.hero__slide');
   const dots      = document.querySelectorAll('.hero__dot');
@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─────────────────────────────────────────
-     2. BURGER MENU (mobile)
+  2. BURGER MENU (mobile)
   ───────────────────────────────────────── */
   const burger  = document.getElementById('burgerBtn');
   const nav     = document.getElementById('mainNav');
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─────────────────────────────────────────
-     3. HEADER: sombra al hacer scroll
+  3. HEADER: sombra al hacer scroll
   ───────────────────────────────────────── */
   const header = document.getElementById('header');
 
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─────────────────────────────────────────
-     4. SCROLL REVEAL (IntersectionObserver)
+  4. SCROLL REVEAL (IntersectionObserver)
   ───────────────────────────────────────── */
   const revealTargets = document.querySelectorAll(
     '.noticia-card, .policial-card, .ingreso-card, .servicio-card, .busqueda-card'
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─────────────────────────────────────────
-     5. TOUCH SWIPE en el carousel
+  5. TOUCH SWIPE en el carousel
   ───────────────────────────────────────── */
   let touchStartX = 0;
   const heroEl = document.querySelector('.hero');
@@ -133,8 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ─────────────────────────────────────────
-   CSS para las animaciones de reveal
-   (inyectado dinámicamente para mantener JS y CSS separados
+  CSS para las animaciones de reveal
+  (inyectado dinámicamente para mantener JS y CSS separados
     pero también funciona si lo añadís al styles.css)
 ───────────────────────────────────────── */
 const revealStyle = document.createElement('style');

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ministerio de Seguridad - Provincia de Buenos Aires</title>
+  <title>Ministerio de Desarrollo Social</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -14,22 +14,27 @@
   <header class="header" id="header">
     <div class="header__inner container">
       <a href="index.html" class="header__logo">
-        <img src="https://www.mseg.gba.gov.ar/assets_/img/logo_ministerio.svg" alt="Logo Ministerio de Seguridad" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'">
-        <div class="header__logo-fallback" style="display:none">
-          <span class="logo-text">Ministerio de<br><strong>Seguridad</strong></span>
-          <span class="logo-sub">Provincia de Buenos Aires</span>
-        </div>
-      </a>
-      <nav class="header__nav" id="mainNav">
+        <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+          <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#526685" />
+          <circle cx="75" cy="20" r="18" fill="#526685" />
+          <path d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z" fill="#7C96C4" />
+          <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+          <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
+          <circle cx="95" cy="85" r="12" fill="#E30613" />
+        </svg>
+          <span class="logo-text">Ministerio de Desarollo Social</span>
+          <span class="logo-sub">Santiago del Estero</span>
+          <nav class="header__nav" id="mainNav">
         <ul class="nav__list">
-          <li><a href="#" class="nav__link">Inicio</a></li>
+          <li><a href="#" class="nav__link">Institucion</a></li>
+          <li><a href="#areas" class="nav__link">Areas</a></li>
           <li><a href="#noticias" class="nav__link">Noticias</a></li>
-          <li><a href="#institucional" class="nav__link">Institucional</a></li>
-          <li><a href="#servicios" class="nav__link">Servicios</a></li>
-          <li><a href="#busqueda" class="nav__link">Búsqueda de Personas</a></li>
+          <li><a href="#portal institucional" class="nav__link">Portal Institucional</a></li>
           <li><a href="#contacto" class="nav__link">Contacto</a></li>
         </ul>
       </nav>
+        </div>
+      </a>
       <button class="header__burger" id="burgerBtn" aria-label="Menú">
         <span></span><span></span><span></span>
       </button>
@@ -40,39 +45,51 @@
   <section class="hero" id="heroCarousel">
     <div class="hero__slides" id="heroSlides">
 
-      <div class="hero__slide active" style="background-image: url('https://www.mseg.gba.gov.ar/prensa/principales/09-02-26principalC.jpg')">
+      <div class="hero__slide active" style="background-image: url('img/1.png')">
         <div class="hero__overlay"></div>
         <div class="hero__content container">
-          <span class="hero__tag">Seguridad</span>
-          <h2 class="hero__title">Reunión en el CATE 911 junto a Carlos Balor, intendente de Berazategui</h2>
-          <a href="#" class="hero__btn">Ampliar +</a>
+          <span class="hero__tag">Tarjetas sociales</span>
+          <h2 class="hero__title">Reunión de gabinete</h2>
         </div>
       </div>
 
-      <div class="hero__slide" style="background-image: url('https://www.mseg.gba.gov.ar/prensa/principales/09-02-26principalB.jpg')">
+      <div class="hero__slide" style="background-image: url('img/5.png')">
         <div class="hero__overlay"></div>
         <div class="hero__content container">
-          <span class="hero__tag">Institucional</span>
-          <h2 class="hero__title">Reunión de trabajo con el Intendente de Bragado Sergio Barenghi</h2>
-          <a href="#" class="hero__btn">Ampliar +</a>
+          <span class="hero__tag">Viviendas</span>
+          <h2 class="hero__title">Entrega de viviendas en Capital y Banda</h2>
         </div>
       </div>
 
-      <div class="hero__slide" style="background-image: url('https://www.mseg.gba.gov.ar/prensa/principales/09-02-26principalA.jpg')">
+      <div class="hero__slide" style="background-image: url('img/3.png')">
         <div class="hero__overlay"></div>
         <div class="hero__content container">
-          <span class="hero__tag">Operativo</span>
-          <h2 class="hero__title">Entrega de móviles y visita al Centro de Monitoreo en Cañuelas</h2>
-          <a href="#" class="hero__btn">Ampliar +</a>
+          <span class="hero__tag">Viviendas</span>
+          <h2 class="hero__title">Entrega de viviendas en Capital y Banda</h2>
         </div>
       </div>
 
-      <div class="hero__slide" style="background-image: url('https://www.mseg.gba.gov.ar/prensa/principales/27-01-26principal2.jpg')">
+      <div class="hero__slide" style="background-image: url('img/4.png')">
         <div class="hero__overlay"></div>
         <div class="hero__content container">
-          <span class="hero__tag">Emergencias</span>
-          <h2 class="hero__title">El Sistema Provincial de Emergencias presente en el VII Rover Moot Nacional</h2>
-          <a href="#" class="hero__btn">Ampliar +</a>
+          <span class="hero__tag">Viviendas</span>
+          <h2 class="hero__title">Entrega de viviendas en Capital y Banda</h2>
+        </div>
+      </div>
+
+      <div class="hero__slide" style="background-image: url('img/foto1.jpg')">
+        <div class="hero__overlay"></div>
+        <div class="hero__content container">
+          <span class="hero__tag">Tarjetas Sociales</span>
+          <h2 class="hero__title">Aumento para los beneficiarios</h2>
+        </div>
+      </div>
+
+      <div class="hero__slide" style="background-image: url('img/:2.png')">
+        <div class="hero__overlay"></div>
+        <div class="hero__content container">
+          <span class="hero__tag">Viviendas</span>
+          <h2 class="hero__title">Entrega de viviendas en el interior de la provincia</h2>
         </div>
       </div>
 
@@ -91,32 +108,50 @@
     </div>
   </section>
 
-  <!-- ========== INGRESOS (accesos rápidos) ========== -->
-  <section class="ingresos" id="ingresos">
-    <div class="container">
-      <h2 class="section-title">INGRESOS</h2>
-      <div class="ingresos__grid">
-        <a href="https://www.mseg.gba.gov.ar/areas/servicios/index.html" class="ingreso-card" target="_blank">
-          <div class="ingreso-card__img">
-            <img src="https://www.mseg.gba.gov.ar/assets_/img/destacados/destacado-ingreso2023.jpg" alt="Acceso a Noticia Policial" onerror="this.parentElement.classList.add('no-img')">
-          </div>
-          <div class="ingreso-card__body">
-            <span class="ingreso-card__label">Ingreso</span>
-            <span class="ingreso-card__arrow">→</span>
-          </div>
-        </a>
-        <a href="https://iuv.mseg.gba.gov.ar/" class="ingreso-card" target="_blank">
-          <div class="ingreso-card__img">
-            <img src="https://www.mseg.gba.gov.ar/assets_/img/destacados/destacado-univ.jpg" alt="Instituto Universitario Vucetich" onerror="this.parentElement.classList.add('no-img')">
-          </div>
-          <div class="ingreso-card__body">
-            <span class="ingreso-card__label">Instituto Universitario Vucetich</span>
-            <span class="ingreso-card__arrow">→</span>
-          </div>
-        </a>
-      </div>
+  <!-- ========== ÁREAS (accesos rápidos) ========== -->
+<section class="ingresos" id="areas">
+  <div class="container">
+    <h2 class="section-title">Subsecretarias</h2>
+
+    <div class="ingresos__grid">
+
+      <!-- Subsecretaria de Desarrollo social -->
+      <a href="#" class="ingreso-card">
+        <div class="ingreso-card__img">
+          <img src="img/foto1.jpg" alt="Desarrollo Social">
+        </div>
+        <div class="ingreso-card__body">
+          <span class="ingreso-card__label">Desarrollo Social</span>
+          <span class="ingreso-card__arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Promocion Humana -->
+      <a href="#" class="ingreso-card">
+        <div class="ingreso-card__img">
+          <img src="img/foto3.jpg" alt="Promocion Humana">
+        </div>
+        <div class="ingreso-card__body">
+          <span class="ingreso-card__label">Promocion Humana</span>
+          <span class="ingreso-card__arrow">→</span>
+        </div>
+      </a>
+
+      <!-- Defensa Civil -->
+      <a href="#" class="ingreso-card">
+        <div class="ingreso-card__img">
+          <img src="img/logo.jpg" alt="Defensa Civil">
+        </div>
+        <div class="ingreso-card__body">
+          <span class="ingreso-card__label">Defensa Civil</span>
+          <span class="ingreso-card__arrow">→</span>
+        </div>
+      </a>
+
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- ========== NOTICIAS INSTITUCIONALES ========== -->
   <section class="noticias" id="institucional">
