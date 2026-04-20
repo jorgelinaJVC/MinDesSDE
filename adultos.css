@@ -1,0 +1,103 @@
+/* ========== CARRUSEL ADULTOS ========== */
+.hero-adultos-carrusel {
+    position: relative;
+    height: 500px; /* Si no tiene altura, no verás nada */
+    width: 100%;
+    overflow: hidden;
+}
+
+.carrusel__slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0; /* Ocultas por defecto */
+    transition: opacity 0.8s ease-in-out;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrusel__slide.active {
+    opacity: 1; /* Solo la activa se ve */
+    z-index: 1;
+}
+
+.carrusel__content {
+    color: white;
+    z-index: 2;
+}
+
+.carrusel__title {
+    font-size: 3rem;
+    font-family: 'Barlow Condensed', sans-serif;
+    margin: 15px 0;
+}
+
+.carrusel__tag {
+    padding: 5px 15px;
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn-carrusel {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 30px;
+    background-color: var(--sde-rojo);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Controles (Grandes para facilitar el clic) */
+.carrusel__prev, .carrusel__next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    transition: 0.3s;
+}
+
+.carrusel__prev:hover, .carrusel__next:hover {
+    background: var(--sde-azul);
+}
+
+.carrusel__prev { left: 20px; }
+.carrusel__next { right: 20px; }
+
+.carrusel__dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+.carrusel__dot {
+    height: 15px;
+    width: 15px;
+    background-color: rgba(255,255,255,0.5);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.carrusel__dot.active {
+    background-color: var(--sde-amarillo);
+    transform: scale(1.2);
+}
