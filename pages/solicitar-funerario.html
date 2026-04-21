@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solicitar Servicio Funerario - Ministerio de Desarrollo Social</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--color-text);
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--color-border);
+            border-radius: var(--radius);
+            font-size: 16px;
+            font-family: var(--font-main);
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(26,58,107,0.2);
+        }
+        .btn-enviar {
+            background-color: #10b981;
+            color: white;
+            padding: 14px 24px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+        .btn-enviar:hover {
+            background-color: #059669;
+        }
+        .mensaje-exito {
+            background-color: #d1fae5;
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
+            display: none;
+        }
+        .mensaje-error {
+            background-color: #fee2e2;
+            border-left: 4px solid #ef4444;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: var(--radius);
+            display: none;
+        }
+        .requerido {
+            color: #ef4444;
+        }
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 15px;
+            color: var(--color-primary);
+        }
+        .volver-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+        .volver-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER igual al del sitio -->
+    <header class="header" id="header">
+        <div class="header__inner container">
+            <a href="../index.html" class="header__logo">
+                <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#526685" />
+                    <circle cx="75" cy="20" r="18" fill="#526685" />
+                    <path d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z" fill="#7C96C4" />
+                    <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+                    <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
+                    <circle cx="95" cy="85" r="12" fill="#E30613" />
+                </svg>
+                <span class="logo-text">Ministerio de Desarrollo Social</span>
+                <span class="logo-sub">Santiago del Estero</span>
+            </a>
+            <nav class="header__nav" id="mainNav">
+                <ul class="nav__list">
+                    <li><a href="../pages/autoridades.html" class="nav__link">Institución</a></li>
+                    <li><a href="../index.html#areas" class="nav__link">Áreas</a></li>
+                    <li><a href="../index.html#noticias" class="nav__link">Noticias</a></li>
+                    <li><a href="../index.html#portal" class="nav__link">Portal</a></li>
+                    <li><a href="../index.html#contacto" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="header__burger" id="burgerBtn" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container">
+        <div class="card">
+            <h1>Solicitud de Servicio Funerario</h1>
+            <p>Complete el formulario para solicitar el servicio gratuito de ataúd y traslado.</p>
+
+            <div id="mensajeExito" class="mensaje-exito">
+                ✅ Solicitud enviada correctamente. Será revisada por el personal autorizado.
+            </div>
+            <div id="mensajeError" class="mensaje-error">
+                ❌ Por favor, complete todos los campos obligatorios.
+            </div>
+
+            <form id="formSolicitud">
+                <h3>Datos del fallecido</h3>
+                
+                <div class="form-group">
+                    <label>Nombre completo del fallecido <span class="requerido">*</span></label>
+                    <input type="text" id="nombre_fallecido" placeholder="Ej: Juan Pérez" required>
+                </div>
+
+                <div class="form-group">
+                    <label>DNI del fallecido <span class="requerido">*</span></label>
+                    <input type="text" id="dni_fallecido" placeholder="Ej: 12345678" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Fecha de defunción <span class="requerido">*</span></label>
+                    <input type="date" id="fecha_defuncion" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Domicilio completo (calle, número, localidad) <span class="requerido">*</span></label>
+                    <input type="text" id="domicilio" placeholder="Ej: Av. Libertador 123, Capital" required>
+                </div>
+
+                <h3>Datos de quien solicita</h3>
+
+                <div class="form-group">
+                    <label>Nombre completo de quien solicita <span class="requerido">*</span></label>
+                    <input type="text" id="nombre_solicitante" placeholder="Ej: María González" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Teléfono de contacto (con código de área)</label>
+                    <input type="tel" id="telefono_contacto" placeholder="Ej: 385 1234567">
+                </div>
+
+                <div class="form-group">
+                    <label>Email de contacto</label>
+                    <input type="email" id="email_contacto" placeholder="Ej: correo@ejemplo.com">
+                </div>
+
+                <button type="submit" class="btn-enviar">📨 Enviar Solicitud</button>
+            </form>
+
+            <div style="margin-top: 25px; padding-top: 15px; border-top: 1px solid var(--color-border); text-align: center;">
+                <p><a href="funerarios.html" class="volver-link">← Volver a información del servicio</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER igual al del sitio -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="logo santiago del estero">
+                <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
+            </div>
+            <div class="footer__links">
+                <h5>Enlaces Útiles</h5>
+                <ul>
+                    <li><a href="../index.html#areas">Áreas</a></li>
+                    <li><a href="../index.html#noticias">Noticias</a></li>
+                    <li><a href="../index.html#contacto">Contacto</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer__contact">
+                <h5>Redes</h5>
+                <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank"> Facebook </a></p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2026 Ministerio de Desarrollo Social — Santiago del Estero</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+
+    <!-- Script del formulario -->
+    <script>
+        document.getElementById('formSolicitud').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Verificar campos requeridos
+            const nombreF = document.getElementById('nombre_fallecido').value.trim();
+            const dniF = document.getElementById('dni_fallecido').value.trim();
+            const fechaF = document.getElementById('fecha_defuncion').value;
+            const domicilio = document.getElementById('domicilio').value.trim();
+            const nombreS = document.getElementById('nombre_solicitante').value.trim();
+            
+            if (!nombreF || !dniF || !fechaF || !domicilio || !nombreS) {
+                document.getElementById('mensajeError').style.display = 'block';
+                document.getElementById('mensajeExito').style.display = 'none';
+                
+                // Ocultar mensaje de error después de 4 segundos
+                setTimeout(() => {
+                    document.getElementById('mensajeError').style.display = 'none';
+                }, 4000);
+                return;
+            }
+            
+            // Si está todo completo, mostrar éxito
+            document.getElementById('mensajeExito').style.display = 'block';
+            document.getElementById('mensajeError').style.display = 'none';
+            
+            // Guardar en localStorage (opcional)
+            const solicitud = {
+                nombre_fallecido: nombreF,
+                dni_fallecido: dniF,
+                fecha_defuncion: fechaF,
+                domicilio: domicilio,
+                nombre_solicitante: nombreS,
+                telefono: document.getElementById('telefono_contacto').value,
+                email: document.getElementById('email_contacto').value,
+                fecha_solicitud: new Date().toISOString()
+            };
+            
+            let solicitudes = JSON.parse(localStorage.getItem('solicitudes_funerarias') || '[]');
+            solicitudes.push(solicitud);
+            localStorage.setItem('solicitudes_funerarias', JSON.stringify(solicitudes));
+            
+            // Limpiar formulario
+            this.reset();
+            
+            // Ocultar mensaje después de 5 segundos
+            setTimeout(() => {
+                document.getElementById('mensajeExito').style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
