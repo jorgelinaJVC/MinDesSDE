@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Gestión Adultos Mayores</title>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="background-animation">
+        <div class="lottie-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3840 2160" preserveAspectRatio="xMidYMid slice">
+                <defs>
+                    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#1a3a6b;stop-opacity:0.2" />
+                        <stop offset="100%" style="stop-color:#0d2240;stop-opacity:0.5" />
+                    </linearGradient>
+                </defs>
+                <rect width="3840" height="2160" fill="url(#grad1)" />
+                <circle class="blob" cx="1000" cy="500" r="600" fill="#4a90d9" opacity="0.1" />
+                <circle class="blob delay" cx="2800" cy="1500" r="800" fill="#c8a84b" opacity="0.05" />
+            </svg>
+        </div>
+    </div>
+
+    <div class="login-container">
+        <div class="login-card">
+            <div class="header">
+                <div class="logo-container">
+                    <svg width="80" height="66" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#ffffff" />
+                        <circle cx="75" cy="20" r="18" fill="#ffffff" />
+                        <path d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z" fill="#4a90d9" opacity="0.9" />
+                        <circle cx="125" cy="30" r="18" fill="#4a90d9" opacity="0.9" />
+                    </svg>
+                </div>
+                <h1 class="title">Bienvenido</h1>
+                <p class="subtitle">Ingresa tus credenciales para continuar</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Usuario / Email</label>
+                    <input type="text" class="input-field" id="username" placeholder="Ej: jdoe@sistema.com" required>
+                </div>
+                
+                <div class="form-group">
+                    <div class="label-wrapper">
+                        <label for="password">Contraseña</label>
+                        <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
+                    </div>
+                    <input type="password" class="input-field" id="password" placeholder="••••••••" required>
+                </div>
+
+              <div class="captcha-box" id="captchaContainer">
+    <div class="captcha-content" id="captchaInitial">
+        <label class="captcha-check">
+            <input type="checkbox" id="captcha">
+            <span class="checkmark"></span>
+            No soy un robot
+        </label>
+        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" width="30">
+    </div>
+    
+    <div class="captcha-success" id="captchaSuccess" style="display: none;">
+        <div class="success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+        </div>
+        <span class="success-text">Success!</span>
+        <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="reCAPTCHA" width="30">
+    </div>
+</div>
+
+                <button type="submit" class="submit-btn">Iniciar Sesión</button>
+            </form>
+
+           <!--  div class="divider">O entrar con</div>
+
+            <div class="social-buttons-grid">
+                <button class="social-btn-mini">
+                    <svg viewBox="0 0 16 16"><path d="M14.67 8.13c0-.57-.04-1-.14-1.43H7.98v2.59h3.84c-.07.64-.49 1.61-1.42 2.26l-.01.09 2.07 1.6.14.01c1.32-1.22 2.08-3.01 2.08-5.13z" fill="#4285F4"></path><path d="M7.98 14.95c1.88 0 3.46-.62 4.62-1.69l-2.2-1.7c-.59.41-1.38.7-2.42.7-1.84 0-3.41-1.22-3.97-2.9l-.08.01-2.15 1.66-.03.08c1.15 2.28 3.5 3.84 6.23 3.84z" fill="#34A853"></path><path d="M4.01 9.36c-.15-.44-.23-.9-.23-1.38s.08-.94.22-1.38l-.01-.1L1.82 4.81l-.07.03C1.27 5.79 1 6.85 1 7.98c0 1.12.27 2.18.74 3.13l2.27-1.75z" fill="#FBBC05"></path><path d="M7.98 3.7c1.31 0 2.19.57 2.7 1.04l1.97-1.92C11.43 1.69 9.86 1 7.98 1c-2.73 0-5.09 1.57-6.23 3.84l2.25 1.75c.57-1.68 2.14-2.89 3.98-2.89z" fill="#EB4335"></path></svg>
+                </button>
+                <button class="social-btn-mini">
+                    <svg viewBox="0 0 16 16" fill="#0069FF"><path d="M10.85 10.03l.33-2.03H9.22V6.57c0-.57.2-1.02 1.1-1.02h.94V3.68c-.53-.08-1.1-.16-1.63-.16-1.67 0-2.85 1.02-2.85 2.85v1.63H4.94v2.04h1.83v5.17c.41.08.82.12 1.23.12.41 0 .82-.04 1.23-.12v-5.17h1.63z" fill="white"></path></svg>
+                </button>
+            </div>
+        </div> -->
+
+        <div class="footer-links">
+            <a href="#">Términos</a>
+            <a href="#">Privacidad</a>
+            <span>©2026 SGAM</span>
+        </div>
+    </div>
+    <script src="login.js"></script>
+</body>
+</html>
