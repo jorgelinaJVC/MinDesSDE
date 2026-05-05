@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios Funerarios - Ministerio de Desarrollo Social</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .highlight-box {
+            background: #f0f9ff;
+            border-left: 4px solid var(--color-primary);
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 20px 0;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+            gap: 12px;
+        }
+        .contact-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--color-accent-2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-success {
+            background-color: #10b981;
+        }
+        .btn-success:hover {
+            background-color: #059669;
+        }
+        .card {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER igual al de index.html -->
+    <header class="header" id="header">
+        <div class="header__inner container">
+            <a href="../index.html" class="header__logo">
+                <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#526685" />
+                    <circle cx="75" cy="20" r="18" fill="#526685" />
+                    <path d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z" fill="#7C96C4" />
+                    <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+                    <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
+                    <circle cx="95" cy="85" r="12" fill="#E30613" />
+                </svg>
+                <span class="logo-text">Ministerio de Desarrollo Social</span>
+                <span class="logo-sub">Santiago del Estero</span>
+            </a>
+            <nav class="header__nav" id="mainNav">
+                <ul class="nav__list">
+                    <li><a href="../pages/autoridades.html" class="nav__link">Institución</a></li>
+                    <li><a href="../index.html#areas" class="nav__link">Áreas</a></li>
+                    <li><a href="../index.html#noticias" class="nav__link">Noticias</a></li>
+                    <li><a href="../index.html#portal" class="nav__link">Portal</a></li>
+                    <li><a href="../index.html#contacto" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="header__burger" id="burgerBtn" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="container">
+        <div class="card">
+            <h1>Área de Servicios Funerarios</h1>
+            <p>Servicio gratuito y exclusivo para residentes de la Provincia de Santiago del Estero, brindado por el Ministerio de Desarrollo Social.</p>
+
+            <div class="highlight-box">
+                <h3>¿Qué ofrecemos?</h3>
+                <ul>
+                    <li>Entrega de ataúdes sin cargo para familiares</li>
+                    <li>Traslado del fallecido sin costo adicional</li>
+                    <li>Cobertura en toda la provincia de Santiago (interior y capital)</li>
+                    <li>Traslados desde fuera de la provincia hacia Santiago (con requisitos)</li>
+                </ul>
+            </div>
+
+            <h3>Requisitos obligatorios</h3>
+            <ul>
+                <li>Certificado de defunción</li>
+                <li>DNI del fallecido</li>
+                <li><strong>En caso de bebés:</strong> certificado de defunción + DNI de la madre</li>
+                <li><strong>Para traslados desde fuera de la provincia:</strong> el fallecido debe tener domicilio en Santiago (verificado con DNI físico)</li>
+            </ul>
+
+            <div class="highlight-box">
+                <h3>Horarios de atención</h3>
+                <p><strong>Lunes a domingo: 7:00 a 19:00 hs.</strong></p>
+                <p>No hay atención las 24 horas. Mensajes fuera de horario se responderán al día siguiente.</p>
+            </div>
+
+            <h3>Contacto</h3>
+            <div class="contact-item">
+                <div class="contact-icon">W</div>
+                <span><strong>WhatsApp:</strong> <a href="https://wa.me/543854892389">385-4892389</a></span>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">@</div>
+                <span><strong>Email:</strong> serviciosfunebres@sgomail.com</span>
+            </div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="solicitar-funerario.html" class="btn-success" style="display: inline-block; background-color: #10b981; color: white; text-decoration: none; padding: 14px 28px; border-radius: 6px; font-size: 18px;">
+                    📝 Solicitar Servicio Funerario
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER igual al de index.html -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="logo santiago del estero">
+                <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
+            </div>
+            <div class="footer__links">
+                <h5>Enlaces Útiles</h5>
+                <ul>
+                    <li><a href="../index.html#areas">Áreas</a></li>
+                    <li><a href="../index.html#noticias">Noticias</a></li>
+                    <li><a href="../index.html#contacto">Contacto</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+            <div class="footer__contact">
+                <h5>Redes</h5>
+                <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank"> Facebook </a></p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2026 Ministerio de Desarrollo Social — Santiago del Estero</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
