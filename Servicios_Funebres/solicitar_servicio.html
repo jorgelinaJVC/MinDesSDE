@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>Solicitar Servicio - Servicios Funerarios</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="funebres.css" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <style>
+    /* Estilos específicos para el formulario */
+    .form-container {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    
+    .form-card {
+      background: var(--color-white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+    
+    .form-header {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 30px 40px;
+    }
+    
+    .form-header h1 {
+      font-family: var(--font-cond);
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+    
+    .form-header p {
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+    
+    /* Progress Steps */
+    .progress-steps {
+      display: flex;
+      background: var(--color-bg);
+      border-bottom: 1px solid var(--color-border);
+      padding: 20px 40px;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 180px;
+    }
+    
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: var(--color-border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--color-muted);
+      transition: all 0.3s ease;
+    }
+    
+    .step.active .step-number {
+      background: var(--color-accent);
+      color: var(--color-dark);
+    }
+    
+    .step.completed .step-number {
+      background: var(--color-accent-2);
+      color: var(--color-white);
+    }
+    
+    .step-label {
+      font-weight: 500;
+      color: var(--color-text);
+    }
+    
+    .step.active .step-label {
+      color: var(--color-primary);
+      font-weight: 700;
+    }
+    
+    /* Formulario */
+    .form-body {
+      padding: 40px;
+    }
+    
+    .form-section {
+      margin-bottom: 40px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .form-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .form-section h2 {
+      font-family: var(--font-cond);
+      font-size: 1.4rem;
+      color: var(--color-primary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .form-section h2 i {
+      color: var(--color-accent);
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--color-text);
+      font-size: 0.9rem;
+    }
+    
+    .form-group label i {
+      color: var(--color-accent);
+      margin-right: 6px;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius);
+      font-family: var(--font-main);
+      font-size: 0.95rem;
+      transition: var(--transition);
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1);
+    }
+    
+    .error-message {
+      color: #e30613;
+      font-size: 0.8rem;
+      margin-top: 5px;
+    }
+    
+    /* Upload de documentos */
+    .document-upload {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .upload-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      background: var(--color-bg);
+      border-radius: var(--radius);
+      border: 1px solid var(--color-border);
+    }
+    
+    .upload-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-white);
+      font-size: 1.3rem;
+    }
+    
+    .upload-info {
+      flex: 1;
+    }
+    
+    .upload-info h4 {
+      font-size: 1rem;
+      margin-bottom: 4px;
+      color: var(--color-primary);
+    }
+    
+    .upload-info p {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+    
+    .file-input {
+      display: none;
+    }
+    
+    .btn-upload {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      padding: 10px 20px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    
+    .btn-upload:hover {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-dark);
+    }
+    
+    /* Botones de acción */
+    .form-actions {
+      display: flex;
+      gap: 20px;
+      justify-content: flex-end;
+      margin-top: 30px;
+      padding-top: 20px;
+      border-top: 1px solid var(--color-border);
+    }
+    
+    .btn-secondary-form {
+      background: var(--color-white);
+      border: 1px solid var(--color-border);
+      padding: 12px 28px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn-secondary-form:hover {
+      background: var(--color-bg);
+    }
+    
+    .btn-primary-form {
+      background: var(--color-accent);
+      border: none;
+      padding: 12px 32px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-weight: 700;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn-primary-form:hover {
+      background: #e0bc5a;
+      transform: translateY(-2px);
+    }
+    
+    /* Sidebar información */
+    .info-sidebar {
+      background: var(--color-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-top: 30px;
+    }
+    
+    .info-sidebar h3 {
+      font-family: var(--font-cond);
+      font-size: 1.2rem;
+      color: var(--color-primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .info-list {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+    
+    .info-list li {
+      padding: 8px 0;
+      padding-left: 24px;
+      position: relative;
+    }
+    
+    .info-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: bold;
+    }
+    
+    .contact-info-form p {
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+      
+      .progress-steps {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .step {
+        min-width: auto;
+      }
+      
+      .form-header, .form-body, .progress-steps {
+        padding: 20px;
+      }
+      
+      .upload-item {
+        flex-wrap: wrap;
+      }
+      
+      .form-actions {
+        flex-direction: column;
+      }
+      
+      .btn-primary-form, .btn-secondary-form {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (mismo que la página principal) -->
+  <header class="header" id="header">
+    <div class="header__inner container">
+      <a href="Inicio_funerarios.html" class="header__logo">
+        <img src="Img_funerarios/logo.png" alt="Ministerio de Desarrollo Social" style="height: 40px; width: auto;">
+        <div>
+          <span class="logo-text">Ministerio de Desarrollo Social</span>
+          <span class="logo-sub">Santiago del Estero</span>
+        </div>
+      </a>
+      <nav class="header__nav" id="mainNav">
+        <ul class="nav__list">
+          <li><a href="Inicio_funerarios.html" class="nav__link">Inicio</a></li>
+          <li><a href="Inicio_funerarios.html#beneficios" class="nav__link">Beneficios</a></li>
+          <li><a href="Inicio_funerarios.html#requisitos" class="nav__link">Requisitos</a></li>
+          <li><a href="Inicio_funerarios.html#contacto" class="nav__link">Contacto</a></li>
+        </ul>
+      </nav>
+      <button class="header__burger" id="burgerBtn" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- FORMULARIO PRINCIPAL -->
+  <div class="form-container">
+    <div class="form-card">
+      <div class="form-header">
+        <h1><i class="fas fa-file-alt"></i> Nueva Solicitud de Servicio Funerario</h1>
+        <p>Sistema Funerario Digital - Ministerio de Desarrollo Social de Santiago del Estero</p>
+      </div>
+      
+      <!-- Progress Steps -->
+      <div class="progress-steps">
+        <div class="step active" data-step="1">
+          <span class="step-number">1</span>
+          <span class="step-label">Datos del Solicitante</span>
+        </div>
+        <div class="step" data-step="2">
+          <span class="step-number">2</span>
+          <span class="step-label">Datos del Fallecido</span>
+        </div>
+        <div class="step" data-step="3">
+          <span class="step-number">3</span>
+          <span class="step-label">Documentación</span>
+        </div>
+        <div class="step" data-step="4">
+          <span class="step-number">4</span>
+          <span class="step-label">Confirmación</span>
+        </div>
+      </div>
+      
+      <!-- Formulario -->
+      <form id="solicitudForm" class="form-body">
+        <!-- PASO 1: Datos del Solicitante -->
+        <div class="form-step" id="step1">
+          <div class="form-section">
+            <h2><i class="fas fa-user-circle"></i> Datos del Solicitante</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Nombre Completo *</label>
+                <input type="text" id="nombre" name="nombre" required>
+                <div class="error-message" id="nombreError"></div>
+              </div>
+              
+              <div class="form-group">
+                <label><i class="fas fa-id-card"></i> DNI *</label>
+                <input type="text" id="dni" name="dni" placeholder="12345678" pattern="[0-9]{7,8}" required>
+                <div class="error-message" id="dniError"></div>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-calendar-alt"></i> Fecha de Nacimiento *</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+              </div>
+              
+              <div class="form-group">
+                <label><i class="fas fa-phone"></i> Teléfono *</label>
+                <input type="tel" id="telefono" name="telefono" placeholder="385-1234567" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label><i class="fas fa-home"></i> Domicilio *</label>
+              <input type="text" id="domicilio" name="domicilio" required>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-heart"></i> Parentesco con el Fallecido *</label>
+                <select id="parentesco" name="parentesco" required>
+                  <option value="">Seleccionar...</option>
+                  <option value="conyuge">Cónyuge</option>
+                  <option value="hijo">Hijo/a</option>
+                  <option value="padre">Padre/Madre</option>
+                  <option value="hermano">Hermano/a</option>
+                  <option value="otro">Otro</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label><i class="fas fa-chart-line"></i> Ingresos Mensuales *</label>
+                <select id="ingresos" name="ingresos" required>
+                  <option value="">Seleccionar...</option>
+                  <option value="menos1">Menos de 1 salario mínimo</option>
+                  <option value="1a2">1 a 2 salarios mínimos</option>
+                  <option value="mas2">Más de 2 salarios mínimos</option>
+                </select>
+              </div>
+              </div>
+                      
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-box"></i> Servicio Solicitado *</label>
+                <select id="servicio" name="servicio" required>
+                  <option value="">Seleccionar...</option>
+                  <option value="ATAUD">ATAUD</option>
+                  <option value="DE CALLE">DE CALLE</option>
+                  <option value="DE CALLE SIN ATAUD">SERVICIO DE CALLE SIN ATAUD </option>
+                  <option value="TRASLADO">TRASLADO</option>
+                  <option value="CAJA">CAJA</option>
+                  <option value="ATAUD y SOLDADURA">ATAUD Y SOLDADURA</option>
+                  <option value="CREMACIÓN">CREMACION</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label><i class="fas fa-chart-line"></i> Servicio Atúd</label>
+                <select id="ataud" name="ataud">
+                  <option value="">Seleccionar...</option>
+                  <option>ATAUD BORLA VACA DE 2.10 MTS CON CAJA METALIC</option>
+                  <option>ATAUD CON CHAPA 1.20 MTS</option>
+                  <option>ATAUD CON CHAPA 1.50 MTS</option>
+                  <option>ATAUD CON CHAPA 1.70 MTS</option>
+                  <option>ATAUD CON CHAPA 1.90 MTS</option>
+                  <option>ATAUD CON CHAPA 2.10 MTS</option>
+                  <option>ATAUD CON CHAPA ESPECIAL EXT. PERSONAS OBESAS</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- PASO 2: Datos del Fallecido -->
+        <div class="form-step" id="step2" style="display: none;">
+          <div class="form-section">
+            <h2><i class="fas fa-file-medical"></i> Datos del Fallecido</h2>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-user"></i> Nombre del Fallecido *</label>
+                <input type="text" id="nombreFallecido" name="nombreFallecido" required>
+              </div>
+              
+              <div class="form-group">
+                <label><i class="fas fa-id-card"></i> DNI del Fallecido *</label>
+                <input type="text" id="dniFallecido" name="dniFallecido" placeholder="12345678" required>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label><i class="fas fa-calendar-times"></i> Fecha de Fallecimiento *</label>
+                <input type="date" id="fechaFallecimiento" name="fechaFallecimiento" required>
+              </div>
+              
+              <div class="form-group">
+                <label><i class="fas fa-map-marker-alt"></i> Lugar de Fallecimiento *</label>
+                <input type="text" id="lugarFallecimiento" name="lugarFallecimiento" placeholder="Ciudad, Provincia" required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label><i class="fas fa-notes-medical"></i> Causa de Fallecimiento *</label>
+              <textarea id="causa" name="causa" rows="3" placeholder="Describa brevemente la causa del fallecimiento" required></textarea>
+            </div>
+          </div>
+        </div>
+        
+        <!-- PASO 3: Documentación -->
+        <div class="form-step" id="step3" style="display: none;">
+          <div class="form-section">
+            <h2><i class="fas fa-paperclip"></i> Documentación Adjunta</h2>
+            
+            <div class="document-upload">
+              <div class="upload-item">
+                <div class="upload-icon">
+                  <i class="fas fa-file-pdf"></i>
+                </div>
+                <div class="upload-info">
+                  <h4>DNI del Fallecido</h4>
+                  <p>Frente y dorso en formato PDF, JPG o PNG</p>
+                </div>
+                <input type="file" id="dniFile" accept=".pdf,.jpg,.png" class="file-input">
+                <label for="dniFile" class="btn-upload">
+                  <i class="fas fa-upload"></i> Subir
+                </label>
+              </div>
+              
+              <div class="upload-item">
+                <div class="upload-icon">
+                  <i class="fas fa-file-medical"></i>
+                </div>
+                <div class="upload-info">
+                  <h4>Certificado de Defunción</h4>
+                  <p>Certificado oficial emitido por el registro civil</p>
+                </div>
+                <input type="file" id="defuncionFile" accept=".pdf,.jpg,.png" class="file-input">
+                <label for="defuncionFile" class="btn-upload">
+                  <i class="fas fa-upload"></i> Subir
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- PASO 4: Confirmación -->
+        <div class="form-step" id="step4" style="display: none;">
+          <div class="form-section">
+            <h2><i class="fas fa-check-circle"></i> Confirmación de Datos</h2>
+            <p style="margin-bottom: 20px;">Por favor, revise que todos los datos sean correctos antes de enviar la solicitud.</p>
+            <div id="confirmacionDatos" style="background: var(--color-bg); padding: 20px; border-radius: var(--radius);">
+              <!-- Los datos se cargarán dinámicamente con JS -->
+            </div>
+          </div>
+        </div>
+        
+        <!-- Botones de navegación -->
+        <div class="form-actions">
+          <button type="button" id="prevBtn" class="btn-secondary-form" style="display: none;">
+            <i class="fas fa-arrow-left"></i> Anterior
+          </button>
+          <button type="button" id="nextBtn" class="btn-primary-form">
+            Siguiente <i class="fas fa-arrow-right"></i>
+          </button>
+          <button type="submit" id="submitBtn" class="btn-primary-form" style="display: none;">
+            <i class="fas fa-paper-plane"></i> Enviar Solicitud
+          </button>
+          <a href="Inicio_funerarios.html" class="btn-secondary-form">
+            <i class="fas fa-times"></i> Cancelar
+          </a>
+        </div>
+      </form>
+    </div>
+    
+    <!-- Sidebar informativo -->
+    <div class="info-sidebar">
+      <h3><i class="fas fa-info-circle"></i> Información Importante</h3>
+      <ul class="info-list">
+        <li>Todos los campos marcados con * son obligatorios</li>
+        <li>Los documentos deben estar legibles</li>
+        <li>El proceso de revisión tarda de 3 a 5 días hábiles</li>
+        <li>Recibirás una notificación por correo electrónico</li>
+      </ul>
+      
+      <h3 style="margin-top: 20px;"><i class="fas fa-phone-alt"></i> Contacto</h3>
+      <div class="contact-info-form">
+        <p><i class="fas fa-phone"></i> (385) 422-1234</p>
+        <p><i class="fas fa-envelope"></i> funerario@desarrollosocial.gob.ar</p>
+        <p><i class="fas fa-map-marker-alt"></i> Av. Belgrano 937, Santiago del Estero</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__inner">
+        <div class="footer__brand">
+          <p><strong>Ministerio de Desarrollo Social</strong><br><span>Santiago del Estero</span></p>
+        </div>
+        <div class="footer__links">
+          <h5>Enlaces Rápidos</h5>
+          <ul>
+            <li><a href="Inicio_funerarios.html">Inicio</a></li>
+            <li><a href="Inicio_funerarios.html#beneficios">Beneficios</a></li>
+            <li><a href="Inicio_funerarios.html#requisitos">Requisitos</a></li>
+            <li><a href="Inicio_funerarios.html#contacto">Contacto</a></li>
+          </ul>
+        </div>
+        <div class="footer__contact">
+          <h5>Horario de Atención</h5>
+          <p>Lun a Dom: 7:00 - 19:00 hs</p>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p>© 2026 Ministerio de Desarrollo Social — Santiago del Estero | Servicios Funerarios</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Burger menu
+    const burger = document.getElementById('burgerBtn');
+    const navMenu = document.getElementById('mainNav');
+    if (burger && navMenu) {
+      burger.addEventListener('click', () => {
+        navMenu.classList.toggle('open');
+        burger.classList.toggle('open');
+      });
+    }
+    
+    // Multi-step form
+    let currentStep = 1;
+    const totalSteps = 4;
+    
+    const step1 = document.getElementById('step1');
+    const step2 = document.getElementById('step2');
+    const step3 = document.getElementById('step3');
+    const step4 = document.getElementById('step4');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const steps = document.querySelectorAll('.step');
+    
+    function updateSteps() {
+      // Mostrar/Ocultar pasos
+      step1.style.display = currentStep === 1 ? 'block' : 'none';
+      step2.style.display = currentStep === 2 ? 'block' : 'none';
+      step3.style.display = currentStep === 3 ? 'block' : 'none';
+      step4.style.display = currentStep === 4 ? 'block' : 'none';
+      
+      // Actualizar botones
+      prevBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
+      nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
+      submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
+      
+      // Actualizar estilos de los pasos
+      steps.forEach((step, index) => {
+        const stepNum = index + 1;
+        if (stepNum < currentStep) {
+          step.classList.add('completed');
+          step.classList.remove('active');
+        } else if (stepNum === currentStep) {
+          step.classList.add('active');
+          step.classList.remove('completed');
+        } else {
+          step.classList.remove('active', 'completed');
+        }
+      });
+      
+      // Si es el paso 4, cargar datos de confirmación
+      if (currentStep === 4) {
+        cargarConfirmacion();
+      }
+    }
+    
+    function cargarConfirmacion() {
+      const confirmacionDiv = document.getElementById('confirmacionDatos');
+      const datos = {
+        'Solicitante': document.getElementById('nombre')?.value || 'No especificado',
+        'DNI': document.getElementById('dni')?.value || 'No especificado',
+        'Teléfono': document.getElementById('telefono')?.value || 'No especificado',
+        'Domicilio': document.getElementById('domicilio')?.value || 'No especificado',
+        'Parentesco': document.getElementById('parentesco')?.options[document.getElementById('parentesco')?.selectedIndex]?.text || 'No especificado',
+        'Fallecido': document.getElementById('nombreFallecido')?.value || 'No especificado',
+        'DNI Fallecido': document.getElementById('dniFallecido')?.value || 'No especificado',
+        'Fecha Fallecimiento': document.getElementById('fechaFallecimiento')?.value || 'No especificado',
+        'Lugar': document.getElementById('lugarFallecimiento')?.value || 'No especificado'
+      };
+      
+      let html = '<table style="width:100%; border-collapse:collapse;">';
+      for (const [key, value] of Object.entries(datos)) {
+        html += `<tr style="border-bottom:1px solid #dde2ea;">
+                  <td style="padding:10px 0; font-weight:600;">${key}:</td>
+                  <td style="padding:10px 0;">${value}</td>
+                </tr>`;
+      }
+      html += '</table><p style="margin-top:15px; color:var(--color-accent);"><i class="fas fa-check-circle"></i> Verifique que todos los datos sean correctos antes de enviar.</p>';
+      confirmacionDiv.innerHTML = html;
+    }
+    
+    function validateStep(step) {
+      let isValid = true;
+      let fields = [];
+      
+      if (step === 1) {
+        fields = ['nombre', 'dni', 'fechaNacimiento', 'telefono', 'domicilio', 'parentesco', 'ingresos'];
+      } else if (step === 2) {
+        fields = ['nombreFallecido', 'dniFallecido', 'fechaFallecimiento', 'lugarFallecimiento', 'causa'];
+      } else if (step === 3) {
+        return true; // Los archivos son opcionales
+      }
+      
+      fields.forEach(fieldId => {
+        const field = document.getElementById(fieldId);
+        if (field && !field.value.trim()) {
+          isValid = false;
+          const errorId = fieldId + 'Error';
+          const errorElement = document.getElementById(errorId);
+          if (errorElement) {
+            errorElement.textContent = 'Este campo es obligatorio';
+          }
+          field.style.borderColor = '#e30613';
+        } else if (field) {
+          field.style.borderColor = '';
+          const errorId = fieldId + 'Error';
+          const errorElement = document.getElementById(errorId);
+          if (errorElement) {
+            errorElement.textContent = '';
+          }
+        }
+      });
+      
+      return isValid;
+    }
+    
+    nextBtn.addEventListener('click', () => {
+      if (validateStep(currentStep)) {
+        currentStep++;
+        updateSteps();
+      } else {
+        alert('Por favor, complete todos los campos obligatorios.');
+      }
+    });
+    
+    prevBtn.addEventListener('click', () => {
+      currentStep--;
+      updateSteps();
+    });
+    
+    // Envío del formulario
+    const form = document.getElementById('solicitudForm');
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      if (validateStep(1) && validateStep(2)) {
+        if (confirm('¿Está seguro de enviar la solicitud? Los datos serán enviados al Ministerio para su revisión.')) {
+          alert('✅ Solicitud enviada correctamente. En breve recibirá un correo de confirmación. Será redirigido al inicio.');
+          window.location.href = 'Inicio_funerarios.html';
+        }
+      } else {
+        alert('Por favor, complete todos los campos obligatorios antes de enviar.');
+      }
+    });
+    
+    // Validación de DNI (solo números)
+    const dniInputs = document.querySelectorAll('input[type="text"][id*="dni"]');
+    dniInputs.forEach(input => {
+      input.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
+      });
+    });
+    
+    // Mostrar nombre del archivo seleccionado
+    const fileInputs = document.querySelectorAll('.file-input');
+    fileInputs.forEach(input => {
+      input.addEventListener('change', function() {
+        const label = this.nextElementSibling;
+        if (this.files && this.files[0]) {
+          label.innerHTML = '<i class="fas fa-check"></i> ' + this.files[0].name.substring(0, 20);
+          label.style.background = '#e0bc5a';
+        } else {
+          label.innerHTML = '<i class="fas fa-upload"></i> Subir';
+          label.style.background = '';
+        }
+      });
+    });
+    
+    updateSteps();
+  </script>
+</body>
+</html>
