@@ -1,0 +1,29 @@
+@media (max-width: 900px) {
+  .hero-container { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero-image-wrapper { order: -1; }
+  .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+}
+
+@media (max-width: 600px) {
+  section { padding: 3.5rem 1.25rem; }
+  .hero-features { grid-template-columns: 1fr; }
+  .hero-stats { flex-direction: column; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .about-badge-float {
+    position: static;
+    margin-top: 1rem;
+    display: inline-block;
+  }
+  .testimonials-trust { gap: 1.5rem; }
+}
+/* Agrega esto para que en celulares vuelva a una sola columna */
+@media (max-width: 850px) {
+  .contenido {
+    grid-template-columns: 1fr;
+  }
+}

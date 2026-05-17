@@ -1,0 +1,219 @@
+/* ===== BUSCADOR ===== */
+.buscador-wrapper {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1.5rem;
+}
+
+.section-title {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 3rem;
+  display: block;
+}
+
+.buscador-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+}
+
+.buscador-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.buscador-card > p {
+  font-size: 13px;
+  color: #718096;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo para la categoría en los resultados */
+.badge-tipo {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: #3b82f6; /* El azul de tus botones */
+    color: white;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 8px;
+}
+.buscador-campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.buscador-campo label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+.buscador-campo select,
+.buscador-campo input {
+  padding: 10px 14px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #2d3748;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.buscador-campo select:focus,
+.buscador-campo input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
+}
+
+.buscador-btn {
+  padding: 10px 22px;
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  white-space: nowrap;
+  height: 42px;
+}
+
+.buscador-btn:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+}
+
+/* Nota */
+.buscador-nota {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: #4a5568;
+  line-height: 1.5;
+}
+
+.buscador-nota strong { color: #1d4ed8; }
+
+/* Resultados */
+.buscador-resultados {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.resultado-item {
+  background: #f7fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: box-shadow 0.2s;
+}
+
+/* Opción C: Azul muy suave (institucional) */
+#buscador {
+    background-color: #eff6ff; 
+}
+
+
+.resultado-item:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+}
+
+.resultado-info h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1a202c;
+  margin-bottom: 4px;
+}
+
+.resultado-info p {
+  font-size: 13px;
+  color: #718096;
+  margin-bottom: 2px;
+}
+
+.resultado-badge {
+  display: inline-block;
+  background: #d1fae5;
+  color: #065f46;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 50px;
+  margin-top: 6px;
+}
+
+.sin-resultados {
+  text-align: center;
+  padding: 2rem;
+  color: #718096;
+  font-size: 14px;
+}
+
+.mapa-centralizado {
+    max-width: 900px;         /* Ajusta este ancho para que coincida con tu buscador */
+    margin: 2.5rem auto;      /* El 'auto' a los lados es el que hace el centrado */
+    border-radius: 16px;      /* Bordes redondeados para armonía visual */
+    overflow: hidden;         /* Para que el mapa no tape los bordes redondeados */
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra para resaltar la sección */
+    border: 1px solid #e2e8f0;
+}
+
+
+
+/* Ajuste para que se vea bien en celulares de Santiago del Estero */
+@media (max-width: 768px) {
+    .mapa-centralizado {
+        margin: 1.5rem 1rem;
+        height: 350px; /* Un poco más bajo en móviles */
+    }
+}
+/* Ajuste para que se vea bien en celulares de Santiago del Estero */
+@media (max-width: 768px) {
+    .mapa-centralizado1 {
+        margin: 1.5rem 1rem;
+        height: 350px; /* Un poco más bajo en móviles */
+    }
+}
+
+/* En dispositivos móviles el mapa se achica un poco en altura */
+@media (max-width: 768px) {
+    .mapa-contenedor iframe {
+        height: 300px;
+    }
+}
+
+
+/* Responsive */
+@media (max-width: 700px) {
+  .buscador-form {
+    grid-template-columns: 1fr;
+  }
+  .buscador-btn {
+    width: 100%;
+    height: auto;
+    padding: 12px;
+  }
+}

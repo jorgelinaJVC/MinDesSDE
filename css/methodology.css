@@ -1,0 +1,79 @@
+#methodology { background: var(--white); }
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.service-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s;
+  border-top: 4px solid transparent;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--slate-blue), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.service-card:hover::before { transform: scaleX(1); }
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+.service-icon-wrapper {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--slate-blue), var(--slate-dark));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(107,122,153,0.3);
+}
+.service-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--slate-deeper); /* variable de color en el texto */
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+.service-card p {
+  font-size: 14px;
+  color: var(--text-medium);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+.service-tag {
+  display: inline-block;
+  background: rgba(107,122,153,0.1);
+  color: var(--slate-blue);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+}
+.service-card.featured {
+  background: linear-gradient(135deg, var(--slate-deeper) 0%, var(--slate-dark) 100%);
+  color: var(--white);
+}
+.service-card.featured h3 { color: var(--white); }
+.service-card.featured p { color: rgba(255,255,255,0.8); }
+.service-card.featured .service-tag {
+  background: rgba(245,197,24,0.2);
+  color: var(--gold);
+}
+.service-card.featured .service-icon-wrapper {
+  background: rgba(245,197,24,0.2);
+}

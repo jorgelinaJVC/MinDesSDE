@@ -1,0 +1,142 @@
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: #F2F4F4;/* gris humo */
+  background: #f9f9f9;
+  overflow-x: hidden;
+  }
+  
+  
+/* ===== VARIABLES ===== */
+:root {
+  --slate-blue: #6B7A99;
+  --slate-dark: #4a5568;
+  --slate-deeper:#08235dd9;
+  --gold: #F5C518;
+  --gold-dark: #d4a800;
+  --white: #ffffff;
+  --white: #FFFFFF;
+  --text-dark: #1a1a2e;
+  --text-medium: #4a5568;
+  --purple: #5B2D8E;
+  --shadow: 0 4px 24px rgba(107,122,153,0.18);
+  --shadow-hover: 0 8px 40px rgba(107,122,153,0.30);
+  --radius: 12px;
+}
+
+/* ===== SECTION COMMON ===== */
+section { padding: 5rem 2rem; }
+.section-container { max-width: 1200px; margin: 0 auto; }
+
+.section-label {
+  display: inline-block;
+  background: #003a70;
+  color: var(--gold-dark);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 50px;
+  margin-bottom: 1rem;
+  border: 1px solid rgba(245,197,24,0.3);
+}
+.section-title {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  color: var(--slate-deeper);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-bottom: 3rem; /* Espacio respecto a los cuadros */
+}
+
+.section-title span { color: var(--slate-blue); }
+.section-desc {
+  font-size: 1.05rem;
+  color: var(--text-medium);
+  line-height: 1.7;
+  max-width: 600px;
+}
+.section-header { margin-bottom: 3rem; }
+.section-header.centered { text-align: center; }
+.section-header.centered .section-desc { margin: 0 auto; }
+
+/* ===== BOTONES GLOBALES ===== */
+.btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--slate-deeper);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--gold-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(245,197,24,0.4);
+    }
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: 2px solid rgba(255,255,255,0.5);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+.btn-secondary:hover {
+  border-color: var(--white);
+  background: rgba(255,255,255,0.1);
+  transform: translateY(-2px);
+}
+/* Contenedor para alinear el botón */
+.card-action {
+  margin-top: 1.5rem;
+}
+
+/* Estilo del botón tipo píldora */
+.btn-card-link {
+  display: inline-block;
+  background-color: #f0f2f5; /* Color gris suave de fondo */
+  color: #6B7A99;            /* Color --slate-blue[cite: 1] */
+  padding: 10px 24px;
+  border-radius: 50px;       /* Forma redondeada de píldora[cite: 1] */
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+/* Efecto al pasar el mouse (Hover) */
+.btn-card-link:hover {
+  background-color: var(--gold);      /* Cambia al dorado de tu marca */
+  color: var(--slate-deeper);        /* Texto en gris oscuro para contraste*/
+  transform: translateY(-2px);       /* Pequeño salto hacia arriba */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
