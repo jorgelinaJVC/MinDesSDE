@@ -4,8 +4,12 @@
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .nav-links { display: none; }
-  .nav-hamburger { display: flex; }
+  
+  /* Ajuste para las secciones unificadas */
+  #autogestion .services-grid, 
+  #services .services-grid { 
+    grid-template-columns: 1fr; 
+  }
 }
 
 @media (max-width: 600px) {
@@ -21,9 +25,10 @@
   }
   .testimonials-trust { gap: 1.5rem; }
 }
-/* Agrega esto para que en celulares vuelva a una sola columna */
+
+/* Forzar colapso de rejillas del buscador e institucionales en pantallas medianas y chicas */
 @media (max-width: 850px) {
-  .contenido {
-    grid-template-columns: 1fr;
+  .contenido, .areas-grid, .buscador-form {
+    grid-template-columns: 1fr !important;
   }
 }

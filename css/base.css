@@ -8,7 +8,7 @@ body {
   overflow-x: hidden;
   }
   
-  
+    
 /* ===== VARIABLES ===== */
 :root {
   --slate-blue: #6B7A99;
@@ -132,6 +132,8 @@ section { padding: 5rem 2rem; }
   transition: all 0.3s ease;
   border: 1px solid transparent;
 }
+
+
 
 /* Efecto al pasar el mouse (Hover) */
 .btn-card-link:hover {

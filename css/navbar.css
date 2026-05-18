@@ -59,7 +59,13 @@ nav {
   line-height: 1.3;
   max-width: 200px;
 }
-.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+.nav-links { 
+  display: flex; 
+  align-items: center; 
+  gap: 2rem; 
+  list-style: none; 
+  margin-right: 50px;
+}
 .nav-links a {
   color: rgba(255,255,255,0.85);
   text-decoration: none;
@@ -76,6 +82,8 @@ nav {
   transition: background 0.2s, transform 0.2s !important;
 }
 .nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px); }
+
+/* Hamburguesa móvil */
 .nav-hamburger {
   display: none;
   flex-direction: column;
@@ -91,4 +99,30 @@ nav {
   background: var(--white);
   border-radius: 2px;
   transition: 0.3s;
+}
+
+/* Animación de la hamburguesa al abrirse */
+.nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ESTILOS DE DESPLIEGUE MÓVIL */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(0, 51, 102, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    gap: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-150%);
+    transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+  }
+  .nav-links.active {
+    transform: translateY(0);
+  }
 }

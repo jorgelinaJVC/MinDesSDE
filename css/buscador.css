@@ -179,8 +179,16 @@
     overflow: hidden;         /* Para que el mapa no tape los bordes redondeados */
     box-shadow: 0 10px 25px rgba(0,0,0,0.1); /* Sombra para resaltar la sección */
     border: 1px solid #e2e8f0;
+
 }
 
+/* ============================================
+   ESTILOS ESPECÍFICOS DEL MAPA TERRITORIAL
+   ============================================ */
+.seccion-mapa {
+  background-color: #f8fafc; /* Fondo gris humo sutil para separar secciones */
+  border-top: 1px solid #e2e8f0; /* Línea divisoria superior muy fina */
+}
 
 
 /* Ajuste para que se vea bien en celulares de Santiago del Estero */

@@ -6,12 +6,12 @@
   <title>Portal de la Direccion General de Adultos Mayores</title>
   <link rel="shortcut icon" href="assets/LogoAM.png" type="image/x-icon" />
 
-  <!-- Fuentes -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
 
-  <!-- Estilos modulares -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/navbar.css" />
   <link rel="stylesheet" href="css/hero.css" />
@@ -23,15 +23,44 @@
   <link rel="stylesheet" href="css/footer.css" />
   <link rel="stylesheet" href="css/floating.css" />
   <link rel="stylesheet" href="css/responsive.css" />
- 
   <link rel="stylesheet" href="css/acceso.css" />
   <link rel="stylesheet" href="css/buscador.css" />
+  <link rel="stylesheet" href="css/accessibility.css" />
 </head>
 <body>
 
-  <!-- ===== NAVBAR ===== -->
+  <!-- Botón de Accesibilidad -->
+  <button id="accessibility-toggle" class="accessibility-toggle-btn" aria-label="Abrir herramientas de accesibilidad">
+    <i class="fa-solid fa-eye"></i>
+  </button>
+
+  <!-- Panel de Accesibilidad -->
+  <div id="accessibility-panel" class="accessibility-panel">
+    <h2 class="accessibility-panel-title">Accesibilidad</h2>
+    
+    <div class="accessibility-section">
+      <label class="accessibility-label">Tamaño del texto</label>
+      <div class="accessibility-font-controls">
+        <button id="btn-desc-font" class="accessibility-font-btn"><i class="fa-solid fa-minus"></i></button>
+        <span id="font-size-indicator" class="accessibility-font-indicator">100%</span>
+        <button id="btn-inc-font" class="accessibility-font-btn"><i class="fa-solid fa-plus"></i></button>
+      </div>
+    </div>
+
+    <div class="accessibility-section-sm">
+      <button id="btn-toggle-contrast" class="accessibility-action-btn">Modo Alto Contraste</button>
+    </div>
+
+    <div class="accessibility-section">
+      <button id="btn-toggle-links" class="accessibility-action-btn">Resaltar Enlaces</button>
+    </div>
+
+    <button id="btn-reset-accessibility" class="accessibility-reset-btn">Restablecer valores</button>
+  </div>
+
+  <!-- Navegación -->
   <nav>
-    <a href="#hero" class="nav-brand">
+    <a href="index.html#hero" class="nav-brand">
       <div class="nav-logo-box">
         <img src="assets/LogoMin.png" alt="Logo del Ministerio" />
       </div>
@@ -39,12 +68,13 @@
     </a>
     <ul class="nav-links">
       <li>
-    <div class="nav-logo-extra-box">
-      <img src="assets/LogoSantiago.png" alt="Logo de Santiago" />
-    </div>
+        <div class="nav-logo-extra-box">
+          <img src="assets/LogoSantiago.png" alt="Logo de Santiago" />
+        </div>
+      </li>
       <li><a href="#habilitacion">Habilitación</a></li>
-      <li><a href="#buscador">Instituciones Habilitadas</a>
-      </li><a href="index.html">Volver al inicio</a></li>
+      <li><a href="#buscador">Instituciones Habilitadas</a></li>
+      <li><a href="index.html">Volver al inicio</a></li>
       <li><a href="#contact" class="nav-cta">Consultar ahora</a></li>
     </ul>
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
@@ -52,7 +82,7 @@
     </button>
   </nav>
 
-   <!-- ===== habilitacion ===== -->
+  <!-- Sección Habilitación -->
   <section id="habilitacion">
     <div class="section-container">
       <div class="section-header centered fade-in">
@@ -64,122 +94,146 @@
         <div class="service-card featured fade-in-delay-0">
           <div class="service-icon-wrapper">🛡️</div>
           <h3>Requisitos Generales</h3>
-          <p><strong>Todo establecimiento geriátrico debe cumplir con los siguientes requisitos básicos:</strong></p>
-          <p><strong>Infraestructura:</strong> Instalaciones seguras, accesibles y adecuadas para la atención de adultos mayores</p>
+          <p><strong>Todo establishment geriátrico debe cumplir con los siguientes requisitos básicos:</strong></p>
+          <p><strong>Infraestructura:</strong> Instalaciones seguras, accesibles y adecuadas para la atención de adultos mayores.</p>
           <p><strong>Personal:</strong> Equipo multidisciplinario calificado (médicos, enfermeros, asistentes sociales).</p>
-          <p><strong>Servicios:</strong> Atención médica, enfermería, alimentación y servicios de higiene</p>
-          <p><strong>Documentación:</strong> Registros de residentes, historias clínicas y protocolos de atención</p>
+          <p><strong>Servicios:</strong> Atención médica, enfermería, alimentación y servicios de higiene.</p>
+          <p><strong>Documentación:</strong> Registros de residentes, historias clínicas y protocolos de atención.</p>
           <p><strong>Seguridad:</strong> Medidas de prevención de incendios y protocolos de emergencia.</p>
-          </div>
+        </div>
         <div class="service-card fade-in fade-in-delay-1">
           <div class="service-icon-wrapper">🤝</div>
           <h3>Proceso de Habilitación</h3>
-          <p><strong>1. Presentación de Solicitud:</strong> Completar formulario de solicitud de habilitación con documentación requerida</p>
-          <p><strong>2.Revisión de Documentación</strong> Revisión de Documentación/p>         <p><strong>Gobierno y Comunidad:</strong> Municipios, DDHH y el Consejo Provincial de Adultos Mayores.</p>
-          <p><strong>3. Inspección in situ</strong> Visita de inspección para verificar cumplimiento de normas</p>
-          <p><strong>4. Resolución:</strong> Emisión de habilitación o solicitud de correcciones</p>
-         </div>
-         <div class="service-card fade-in fade-in-delay-2">
+          <p><strong>1. Presentación de Solicitud:</strong> Completar formulario de solicitud de habilitación con documentación requerida.</p>
+          <p><strong>2. Revisión de Documentación:</strong> Evaluación minuciosa por las áreas competentes de la Dirección.</p>
+          <p><strong>3. Inspección in situ:</strong> Visita técnica de inspección para verificar el cumplimiento real de las normas vigentes.</p>
+          <p><strong>4. Resolución:</strong> Emisión definitiva de la habilitación legal o solicitud de correcciones edilicias/médicas.</p>
+        </div>
+        <div class="service-card fade-in fade-in-delay-2" id="repositorio-marcador">
           <div class="service-icon-wrapper">🤝</div>
           <h3>Documentación Requerida</h3>
-          <p><strong> Archivos y certificados necesarios para la solicitud</strong></p>
-          <p><strong>1. Cédula de identidad del responsable</strong></p>
-          <p><strong>2. Comprobante de domicilio</strong></p>
-          <p><strong>3. Plano de instalaciones</strong></p>
-          <p><strong>4. Certificado de habilitación municipal</strong></p>
-          <p><strong>5. Certificados de bomberos</strong></p>
-          <p><strong>6. Currículum vitae del personal médico</strong></p>
-          <p><strong>7. Protocolos de atención y normas internas</strong></p>
-          <p><strong>8. Certificado de afiliación a obra social o mutualidad</strong></p>
-         </div>
-         <div class="service-card fade-in fade-in-delay-3">
+          <p><strong>Archivos y certificados necesarios para la solicitud:</strong></p>
+          <p><strong>1.</strong> Cédula de identidad del responsable.</p>
+          <p><strong>2.</strong> Comprobante de domicilio legal.</p>
+          <p><strong>3.</strong> Plano oficial de instalaciones aprobado.</p>
+          <p><strong>4.</strong> Certificado de habilitación municipal.</p>
+          <p><strong>5.</strong> Certificados aprobados por bomberos.</p>
+          <p><strong>6.</strong> Currículum vitae firmado del personal médico.</p>
+          <p><strong>7.</strong> Protocolos de atención y normas internas.</p>
+          <p><strong>8.</strong> Certificado de afiliación a obra social o mutualidad.</p>
+        </div>
+        <div class="service-card fade-in fade-in-delay-3">
           <div class="service-icon-wrapper">🤝</div>
           <h3>Normas y Estándares</h3>
-          <p><strong>Regulaciones que deben cumplir los geriátricos habilitados</strong></p>
+          <p><strong>Regulaciones que deben cumplir los geriátricos habilitados:</strong></p>
           <p><strong>1. Capacidad:</strong> Máximo 60 residentes por establecimiento. Mínimo 2 m² por residente en dormitorios.</p>
-          <p><strong>2.Personal:</strong> 1 médico cada 20 residentes, 1 enfermero cada 15 residentes, personal de apoyo según necesidades./p>
-          <p><strong>3. Servicios Básicos</strong> Agua potable, electricidad, calefacción, servicios higiénicos adecuados y acceso a teléfono.</p>
-          <p><strong>4. Atención Médica:</strong> Disponibilidad 24/7, medicamentos esenciales, registros clínicos completos.</p>
-         </div>
+          <p><strong>2. Personal:</strong> 1 médico cada 20 residentes, 1 enfermero cada 15 residentes, personal de apoyo según necesidades.</p>
+          <p><strong>3. Servicios Básicos:</strong> Agua potable, electricidad, calefacción, servicios higiénicos adecuados y acceso a teléfono.</p>
+          <p><strong>4. Atención Médica:</strong> Disponibilidad 24/7, suministro de medicamentos esenciales y registros clínicos completos.</p>
+        </div>
+      </div>
+
+      <!-- Repositorio de Formularios -->
+      <div class="buscador-card repositorio-card" id="documentacion">
+        <div class="repositorio-header">
+          <div class="repositorio-icon">📂</div>
+          <h3 class="repositorio-title">Repositorio de Formularios Oficiales</h3>
+        </div>
+        <p class="repositorio-desc">Descargá los modelos tipo requeridos para agilizar tu presentación. Todos los documentos están actualizados según los marcos normativos provinciales.</p>
+        
+        <div class="repositorio-list">
+          <div class="repositorio-item">
+            <div>
+              <strong class="repositorio-item-title">Protocolo de Atención Interdisciplinaria</strong>
+              <small class="repositorio-item-meta">Formato PDF - 150 KB</small>
+            </div>
+            <a href="assets/docs/protocolo-atencion.pdf" class="btn-card-link repositorio-download-btn">Descargar</a>
+          </div>
+
+          <div class="repositorio-item">
+            <div>
+              <strong class="repositorio-item-title">Modelo de Historia Clínica Geriátrica</strong>
+              <small class="repositorio-item-meta">Formato DOCX - 85 KB</small>
+            </div>
+            <a href="assets/docs/modelo-historia-clinica.docx" class="btn-card-link repositorio-download-btn">Descargar</a>
+          </div>
+
+          <div class="repositorio-item">
+            <div>
+              <strong class="repositorio-item-title">Planilla Oficial de Registro de Personal</strong>
+              <small class="repositorio-item-meta">Formato PDF - 120 KB</small>
+            </div>
+            <a href="assets/docs/planilla-personal.pdf" class="btn-card-link repositorio-download-btn">Descargar</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </section>
 
-  <!-- ===== BUSCADOR ===== -->
- 
-<section id="buscador" class="section">
-  <div class="container">
-    
-    <h2 class="section-title">
-      <span>Cartelera Territorial de la Red</span>
-    </h2>
+  <!-- Sección Buscador -->
+  <section id="buscador" class="section">
+    <div class="container">
+      <h2 class="section-title">
+        <span>Cartelera Territorial de la Red</span>
+      </h2>
 
-    <div class="buscador-wrapper">
-      <div class="buscador-card">
-        <h3>Buscador de Centros y Residencias</h3>
-        <p>Encontrá centros de jubilados, centros de día y residencias habilitadas en Santiago del Estero.</p>
+      <div class="buscador-wrapper">
+        <div class="buscador-card">
+          <h3>Buscador de Centros y Residencias</h3>
+          <p>Encontrá centros de jubilados, centros de día y residencias habilitadas en Santiago del Estero.</p>
 
-        <div class="buscador-form">
-          <div class="buscador-campo">
-            <label for="categoria">¿Qué buscás?</label>
-            <select id="categoria" name="categoria">
-              <option value="centro">Centro de Jubilados (Actividades)</option>
-              <option value="dia">Centros de Día</option>
-              <option value="geriatrico">Geriátricos / Residencias</option>
-            </select>
+          <div class="buscador-form">
+            <div class="buscador-campo">
+              <label for="categoria">¿Qué buscás?</label>
+              <select id="categoria" name="categoria">
+                <option value="centro">Centro de Jubilados (Actividades)</option>
+                <option value="dia">Centros de Día</option>
+                <option value="geriatrico">Geriátricos / Residencias</option>
+              </select>
+            </div>
+
+            <div class="buscador-campo">
+              <label for="localidad">Localidad</label>
+              <select id="localidad" name="localidad">
+                <option value="">Seleccionar localidad...</option>
+                <option value="santiago">Santiago del Estero (Capital)</option>
+                <option value="banda">La Banda</option>
+                <option value="frias">Frías</option>
+                <option value="termas">Termas de Río Hondo</option>
+              </select>
+            </div>
+
+            <div class="buscador-campo">
+              <label for="nombre-buscar">Nombre de la Institución</label>
+              <input type="text" id="nombre-buscar" name="nombre-buscar" placeholder="Ej: Centro Virgen del Valle..." />
+            </div>
+
+            <button class="buscador-btn" onclick="buscarInstitucion()">
+              🔍 Buscar en la Red
+            </button>
           </div>
 
-          <div class="buscador-campo">
-            <label for="localidad">Localidad</label>
-            <select id="localidad" name="localidad">
-              <option value="">Seleccionar localidad...</option>
-              <option value="santiago">Santiago del Estero (Capital)</option>
-              <option value="banda">La Banda</option>
-              <option value="frias">Frías</option>
-              <option value="termas">Termas de Río Hondo</option>
-            </select>
-          </div>
+          <div class="buscador-resultados" id="buscadorResultados"></div>
 
-          <div class="buscador-campo">
-            <label for="nombre">Nombre de la Institución</label>
-            <input type="text" id="nombre" name="nombre" placeholder="Ej: Centro Virgen del Valle..." />
+          <div class="buscador-nota" id="buscadorNota">
+            <strong>Nota:</strong> Todos los establecimientos listados cumplen con la <b>Ley Provincial N.º 7149</b> y forman parte de nuestra red oficial.
           </div>
-
-          <button class="buscador-btn" onclick="buscarInstitucion()">
-            🔍 Buscar en la Red
-          </button>
         </div>
+      </div>
 
-       
-
-<div class="buscador-resultados" id="buscadorResultados"></div>
-
-        <div class="buscador-nota" id="buscadorNota">
-          <strong>Nota:</strong> Todos los establecimientos listados cumplen con la <b>Ley Provincial N.º 7149</b> y forman parte de nuestra red oficial.
-        </div>
-
-        <div class="buscador-resultados" id="buscadorResultados"></div>
+      <div class="mapa-centralizado">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1QMOJNWNpvtL37zCXa_7JJHiUD_wHCwc&ehbc=2E312F&noprof=1" width="100%" 
+            height="480" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy">
+        </iframe>
       </div>
     </div>
+  </section>
 
-  </div>
-
-<!-- Mapa de Instituciones Habilitadas -->
-   <div class="mapa-contenedor">
-    <div class="mapa-contenedor">
-<div class="mapa-centralizado">
-    <iframe src="https://www.google.com/maps/d/embed?mid=1QMOJNWNpvtL37zCXa_7JJHiUD_wHCwc&ehbc=2E312F&noprof=1" width="100%" 
-        height="480" 
-        style="border:0;" 
-        allowfullscreen="" 
-        loading="lazy">
-    </iframe>
-</div>
-</div>
-
-
-</section>
-
-
-<!-- ===== CONTACT ===== -->
+  <!-- Sección Contacto -->
   <section id="contact">
     <div class="section-container">
       <div class="section-header centered fade-in">
@@ -231,8 +285,8 @@
           <form id="contactForm" onsubmit="handleSubmit(event)">
             <div class="form-row">
               <div class="form-group">
-                <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+                <label for="nombre-contacto">Nombre *</label>
+                <input type="text" id="nombre-contacto" name="nombre" placeholder="Tu nombre" required />
               </div>
               <div class="form-group">
                 <label for="apellido">Apellido *</label>
@@ -274,15 +328,15 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- Footer -->
   <footer>
     <div class="footer-container">
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="footer-logo-box">
-            <a href="#hero" class="nav-brand">
+            <a href="index.html#hero" class="nav-brand">
               <div class="nav-logo-box">
-              <img src="assets/LogoMin.png" alt="Logo del Ministerio" />
+                <img src="assets/LogoMin.png" alt="Logo del Ministerio" />
               </div>
                <span class="nav-brand-text">Ministerio de Desarrollo Social Promoción Humana y Relaciones Institucionales</span>
             </a>
@@ -305,23 +359,23 @@
         <div class="footer-col">
           <h4>Servicios</h4>
           <ul>
-            <li><a href="#services">Asesoramiento y Asistencia Integral</a></li>
-            <li><a href="#services">Gestión de Programas Nacionales</a></li>
-            <li><a href="#services">Supervisión de Residencias y Centro de día</a></li>
-            <li><a href="#services">Seguimiento de TrámiteCapacitación y Formación Gerontológicas</a></li>
-            <li><a href="#services">Fortalecimiento de Organizaciones</a></li>
-            <li><a href="#services">Promoción de Derechos y Buen Trato</a></li>
-            <li><a href="#services">Nuestro Equipo Interdisciplinario</a></li> 
-            <li><a href="#services">Red de Articulación Institucional</a></li>  
-            <li><a href="#services">Habilitación de Geriátricos</a></li>
+            <li><a href="index.html#services">Asesoramiento y Asistencia Integral</a></li>
+            <li><a href="index.html#services">Gestión de Programas Nacionales</a></li>
+            <li><a href="index.html#services">Supervisión de Residencias y Centro de día</a></li>
+            <li><a href="index.html#services">Capacitación y Formación Gerontológicas</a></li>
+            <li><a href="index.html#services">Fortalecimiento de Organizaciones</a></li>
+            <li><a href="index.html#services">Promoción de Derechos y Buen Trato</a></li>
+            <li><a href="index.html#services">Nuestro Equipo Interdisciplinario</a></li> 
+            <li><a href="index.html#services">Red de Articulación Institucional</a></li>  
+            <li><a href="index.html#services">Habilitación de Geriátricos</a></li>
           </ul>
         </div>
         <div class="footer-col">
           <h4>Información</h4>
           <ul>
-            <li><a href="#about">Sobre nosotros</a></li>
-            <li><a href="#Metodologia">Metodología</a></li>
-            <li><a href="#gallery">Galería de Imágenes</a></li>
+            <li><a href="index.html#about">Sobre nosotros</a></li>
+            <li><a href="index.html#methodology">Metodología</a></li>
+            <li><a href="index.html#gallery">Galería de Imágenes</a></li>
             <li><a href="#contact">Contacto</a></li>
             <li><a href="https://web.facebook.com/profile.php?id=61575731258247" target="_blank">Facebook</a></li>
             <li><a href="https://www.instagram.com/direcciondeadultosmayores.sgo" target="_blank">Instagram</a></li>
@@ -331,19 +385,19 @@
       <hr class="footer-divider" />
       <div class="footer-bottom">
         <p>© 2026 Direccion General de Adultos Mayores. Santiago del Estero, Argentina.</p>
-        <p>Desarrollado para la Direccion General de Adultos Mayores <a href="#about">Ministerio de Desarrollo Social</a></p>
+        <p>Desarrollado para la Direccion General de Adultos Mayores <a href="index.html#about">Ministerio de Desarrollo Social</a></p>
       </div>
     </div>
   </footer>
 
-  <!-- ===== FLOATING WHATSAPP ===== -->
+  <!-- WhatsApp Flotante -->
   <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20la%20Direcci%C3%B3n%20de%20Adultos%20Mayores." class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-  </svg>
-</a>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a> 
 
-  <!-- Script principal -->
   <script src="js/main.js"></script>
+  <script src="js/accessibility.js"></script>
 </body>
 </html>

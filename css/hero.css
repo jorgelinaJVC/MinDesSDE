@@ -1,119 +1,107 @@
-#hero {
-  min-height: 100vh;
-  background: #08235dd9;
-; /* Gris casi negro muy elegante */
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding-top: 68px;
-}
-.hero-chevrons {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-.chevron-group { position: absolute; opacity: 0.12; }
-.chevron-group.top-left { top: 60px; left: -20px; }
-.chevron-group.bottom-right { bottom: 40px; right: -10px; }
-.chevron-svg { width: 220px; height: auto; }
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS: HABILITACIÓN Y CARTELERA TERRITORIAL
+   ========================================================================== */
 
-.hero-container {
+/* ===== CONTENEDOR PRINCIPAL ===== */
+/* Reemplazamos .contenido por .services-grid que es lo que usas en tu HTML */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
   max-width: 1200px;
-  margin: 0 auto;
-  padding: 4rem 2rem;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-  position: relative;
-  z-index: 2;
+  margin: 2rem auto;
+  padding: 0 1.5rem 4rem;
 }
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: rgba(245, 197, 24, 0.2);
-  border: 1px solid rgba(245, 197, 24, 0.5);
-  color: var(--gold);
-  padding: 6px 16px;
-  border-radius: 50px;
-  font-size: 13px;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-  letter-spacing: 0.5px;
-}
-.hero-badge::before { content: "★"; font-size: 12px; }
-.hero-title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 900;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  color: var(--white);
-  line-height: 1.1;
-  text-transform: uppercase;
-  margin-bottom: 1rem;
-  letter-spacing: -0.5px;
-}
-.hero-title span { color: var(--gold); }
-.hero-subtitle {
-  font-size: 1.1rem;
-  color: #ffffffd9;
-  line-height: 1.7;
-  margin-bottom: 2rem;
-  max-width: 480px;
-}
-.hero-features {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.75rem;
-  margin-bottom: 2.5rem;
-}
-.hero-feature {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 8px;
-  padding: 10px 14px;
-}
-.hero-feature-icon { font-size: 1.3rem; flex-shrink: 0; }
-.hero-feature-text { font-size: 13px; font-weight: 600; color: var(--white); }
-.hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-.hero-image-wrapper { position: relative; }
-.hero-image-card {
-  background: rgba(220, 217, 217, 0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--shadow-hover);
-  backdrop-filter: blur(4px);
+/* ===== TARJETAS DE SERVICIOS (Igualando estilos) ===== */
+.service-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #4299e1; /* Azul por defecto */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
 }
-.hero-image-card img {
-  width: 100%;
-  display: block;
-  border-radius: 20px;
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
 }
-.hero-stats { display: flex; gap: 1rem; margin-top: 1rem; }
-.hero-stat {
-  flex: 1;
-  background: rgba(245,197,24,0.15);
-  border: 1px solid rgba(245,197,24,0.3);
-  border-radius: 10px;
-  padding: 12px;
-  text-align: center;
-}
-.hero-stat-number {
+
+.service-card h3 {
   font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.4rem;
-  color: var(--gold);
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #1a202c;
+  margin: 1rem 0;
 }
-.hero-stat-label {
-  font-size: 11px;
-  color: rgba(255,255,255,0.75);
-  font-weight: 600;
-  margin-top: 2px;
+
+.service-card p {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
 }
+
+/* Colores de Bordes para jerarquía */
+.service-card:nth-child(2) { border-left-color: #e53e3e; } /* Rojo */
+.service-card:nth-child(3) { border-left-color: #ecc94b; } /* Amarillo */
+.service-card:nth-child(4) { border-left-color: #38a169; } /* Verde */
+
+/* ===== ESTILOS PARA EL BUSCADOR / CARTELERA (Agregado) ===== */
+/* Para que el buscador tenga el mismo "aire" que las tarjetas de arriba */
+
+.buscador-wrapper {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.buscador-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Badge para los resultados del buscador */
+.badge-tipo {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #4299e1; /* Azul institucional */
+    color: white;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.resultado-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+}
+
+.resultado-item:hover {
+    border-color: #4299e1;
+    background: #ffffff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .buscador-card {
+    padding: 1.5rem;
+  }
+}
+
