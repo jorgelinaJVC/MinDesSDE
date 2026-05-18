@@ -1,0 +1,101 @@
+/* ===== ACCESO RÁPIDO ===== */
+#acceso-rapido {
+  background: var(--white);
+  padding: 4rem 2rem;
+}
+
+.acceso-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.acceso-card {
+  border-radius: 12px;
+  padding: 1.5rem;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.acceso-azul {
+  background: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.acceso-rosa {
+  background: #fff0f0;
+  border-color: #fecaca;
+}
+
+.acceso-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.acceso-texto h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #1a202c;
+  margin-bottom: 6px;
+}
+
+.acceso-texto p {
+  font-size: 13px;
+  color: #718096;
+  line-height: 1.5;
+}
+
+.acceso-icono {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.acceso-icono.azul { color: #3b82f6; }
+.acceso-icono.rosa { color: #ef4444; }
+
+.acceso-btn {
+  display: block;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.acceso-btn.azul {
+  color: #3b82f6;
+  border-color: #bfdbfe;
+  background: transparent;
+}
+
+.acceso-btn.azul:hover {
+  background: #3b82f6;
+  color: white;
+}
+/* Card centrada */
+.acceso-grid-centro {
+  display: flex;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.acceso-grid-centro .acceso-card {
+  width: 100%;
+  max-width: 800px; /* 👈 ajustá este valor al ancho que querés */
+}
+/* Responsive */
+@media (max-width: 600px) {
+  .acceso-grid { grid-template-columns: 1fr; }
+}

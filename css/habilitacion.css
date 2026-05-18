@@ -1,0 +1,107 @@
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS: HABILITACIÓN Y CARTELERA TERRITORIAL
+   ========================================================================== */
+
+/* ===== CONTENEDOR PRINCIPAL ===== */
+/* Reemplazamos .contenido por .services-grid que es lo que usas en tu HTML */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem 4rem;
+}
+
+/* ===== TARJETAS DE SERVICIOS (Igualando estilos) ===== */
+.service-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #4299e1; /* Azul por defecto */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+}
+
+.service-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #1a202c;
+  margin: 1rem 0;
+}
+
+.service-card p {
+  font-size: 14px;
+  color: #4a5568;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+/* Colores de Bordes para jerarquía */
+.service-card:nth-child(2) { border-left-color: #e53e3e; } /* Rojo */
+.service-card:nth-child(3) { border-left-color: #ecc94b; } /* Amarillo */
+.service-card:nth-child(4) { border-left-color: #38a169; } /* Verde */
+
+/* ===== ESTILOS PARA EL BUSCADOR / CARTELERA (Agregado) ===== */
+/* Para que el buscador tenga el mismo "aire" que las tarjetas de arriba */
+
+.buscador-wrapper {
+  max-width: 1200px;
+  margin: 4rem auto;
+  padding: 0 1.5rem;
+}
+
+.buscador-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 3rem;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+}
+
+/* Badge para los resultados del buscador */
+.badge-tipo {
+    display: inline-block;
+    padding: 4px 12px;
+    background-color: #4299e1; /* Azul institucional */
+    color: white;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 10px;
+}
+
+.resultado-item {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    transition: all 0.2s ease;
+}
+
+.resultado-item:hover {
+    border-color: #4299e1;
+    background: #ffffff;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .buscador-card {
+    padding: 1.5rem;
+  }
+}
+

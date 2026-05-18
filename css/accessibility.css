@@ -1,0 +1,281 @@
+/* ===== BOTÓN TOGGLE DE ACCESIBILIDAD ===== */
+.accessibility-toggle-btn {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 2500;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #2563eb;
+  color: white;
+  border: 2px solid white;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.accessibility-toggle-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+/* ===== PANEL DE ACCESIBILIDAD ===== */
+.accessibility-panel {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 2500;
+  width: 280px;
+  background: white;
+  border: 2px solid #2563eb;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  font-family: 'Open Sans', sans-serif;
+}
+.font-size-val {
+  font-weight: bold;
+  min-width: 50px;
+  text-align: center;
+  flex-grow: 1;
+  color: #2563eb; /* 👈 Cambia este código por el color que quieras (Ej: #2563eb es el azul del panel) */
+}
+.accessibility-panel-title {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 18px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #2563eb;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 8px;
+}
+
+.accessibility-section {
+  margin-bottom: 20px;
+}
+
+.accessibility-section-sm {
+  margin-bottom: 15px;
+}
+
+.accessibility-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #4a5568;
+}
+
+.accessibility-font-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accessibility-font-btn {
+  width: 35px;
+  height: 35px;
+  border: 1px solid #2470cd;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.accessibility-font-btn:hover {
+  background: #e2e8f0;
+}
+
+.accessibility-font-indicator {
+  font-weight: bold;
+  min-width: 50px;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.accessibility-action-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  border: 2px solid #cbd5e1;
+  background: #f1f5f9;
+  color: #334155;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.accessibility-action-btn:hover {
+  background: #e2e8f0;
+}
+
+.accessibility-reset-btn {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  background: #1e293b;
+  color: white;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.accessibility-reset-btn:hover {
+  background: #334155;
+}
+
+/* ===== MAPA IFRAME (index.html) ===== */
+.mapa-iframe {
+  border: 0;
+  border-radius: 12px;
+}
+
+/* ===== BOTÓN TURNO AUTOGESTIÓN ===== */
+.autogestion-turno-btn {
+  text-align: center;
+  margin-top: 1.5rem;
+  display: block;
+  text-decoration: none;
+}
+
+/* ===== REPOSITORIO DE FORMULARIOS (habilitacion.html) ===== */
+.repositorio-card {
+  margin-top: -2rem;
+  margin-bottom: 4rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.repositorio-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.repositorio-icon {
+  font-size: 1.8rem;
+}
+
+.repositorio-title {
+  font-size: 18px;
+  margin: 0;
+}
+
+.repositorio-desc {
+  color: #4a5568;
+  font-size: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.repositorio-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.repositorio-item {
+  background: #f8fafc;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.repositorio-item-title {
+  display: block;
+  color: #2d3748;
+  font-size: 14px;
+}
+
+.repositorio-item-meta {
+  color: #718096;
+  font-size: 12px;
+}
+
+.repositorio-download-btn {
+  background-color: #38a169;
+  color: white;
+  border-radius: 6px;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background-color 0.2s;
+}
+
+.repositorio-download-btn:hover {
+  background-color: #2f855a;
+}
+
+/* ===== MODO ALTO CONTRASTE ===== */
+.high-contrast {
+  --white: #000000 !important;
+  --background: #000000 !important;
+  --text-medium: #ffffff !important;
+  --slate-deeper: #ffff00 !important;
+  --slate-blue: #ffff00 !important;
+  --slate-dark: #00ff00 !important;
+  --gold: #ffff00 !important;
+  --shadow: none !important;
+  --shadow-hover: 0 0 0 2px #ffffff !important;
+}
+
+.high-contrast body,
+.high-contrast section {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+.high-contrast p,
+.high-contrast span,
+.high-contrast li,
+.high-contrast h1,
+.high-contrast h2,
+.high-contrast h3,
+.high-contrast div:not(#accessibility-panel) {
+  color: #ffffff !important;
+}
+
+.high-contrast a {
+  color: #ffff00 !important;
+  text-decoration: underline !important;
+  font-weight: bold !important;
+}
+
+/* ===== RESALTAR ENLACES ===== */
+.highlight-links a:not(.whatsapp-float):not(.contact-whatsapp-btn) {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  font-weight: bold !important;
+}
+
+/* ===== REDUCCIÓN DE MOVIMIENTO ===== */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

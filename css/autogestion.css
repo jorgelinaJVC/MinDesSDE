@@ -1,0 +1,181 @@
+/* ==========================================================================
+   ESTILOS ESPECÍFICOS: SECCIÓN DE AUTOGESTIÓN (CLON COMPLETO DE METHODOLOGY)
+   ========================================================================== */
+
+#autogestion {
+  background: #f8fafc; /* Gris humo sutil para dar contraste con el fondo blanco de Metodología */
+  padding: 5rem 2rem;
+}
+
+/* Forzar que el Grid tenga exactamente el mismo formato responsivo */
+#autogestion .services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Tarjeta Base clonada de Metodología (Con corrección de Flexbox interno) */
+#autogestion .service-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 2rem;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border-top: 4px solid transparent;
+  position: relative;
+  overflow: hidden; /* Obligatorio para que no se desborde la barra animada superior */
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* Sincroniza la altura exacta de los dos bloques */
+}
+
+/* EL TRUCO DE METODOLOGÍA: Barra superior que se expande del centro/izquierda con gradiente */
+#autogestion .service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--slate-blue), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+/* Activación de la barra animada al pasar el mouse */
+#autogestion .service-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Elevación de tarjeta y cambio de sombra al hacer Hover */
+#autogestion .service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-hover);
+}
+
+/* Contenedor del Icono Superior Redondeado */
+#autogestion .service-icon-wrapper {
+  width: 60px; height: 60px;
+  background: linear-gradient(135deg, var(--slate-blue), var(--slate-dark));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 4px 12px rgba(107,122,153,0.3);
+  position: relative;
+}
+
+/* Texto del Icono Central */
+#autogestion .icon-main {
+  font-size: 1.6rem;
+  z-index: 3;
+}
+
+/* Sutil marca de agua circular en la esquina derecha superior de la tarjeta */
+#autogestion .service-card::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 90px;
+  height: 90px;
+  background: radial-gradient(circle, rgba(107,122,153,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Tipografías y Títulos integrados */
+#autogestion .service-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--slate-deeper);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+
+#autogestion .service-card p {
+  font-size: 14px;
+  color: var(--text-medium);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
+}
+
+/* Píldoras informativas de subcategoría (Tags) */
+#autogestion .service-tag {
+  display: inline-block;
+  align-self: flex-start;
+  background: rgba(107,122,153,0.1);
+  color: var(--slate-blue);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 50px;
+  margin-top: auto; /* Fuerza al tag a ubicarse abajo del todo alineado */
+}
+
+/* ==========================================================================
+   ADAPTACIONES DE LA TARJETA DE EMERGENCIAS (LÍNEA DE PROTECCIÓN)
+   ========================================================================== */
+
+#autogestion .card-protection {
+  border-left: 6px solid #e53e3e !important; /* Mantenemos tu alerta de color rojo lateral */
+}
+
+/* Cambiamos el gradiente superior e ícono a tonos rojos en la de protección */
+#autogestion .card-protection:hover::before {
+  background: #e53e3e;
+}
+
+#autogestion .card-protection .service-icon-wrapper {
+  background: linear-gradient(135deg, #e53e3e, #b83232);
+  box-shadow: 0 4px 12px rgba(229, 62, 62, 0.3);
+}
+
+#autogestion .card-protection::after {
+  background: radial-gradient(circle, rgba(229, 62, 62, 0.06) 0%, transparent 70%);
+}
+
+/* Cuadro contenedor de Teléfonos de Comisarías de Santiago del Estero */
+#autogestion .info-box-comisarias {
+  background: #fff5f5;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  border: 1px solid #fed7d7;
+  color: #9b2c2c;
+  z-index: 3;
+}
+
+#autogestion .info-box-title {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#autogestion .info-box-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  line-height: 1.3;
+  font-size: 12px;
+}
+
+#autogestion .tag-alert {
+  background: rgba(229, 62, 62, 0.1) !important;
+  color: #e53e3e !important;
+}
+
+/* Desactivación de transiciones en caso de que esté activo el modo de Reducción de Movimiento */
+@media (prefers-reduced-motion: reduce) {
+  #autogestion .service-card,
+  #autogestion .service-card::before {
+    transition: none !important;
+  }
+}
