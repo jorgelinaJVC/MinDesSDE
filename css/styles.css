@@ -649,3 +649,294 @@ ul { list-style: none; }
   .noticias__grid { grid-template-columns: repeat(2, 1fr); }
   .busqueda__grid { grid-template-columns: 1fr; }
 }
+
+/* Reset Estricto */
+/* Reset e Integración de Tipografía Institucional */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Open Sans", Arial, sans-serif;
+}
+
+/* Fondo verde agua idéntico al de la captura original */
+body {
+  background-color: #dcedeb; 
+  color: #333333;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Contenedor central blanco estructurado */
+.site-wrapper {
+  max-width: 1140px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  min-height: 100vh;
+  padding: 40px 45px;
+}
+
+.main-container {
+  width: 100%;
+}
+
+/* Título de la página */
+.page-title {
+  font-size: 34px;
+  font-weight: 400;
+  color: #333333;
+  margin-bottom: 40px;
+}
+
+/* Distribución en 2 columnas: Formulario (71%) y Sidebar (29%) */
+.grid-content {
+  display: grid;
+  grid-template-columns: 71fr 29fr;
+  gap: 40px;
+  align-items: start;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cuadro del Formulario */
+.form-box {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  padding: 45px 40px;
+  border-radius: 3px;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
+  margin-bottom: 40px;
+}
+
+.form-lead {
+  font-size: 21px;
+  color: #333333;
+  margin-bottom: 35px;
+  line-height: 1.4;
+}
+
+/* Grupos de campos con línea inferior */
+.form-group {
+  margin-bottom: 35px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: #222222;
+  margin-bottom: 12px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 6px 0;
+  font-size: 14px;
+  color: #444444;
+  background: transparent;
+  outline: none;
+}
+
+/* Ancho del selector de Áreas */
+.form-group select {
+  max-width: 215px;
+  color: #555555;
+  cursor: pointer;
+}
+
+.form-group textarea {
+  resize: vertical;
+}
+
+/* Botón Enviar Celeste del Ministerio */
+.form-footer {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.submit-btn {
+  background-color: #4baed2; /* El celeste de tu proyecto */
+  color: #ffffff;
+  border: none;
+  padding: 10px 24px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  float: right;
+  transition: background-color 0.2s;
+}
+
+.submit-btn:hover {
+  background-color: #389aba;
+}
+
+/* Bloque de Dirección e Información */
+.contact-info-block {
+  padding-top: 10px;
+  margin-bottom: 30px;
+}
+
+.info-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #2b2b2b;
+  margin-top: 25px;
+  margin-bottom: 10px;
+}
+
+.info-text {
+  font-size: 14px;
+  color: #555555;
+  line-height: 1.7;
+}
+
+/* Barra Lateral (Sidebar) */
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.widget {
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  padding: 22px 20px;
+}
+
+.search-field {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #dddddd;
+  font-size: 13px;
+  color: #777777;
+  outline: none;
+}
+
+.widget-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #444444;
+  border-bottom: 1px solid #eeeeee;
+  padding-bottom: 12px;
+  margin-bottom: 18px;
+  letter-spacing: 0.3px;
+}
+
+.widget-links, .widget-categories {
+  list-style: none;
+}
+
+.widget-links li {
+  margin-bottom: 18px;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.widget-links li a, .widget-categories li a {
+  color: #333333;
+  text-decoration: none;
+}
+
+.widget-links li a:hover, .widget-categories li a:hover {
+  color: #4baed2;
+}
+
+/* Viñetas en las Categorías */
+.widget-categories li {
+  position: relative;
+  padding-left: 14px;
+  margin-bottom: 11px;
+  font-size: 13.5px;
+}
+
+.widget-categories li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #555555;
+  font-size: 15px;
+  top: -1px;
+}
+
+/* Ajuste para pantallas móviles */
+@media (max-width: 880px) {
+  .grid-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+  }
+}
+/* ==========================================================================
+   ESTILOS DE LA BARRA DE NAVEGACIÓN SUPERIOR (MINDES SDE)
+   ========================================================================== */
+
+/* Ajusta el fondo de la barra al azul oscuro institucional */
+header, .tu-clase-del-header {
+  background-color: #0f2c59; /* El color azul oscuro de tu index */
+  padding: 15px 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Contenedor del Menú */
+header nav ul, .tu-clase-del-menu {
+  display: flex;
+  list-style: none;
+  gap: 20px; /* Espaciado entre botones */
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo de los Enlaces del Menú (Institución, Áreas, Noticias, Contacto) */
+header nav ul li a, .tu-clase-del-menu a {
+  color: #ffffff !important; /* Fuerza a que todos los textos sean blancos */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+/* Efecto al pasar el mouse por encima de los botones */
+header nav ul li a:hover, .tu-clase-del-menu a:hover {
+  color: #4baed2 !important; /* Se vuelve celeste como tus componentes */
+}
+/* Color azul oscuro de fondo para la barra del menú */
+header {
+  background-color: #0f2c59; /* Este es el azul oscuro exacto de tu web */
+  padding: 15px 45px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Alineación horizontal de los botones (Institución, Áreas, etc.) */
+header nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px; /* Espacio de separación entre cada botón */
+  margin: 0;
+  padding: 0;
+}
+
+/* Forzar a que las letras del menú sean blancas y sin subrayado */
+header nav ul li a {
+  color: #ffffff !important; 
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: "Open Sans", sans-serif;
+}
+
+/* Color celeste cuando pasas el mouse por encima de los botones */
+header nav ul li a:hover {
+  color: #4baed2 !important; 
+}
