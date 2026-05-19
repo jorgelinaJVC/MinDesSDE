@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+    Subsecretaría de Defensa Civil - Ministerio de Desarrollo Social
+    </title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap"
+    rel="stylesheet"
+    />
+    <style>
+    .subsec-hero {
+        background: linear-gradient(135deg, #7a1a1a 0%, #c0392b 100%);
+        color: white;
+        padding: 60px 20px;
+        text-align: center;
+    }
+    .subsec-hero h1 {
+        font-size: 2.4rem;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+    .subsec-hero p {
+        font-size: 1.1rem;
+        opacity: 0.9;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+    .subsec-hero .badge {
+        display: inline-block;
+        background: #c8a84b;
+        color: #0d2240;
+        font-family: "Barlow Condensed", sans-serif;
+        font-weight: 700;
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 4px 14px;
+        border-radius: 2px;
+        margin-bottom: 14px;
+    }
+    .page-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+    }
+    .breadcrumb {
+        padding: 14px 0;
+        font-size: 0.85rem;
+        color: #6b7280;
+    }
+    .breadcrumb a {
+        color: #1a3a6b;
+        text-decoration: none;
+    }
+    .breadcrumb a:hover {
+        text-decoration: underline;
+    }
+    .breadcrumb span {
+        margin: 0 6px;
+    }
+    .seccion-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        margin-bottom: 40px;
+        border-left: 5px solid #c0392b;
+    }
+    .seccion-card__header {
+        background: linear-gradient(135deg, #7a1a1a 0%, #c0392b 100%);
+        color: white;
+        padding: 24px 28px;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+    }
+    .seccion-card__header .icon {
+        font-size: 2.2rem;
+    }
+    .seccion-card__header h2 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+    }
+    .seccion-card__body {
+        padding: 28px;
+    }
+    .seccion-card__body p {
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 16px;
+    }
+    .subseccion {
+        background: #f5f6f8;
+        border-radius: 8px;
+        padding: 22px 24px;
+        margin-bottom: 20px;
+        border-left: 4px solid #c8a84b;
+    }
+    .subseccion h3 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: #1a3a6b;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin-bottom: 12px;
+    }
+    .subseccion ul {
+        list-style: none;
+        padding: 0;
+    }
+    .subseccion ul li {
+        padding: 6px 0 6px 22px;
+        position: relative;
+        color: #444;
+        font-size: 0.92rem;
+    }
+    .subseccion ul li::before {
+        content: "→";
+        position: absolute;
+        left: 0;
+        color: #c8a84b;
+        font-weight: bold;
+    }
+    .funciones-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 20px;
+        margin-bottom: 24px;
+    }
+    .funcion-card {
+        background: white;
+        border-radius: 10px;
+        padding: 22px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.07);
+        border-top: 4px solid #c0392b;
+        text-align: center;
+    }
+    .funcion-card .funcion-icon {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
+    .funcion-card h4 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #1a3a6b;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+    .funcion-card p {
+        font-size: 0.88rem;
+        color: #666;
+        line-height: 1.5;
+    }
+    .alerta-box {
+        background: linear-gradient(135deg, #7a1a1a 0%, #c0392b 100%);
+        color: white;
+        border-radius: 10px;
+        padding: 24px 28px;
+        margin-bottom: 20px;
+    }
+    .alerta-box h4 {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 12px;
+        color: #c8a84b;
+    }
+    .alerta-box p {
+        font-size: 0.92rem;
+        opacity: 0.95;
+        margin-bottom: 8px;
+    }
+    .alerta-box a {
+        color: #c8a84b;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .contacto-emergencia {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 16px;
+        margin-top: 12px;
+    }
+    .contacto-emergencia .item {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        padding: 16px;
+        text-align: center;
+    }
+    .contacto-emergencia .item .numero {
+        font-family: "Barlow Condensed", sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #c8a84b;
+        display: block;
+    }
+    .contacto-emergencia .item .label {
+        font-size: 0.82rem;
+        opacity: 0.85;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+    .foto-defensa {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+    <div class="header__inner container">
+        <a href="../index.html" class="header__logo">
+        <svg
+            width="150"
+            height="60"
+            viewBox="0 0 200 180"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+            d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z"
+            fill="#526685"
+            />
+            <circle cx="75" cy="20" r="18" fill="#526685" />
+            <path
+            d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z"
+            fill="#7C96C4"
+            />
+            <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+            <path
+            d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z"
+            fill="#E30613"
+            />
+            <circle cx="95" cy="85" r="12" fill="#E30613" />
+        </svg>
+        <span class="logo-text">Ministerio de Desarrollo Social</span>
+        <span class="logo-sub">Santiago del Estero</span>
+        </a>
+        <nav class="header__nav" id="mainNav">
+        <ul class="nav__list">
+            <li><a href="../index.html" class="nav__link">Inicio</a></li>
+            <li>
+            <a href="autoridades.html" class="nav__link">Institución</a>
+            </li>
+            <li><a href="programas.html" class="nav__link">Programas</a></li>
+            <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+        </ul>
+        </nav>
+        <button class="header__burger" id="burgerBtn" aria-label="Menú">
+        <span></span><span></span><span></span>
+        </button>
+    </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="subsec-hero">
+    <div class="badge">Subsecretaría</div>
+    <h1>Defensa Civil</h1>
+    <p>
+        Protegemos a la comunidad santiagueña ante situaciones de emergencia y
+        desastre, coordinando acciones de prevención, respuesta y recuperación
+        en todo el territorio provincial.
+    </p>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="page-container">
+    <div class="breadcrumb">
+        <a href="../index.html">Inicio</a>
+        <span>/</span>
+        <a href="../index.html#subsecretarias">Subsecretarías</a>
+        <span>/</span>
+        Defensa Civil
+    </div>
+
+    <!-- MISIÓN Y FUNCIONES -->
+    <div class="seccion-card">
+        <div class="seccion-card__header">
+        <span class="icon">🛡️</span>
+        <h2>Misión y Funciones</h2>
+        </div>
+        <div class="seccion-card__body">
+        <img
+            src="img/defensa_civil.jfif"
+            alt="Defensa Civil Santiago del Estero"
+            class="foto-defensa"
+        />
+        <p>
+            La Subsecretaría de Defensa Civil tiene como misión principal
+            proteger a la población, los bienes y el ambiente ante situaciones
+            de riesgo, emergencias y desastres naturales o antrópicos,
+            coordinando acciones preventivas y de respuesta inmediata en toda la
+            provincia de Santiago del Estero.
+        </p>
+        <p>
+            El Subsecretario de Defensa Civil es el Sr. Mario Enrique Guzmán,
+            quien coordina las acciones de protección civil en todo el
+            territorio provincial.
+        </p>
+
+        <div class="funciones-grid">
+            <div class="funcion-card">
+            <div class="funcion-icon">🔥</div>
+            <h4>Incendios</h4>
+            <p>
+                Coordinación y respuesta ante incendios forestales, urbanos y
+                rurales en toda la provincia.
+            </p>
+            </div>
+            <div class="funcion-card">
+            <div class="funcion-icon">🌊</div>
+            <h4>Inundaciones</h4>
+            <p>
+                Atención y asistencia a familias afectadas por inundaciones y
+                crecidas de ríos y arroyos.
+            </p>
+            </div>
+            <div class="funcion-card">
+            <div class="funcion-icon">🌪️</div>
+            <h4>Tormentas y Vientos</h4>
+            <p>
+                Respuesta ante emergencias climáticas: tormentas severas,
+                granizo y vientos fuertes.
+            </p>
+            </div>
+            <div class="funcion-card">
+            <div class="funcion-icon">🏥</div>
+            <h4>Asistencia Humanitaria</h4>
+            <p>
+                Entrega de elementos de primera necesidad a familias
+                damnificadas por catástrofes.
+            </p>
+            </div>
+            <div class="funcion-card">
+            <div class="funcion-icon">📢</div>
+            <h4>Prevención y Educación</h4>
+            <p>
+                Campañas de concientización y capacitación a la comunidad en
+                gestión del riesgo.
+            </p>
+            </div>
+            <div class="funcion-card">
+            <div class="funcion-icon">🤝</div>
+            <h4>Coordinación Interinstitucional</h4>
+            <p>
+                Articulación con municipios, fuerzas de seguridad, bomberos y
+                organismos nacionales.
+            </p>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- ÁREAS DE INTERVENCIÓN -->
+    <div class="seccion-card" style="border-left-color: #c8a84b">
+        <div
+        class="seccion-card__header"
+        style="background: linear-gradient(135deg, #7c5c1e 0%, #c8a84b 100%)"
+        >
+        <span class="icon">🗺️</span>
+        <h2>Áreas de Intervención</h2>
+        </div>
+        <div class="seccion-card__body">
+        <div class="subseccion">
+            <h3>Prevención y Gestión del Riesgo</h3>
+            <ul>
+            <li>Elaboración de mapas de riesgo provincial y municipal.</li>
+            <li>
+                Identificación de zonas vulnerables ante inundaciones, incendios
+                y otros riesgos.
+            </li>
+            <li>
+                Capacitación a funcionarios municipales en gestión del riesgo.
+        </li>
+            <li>Simulacros y ejercicios de respuesta ante emergencias.</li>
+            <li>Elaboración de planes de contingencia locales.</li>
+            </ul>
+        </div>
+
+        <div class="subseccion">
+            <h3>Respuesta ante Emergencias</h3>
+            <ul>
+            <li>
+                Activación del Centro de Operaciones de Emergencias (COE)
+                provincial.
+            </li>
+            <li>
+                Coordinación con municipios y comisiones municipales afectadas.
+            </li>
+            <li>
+                Distribución de ayuda humanitaria: alimentos, ropa, colchones,
+                chapas y materiales.
+            </li>
+            <li>Evacuación y albergue temporal de familias damnificadas.</li>
+            <li>
+                Articulación con organismos nacionales (SINAGIR, INDEC, INTA).
+            </li>
+            </ul>
+        </div>
+
+        <div class="subseccion">
+            <h3>Recuperación y Reconstrucción</h3>
+            <ul>
+            <li>Evaluación de daños post-emergencia.</li>
+            <li>
+                Coordinación de trabajos de reconstrucción de viviendas
+                afectadas.
+            </li>
+            <li>Asistencia técnica y social a las familias damnificadas.</li>
+            <li>
+                Seguimiento y acompañamiento durante el proceso de recuperación.
+            </li>
+            </ul>
+        </div>
+        </div>
+    </div>
+
+    <!-- CONTACTO DE EMERGENCIA -->
+    <div class="alerta-box">
+        <h4>🚨 Números de Emergencia y Contacto</h4>
+        <p>
+        Ante una emergencia, comuníquese de inmediato con los siguientes
+        números:
+        </p>
+        <div class="contacto-emergencia">
+        <div class="item">
+            <span class="numero">103</span>
+            <span class="label">Defensa Civil</span>
+        </div>
+        <div class="item">
+            <span class="numero">100</span>
+            <span class="label">Bomberos</span>
+        </div>
+        <div class="item">
+            <span class="numero">107</span>
+            <span class="label">SAME / Emergencias Médicas</span>
+        </div>
+        <div class="item">
+            <span class="numero">911</span>
+            <span class="label">Policía</span>
+        </div>
+        </div>
+        <p style="margin-top: 16px">
+        Dirección: Saenz Peña N° 340, Santiago del Estero (4200) — Tel:
+        <a href="tel:+5403854283139">(0385) 4283139</a>
+        </p>
+    </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+    <div class="container footer__inner">
+        <div class="footer__brand">
+        <img
+            src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png"
+            alt="logo santiago del estero"
+        />
+        <p>
+            <strong>Ministerio de Desarrollo Social</strong><br /><span
+            >Gobierno de Santiago del Estero</span
+            >
+        </p>
+        </div>
+        <div class="footer__links">
+        <h5>Enlaces Útiles</h5>
+        <ul>
+            <li><a href="../index.html">Inicio</a></li>
+            <li><a href="autoridades.html">Autoridades</a></li>
+            <li><a href="programas.html">Programas</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+        </div>
+        <div class="footer__contact">
+        <h5>Redes</h5>
+        <p>
+            <a
+            href="https://www.facebook.com/profile.php?id=61555557497190"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Facebook</a
+            >
+        </p>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <p>© 2026 SIDES - Santiago del Estero</p>
+    </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

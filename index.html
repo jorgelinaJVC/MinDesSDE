@@ -23,19 +23,18 @@
           <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
           <circle cx="95" cy="85" r="12" fill="#E30613" />
         </svg>
-          <span class="logo-text">Ministerio de Desarollo Social</span>
-          <span class="logo-sub">Santiago del Estero</span>
-          <nav class="header__nav" id="mainNav">
+        <span class="logo-text">Ministerio de Desarrollo Social</span>
+        <span class="logo-sub">Santiago del Estero</span>
+      </a>
+      <nav class="header__nav" id="mainNav">
         <ul class="nav__list">
           <li><a href="pages/autoridades.html" class="nav__link">Institución</a></li>
-          <li><a href="#areas" class="nav__link">Areas</a></li>
+          <li><a href="pages/programas.html" class="nav__link">Programas</a></li>
+          <li><a href="pages/requisitos.html" class="nav__link">Trámites</a></li>
           <li><a href="#noticias" class="nav__link">Noticias</a></li>
-          <li><a href="#portal institucional" class="nav__link">Portal Institucional</a></li>
           <li><a href="contacto.html" class="nav__link">Contacto</a></li>
         </ul>
       </nav>
-        </div>
-      </a>
       <button class="header__burger" id="burgerBtn" aria-label="Menú">
         <span></span><span></span><span></span>
       </button>
@@ -49,7 +48,7 @@
       <div class="hero__slide active" style="background-image: url('img/foto1.jpg')">
         <div class="hero__overlay"></div>
         <div class="hero__content container">
-          <span class="hero__tag">Tarjetas sociales</span>
+          <span class="hero__tag">Tarjetas Sociales</span>
           <h2 class="hero__title">Reunión de gabinete</h2>
         </div>
       </div>
@@ -80,11 +79,9 @@
 
     </div>
 
-    <!-- Controles del carrusel -->
     <button class="hero__prev" id="heroPrev" aria-label="Anterior">&#10094;</button>
     <button class="hero__next" id="heroNext" aria-label="Siguiente">&#10095;</button>
 
-    <!-- Indicadores -->
     <div class="hero__dots" id="heroDots">
       <button class="hero__dot active" data-index="0"></button>
       <button class="hero__dot" data-index="1"></button>
@@ -93,94 +90,153 @@
     </div>
   </section>
 
-  <!-- ========== ÁREAS (accesos rápidos) ========== -->
-<section class="ingresos" id="areas">
-  <div class="container">
-    <h2 class="section-title">Subsecretarias</h2>
+  <!-- ========== SUBSECRETARÍAS ========== -->
+  <section class="ingresos" id="subsecretarias">
+    <div class="container">
+      <h2 class="section-title">Subsecretarías</h2>
+      <div class="ingresos__grid">
 
-    <div class="ingresos__grid">
+        <!-- Subsecretaría de Desarrollo Social -->
+        <a href="pages/desarrollo-social.html" class="ingreso-card">
+          <div class="ingreso-card__img">
+            <img src="img/desarrollo_social.jfif" alt="Desarrollo Social">
+          </div>
+          <div class="ingreso-card__body" style="flex-direction:column; align-items:flex-start; gap:4px;">
+            <span class="ingreso-card__label">Desarrollo Social</span>
+            <span class="subsec-desc">Asistencia directa, microemprendimientos, comedores, adultos mayores, tarjetas sociales</span>
+          </div>
+        </a>
 
-      <!-- Subsecretaria de Desarrollo social -->
-      <a href="#" class="ingreso-card">
-        <div class="ingreso-card__img">
-          <img src="img/desarrollo_social.jfif" alt="Desarrollo social">
-        </div>
-        <div class="ingreso-card__body">
-          <span class="ingreso-card__label">Desarrollo Social</span>
-          <span class="ingreso-card__arrow">→</span>
-        </div>
-      </a>
+        <!-- Subsecretaría de Promoción Humana -->
+        <a href="pages/promocion-humana.html" class="ingreso-card">
+          <div class="ingreso-card__img">
+            <img src="img/promocionhumana.png" alt="Promoción Humana">
+          </div>
+          <div class="ingreso-card__body" style="flex-direction:column; align-items:flex-start; gap:4px;">
+            <span class="ingreso-card__label">Promoción Humana</span>
+            <span class="subsec-desc">Viviendas sociales, fachadas, planos, requisitos y novedades</span>
+          </div>
+        </a>
 
-      <!-- Promocion Humana -->
-      <a href="#" class="ingreso-card">
-        <div class="ingreso-card__img">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfvWuGmVNa-DMH1F4GPkWw1gHjGKZdRXvN_A&s" alt="Promocion Humana">
-        </div>
-        <div class="ingreso-card__body">
-          <span class="ingreso-card__label">Promocion Humana</span>
-          <span class="ingreso-card__arrow">→</span>
-        </div>
-      </a>
+        <!-- Subsecretaría de Defensa Civil -->
+        <a href="pages/defensa-civil.html" class="ingreso-card">
+          <div class="ingreso-card__img">
+            <img src="img/defensacivil.jfif" alt="Defensa Civil">
+          </div>
+          <div class="ingreso-card__body" style="flex-direction:column; align-items:flex-start; gap:4px;">
+            <span class="ingreso-card__label">Defensa Civil</span>
+            <span class="subsec-desc">Prevención, respuesta ante emergencias y desastres naturales</span>
+          </div>
+        </a>
 
-      <!-- Defensa Civil -->
-      <a href="#" class="ingreso-card">
-        <div class="ingreso-card__img">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2Qv9CEUxNhYCwdk15nhgEOqeCMCiMaZxM4A&s" alt="Defensa Civil">
-        </div>
-        <div class="ingreso-card__body">
-          <span class="ingreso-card__label">Defensa Civil</span>
-          <span class="ingreso-card__arrow">→</span>
-        </div>
-      </a>
-
-
+      </div>
     </div>
-  </div>
+  </section>
 
-<!-- ========== ÁREAS ========== -->
-<section class="ingresos" id="areas">
-  <div class="container">
-    <h2 class="section-title">Áreas y Programas</h2>
-    <div class="ingresos__grid">
-      <a href="pages/adultos.html" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">👵 Adultos Mayores</span></div></a>
-      <a href="pages/funerarios.html" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">🪦 Servicios Funerarios</span></div></a>
-      <a href="pages/autoridades.html" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">👔 Autoridades</span></div></a>
-      <a href="#" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">Comedores Comunitarios</span></div></a>
-      <a href="#" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">Viviendas Sociales</span></div></a>
-      <a href="#" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">Discapacidad</span></div></a>
-      <a href="#" class="ingreso-card"><div class="ingreso-card__body"><span class="ingreso-card__label">Economía Social</span></div></a>
+  <!-- ========== ÁREAS Y PROGRAMAS ========== -->
+  <section class="ingresos" id="areas" style="background: var(--color-bg); padding-top: 0; padding-bottom: 48px;">
+    <div class="container">
+      <h2 class="section-title">Áreas y Programas</h2>
+      <div class="areas-grid">
+
+        <a href="pages/adultos.html" class="area-card">
+          <div class="area-icon">👵</div>
+          <h4>Adultos Mayores</h4>
+          <p>Atención integral y residencias para adultos mayores</p>
+        </a>
+
+        <a href="pages/funerarios.html" class="area-card">
+          <div class="area-icon">🕊️</div>
+          <h4>Servicios Funerarios</h4>
+          <p>Servicio funerario gratuito para familias vulnerables</p>
+        </a>
+
+        <a href="pages/autoridades.html" class="area-card">
+          <div class="area-icon">👔</div>
+          <h4>Autoridades</h4>
+          <p>Estructura institucional y autoridades del ministerio</p>
+        </a>
+
+        <a href="ComedoresMantenimiento.html" class="area-card">
+          <div class="area-icon">🍽️</div>
+          <h4>Comedores Comunitarios</h4>
+          <p>Refuerzo alimentario para niños en situación de vulnerabilidad</p>
+        </a>
+
+        <a href="pages/promocion-humana.html" class="area-card">
+          <div class="area-icon">🏠</div>
+          <h4>Viviendas Sociales</h4>
+          <p>Construcción de viviendas para familias en situación precaria</p>
+        </a>
+
+        <a href="pages/desarrollo-social.html#microemprendimiento" class="area-card">
+          <div class="area-icon">💼</div>
+          <h4>Economía Social</h4>
+          <p>Microemprendimientos y plan Santiago Productivo</p>
+        </a>
+
+        <a href="pages/desarrollo-social.html#tarjetas" class="area-card">
+          <div class="area-icon">💳</div>
+          <h4>Tarjetas Sociales</h4>
+          <p>Tarjetas para familias vulnerables y celíacos</p>
+        </a>
+
+        <a href="pages/programas.html" class="area-card">
+          <div class="area-icon">📋</div>
+          <h4>Todos los Programas</h4>
+          <p>Ver todos los programas y beneficios disponibles</p>
+        </a>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="noticias" id="noticias">
-  <div class="container">
-    <h2 class="section-title">Noticias Institucionales</h2>
-    <div class="noticias__grid">
-      <article class="noticia-card">
-        <img src="https://lh6.googleusercontent.com/proxy/unPoK7zMv9bs-PFG7_JDah0QSdLMQ2GshI85jF_juWdv2rPqIn6um7fc7G3nnnah6nv-lWCb4WefWYZh_1LFwkAwhZZwZmrlYC9AiWJgX_9IFrDykgIsGnLxQc1OsearDFeA_MobmpK0LbSTF0jydYTojA" alt="">
-        <div class="noticia-card__body"><p>Anuncian aumentos para los beneficiarios de tarjetas sociales, planes de emergencia y celíacos</p>
-        </div>
-      </article>
-      <article class="noticia-card">
-        <img src="img/3.png" alt="viviendas sociales">
-        <div class="noticia-card__body"><p>Nuevas viviendas sociales para familias santiagueñas.</p>
-        </div>
-      </article>
-      <article class="noticia-card">
-        <img src="https://www.meducacionsantiago.gob.ar/wp-content/uploads/2026/02/625956687_1343083717855025_1442709633894348113_n-1024x682.jpg" alt="oficios">
-        <div class="noticia-card__body"><p>Capacitaciones de oficios y emprendimientos.</p>
-        </div>
-      </article>
+  <!-- ========== NOTICIAS ========== -->
+  <section class="noticias" id="noticias">
+    <div class="container">
+      <h2 class="section-title">Noticias Institucionales</h2>
+      <div class="noticias__grid">
+        <article class="noticia-card">
+          <div class="noticia-card__img">
+            <img src="img/foto3.jpg" alt="Tarjetas sociales">
+          </div>
+          <div class="noticia-card__body">
+            <p>Anuncian aumentos para los beneficiarios de tarjetas sociales, planes de emergencia y celíacos</p>
+          </div>
+        </article>
+        <article class="noticia-card">
+          <div class="noticia-card__img">
+            <img src="img/3.png" alt="Viviendas sociales">
+          </div>
+          <div class="noticia-card__body">
+            <p>Nuevas viviendas sociales para familias santiagueñas.</p>
+          </div>
+        </article>
+        <article class="noticia-card">
+          <div class="noticia-card__img">
+            <img src="img/Ad-May-Deporte.jpg" alt="Adultos mayores">
+          </div>
+          <div class="noticia-card__body">
+            <p>Actividades deportivas y recreativas para adultos mayores de la provincia.</p>
+          </div>
+        </article>
+        <article class="noticia-card">
+          <div class="noticia-card__img">
+            <img src="img/emprendedores.jpg" alt="Asistencia directa">
+          </div>
+          <div class="noticia-card__body">
+            <p>Capacitaciones de oficios y emprendimientos para la inclusión social.</p>
+          </div>
+        </article>
+      </div>
     </div>
-  </div>
-  <section class="videos" id="videos">
-  <div class="container">
-    <h2 class="section-title">Galería de Videos</h2>
 
-    <div class="videos-grid">
-
-      <div class="video-card">
+    <!-- GALERÍA DE VIDEOS -->
+    <section class="videos" id="videos">
+      <div class="container">
+        <h2 class="section-title">Galería de Videos</h2>
+        <div class="videos-grid">
+          <div class="video-card">
         <iframe 
           src="http://www.mdssde.gob.ar/wp-content/uploads/2023/11/Viviendas-Sociales.mp4"
           title="Más de 27.000 viviendas sociales"
@@ -188,70 +244,75 @@
         </iframe>
         <p>Entrega de viviendas sociales</p>
       </div>
-
-      <div class="video-card">
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0ErbMVybpzs?si=MC-eghOYMUFelaZp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <p>Crearon una cooperativa de mujeres para construir viviendas sociales</p>
-    </div>
-
-      <div class="video-card">
-        <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/0ErbMVybpzs?si=MC-eghOYMUFelaZp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-        <p>La importancia de actuar a tiempo </p>
+          <div class="video-card">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/0ErbMVybpzs?si=cGqf9WA9-JDB0Sz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>Crearon una cooperativa de mujeres para construir viviendas sociales</p>
+          </div>
+          <div class="video-card">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/i1guqem3UdA?si=0CvK_n6gu-3v9WSy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p>La importancia de actuar a tiempo ante emergencias</p>
+          </div>
+        </div>
       </div>
+    </section>
+  </section>
 
+  <!-- ========== MAPA Y CONTACTO ========== -->
+  <section id="contacto" style="padding: 56px 0; background: var(--color-white);">
+    <div class="container">
+      <h2 class="section-title">Ubicación y Contacto</h2>
+      <iframe
+        src="https://www.google.com/maps?q=Ministerio%20de%20Desarrollo%20Social%20Santiago%20del%20Estero&output=embed"
+        width="100%"
+        height="380"
+        style="border:0; border-radius:16px; display:block;"
+        loading="lazy"
+        title="Ubicación del Ministerio">
+      </iframe>
+      <div style="margin-top:20px; color: var(--color-text);">
+        <p><strong>Dirección:</strong> Saenz Peña N° 340, Santiago del Estero (4200) Argentina</p>
+        <p><strong>Teléfono:</strong> (0385) 4283139 / 73 / 97</p>
+        <p><strong>Email:</strong> <a href="mailto:cministeriodesarrollosocial@mdssde.gob.ar" style="color: var(--color-primary);">cministeriodesarrollosocial@mdssde.gob.ar</a></p>
+      </div>
     </div>
-  </div>
-</section>
-</section>
+  </section>
 
-<section class="servicios" id="portal institucional">
-  <div class="container">
-    <h2 class="section-title">Portal Institucional</h2>
-    <div class="servicios__grid">
-      <a href="#" class="servicio-card"><h4>Trámites</h4><p>Accesos rápidos a solicitudes y gestiones.</p></a>
-      <a href="#" class="servicio-card"><h4>Programas</h4><p>Información de beneficios vigentes.</p></a>
-      <a href="#" class="servicio-card"><h4>Transparencia</h4><p>Normativas, licitaciones y datos públicos.</p></a>
-      <a href="#" class="servicio-card"><h4>Descargas</h4><p>Formularios y documentos oficiales.</p></a>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="Logo Santiago del Estero">
+        <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
+      </div>
+      <div class="footer__links">
+        <h5>Subsecretarías</h5>
+        <ul>
+          <li><a href="pages/desarrollo-social.html">Desarrollo Social</a></li>
+          <li><a href="pages/promocion-humana.html">Promoción Humana</a></li>
+          <li><a href="pages/defensa-civil.html">Defensa Civil</a></li>
+        </ul>
+      </div>
+      <div class="footer__links">
+        <h5>Áreas</h5>
+        <ul>
+          <li><a href="pages/adultos.html">Adultos Mayores</a></li>
+          <li><a href="pages/funerarios.html">Servicios Funerarios</a></li>
+          <li><a href="pages/programas.html">Programas</a></li>
+          <li><a href="pages/contacto.html">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer__contact">
+        <h5>Redes</h5>
+        <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+        <h5 style="margin-top:16px;">Institución</h5>
+        <p><a href="pages/autoridades.html">Autoridades</a></p>
+      </div>
     </div>
-  </div>
-</section>
+    <div class="footer__bottom">
+      <p>© 2026 SIDES — Santiago del Estero</p>
+    </div>
+  </footer>
 
-<section class="mapa" id="contacto">
-  <div class="container">
-    <h2 class="section-title">Ubicación y Contacto</h2>
-    <iframe src="https://www.google.com/maps?q=Ministerio%20de%20Desarrollo%20Social%20Santiago%20del%20Estero&output=embed" width="100%" height="380" style="border:0;border-radius:16px;" loading="lazy"></iframe>
-    <div class="footer__contact" style="margin-top:20px;">
-      <p>Dirección:Saenz Peña N° 340, Santiago del Estero(4200) Argentina</p>
-      <p>Teléfono:(0385) 4283139/73/97</p>
-      <p>Email:cministeriodesarrollosocial@mdssde.gob.ar</p>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="container footer__inner">
-    <div class="footer__brand">
-      <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="logo santiago del estero">
-      <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
-    </div>
-    <div class="footer__links">
-      <h5>Enlaces Útiles</h5>
-      <ul>
-        <li><a href="#areas">Áreas</a></li>
-        <li><a href="#noticias">Noticias</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-        <li><a href="#">Preguntas Frecuentes</a></li>
-      </ul>
-    </div>
-    <div class="footer__contact">
-      <h5>Redes</h5>
-      <p>><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" rel="noopener noreferrer"> Facebook </a></p>
-    </div>
-  </div>
-<div class="footer__bottom">
-  <p>© 2026 SIDES - Santiago del Estero</p>
-</div>
-</footer>
-<script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>
