@@ -61,10 +61,12 @@ section { padding: 5rem 2rem; }
 
 .section-title span { color: var(--slate-blue); }
 .section-desc {
-  font-size: 1.05rem;
-  color: var(--text-medium);
-  line-height: 1.7;
-  max-width: 600px;
+ max-width: 700px;    /* 👈 Controla el ancho máximo (700px o 800px suele ser el estándar ideal para lectura) */
+  margin-left: auto;   /* 👈 Estos dos 'auto' hacen que el bloque se centre en la pantalla */
+  margin-right: auto;
+  text-align: center;  /* Mantiene el texto centrado por dentro (como lo tenés ahora) */
+  line-height: 1.6;    /* Opcional: le da un poquito más de espacio entre líneas para que respire */
+  color: #4a5568;
 }
 .section-header { margin-bottom: 3rem; }
 .section-header.centered { text-align: center; }

@@ -1,11 +1,11 @@
 /* ===== BOTÓN TOGGLE DE ACCESIBILIDAD ===== */
 .accessibility-toggle-btn {
   position: fixed;
-  top: 20px;
+  top: 90px;
   right: 20px;
   z-index: 2500;
-  width: 50px;
-  height: 50px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
   background: #2563eb;
   color: white;
@@ -19,16 +19,43 @@
   transition: transform 0.2s, box-shadow 0.2s;
 }
 
-.accessibility-toggle-btn:hover {
+/* Contenedor del cartelito (oculto por defecto) */
+.accessibility-toggle-btn::before {
+  content: attr(data-tooltip); /* Toma el texto del HTML */
+  position: absolute;
+  right: 65px; /* Lo aleja 5px y lo ubica a la izquierda del botón redondo */
+  top: 50%;
+  transform: translateY(-50%) scale(0.8);
+  background-color: #1e293b; /* Color oscuro como tus botones */
+  color: white;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+
+/* Mostrar cartel y flecha al pasar el mouse */
+.accessibility-toggle-btn:hover::before,
+.accessibility-toggle-btn:hover::after {
+  opacity: 1;
+  transform: translateY(-50%) scale(1);
+}
+/*.accessibility-toggle-btn:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
-}
+}*/
 
 /* ===== PANEL DE ACCESIBILIDAD ===== */
 .accessibility-panel {
   display: none;
   position: fixed;
-  top: 80px;
+  top: 150px;
   right: 20px;
   z-index: 2500;
   width: 280px;
@@ -98,10 +125,11 @@
 }
 
 .accessibility-font-indicator {
-  font-weight: bold;
+  font-weight: bolder;
   min-width: 50px;
   text-align: center;
   flex-grow: 1;
+  color: #2563eb; /* 👈 Agregás esta línea */
 }
 
 .accessibility-action-btn {
