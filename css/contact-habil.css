@@ -1,0 +1,150 @@
+
+·#contact-habil {
+  background: #ede7e7;
+  margin-top: 0;
+  padding-top: 4rem;
+}
+
+.contact-habil-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: start;
+}
+.contact-habil-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 1.75rem;
+}
+.contact-habil-info-icon {
+  width: 48px; height: 48px;
+  background: linear-gradient(135deg, var(--slate-blue), var(--slate-dark));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(107,122,153,0.25);
+}
+.contact-habil-info-content h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--slate-deeper);
+  margin-bottom: 4px;
+}
+.contact-habil-info-content p,
+.contact-habil-info-content a {
+  font-size: 14px;
+  color: var(--text-medium);
+  text-decoration: none;
+  line-height: 1.5;
+  transition: color 0.2s;
+}
+.contact-habil-info-content a:hover { color: var(--slate-blue); }
+
+.contact-habil-whatsapp-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: #25D366;
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 14px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  margin-top: 1rem;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+}
+.contact-habil-whatsapp-btn:hover {
+  background: #1ebe5d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(37,211,102,0.4);
+}
+
+.contact-habil-form-card {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-hover);
+}
+.contact-habil-form-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--slate-deeper);
+  margin-bottom: 0.5rem;
+}
+.contact-habil-form-card p {
+  font-size: 14px;
+  color: var(--text-medium);
+  margin-bottom: 1.75rem;
+  line-height: 1.5;
+}
+.contact-habil-form-group { margin-bottom: 1.25rem; }
+.contact-habil-form-group label {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--slate-deeper);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  color: var(--text-dark);
+  background: #fafafa;
+  transition: all 0.2s;
+  outline: none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--slate-blue);
+  background: var(--white);
+  box-shadow: 0 0 0 3px rgba(107,122,153,0.15);
+}
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-submit {
+  width: 100%;
+  padding: 15px;
+  background: linear-gradient(135deg, var(--slate-blue), var(--slate-deeper));
+  color: var(--white);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 0.5rem;
+  letter-spacing: 0.5px;
+}
+.form-submit:hover {
+  background: linear-gradient(135deg, var(--slate-dark), var(--slate-deeper));
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(45,55,72,0.3);
+}
+.form-note {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-medium);
+  margin-top: 1rem;
+}

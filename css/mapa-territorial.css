@@ -3,7 +3,7 @@
    ========================================================================== */
 
 #mapa-territorial {
-  background-color: #f8fafc; /* Fondo gris sutil para resaltar las tarjetas blancas */
+  background-color: #ffffff /* Fondo blanco */
 }
 
 /* Forzar que el Grid tenga exactamente las mismas columnas que Metodología */

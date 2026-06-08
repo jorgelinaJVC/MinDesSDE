@@ -1,7 +1,7 @@
 /* ===== GALLERY ===== */
     #gallery {
     
-  background: #08235dd9;
+  background: var(--gray);
   margin-bottom: 0;
   padding-bottom: 4rem;
     }

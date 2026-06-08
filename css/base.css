@@ -3,7 +3,7 @@
 html { scroll-behavior: smooth; }
 body {
   font-family: 'Open Sans', sans-serif;
-  color: #F2F4F4;/* gris humo */
+  color: black;/* letras negra de subtitulo de galeria */
   background: #f9f9f9;
   overflow-x: hidden;
   }
@@ -11,9 +11,11 @@ body {
     
 /* ===== VARIABLES ===== */
 :root {
-  --slate-blue: #6B7A99;
-  --slate-dark: #4a5568;
-  --slate-deeper:#08235dd9;
+  --slate-blue: #5B2D8E;
+  --slate-dark: #5B2D8E;
+  --slate-deeper:#5B2D8E;
+  --slate-deeper1:black;
+  --slate-deeper2:#5B2D8E;
   --gold: #F5C518;
   --gold-dark: #d4a800;
   --white: #ffffff;
@@ -47,7 +49,8 @@ section { padding: 5rem 2rem; }
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
   font-size: clamp(1.8rem, 3vw, 2.5rem);
-  color: var(--slate-deeper);
+  color: var(--slate-deeper1);
+  color: var(--slate-deeper2);
   line-height: 1.2;
   margin-bottom: 1rem;
 }
