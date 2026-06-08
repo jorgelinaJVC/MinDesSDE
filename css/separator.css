@@ -1,0 +1,8 @@
+/* ===== SEPARADOR ENTRE SECCIONES ===== */
+.section-separator {
+  width: 100%;
+  height: 4px;
+  background-color: #2563eb; /* Puedes cambiar el color según tu diseño */
+  margin: 2rem 0; /* Espacio arriba y abajo del separador */
+}
+

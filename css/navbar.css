@@ -1,0 +1,128 @@
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: rgb(0, 51, 102);
+  backdrop-filter: blur(10px);
+  padding: 0 2rem;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
+}
+.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+/* El contenedor muestra el logo del Ministerio dentro de una caja  */
+.nav-logo-box {
+  width: 44px;
+  height: 44px;
+  background: var(--white);
+  border-radius: 8px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  padding: 4px; /* Este espacio protege al logo de tocar los bordes */
+  overflow: hidden; /* Evita que cualquier contenido se salga de las esquinas redondeadas */
+}
+
+/* La imagen dentro de ese contenedor */
+.nav-logo-box img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+/* El contenedor muestra el logo de Santiago dentro de una caja  */
+.nav-logo-extra-box {
+  width: 44px;
+  height: 44px;
+  background: var(--white); /* color del box */
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.nav-logo-extra-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.nav-brand-text {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700; font-size: 13px;
+  color: var(--white);
+  line-height: 1.3;
+  max-width: 200px;
+}
+.nav-links { 
+  display: flex; 
+  align-items: center; 
+  gap: 2rem; 
+  list-style: none; 
+  margin-right: 50px;
+}
+.nav-links a {
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 14px; font-weight: 600;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--gold);
+  color: var(--slate-deeper) !important;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  transition: background 0.2s, transform 0.2s !important;
+}
+.nav-cta:hover { background: var(--gold-dark) !important; transform: translateY(-1px); }
+
+/* Hamburguesa móvil */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px; height: 2px;
+  background: var(--white);
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Animación de la hamburguesa al abrirse */
+.nav-hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.active span:nth-child(2) { opacity: 0; }
+.nav-hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ESTILOS DE DESPLIEGUE MÓVIL */
+@media (max-width: 900px) {
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 68px; left: 0; right: 0;
+    background: rgba(0, 51, 102, 0.98);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    gap: 1.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transform: translateY(-150%);
+    transition: transform 0.4s cubic-bezier(0.1, 0.8, 0.3, 1);
+  }
+  .nav-links.active {
+    transform: translateY(0);
+  }
+}
