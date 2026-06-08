@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programas y Servicios - Ministerio de Desarrollo Social</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+    <style>
+        .programa-hero {
+            background: linear-gradient(135deg, #1a3a6b 0%, #2d5a9e 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .programa-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-weight: 700;
+        }
+
+        .programa-hero p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .programas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .programa-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid #c8a84b;
+        }
+
+        .programa-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .programa-card__header {
+            background: linear-gradient(135deg, #1a3a6b 0%, #2d5a9e 100%);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .programa-card__icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .programa-card__title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            font-family: 'Barlow Condensed', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .programa-card__body {
+            padding: 25px;
+        }
+
+        .programa-card__description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .programa-card__features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .programa-card__features li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .programa-card__features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #c8a84b;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .programa-card__cta {
+            display: inline-block;
+            background: #1a3a6b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .programa-card__cta:hover {
+            background: #c8a84b;
+            color: #1a3a6b;
+        }
+
+        .requisitos-section {
+            background: #f5f6f8;
+            padding: 40px 20px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+        }
+
+        .requisitos-section h2 {
+            color: #1a3a6b;
+            margin-bottom: 25px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
+
+        .requisitos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .requisito-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .requisito-card h3 {
+            color: #1a3a6b;
+            margin-bottom: 15px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .requisito-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .requisito-card li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        .requisito-card li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #c8a84b;
+            font-weight: bold;
+        }
+
+        .contacto-section {
+            background: linear-gradient(135deg, #1a3a6b 0%, #2d5a9e 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .contacto-section h2 {
+            margin-bottom: 20px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
+
+        .contacto-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .contacto-item {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .contacto-item strong {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .contacto-item a {
+            color: #c8a84b;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contacto-item a:hover {
+            text-decoration: underline;
+        }
+
+        .descargas-section {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            margin-bottom: 40px;
+        }
+
+        .descargas-section h2 {
+            color: #1a3a6b;
+            margin-bottom: 25px;
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.8rem;
+            text-transform: uppercase;
+        }
+
+        .descargas-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .descarga-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: #f5f6f8;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #1a3a6b;
+            transition: all 0.3s ease;
+            border-left: 4px solid #c8a84b;
+        }
+
+        .descarga-item:hover {
+            background: #e8eef5;
+            transform: translateX(5px);
+        }
+
+        .descarga-icon {
+            font-size: 1.8rem;
+            margin-right: 15px;
+        }
+
+        .descarga-text {
+            flex: 1;
+        }
+
+        .descarga-text strong {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .descarga-text small {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .page-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="header__inner container">
+            <a href="../index.html" class="header__logo">
+                <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#526685" />
+                    <circle cx="75" cy="20" r="18" fill="#526685" />
+                    <path d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z" fill="#7C96C4" />
+                    <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+                    <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
+                    <circle cx="95" cy="85" r="12" fill="#E30613" />
+                </svg>
+                <span class="logo-text">Ministerio de Desarrollo Social</span>
+                <span class="logo-sub">Santiago del Estero</span>
+            </a>
+            <nav class="header__nav" id="mainNav">
+                <ul class="nav__list">
+                    <li><a href="../index.html" class="nav__link">Inicio</a></li>
+                    <li><a href="autoridades.html" class="nav__link">Autoridades</a></li>
+                    <li><a href="programas.html" class="nav__link">Programas</a></li>
+                    <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="header__burger" id="burgerBtn" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="programa-hero">
+        <h1>Programas y Servicios</h1>
+        <p>Conoce todos los programas y servicios que ofrece el Ministerio de Desarrollo Social para la población de Santiago del Estero</p>
+    </div>
+
+    <div class="page-container">
+        <!-- PROGRAMAS PRINCIPALES -->
+        <section>
+            <h2 class="section-title">Programas Principales</h2>
+            <div class="programas-grid">
+                <!-- Viviendas Sociales -->
+                <div class="programa-card">
+                    <div class="programa-card__header">
+                        <div class="programa-card__icon">🏠</div>
+                        <div class="programa-card__title">Viviendas Sociales</div>
+                    </div>
+                    <div class="programa-card__body">
+                        <p class="programa-card__description">Programa de construcción de viviendas dignas para grupos familiares en situación de vulnerabilidad, con énfasis en la lucha contra el Chagas.</p>
+                        <ul class="programa-card__features">
+                            <li>Prioridad a familias vulnerables</li>
+                            <li>Construcción participativa</li>
+                            <li>Eliminación de ranchos precarios</li>
+                            <li>Articulación con ONG y comunidades</li>
+                        </ul>
+                        <a href="promocion-humana.html" class="programa-card__cta">Más Información</a>
+                    </div>
+                </div>
+
+                <!-- Tarjetas Sociales -->
+                <div class="programa-card">
+                    <div class="programa-card__header">
+                        <div class="programa-card__icon">💳</div>
+                        <div class="programa-card__title">Tarjetas Sociales</div>
+                    </div>
+                    <div class="programa-card__body">
+                        <p class="programa-card__description">Aporte económico mensual destinado a la compra de alimentos para familias en situación de riesgo social y nutricional.</p>
+                        <ul class="programa-card__features">
+                            <li>Aporte mensual para alimentos</li>
+                            <li>Destinado a familias vulnerables</li>
+                            <li>Fácil acceso a comercios</li>
+                            <li>Beneficiarios actualizados</li>
+                        </ul>
+                        <a href="desarrollo-social.html#tarjetas" class="programa-card__cta">Más Información</a>
+                    </div>
+                </div>
+
+                <!-- Adultos Mayores -->
+                <div class="programa-card">
+                    <div class="programa-card__header">
+                        <div class="programa-card__icon">👵</div>
+                        <div class="programa-card__title">Adultos Mayores</div>
+                    </div>
+                    <div class="programa-card__body">
+                        <p class="programa-card__description">Servicios integrales para la atención y cuidado de adultos mayores en situación de vulnerabilidad social.</p>
+                        <ul class="programa-card__features">
+                            <li>Hogares diurnos</li>
+                            <li>Residencias de larga estadía</li>
+                            <li>Centros de rehabilitación</li>
+                            <li>Atención especializada</li>
+                        </ul>
+                        <a href="adultos.html" class="programa-card__cta">Más Información</a>
+                    </div>
+                </div>
+
+                <!-- Comedores Comunitarios -->
+                <div class="programa-card">
+                    <div class="programa-card__header">
+                        <div class="programa-card__icon">🍽️</div>
+                        <div class="programa-card__title">Comedores Comunitarios</div>
+                    </div>
+                    <div class="programa-card__body">
+                        <p class="programa-card__description">Refuerzo alimentario para niños y niñas de hogares con necesidades básicas insatisfechas.</p>
+                        <ul class="programa-card__features">
+                            <li>Alimentación nutritiva</li>
+                            <li>Atención a menores</li>
+                            <li>Combate de desnutrición</li>
+                            <li>Inclusión social</li>
+                        </ul>
+                        <a href="desarrollo-social.html" class="programa-card__cta">Más Información</a>
+                    </div>
+                </div>
+
+                <!-- Servicios Funerarios -->
+                <div class="programa-card">
+                    <div class="programa-card__header">
+                        <div class="programa-card__icon">🕊️</div>
+                        <div class="programa-card__title">Servicios Funerarios</div>
+                    </div>
+                    <div class="programa-card__body">
+                        <p class="programa-card__description">Servicio fúnebre gratuito para personas sin recursos que lo necesiten.</p>
+                        <ul class="programa-card__features">
+                            <li>Servicio completamente gratuito</li>
+                            <li>Previsión de ataúd</li>
+                            <li>Asistencia integral</li>
+                            <li>Trámites facilitados</li>
+                        </ul>
+                        <a href="funerarios.html" class="programa-card__cta">Más Información</a>
+                    </div>
+                </div>
+
+                <!-- Economía Social -->
+                <div class="programa-card">
+                    <div class="programa-card__header">
+                        <div class="programa-card__icon">💼</div>
+                        <div class="programa-card__title">Economía Social</div>
+                    </div>
+                    <div class="programa-card__body">
+                        <p class="programa-card__description">Capacitación técnica y asesoramiento para emprendimientos y micro negocios.</p>
+                        <ul class="programa-card__features">
+                            <li>Capacitación técnica</li>
+                            <li>Asesoramiento empresarial</li>
+                            <li>Fortalecimiento de emprendimientos</li>
+                            <li>Talleres familiares</li>
+                        </ul>
+                        <a href="desarrollo-social.html" class="programa-card__cta">Más Información</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- REQUISITOS GENERALES -->
+        <section class="requisitos-section">
+            <h2>Requisitos Generales</h2>
+            <div class="requisitos-grid">
+                <div class="requisito-card">
+                    <h3>Para Solicitar Vivienda Social</h3>
+                    <ul>
+                        <li>Ser residente de Santiago del Estero</li>
+                        <li>Estar en situación de vulnerabilidad</li>
+                        <li>Documentación de identidad</li>
+                        <li>Comprobante de domicilio</li>
+                        <li>Constancia de ingresos</li>
+                    </ul>
+                </div>
+                <div class="requisito-card">
+                    <h3>Para Acceder a Tarjeta Social</h3>
+                    <ul>
+                        <li>Ser mayor de edad o representante legal</li>
+                        <li>Residencia en la provincia</li>
+                        <li>Estar en riesgo social/nutricional</li>
+                        <li>Documentación de identidad</li>
+                        <li>Datos de contacto actualizados</li>
+                    </ul>
+                </div>
+                <div class="requisito-card">
+                    <h3>Para Servicios de Adultos Mayores</h3>
+                    <ul>
+                        <li>Ser mayor de 65 años</li>
+                        <li>Estar en situación vulnerable</li>
+                        <li>Evaluación social</li>
+                        <li>Documentación médica</li>
+                        <li>Referencia de familiares</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- DESCARGAS -->
+        <section class="descargas-section">
+            <h2>Documentación para Descargar</h2>
+            <div class="descargas-grid">
+                <a href="http://www.mdssde.gob.ar/wp-content/uploads/2025/12/REQUISITOS-PARA-VIVIENDAS-SOCIALES-2026-para-correo-electronico-copia-1.pdf" target="_blank" class="descarga-item">
+                    <div class="descarga-icon">📄</div>
+                    <div class="descarga-text">
+                        <strong>Requisitos Viviendas 2026</strong>
+                        <small>PDF - Actualizado 2026</small>
+                    </div>
+                </a>
+                <a href="http://www.mdssde.gob.ar/wp-content/uploads/2020/04/DOCUMENTACION-A-PRESENTAR-POR-FAMILIA-BENEFICIARIA.pdf" target="_blank" class="descarga-item">
+                    <div class="descarga-icon">📋</div>
+                    <div class="descarga-text">
+                        <strong>Documentación Familia Beneficiaria</strong>
+                        <small>PDF - Requisitos</small>
+                    </div>
+                </a>
+                <a href="http://www.mdssde.gob.ar/wp-content/uploads/2020/04/DOCUMENTACION-A-PRESENTAR-POR-COOPERATIVAS-DE-TRABAJO-Y-MUTUALES.pdf" target="_blank" class="descarga-item">
+                    <div class="descarga-icon">📑</div>
+                    <div class="descarga-text">
+                        <strong>Documentación Cooperativas</strong>
+                        <small>PDF - Requisitos</small>
+                    </div>
+                </a>
+                <a href="http://www.mdssde.gob.ar/wp-content/uploads/2020/05/ACTA-DE-COMPROMISO-Y-RESPONSABILIDAD-INSTITUCIONAL-municipalidades.pdf" target="_blank" class="descarga-item">
+                    <div class="descarga-icon">✍️</div>
+                    <div class="descarga-text">
+                        <strong>Acta Compromiso Municipal</strong>
+                        <small>PDF - Formulario</small>
+                    </div>
+                </a>
+                <a href="http://www.mdssde.gob.ar/wp-content/uploads/2020/05/ACTA-DE-COMPROMISO-Y-RESPONSABILIDAD-INSTITUCIONAL.pdf" target="_blank" class="descarga-item">
+                    <div class="descarga-icon">✍️</div>
+                    <div class="descarga-text">
+                        <strong>Acta Compromiso Comisión</strong>
+                        <small>PDF - Formulario</small>
+                    </div>
+                </a>
+                <a href="http://www.mdssde.gob.ar/wp-content/uploads/2020/05/ACTA-COMPROMISO-FAMILIAR.pdf" target="_blank" class="descarga-item">
+                    <div class="descarga-icon">✍️</div>
+                    <div class="descarga-text">
+                        <strong>Acta Compromiso Familiar</strong>
+                        <small>PDF - Formulario</small>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <!-- CONTACTO -->
+        <section class="contacto-section">
+            <h2>¿Necesitas Ayuda?</h2>
+            <p>Ponte en contacto con nosotros para conocer más sobre nuestros programas y servicios</p>
+            <div class="contacto-info">
+                <div class="contacto-item">
+                    <strong>📍 Dirección</strong>
+                    <p>Saenz Peña N° 340<br>Santiago del Estero (4200)</p>
+                </div>
+                <div class="contacto-item">
+                    <strong>📞 Teléfono</strong>
+                    <p><a href="tel:+5403854283139">(0385) 4283139</a><br><a href="tel:+5403854283173">4283173 / 4283197</a></p>
+                </div>
+                <div class="contacto-item">
+                    <strong>✉️ Email</strong>
+                    <p><a href="mailto:cministeriodesarrollosocial@mdssde.gob.ar">cministeriodesarrollosocial@mdssde.gob.ar</a></p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="logo santiago del estero">
+                <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
+            </div>
+            <div class="footer__links">
+                <h5>Enlaces Útiles</h5>
+                <ul>
+                    <li><a href="../index.html">Inicio</a></li>
+                    <li><a href="autoridades.html">Autoridades</a></li>
+                    <li><a href="programas.html">Programas</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer__contact">
+                <h5>Redes</h5>
+                <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" rel="noopener noreferrer">Facebook</a></p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2026 SIDES - Santiago del Estero</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>
