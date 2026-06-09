@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comedores Comunitarios - En Mantenimiento</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --color-primary: #1a3a6b;
+            --color-dark: #0d2240;
+            --color-accent: #c8a84b;
+            --color-bg-light: #f5f6f8;
+            --color-white: #ffffff;
+            --border-radius-modern: 16px;
+        }
+
+        body {
+            font-family: 'Barlow', sans-serif !important;
+            background-color: var(--color-bg-light);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Envoltorio principal para mantener el footer abajo */
+        .content-grow {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 15px;
+        }
+
+        /* Contenedor principal de Mantenimiento Modernizado */
+        .mantenimiento-card {
+            background: var(--color-white);
+            padding: 50px 40px;
+            border-radius: var(--border-radius-modern);
+            box-shadow: 0 15px 35px rgba(13, 34, 64, 0.08);
+            max-width: 650px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mantenimiento-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 6px;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+        }
+
+        /* Ilustración de Mantenimiento con Emojis y CSS (Segura contra caídas de URLs externas) */
+        .maint-icon-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            background: #fff9eb;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            border: 2px dashed #f59e0b;
+        }
+
+        .maint-icon-container i {
+            font-size: 2.8rem;
+            color: #d97706;
+        }
+
+        .badge-live {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background-color: #ef4444;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 12px;
+            text-transform: uppercase;
+            box-shadow: 0 2px 4px rgba(239, 68, 68, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.85; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .maint-title {
+            color: var(--color-primary);
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .maint-subtitle {
+            color: #64748b;
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* Barra de Progreso */
+        .progress-container {
+            background-color: #f1f5f9;
+            height: 12px;
+            border-radius: 6px;
+            width: 100%;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-accent) 100%);
+            width: 85%;
+            border-radius: 6px;
+        }
+
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+
+        /* Formulario de Suscripción Integrado */
+        .sub-box {
+            background-color: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+        }
+
+        .sub-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .sub-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 15px;
+        }
+
+        .sub-form {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        @media (min-width: 480px) {
+            .sub-form {
+                flex-direction: row;
+            }
+        }
+
+        .sub-input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: 'Barlow', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .sub-input:focus {
+            border-color: var(--color-primary);
+            background-color: #fff;
+            box-shadow: 0 0 0 3px rgba(26, 58, 107, 0.1);
+        }
+
+        .sub-btn {
+            background-color: var(--color-primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: background 0.3s;
+            white-space: nowrap;
+        }
+
+        .sub-btn:hover {
+            background-color: var(--color-dark);
+        }
+
+        .alert-success-sub {
+            display: none;
+            background-color: #ecfdf5;
+            color: #065f46;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid #a7f3d0;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* Botón de volver al inicio */
+        .btn-volver {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: transparent;
+            border: 2px solid var(--color-primary);
+            color: var(--color-primary);
+            padding: 10px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-family: 'Barlow', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .btn-volver:hover {
+            background: var(--color-primary);
+            color: white;
+            box-shadow: 0 4px 6px -1px rgba(26, 58, 107, 0.15);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header" id="header">
+        <div class="header__inner container">
+            <a href="../index.html" class="header__logo">
+                <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#526685" />
+                    <circle cx="75" cy="20" r="18" fill="#526685" />
+                    <path d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z" fill="#7C96C4" />
+                    <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+                    <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
+                    <circle cx="95" cy="85" r="12" fill="#E30613" />
+                </svg>
+                <span class="logo-text">Ministerio de Desarrollo Social</span>
+                <span class="logo-sub">Santiago del Estero</span>
+            </a>
+            <nav class="header__nav" id="mainNav">
+                <ul class="nav__list">
+                    <li><a href="autoridades.html" class="nav__link">Institución</a></li>
+                    <li><a href="programas.html" class="nav__link">Programas</a></li>
+                    <li><a href="requisitos.html" class="nav__link">Trámites</a></li>
+                    <li><a href="../index.html" class="nav__link">Noticias</a></li>
+                    <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+                </ul>
+            </nav>
+            <button class="header__burger" id="burgerBtn" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== CONTENEDOR CENTRAL DE MANTENIMIENTO ========== -->
+    <div class="content-grow">
+        <div class="mantenimiento-card">
+            <!-- Icono Estilizado de Mantenimiento con SVG -->
+            <div class="maint-icon-container">
+                <svg class="maint-svg" viewBox="0 0 24 24">
+                    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+                <span class="badge-live">Obras</span>
+            </div>
+
+            <!-- Textos Informativos -->
+            <h1 class="maint-title">Portal en Actualización</h1>
+            <p class="maint-subtitle">
+                Estamos digitalizando la **Base de Datos y el Mapa de Comedores Comunitarios** de la provincia para ofrecer un servicio de geolocalización de centros en tiempo real. Disculpe las molestias.
+            </p>
+
+            <!-- Barra de Progreso del Trabajo Técnico -->
+            <div class="progress-container">
+                <div class="progress-bar"></div>
+            </div>
+            <div class="progress-text">
+                <span>Migración del Sistema de Datos</span>
+                <span>85% Completado</span>
+            </div>
+
+            <!-- Formulario de Alerta por Suscripción -->
+            <div class="sub-box">
+                <div class="sub-title">¿Quiere que le avisemos al reactivar el servicio?</div>
+                <div class="sub-desc">Deje su correo electrónico y recibirá una notificación cuando la red de comedores y tarjetas esté disponible de manera interactiva.</div>
+                
+                <form id="subscribeForm" class="sub-form" onsubmit="suscribirse(event)">
+                    <input type="email" id="subEmail" class="sub-input" required placeholder="ejemplo@correo.com">
+                    <button type="submit" class="sub-btn">Recibir Aviso</button>
+                </form>
+                <div id="subSuccess" class="alert-success-sub">
+                    <i class="fa-solid fa-circle-check mr-2"></i> ¡Registrado con éxito! Te enviaremos un correo apenas el portal de comedores esté disponible.
+                </div>
+            </div>
+
+            <!-- Botón Volver -->
+            <a href="../index.html" class="btn-volver">
+                <i class="fa-solid fa-house-user"></i>
+                <span>Volver al Inicio</span>
+            </a>
+
+        </div>
+    </div>
+
+    <!-- ========== FOOTER  ========== -->
+    <footer class="footer" style="background-color: var(--color-dark); color: #fff; padding: 40px 0 20px;">
+        <div class="container footer__inner" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+            <div class="footer__brand" style="flex: 1; min-width: 250px;">
+                <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="Logo Santiago del Estero" style="max-height: 50px; margin-bottom: 15px;">
+                <p><strong>Ministerio de Desarrollo Social</strong><br><span style="color: #cbd5e1; font-size: 0.9rem;">Gobierno de Santiago del Estero</span></p>
+            </div>
+            <div class="footer__links" style="flex: 1; min-width: 150px;">
+                <h5 style="color: var(--color-accent); font-weight: 700; margin-bottom: 15px;">Subsecretarías</h5>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li><a href="desarrollo-social.html" style="color: #cbd5e1; text-decoration: none;">Desarrollo Social</a></li>
+                    <li><a href="promocion-humana.html" style="color: #cbd5e1; text-decoration: none;">Promoción Humana</a></li>
+                    <li><a href="defensa-civil.html" style="color: #cbd5e1; text-decoration: none;">Defensa Civil</a></li>
+                </ul>
+            </div>
+            <div class="footer__links" style="flex: 1; min-width: 150px;">
+                <h5 style="color: var(--color-accent); font-weight: 700; margin-bottom: 15px;">Áreas</h5>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li><a href="adultos.html" style="color: #cbd5e1; text-decoration: none;">Adultos Mayores</a></li>
+                    <li><a href="funerarios.html" style="color: #cbd5e1; text-decoration: none;">Servicios Funerarios</a></li>
+                    <li><a href="programas.html" style="color: #cbd5e1; text-decoration: none;">Programas</a></li>
+                </ul>
+            </div>
+            <div class="footer__contact" style="flex: 1; min-width: 150px;">
+                <h5 style="color: var(--color-accent); font-weight: 700; margin-bottom: 10px;">Redes</h5>
+                <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" rel="noopener noreferrer" style="color: #cbd5e1; text-decoration: none;"><i class="fa-brands fa-facebook-f mr-2"></i> Facebook</a></p>
+                <h5 style="margin-top:16px; color: var(--color-accent); font-weight: 700; margin-bottom: 10px;">Institución</h5>
+                <p><a href="autoridades.html" style="color: #cbd5e1; text-decoration: none;">Autoridades</a></p>
+            </div>
+        </div>
+        <div class="footer__bottom" style="text-align: center; border-top: 1px solid #1e293b; margin-top: 30px; padding-top: 15px; color: #94a3b8; font-size: 0.9rem;">
+            <p>© 2026 SIDES — Santiago del Estero</p>
+        </div>
+    </footer>
+
+    <!-- LÓGICA DE INTERACTIVIDAD -->
+    <script>
+        // Hamburguesa menú mobile
+        const burgerBtn = document.getElementById('burgerBtn');
+        const mainNav = document.getElementById('mainNav');
+
+        if(burgerBtn) {
+            burgerBtn.addEventListener('click', () => {
+                mainNav.classList.toggle('active');
+                burgerBtn.classList.toggle('open');
+            });
+        }
+
+        // Lógica de suscripción exitosa
+        function suscribirse(event) {
+            event.preventDefault();
+            const input = document.getElementById('subEmail');
+            const successMsg = document.getElementById('subSuccess');
+            const form = document.getElementById('subscribeForm');
+
+            if(input.value) {
+                form.style.display = 'none';
+                successMsg.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
