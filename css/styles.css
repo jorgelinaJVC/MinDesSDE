@@ -1005,3 +1005,40 @@ header nav ul li a {
 header nav ul li a:hover {
   color: #4baed2 !important; 
 }
+
+@media (max-width:768px){
+
+    .menu-toggle{
+        display:block;
+        background:none;
+        border:none;
+        font-size:30px;
+        cursor:pointer;
+    }
+
+    .nav-menu{
+        display:none;
+        position:absolute;
+        top:80px;
+        left:0;
+        width:100%;
+        background:#003366;
+        z-index:999;
+    }
+
+    .nav-menu.active{
+        display:block;
+    }
+
+    .nav-menu ul{
+        flex-direction:column;
+        padding:15px;
+        gap:15px;
+    }
+
+    .nav-menu a{
+        color:white;
+        display:block;
+        padding:10px;
+    }
+}

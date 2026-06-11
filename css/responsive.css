@@ -32,3 +32,38 @@
     grid-template-columns: 1fr !important;
   }
 }
+
+@media (max-width:768px){
+
+  .container{
+    width:100%;
+    padding:0 15px;
+  }
+
+  img{
+    max-width:100%;
+    height:auto;
+  }
+
+  iframe{
+    width:100%;
+    max-width:100%;
+  }
+
+  .grid,
+  .cards,
+  .services-grid,
+  .footer-grid{
+    grid-template-columns:1fr !important;
+  }
+
+  .row,
+  .flex{
+    flex-direction:column;
+  }
+
+  table{
+    display:block;
+    overflow-x:auto;
+  }
+}
