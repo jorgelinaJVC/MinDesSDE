@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="css/navbar.css" />
   <link rel="stylesheet" href="css/hero.css" />
   <link rel="stylesheet" href="css/about.css" />
+  <link rel="stylesheet" href="css/noticias.css" />
   <link rel="stylesheet" href="css/services.css" />
   <link rel="stylesheet" href="css/gallery.css" />
   <link rel="stylesheet" href="css/methodology.css" />
@@ -74,9 +75,10 @@
           <img src="assets/LogoSantiago.png" alt="Logo de Santiago" />
         </div>
       </li>
+      <li><a href="#news">Noticias</a></li>
       <li><a href="#about">Nosotros</a></li>
       <li><a href="#services">Servicios</a></li>
-      <li><a href="#mapa-territorial">Mapa Territorial</a></li>
+      <li><a href="#mapa-territorial">Ubicación</a></li>
       <li><a href="#methodology">Metodología</a></li>      
       <li><a href="#gallery">Galeria</a></li>
       <li><a href="#contact" class="nav-cta">Consultar ahora</a></li>
@@ -141,6 +143,82 @@
     </div>
   </section>
 
+  <!-- Ultimas Noticias -->
+<section id="news">
+  <div class="section-container">
+    <div class="section-header centered fade-in">
+      <span class="section-label">Actualidad</span>
+      <h2 class="section-title">Últimas Noticias</h2>
+    </div>
+    
+    <div class="gallery-grid full-four-columns">
+      
+      <div class="gallery-item fade-in" data-notice="clima">
+        <div class="gallery-image-wrapper">
+          <img src="assets/clima_santiago.jpg" alt="El tiempo en Santiago" />
+          <div class="gallery-overlay"><p>Leer noticia</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Locales • 12 de Junio</h4>
+          <p>El tiempo en Santiago del Estero: cielo mayormente nublado y una máxima de 19°C.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-in" data-notice="ranking">
+        <div class="gallery-image-wrapper">
+          <img src="assets/hinchada_argentina.jpg" alt="Hinchada argentina" />
+          <div class="gallery-overlay"><p>Leer noticia</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Somos Deporte • 11 de Junio</h4>
+          <p>Argentina 1° en el ranking de la belleza de hinchadas según un diario de EE.UU.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-in" data-notice="quimsa">
+        <div class="gallery-image-wrapper">
+          <img src="assets/quimsa_basquet.jpg" alt="Quimsa Básquet" />
+          <div class="gallery-overlay"><p>Leer noticia</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Somos Deporte • 10 de Junio</h4>
+          <p>Quimsa tuvo una mala noche, cayó ante Gimnasia y se complica en la final.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-in" data-notice="invierno">
+        <div class="gallery-image-wrapper">
+          <img src="assets/TalleresAdultos_2.jpg" alt="Talleres de invierno" />
+          <div class="gallery-overlay"><p>Leer noticia</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Locales • 09 de Junio</h4>
+          <p>Lanzan el programa de actividades recreativas de invierno para personas mayores.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="news-modal" class="modal-overlay">
+  <div class="modal-content news-modal-content">
+    <span class="modal-close news-modal-close">&times;</span>
+    
+    <div class="news-layout-container">
+      <div id="modal-news-image-container" class="news-modal-image-box"></div>
+      
+      <div class="news-modal-info-box">
+        <span id="modal-news-tag" class="news-tag-indicator">Categoría</span>
+        <h2 id="modal-news-title">Título de la Noticia</h2>
+        <p id="modal-news-date" class="news-modal-date">Fecha</p>
+        <div id="modal-news-text" class="news-modal-text-content"></div>
+      </div>
+    </div>
+    
+    </div>
+   </div>
+ </section>
 <!-- ===== ABOUT ===== -->
 
   <section id="about">
@@ -409,36 +487,71 @@
 
   <!-- ===== GALERÍA ===== -->
   <section id="gallery">
-    <div class="section-container">
-      <div class="section-header centered fade-in">
-        <span class="section-label">Galería</span>
-        <h2 class="section-title">Galería de Imágenes</h2>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item fade-in">
-          <div class="gallery-image-wrapper">
-            <img src="assets/AsuncionDireccion.jpg" alt="Juramento de asunción" />
-            <div class="gallery-overlay"><p>Ver más</p></div>
-          </div>
-          <div class="gallery-caption">
-            <h4>Juramento de Asunción</h4>
-            <p>Acto oficial en la Dirección de Adultos Mayores, Santiago del Estero.</p>
-          </div>
-        </div>
-
-        <div class="gallery-item fade-in">
-          <div class="gallery-image-wrapper">
-            <img src="assets/Centro Diurno Virgen del Valle.jpg" alt="Centro Virgen del Valle" />
-            <div class="gallery-overlay"><p>Ver detalles</p></div>
-          </div>
-          <div class="gallery-caption">
-            <h4>Centro Diurno Virgen del Valle</h4>
-            <p>Espacios de integración y contención diaria en la red provincial.</p>
-          </div>
-        </div>
-      </div>
+  <div class="section-container">
+    <div class="section-header centered fade-in">
+      <span class="section-label">Galería</span>
+      <h2 class="section-title">Galería de Imágenes</h2>
     </div>
-  </section>
+    
+    <div class="gallery-grid full-four-columns">
+      
+      <div class="gallery-item fade-in" data-album="asuncion">
+        <div class="gallery-image-wrapper">
+          <img src="assets/AsuncionDireccion.jpg" alt="Juramento de asunción" />
+          <div class="gallery-overlay"><p>Ver más</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Juramento de Asunción</h4>
+          <p>Acto oficial en la Dirección de Adultos Mayores, Santiago del Estero.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-in" data-album="virgen-valle">
+        <div class="gallery-image-wrapper">
+          <img src="assets/Centro Diurno Virgen del Valle.jpg" alt="Centro Virgen del Valle" />
+          <div class="gallery-overlay"><p>Ver más</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Centro Diurno Virgen del Valle</h4>
+          <p>Espacios de integración y contención diaria en la red provincial.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-in" data-album="talleres">
+        <div class="gallery-image-wrapper">
+          <img src="assets/TalleresAdultos.jpg" alt="Talleres Recreativos" />
+          <div class="gallery-overlay"><p>Ver más</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Talleres Recreativos</h4>
+          <p>Actividades lúdicas y de estimulación cognitiva.</p>
+        </div>
+      </div>
+
+      <div class="gallery-item fade-in" data-album="encuentro">
+        <div class="gallery-image-wrapper">
+          <img src="assets/EncuentroProvincial.jpg" alt="Encuentro Provincial" />
+          <div class="gallery-overlay"><p>Ver más</p></div>
+        </div>
+        <div class="gallery-caption">
+          <h4>Encuentro Provincial</h4>
+          <p>Celebración anual y exposición de trabajos de los centros diurnos.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div id="gallery-modal" class="modal-overlay">
+  <div class="modal-content">
+    <span class="modal-close">&times;</span>
+    <h3 id="modal-title">Título del Álbum</h3>
+    <div id="modal-images-container" class="modal-grid">
+      </div>
+  </div>
+</div>
+
 
   <!-- ===== CONTACTO ===== -->
   <section id="contact">
@@ -606,5 +719,6 @@
   <!-- ===== SCRIPTS ===== -->
   <script src="js/main.js"></script>
   <script src="js/accessibility.js"></script>
+  <script src="js/adultos.js"></script>
 </body>
 </html>

@@ -80,6 +80,7 @@
         
         .seccion-autoridades {
             margin-bottom: 40px;
+            scroll-margin-top: 90px; /* Evita que el header sticky tape el título al hacer scroll */
         }
         
         .seccion-autoridades h2 {
@@ -91,7 +92,7 @@
     </style>
 </head>
 <body>
-    <header class="header">
+    <header class="header" id="header">
         <div class="header__inner container">
             <a href="../index.html" class="header__logo">
                 <svg width="150" height="60" viewBox="0 0 200 180">
@@ -102,22 +103,33 @@
                     <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
                     <circle cx="95" cy="85" r="12" fill="#E30613" />
                 </svg>
-                <span class="logo-text">Ministerio de Desarrollo Social</span>
-                <span class="logo-sub">Santiago del Estero</span>
-            </a>
+                <div class="logo-titles">
+                    <span class="logo-text">Ministerio de Desarrollo Social</span>
+                    <span class="logo-sub">Santiago del Estero</span>
+                </div>
+            </a> <nav class="header__nav" id="mainNav">
+                <ul class="nav__list">
+                    <li><a href="../index.html" class="nav__link">Inicio</a></li>
+                    <li><a href="#alta-gerencia" class="nav__link">Alta Gerencia</a></li>
+                    <li><a href="#subsecretarias" class="nav__link">Subsecretarías</a></li>
+                    <li><a href="#direcciones-generales" class="nav__link">Direcciones Generales</a></li>
+                    <li><a href="#areas-programas" class="nav__link">Áreas y Programas</a></li>
+                </ul>
+            </nav>
+
+            <button class="header__burger" id="burgerBtn" onclick="toggleMenu()" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
         </div>
     </header>
 
-    <div class="container">
+    <div class="container" style="margin-top: 30px;">
         <div class="card">
-            <h1>Autoridades</h1>
+            <h1>Estructura Institucional</h1>
 
-            <!-- ALTA GERENCIA -->
-            <div class="seccion-autoridades">
+            <div class="seccion-autoridades" id="alta-gerencia">
                 <h2>Alta Gerencia</h2>
                 <div class="autoridades-grid">
-                    
-                    <!-- Gobernador -->
                     <div class="autoridad-card">
                         <img src="../img/gobernador.jpg" alt="Gobernador" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -126,7 +138,6 @@
                         </div>
                     </div>
 
-                    <!-- Ministro -->
                     <div class="autoridad-card">
                         <img src="../img/Dr_Niccolai.jfif" alt="Ministro" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -137,12 +148,9 @@
                 </div>
             </div>
 
-            <!-- SUBSECRETARIAS -->
-            <div class="seccion-autoridades">
+            <div class="seccion-autoridades" id="subsecretarias">
                 <h2>Subsecretarías</h2>
                 <div class="autoridades-grid">
-                    
-                    <!-- Subsec Desarrollo Social -->
                     <div class="autoridad-card">
                         <img src="../img/ramiro_banco.jpeg" alt="Subsecretario Desarrollo Social" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -151,7 +159,6 @@
                         </div>
                     </div>
 
-                    <!-- Subsec Promoción Humana -->
                     <div class="autoridad-card">
                         <img src="../img/Ernesto_Fernandez.jpg" alt="Subsecretario Promoción Humana" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -160,7 +167,6 @@
                         </div>
                     </div>
 
-                    <!-- Subsec Defensa Civil -->
                     <div class="autoridad-card">
                         <img src="../img/defensa_civil.jfif" alt="Subsecretario Defensa Civil" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -171,12 +177,9 @@
                 </div>
             </div>
 
-            <!-- DIRECCIONES GENERALES -->
-            <div class="seccion-autoridades">
+            <div class="seccion-autoridades" id="direcciones-generales">
                 <h2>Direcciones Generales</h2>
                 <div class="autoridades-grid">
-                    
-                    <!-- Dir Gral Despacho -->
                     <div class="autoridad-card">
                         <img src="../img/Dirección_general_despacho.jfif" alt="Director General Despacho" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -185,7 +188,6 @@
                         </div>
                     </div>
 
-                    <!-- Dir Gral Desarrollo Social -->
                     <div class="autoridad-card">
                         <img src="../img/desarrollo_social.jfif" alt="Directora General Desarrollo Social" class="autoridad-foto">
                         <div class="autoridad-info">
@@ -194,7 +196,6 @@
                         </div>
                     </div>
 
-                    <!-- Dir Gral Administración -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -203,7 +204,6 @@
                         </div>
                     </div>
 
-                    <!-- Dir Gral Informática -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -212,7 +212,6 @@
                         </div>
                     </div>
 
-                    <!-- Dir Gral Recursos Humanos -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -221,7 +220,6 @@
                         </div>
                     </div>
 
-                    <!-- Dir Gral Programación -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -232,12 +230,9 @@
                 </div>
             </div>
 
-            <!-- ÁREAS ESPECIALES -->
-            <div class="seccion-autoridades">
+            <div class="seccion-autoridades" id="areas-programas">
                 <h2>Áreas y Programas</h2>
                 <div class="autoridades-grid">
-                    
-                    <!-- Dir Promoción Humana -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -246,7 +241,6 @@
                         </div>
                     </div>
 
-                    <!-- Dir Adultos Mayores -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -255,7 +249,6 @@
                         </div>
                     </div>
 
-                    <!-- Hogar de Ciegos -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -264,7 +257,6 @@
                         </div>
                     </div>
 
-                    <!-- Hogar Diurno -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -273,7 +265,6 @@
                         </div>
                     </div>
 
-                    <!-- Residencia Mamá Antula -->
                     <div class="autoridad-card">
                         <div class="sin-foto">👤</div>
                         <div class="autoridad-info">
@@ -287,9 +278,11 @@
     </div>
 
     <footer class="footer">
-        <div class="container">
+        <div class="container" style="text-align: center; padding: 20px 0;">
             <p>© 2026 Ministerio de Desarrollo Social — Santiago del Estero</p>
         </div>
     </footer>
+
+    <script src="../js/script.js"></script>
 </body>
 </html>

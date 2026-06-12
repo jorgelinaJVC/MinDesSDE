@@ -7,6 +7,70 @@
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/responsive.css" />
     <style>
+        /* ============================================================
+           ESTILOS DEL BOTÓN "VOLVER AL INICIO" (MARGEN DERECHO)
+           ============================================================ */
+        .header__back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.9) !important;
+            font-family: var(--font-cond), sans-serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 8px 14px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: var(--radius, 6px);
+            transition: all 0.25s ease;
+            flex-shrink: 0;
+            text-decoration: none;
+            margin-left: auto; /* ¡Clave! Empuja el botón a la derecha si no hay menú */
+        }
+
+        .header__back-btn:hover {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--color-accent, #c8a84b);
+        }
+
+        .header__back-btn span {
+            font-size: 0.95rem;
+            line-height: 1;
+            transition: transform 0.25s ease;
+        }
+
+        .header__back-btn:hover span {
+            transform: translateX(3px); /* Ahora la animación se mueve sutilmente a la derecha */
+        }
+
+        /* Oculta el texto en pantallas muy pequeñas para cuidar el espacio */
+        @media (max-width: 580px) {
+            .header__back-btn {
+                padding: 6px 10px;
+                font-size: 0;
+                margin-left: 0; /* Resetea el margen en móvil para que acompañe al hámburguer */
+            }
+            .header__back-btn span {
+                font-size: 1.1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* En tablets y móviles, ordenamos el botón al lado de la hamburguesa */
+            .header__back-btn {
+                order: 2; 
+                margin-left: auto;
+            }
+            .header__burger {
+                order: 3; /* Asegura que las tres rayitas queden en la esquina final */
+            }
+        }
+
+        /* ============================================================
+           ESTILOS DE LA PÁGINA DE CONTACTO
+           ============================================================ */
         .contacto-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -73,35 +137,6 @@
         .info-contacto p {
             margin: 10px 0;
         }
-        .categorias-lista {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        .categoria-tag {
-            background: var(--color-bg);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            color: var(--color-primary);
-            border: 1px solid var(--color-border);
-        }
-        .noticias-lista {
-            list-style: none;
-            padding: 0;
-        }
-        .noticias-lista li {
-            padding: 10px 0;
-            border-bottom: 1px solid var(--color-border);
-        }
-        .noticias-lista li a {
-            color: var(--color-text);
-            text-decoration: none;
-        }
-        .noticias-lista li a:hover {
-            color: var(--color-primary);
-        }
         @media (max-width: 768px) {
             .contacto-grid {
                 grid-template-columns: 1fr;
@@ -110,9 +145,9 @@
     </style>
 </head>
 <body>
-    <!-- HEADER -->
     <header class="header" id="header">
         <div class="header__inner container">
+                        
             <a href="../index.html" class="header__logo">
                 <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
                     <path d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z" fill="#526685" />
@@ -122,32 +157,36 @@
                     <path d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z" fill="#E30613" />
                     <circle cx="95" cy="85" r="12" fill="#E30613" />
                 </svg>
-                <span class="logo-text">Ministerio de Desarrollo Social</span>
-                <span class="logo-sub">Santiago del Estero</span>
+                <div class="logo-titles">
+                    <span class="logo-text">Ministerio de Desarrollo Social</span>
+                    <span class="logo-sub">Santiago del Estero</span>
+                </div>
             </a>
+
             <nav class="header__nav" id="mainNav">
                 <ul class="nav__list">
+                    <li><a href="../index.html" class="nav__link">Inicio</a></li>
                     <li><a href="autoridades.html" class="nav__link">Institución</a></li>
                     <li><a href="../index.html#areas" class="nav__link">Áreas</a></li>
                     <li><a href="../index.html#noticias" class="nav__link">Noticias</a></li>
                     <li><a href="programas.html" class="nav__link">Programas</a></li>
-                    <li><a href="contacto.html" class="nav__link">Contacto</a></li>
+                    <li><a href="contacto.html" class="nav__link nav__link--active">Contacto</a></li>
                 </ul>
             </nav>
+            
             <button class="header__burger" id="burgerBtn" aria-label="Menú">
                 <span></span><span></span><span></span>
             </button>
+            
         </div>
     </header>
 
-    <!-- CONTENIDO PRINCIPAL -->
-    <div class="container">
+    <div class="container" style="margin-top: 30px;">
         <div class="card">
-            <h1>Contacto</h1>
-            <p>Ante cualquier consulta, complete el siguiente formulario y nos comunicaremos a la brevedad.</p>
+            <h1 style="margin-bottom: 10px;">Contacto</h1>
+            <p style="margin-bottom: 30px;">Ante cualquier consulta, complete el siguiente formulario y nos comunicaremos a la brevedad.</p>
 
             <div class="contacto-grid">
-                <!-- FORMULARIO -->
                 <div>
                     <form id="formContacto">
                         <div class="form-group">
@@ -171,16 +210,12 @@
 
                         <button type="submit" class="btn-enviar">📨 Enviar Consulta</button>
                     </form>
-                    <div>
-
-                    </div>
 
                     <div id="mensajeExito" style="display: none; margin-top: 20px; padding: 15px; background: #d1fae5; border-left: 4px solid #10b981; border-radius: 6px;">
                         ✅ Mensaje enviado correctamente. Nos contactaremos pronto.
                     </div>
                 </div>
 
-                <!-- INFORMACIÓN DE CONTACTO Y CATEGORÍAS -->
                 <div>
                     <div class="info-contacto">
                         <h3>Información de Contacto</h3>
@@ -194,7 +229,6 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer class="footer">
         <div class="container footer__inner">
             <div class="footer__brand">
@@ -222,7 +256,6 @@
 
     <script src="../js/script.js"></script>
 
-    <!-- Script del formulario -->
     <script>
         document.getElementById('formContacto').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -236,16 +269,13 @@
                 return;
             }
             
-            // Mostrar mensaje de éxito
             const mensajeExito = document.getElementById('mensajeExito');
             mensajeExito.style.display = 'block';
             
-            // Guardar en localStorage (opcional)
             const consulta = {
                 nombre: nombre,
                 email: email,
-                asunto: document.getElementById('asunto').value,
-                area: document.getElementById('area').value,
+                asunto: document.getElementById('asunto').value.trim(),
                 mensaje: mensaje,
                 fecha: new Date().toISOString()
             };
@@ -254,10 +284,8 @@
             consultas.push(consulta);
             localStorage.setItem('consultas_contacto', JSON.stringify(consultas));
             
-            // Limpiar formulario
             this.reset();
             
-            // Ocultar mensaje después de 5 segundos
             setTimeout(() => {
                 mensajeExito.style.display = 'none';
             }, 5000);

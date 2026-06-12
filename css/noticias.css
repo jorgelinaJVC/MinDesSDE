@@ -1,0 +1,93 @@
+//* ==========================================================================
+   MÓDULO DE NOTICIAS (Estructura Limpia)
+   ========================================================================== */
+#news {
+  background: #ffffff;
+  padding: 5rem 0;
+}
+
+/* Contenedor de la Modal con Diseño de Pantalla Dividida */
+.news-layout-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+/* ==========================================================================
+   CORRECCIÓN DEFINITIVA DE DESBORDE DE IMAGEN EN NOTICIAS
+   ========================================================================== */
+
+/* 1. Forzamos a que el contenedor dividido use 2 columnas idénticas en PC */
+@media (min-width: 768px) {
+  .news-layout-container {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important; /* Estrictamente 50% y 50% */
+    gap: 2rem;
+    align-items: start; /* El texto y la foto se alinean arriba */
+  }
+}
+
+/* 2. El contenedor protector de la imagen */
+.news-modal-image-box {
+  width: 100%;
+  max-height: 400px; /* Evita que la caja sea más alta que esto */
+  overflow: hidden;  /* Si algo intenta salirse, se oculta automáticamente */
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background-color: #f5f5f5; /* Fondo gris suave por si la foto es pequeña */
+}
+
+/* 3. La regla crítica: Domamos la etiqueta img para que no desborde */
+.news-modal-image-box img {
+  width: 100% !important;       /* Obliga a la foto a no ensancharse más que su contenedor */
+  max-width: 100% !important;   /* Bloqueo estricto de ancho */
+  height: 380px !important;     /* Altura fija y cómoda para equilibrar con el texto */
+  object-fit: cover !important; /* Centra y recorta sutilmente la foto para que no se deforme */
+  display: block;
+}
+
+/* 4. Ajuste del contenedor de información para que el texto sea legible */
+.news-modal-info-box {
+  width: 100%;
+  max-height: 400px; /* Altura máxima igual que la foto */
+  overflow-y: auto;  /* Si el texto es muy largo, genera un scroll interno limpio */
+  padding-right: 0.5rem;
+}
+.news-tag-indicator {
+  align-self: flex-start;
+  background-color: var(--gold);
+  color: #ffffff;
+  padding: 4px 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.news-modal-date {
+  color: #777777;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+#modal-news-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.4rem;
+  color: #111111;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.news-modal-text-content {
+  font-size: 1.05rem;
+  color: #444444;
+  line-height: 1.6;
+}
+
+/* Ajustes complementarios de control para la modal de noticias */
+.news-modal-content {
+  max-width: 950px !important;
+  width: 90%;
+}

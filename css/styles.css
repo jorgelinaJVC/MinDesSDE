@@ -1,71 +1,79 @@
 /* ============================================================
-  styles.css — Ministerio de Desarrollo Social - SDE
+   styles.css — Ministerio de Desarrollo Social - SDE
    ============================================================ */
+
 /* Estilos adicionales para la sección de subsecretarías mejorada */
-    .subsec-label-badge {
-      display: inline-block;
-      background: rgba(200,168,75,0.18);
-      color: var(--color-accent);
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 2px 8px;
-      border-radius: 2px;
-      margin-bottom: 4px;
-    }
-    .ingreso-card__body .subsec-desc {
-      font-size: 0.75rem;
-      opacity: 0.75;
-      margin-top: 4px;
-      font-weight: 400;
-      text-transform: none;
-      letter-spacing: 0;
-    }
-    .areas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 16px;
-    }
-    .area-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: var(--color-white);
-      border: 1px solid var(--color-border);
-      border-radius: var(--radius);
-      padding: 20px 16px;
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
-      text-decoration: none;
-      color: var(--color-text);
-    }
-    .area-card:hover {
-      box-shadow: var(--shadow-md);
-      transform: translateY(-4px);
-      border-color: var(--color-accent);
-    }
-    .area-card .area-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
-    }
-    .area-card h4 {
-      font-family: var(--font-cond);
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--color-primary);
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-      line-height: 1.3;
-    }
-    .area-card p {
-      font-size: 0.78rem;
-      color: var(--color-muted);
-      margin-top: 5px;
-      line-height: 1.4;
-    }
+.subsec-label-badge {
+  display: inline-block;
+  background: rgba(200,168,75,0.18);
+  color: var(--color-accent);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 2px 8px;
+  border-radius: 2px;
+  margin-bottom: 4px;
+}
+
+.ingreso-card__body .subsec-desc {
+  font-size: 0.75rem;
+  opacity: 0.75;
+  margin-top: 4px;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.areas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.area-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.area-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--color-accent);
+}
+
+.area-card .area-icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.area-card h4 {
+  font-family: var(--font-cond);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.3;
+}
+
+.area-card p {
+  font-size: 0.78rem;
+  color: var(--color-muted);
+  margin-top: 5px;
+  line-height: 1.4;
+}
 
 /* ---------- Variables & Reset ---------- */
 :root {
@@ -134,17 +142,23 @@ ul { list-style: none; }
   background: var(--color-accent);
 }
 
-/* ============================================================ HEADER
+/* ============================================================ 
+   HEADER RESPONSIVO INTEGRADO 
    ============================================================ */
 .header {
   position: sticky;
-  top: 0; z-index: 1000;
+  top: 0; 
+  z-index: 1000;
   background: var(--color-dark);
-  height: var(--header-h);
+  min-height: var(--header-h); /* Flexible en lugar de estático */
   box-shadow: 0 2px 12px rgba(0,0,0,.3);
+  display: flex;
+  align-items: center;
+  padding: 5px 0;
 }
+
 .header__inner {
-  height: 100%;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -157,35 +171,40 @@ ul { list-style: none; }
   align-items: center;
   gap: 12px;
   flex-shrink: 0;
+  max-width: 75%;
+  flex-wrap: wrap; /* Permite que el texto baje si se achica la pantalla */
 }
-.header__logo img {
+
+.header__logo svg {
   height: 44px;
-  filter: brightness(0) invert(1);
+  width: auto;
+  flex-shrink: 0;
 }
-.header__logo-fallback {
-  flex-direction: column;
-  line-height: 1.2;
-}
+
 .logo-text {
   color: var(--color-white);
   font-family: var(--font-cond);
   font-size: .95rem;
   text-transform: uppercase;
   letter-spacing: .04em;
+  display: block;
 }
+
 .logo-sub {
   color: var(--color-accent);
   font-size: .72rem;
   letter-spacing: .06em;
   text-transform: uppercase;
+  display: block;
 }
 
 /* Nav */
-.nav__list {
+.nav__list, .nav-links {
   display: flex;
   gap: 4px;
 }
-.nav__link {
+
+.nav__link, .nav-links a {
   display: block;
   padding: 8px 14px;
   color: rgba(255,255,255,.85);
@@ -195,13 +214,14 @@ ul { list-style: none; }
   border-radius: var(--radius);
   transition: background var(--transition), color var(--transition);
 }
-.nav__link:hover {
+
+.nav__link:hover, .nav-links a:hover {
   background: rgba(255,255,255,.1);
-  color: var(--color-white);
+  color: var(--color-accent-2);
 }
 
-/* Burger */
-.header__burger {
+/* Burger / Hamburger Menú */
+.nav-hamburger, .header__burger {
   display: none;
   flex-direction: column;
   gap: 5px;
@@ -210,19 +230,23 @@ ul { list-style: none; }
   cursor: pointer;
   padding: 6px;
 }
-.header__burger span {
+
+.nav-hamburger span, .header__burger span {
   display: block;
-  width: 26px; height: 2px;
+  width: 26px; 
+  height: 2px;
   background: var(--color-white);
   border-radius: 2px;
   transition: var(--transition);
 }
-.header__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.header__burger.open span:nth-child(2) { opacity: 0; }
-.header__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-hamburger.open span:nth-child(1), .header__burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-hamburger.open span:nth-child(2), .header__burger.open span:nth-child(2) { opacity: 0; }
+.nav-hamburger.open span:nth-child(3), .header__burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 
 /* ============================================================
-  HERO CAROUSEL
+   HERO CAROUSEL
    ============================================================ */
 .hero {
   position: relative;
@@ -247,7 +271,7 @@ ul { list-style: none; }
 .hero__overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(13,34,64,.85) 0%, rgba(13,34,64,.35) 55%, transparent 100%);
+  background: transparent; /* Elimina por completo el filtro oscuro */
 }
 .hero__content {
   position: relative;
@@ -294,9 +318,7 @@ ul { list-style: none; }
 }
 .hero__btn:hover { background: #e0bc5a; transform: translateY(-1px); }
 
-/* Prev / Next buttons */
-.hero__prev,
-.hero__next {
+.hero__prev, .hero__next {
   position: absolute;
   top: 50%; transform: translateY(-50%);
   background: rgba(255,255,255,.15);
@@ -312,10 +334,8 @@ ul { list-style: none; }
 }
 .hero__prev { left: 18px; }
 .hero__next { right: 18px; }
-.hero__prev:hover,
-.hero__next:hover { background: rgba(255,255,255,.3); }
+.hero__prev:hover, .hero__next:hover { background: rgba(255,255,255,.3); }
 
-/* Dots */
 .hero__dots {
   position: absolute;
   bottom: 18px; left: 50%;
@@ -336,7 +356,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-  INGRESOS
+   INGRESOS / SUBSECRETARIAS
    ============================================================ */
 .ingresos {
   padding: 48px 0;
@@ -393,7 +413,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-  NOTICIAS INSTITUCIONALES
+   NOTICIAS INSTITUCIONALES & VIDEOS
    ============================================================ */
 .noticias {
   padding: 56px 0;
@@ -443,17 +463,16 @@ ul { list-style: none; }
   font-weight: 600;
   line-height: 1.4;
 }
+
 .videos {
   padding: 60px 0;
   background: #f5f6f8;
 }
-
 .videos-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 25px;
 }
-
 .video-card {
   background: white;
   border-radius: 14px;
@@ -461,155 +480,88 @@ ul { list-style: none; }
   box-shadow: 0 8px 20px rgba(0,0,0,.08);
   transition: .3s;
 }
-
-.video-card:hover {
-  transform: translateY(-5px);
-}
-
+.video-card:hover { transform: translateY(-5px); }
 .video-card iframe {
   width: 100%;
   height: 220px;
   border: none;
 }
-
 .video-card p {
   padding: 15px;
   font-weight: 600;
   color: #1a3a6b;
 }
 
-
 /* ============================================================
-  SERVICIOS
-   ============================================================ */
-.servicios {
-  padding: 60px 0;
-  background: var(--color-bg);
-}
-.servicios__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 22px;
-}
-.servicio-card {
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius);
-  padding: 28px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), transform var(--transition), border-color var(--transition);
-}
-.servicio-card:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-4px);
-  border-color: var(--color-accent);
-}
-.servicio-card__icon { font-size: 2rem; }
-.servicio-card h4 {
-  font-family: var(--font-cond);
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--color-primary);
-  text-transform: uppercase;
-  letter-spacing: .04em;
-}
-.servicio-card p {
-  font-size: .82rem;
-  color: var(--color-muted);
-  line-height: 1.5;
-}
-
-/* ============================================================
-  AUTORIDADES (estilos para página de autoridades)
+   AUTORIDADES 
    ============================================================ */
 .autoridades-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 30px;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 30px;
+  margin-top: 20px;
 }
-
 .autoridad-card {
-    text-align: center;
-    background: var(--color-white);
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.2s, box-shadow 0.2s;
+  text-align: center;
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s, box-shadow 0.2s;
 }
-
 .autoridad-card:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
 }
-
 .autoridad-foto {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    border-radius: 12px;
-    background-color: #e2e8f0;
-    transition: transform 0.3s ease;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 12px;
+  background-color: #e2e8f0;
+  transition: transform 0.3s ease;
 }
-
-/* EFECTO HOVER: la foto se agranda */
-.autoridad-card:hover .autoridad-foto {
-    transform: scale(1.05);
-}
+.autoridad-card:hover .autoridad-foto { transform: scale(1.05); }
 
 .sin-foto {
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    background-color: #cbd5e1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 4rem;
-    color: #64748b;
-    border-radius: 12px;
-    transition: transform 0.3s ease;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background-color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 4rem;
+  color: #64748b;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
 }
+.autoridad-card:hover .sin-foto { transform: scale(1.05); }
 
-.autoridad-card:hover .sin-foto {
-    transform: scale(1.05);
-}
-
-.autoridad-info {
-    margin-top: 15px;
-}
-
+.autoridad-info { margin-top: 15px; }
 .autoridad-cargo {
-    font-size: 0.85rem;
-    color: var(--color-primary);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 5px;
+  font-size: 0.85rem;
+  color: var(--color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
 }
-
 .autoridad-nombre {
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-    margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin: 0;
 }
-
-.seccion-autoridades {
-    margin-bottom: 40px;
-}
-
+.seccion-autoridades { margin-bottom: 40px; }
 .seccion-autoridades h2 {
-    border-bottom: 3px solid var(--color-primary);
-    padding-bottom: 10px;
-    margin-bottom: 25px;
-    display: inline-block;
+  border-bottom: 3px solid var(--color-primary);
+  padding-bottom: 10px;
+  margin-bottom: 25px;
+  display: inline-block;
 }
 
 /* ============================================================
-  FOOTER
+   FOOTER
    ============================================================ */
 .footer {
   background: #07162a;
@@ -629,14 +581,10 @@ ul { list-style: none; }
   margin-bottom: 12px;
   opacity: .8;
 }
-.footer__brand p {
-  font-size: .88rem;
-  line-height: 1.5;
-}
+.footer__brand p { font-size: .88rem; line-height: 1.5; }
 .footer__brand span { color: var(--color-accent); }
 
-.footer__links h5,
-.footer__contact h5 {
+.footer__links h5, .footer__contact h5 {
   font-family: var(--font-cond);
   font-size: .85rem;
   font-weight: 700;
@@ -665,20 +613,18 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-  RESPONSIVE
+   MEDIA QUERIES (RESPONSIVE COMPLETO)
    ============================================================ */
 @media (max-width: 900px) {
-  .footer__inner {
-    grid-template-columns: 1fr 1fr;
-  }
+  .footer__inner { grid-template-columns: 1fr 1fr; }
   .footer__brand { grid-column: span 2; }
 }
 
 @media (max-width: 768px) {
-  :root { --header-h: 60px; }
+  :root { --header-h: 62px; }
 
-  /* Nav móvil */
-  .header__nav {
+  /* 1. Ocultamos el menú horizontal clásico */
+  .nav-brand, .header__nav {
     position: fixed;
     top: var(--header-h);
     left: 0; right: 0;
@@ -688,14 +634,43 @@ ul { list-style: none; }
     opacity: 0;
     transition: transform .3s ease, opacity .3s ease;
     border-top: 2px solid var(--color-accent);
+    z-index: 999;
   }
-  .header__nav.open {
+
+  /* Despliegue del menú móvil con clases activa de JS (.open o .active) */
+  .nav-brand.open, .nav-brand.active, .header__nav.open {
     transform: translateY(0);
     opacity: 1;
+    display: block;
   }
-  .nav__list { flex-direction: column; gap: 6px; }
-  .nav__link { padding: 12px 16px; font-size: .95rem; }
-  .header__burger { display: flex; }
+
+  .nav-links, .nav__list { 
+    flex-direction: column; 
+    gap: 6px; 
+  }
+  
+  .nav-links a, .nav__link { 
+    padding: 12px 16px; 
+    font-size: .95rem; 
+    color: #ffffff;
+    display: block;
+  }
+
+  /* 2. Mostramos el botón Hamburguesa */
+  .nav-hamburger, .header__burger { 
+    display: flex; 
+  }
+
+  /* 3. Escalamiento del Logo y Textos */
+  .header__logo svg {
+    height: 36px; /* Achicamos un poco el escudo en pantallas chicas */
+  }
+  .logo-text {
+    font-size: 0.8rem;
+  }
+  .logo-sub {
+    font-size: 0.65rem;
+  }
 
   /* Hero */
   .hero { height: 65vw; min-height: 300px; }
@@ -703,342 +678,12 @@ ul { list-style: none; }
   .hero__prev, .hero__next { width: 36px; height: 36px; font-size: 1rem; }
 
   /* Footer */
-  .footer__inner {
-    grid-template-columns: 1fr;
-  }
+  .footer__inner { grid-template-columns: 1fr; }
   .footer__brand { grid-column: span 1; }
 }
 
 @media (max-width: 480px) {
   .hero { height: 75vw; min-height: 260px; }
   .noticias__grid { grid-template-columns: repeat(2, 1fr); }
-  .busqueda__grid { grid-template-columns: 1fr; }
-}
-
-/* Reset Estricto */
-/* Reset e Integración de Tipografía Institucional */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: "Open Sans", Arial, sans-serif;
-}
-
-/* Fondo verde agua idéntico al de la captura original */
-body {
-  background-color: #dcedeb; 
-  color: #333333;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-/* Contenedor central blanco estructurado */
-.site-wrapper {
-  max-width: 1140px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  min-height: 100vh;
-  padding: 40px 45px;
-}
-
-.main-container {
-  width: 100%;
-}
-
-/* Título de la página */
-.page-title {
-  font-size: 34px;
-  font-weight: 400;
-  color: #333333;
-  margin-bottom: 40px;
-}
-
-/* Distribución en 2 columnas: Formulario (71%) y Sidebar (29%) */
-.grid-content {
-  display: grid;
-  grid-template-columns: 71fr 29fr;
-  gap: 40px;
-  align-items: start;
-}
-
-.left-column {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Cuadro del Formulario */
-.form-box {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  padding: 45px 40px;
-  border-radius: 3px;
-  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.05);
-  margin-bottom: 40px;
-}
-
-.form-lead {
-  font-size: 21px;
-  color: #333333;
-  margin-bottom: 35px;
-  line-height: 1.4;
-}
-
-/* Grupos de campos con línea inferior */
-.form-group {
-  margin-bottom: 35px;
-}
-
-.form-group label {
-  display: block;
-  font-size: 13px;
-  font-weight: 700;
-  color: #222222;
-  margin-bottom: 12px;
-}
-
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group select,
-.form-group textarea {
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #e0e0e0;
-  padding: 6px 0;
-  font-size: 14px;
-  color: #444444;
-  background: transparent;
-  outline: none;
-}
-
-/* Ancho del selector de Áreas */
-.form-group select {
-  max-width: 215px;
-  color: #555555;
-  cursor: pointer;
-}
-
-.form-group textarea {
-  resize: vertical;
-}
-
-/* Botón Enviar Celeste del Ministerio */
-.form-footer {
-  width: 100%;
-  margin-top: 15px;
-}
-
-.submit-btn {
-  background-color: #4baed2; /* El celeste de tu proyecto */
-  color: #ffffff;
-  border: none;
-  padding: 10px 24px;
-  font-size: 13px;
-  font-weight: 600;
-  border-radius: 4px;
-  cursor: pointer;
-  float: right;
-  transition: background-color 0.2s;
-}
-
-.submit-btn:hover {
-  background-color: #389aba;
-}
-
-/* Bloque de Dirección e Información */
-.contact-info-block {
-  padding-top: 10px;
-  margin-bottom: 30px;
-}
-
-.info-title {
-  font-size: 22px;
-  font-weight: 700;
-  color: #2b2b2b;
-  margin-top: 25px;
-  margin-bottom: 10px;
-}
-
-.info-text {
-  font-size: 14px;
-  color: #555555;
-  line-height: 1.7;
-}
-
-/* Barra Lateral (Sidebar) */
-.sidebar-section {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.widget {
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  padding: 22px 20px;
-}
-
-.search-field {
-  width: 100%;
-  padding: 8px 10px;
-  border: 1px solid #dddddd;
-  font-size: 13px;
-  color: #777777;
-  outline: none;
-}
-
-.widget-title {
-  font-size: 13px;
-  font-weight: 700;
-  color: #444444;
-  border-bottom: 1px solid #eeeeee;
-  padding-bottom: 12px;
-  margin-bottom: 18px;
-  letter-spacing: 0.3px;
-}
-
-.widget-links, .widget-categories {
-  list-style: none;
-}
-
-.widget-links li {
-  margin-bottom: 18px;
-  font-size: 13.5px;
-  line-height: 1.45;
-}
-
-.widget-links li a, .widget-categories li a {
-  color: #333333;
-  text-decoration: none;
-}
-
-.widget-links li a:hover, .widget-categories li a:hover {
-  color: #4baed2;
-}
-
-/* Viñetas en las Categorías */
-.widget-categories li {
-  position: relative;
-  padding-left: 14px;
-  margin-bottom: 11px;
-  font-size: 13.5px;
-}
-
-.widget-categories li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #555555;
-  font-size: 15px;
-  top: -1px;
-}
-
-/* Ajuste para pantallas móviles */
-@media (max-width: 880px) {
-  .grid-content {
-      grid-template-columns: 1fr;
-      gap: 30px;
-  }
-}
-/* ==========================================================================
-  ESTILOS DE LA BARRA DE NAVEGACIÓN SUPERIOR (MINDES SDE)
-   ========================================================================== */
-
-/* Ajusta el fondo de la barra al azul oscuro institucional */
-header, .tu-clase-del-header {
-  background-color: #0f2c59; /* El color azul oscuro de tu index */
-  padding: 15px 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Contenedor del Menú */
-header nav ul, .tu-clase-del-menu {
-  display: flex;
-  list-style: none;
-  gap: 20px; /* Espaciado entre botones */
-  margin: 0;
-  padding: 0;
-}
-
-/* Estilo de los Enlaces del Menú (Institución, Áreas, Noticias, Contacto) */
-header nav ul li a, .tu-clase-del-menu a {
-  color: #ffffff !important; /* Fuerza a que todos los textos sean blancos */
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  transition: color 0.2s ease;
-}
-
-/* Efecto al pasar el mouse por encima de los botones */
-header nav ul li a:hover, .tu-clase-del-menu a:hover {
-  color: #4baed2 !important; /* Se vuelve celeste como tus componentes */
-}
-/* Color azul oscuro de fondo para la barra del menú */
-header {
-  background-color: #0f2c59; /* Este es el azul oscuro exacto de tu web */
-  padding: 15px 45px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Alineación horizontal de los botones (Institución, Áreas, etc.) */
-header nav ul {
-  display: flex;
-  list-style: none;
-  gap: 25px; /* Espacio de separación entre cada botón */
-  margin: 0;
-  padding: 0;
-}
-
-/* Forzar a que las letras del menú sean blancas y sin subrayado */
-header nav ul li a {
-  color: #ffffff !important; 
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  font-family: "Open Sans", sans-serif;
-}
-
-/* Color celeste cuando pasas el mouse por encima de los botones */
-header nav ul li a:hover {
-  color: #4baed2 !important; 
-}
-
-@media (max-width:768px){
-
-    .menu-toggle{
-        display:block;
-        background:none;
-        border:none;
-        font-size:30px;
-        cursor:pointer;
-    }
-
-    .nav-menu{
-        display:none;
-        position:absolute;
-        top:80px;
-        left:0;
-        width:100%;
-        background:#003366;
-        z-index:999;
-    }
-
-    .nav-menu.active{
-        display:block;
-    }
-
-    .nav-menu ul{
-        flex-direction:column;
-        padding:15px;
-        gap:15px;
-    }
-
-    .nav-menu a{
-        color:white;
-        display:block;
-        padding:10px;
-    }
+  .header__logo svg { height: 32px; } /* Ajuste extra para pantallas diminutas */
 }

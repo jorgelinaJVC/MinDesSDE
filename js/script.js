@@ -2,6 +2,21 @@
 Ministerio de Desarrollo SDE (réplica)
    ============================================================ */
 
+// Declaramos toggleMenu de forma global para que el "onclick" del HTML lo encuentre perfectamente
+function toggleMenu() {
+  const menu = document.getElementById('mainNav');
+  const burger = document.querySelector('.nav-hamburger') || document.querySelector('.header__burger');
+  
+  if (menu && burger) {
+    menu.classList.toggle('open');
+    burger.classList.toggle('open');
+    
+    // Accesibilidad (Aria-expanded)
+    const expanded = menu.classList.contains('open');
+    burger.setAttribute('aria-expanded', expanded);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   /* ─────────────────────────────────────────
@@ -17,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const INTERVAL  = 5000; // ms
 
   function goTo(index) {
+    if (!slides.length) return;
     slides[current].classList.remove('active');
     dots[current].classList.remove('active');
     current = (index + slides.length) % slides.length;
@@ -25,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function startAuto() {
+    if (!slides.length) return;
     autoTimer = setInterval(() => goTo(current + 1), INTERVAL);
   }
 
@@ -54,21 +71,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ─────────────────────────────────────────
-  2. BURGER MENU (mobile)
+  2. BURGER MENU (Ajustes de eventos secundarios)
   ───────────────────────────────────────── */
-  const burger  = document.getElementById('burgerBtn');
-  const nav     = document.getElementById('mainNav');
-
-  burger?.addEventListener('click', () => {
-    burger.classList.toggle('open');
-    nav.classList.toggle('open');
-    // Accessibility
-    const expanded = burger.classList.contains('open');
-    burger.setAttribute('aria-expanded', expanded);
-  });
+  const nav = document.getElementById('mainNav');
+  const burger = document.querySelector('.nav-hamburger') || document.querySelector('.header__burger');
 
   // Cerrar al hacer clic en un enlace (móvil)
-  document.querySelectorAll('.nav__link').forEach(link => {
+  document.querySelectorAll('.nav-links a, .nav__link').forEach(link => {
     link.addEventListener('click', () => {
       burger?.classList.remove('open');
       nav?.classList.remove('open');
@@ -134,8 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 /* ─────────────────────────────────────────
   CSS para las animaciones de reveal
-  (inyectado dinámicamente para mantener JS y CSS separados
-    pero también funciona si lo añadís al styles.css)
 ───────────────────────────────────────── */
 const revealStyle = document.createElement('style');
 revealStyle.textContent = `
