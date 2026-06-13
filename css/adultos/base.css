@@ -4,7 +4,7 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Open Sans', sans-serif;
   color: black;/* letras negra de subtitulo de galeria */
-  background: #f9f9f9;
+  background: white;
   overflow-x: hidden;
   }
   
