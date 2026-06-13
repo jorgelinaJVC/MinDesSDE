@@ -13,7 +13,7 @@
 }
 
 .buscador-card {
-  background: #ffffff;
+  background: greys;
   border-radius: 12px;
   padding: 2rem;
   border: 1px solid #e2e8f0;
@@ -132,7 +132,7 @@
 
 /* Opción C: Azul muy suave (institucional) */
 #buscador {
-    background-color: #ffffff; 
+    background-color: #f8fafc; 
 }
 
 

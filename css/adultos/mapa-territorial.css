@@ -6,27 +6,24 @@
   background-color: #ffffff /* Fondo blanco */
 }
 
-/* Forzar que el Grid tenga exactamente las mismas columnas que Metodología */
+/* Fuerza al contenedor a comportarse como una cuadrícula de columnas */
 .mapa-territorial-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem; /* Espacio de aire entre el cuadro del mapa y las tarjetas */
-  width: 100%;
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
 }
 
-/* Tarjeta Base alineada al diseño original */
+/* Le da un formato limpio a cada tarjeta */
 .mapa-territorial-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 2rem;
-  box-shadow: var(--shadow);
-  transition: all 0.3s ease;
-  border-top: 4px solid transparent;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 /* El efecto expansivo superior del degradado de marca */

@@ -1,6 +1,6 @@
 /* ===== GALLERY ===== */
     #gallery {
-  background: var(--gray);
+  background: #f8fafc;
   margin-bottom: 0;
   padding-bottom: 4rem;
 }
