@@ -5,30 +5,31 @@
             images: [
                 "assets/AsuncionDireccion.jpg",
                 "assets/Dire1.jpg", 
-                "assets/directoraAM.jpg",
-                "assets/AsuncionDireccion_4.jpg"
+                "assets/directoraAM.webp"
+                
             ]
         },
         "virgen-valle": {
             title: "Centro Diurno Virgen del Valle",
             images: [
                 "assets/Centro Diurno Virgen del Valle.jpg",
-                "assets/VirgenDelValle_actividad1.jpg",
-                "assets/VirgenDelValle_actividad2.jpg"
+                "assets/virgendelvalle1.jpg",
+                "assets/virgendelvalle2.jpg",
             ]
         },
-        "talleres": {
-            title: "Talleres Recreativos y Socio-Preventivos",
+        "residencia": {
+            title: "Residencia Mama Antula",
             images: [
-                "assets/TalleresAdultos.jpg",
-                "assets/TalleresAdultos_2.jpg"
+                "assets/mamaantula1.jpg",
+                "assets/mamaantula2.jpg"
             ]
         },
         "encuentro": {
             title: "Encuentro Provincial de Adultos Mayores",
             images: [
-                "assets/EncuentroProvincial.jpg",
-                "assets/EncuentroProvincial_2.jpg"
+                "assets/encuentro1.jpg",
+                "assets/encuentro2.jpg",
+                "assets/encuentro3.jpg",
             ]
         }
     };
@@ -40,7 +41,9 @@
         const modal = document.getElementById("gallery-modal");
         const modalTitle = document.getElementById("modal-title");
         const modalContainer = document.getElementById("modal-images-container");
-        const closeBtn = document.querySelector(".modal-close");
+        
+        // CORREGIDO: Busca la cruz de cierre específicamente dentro del modal de galería
+        const closeBtn = modal ? modal.querySelector(".modal-close") : null; 
         const galleryItems = document.querySelectorAll(".gallery-item");
 
         if (!modal || !modalContainer || !modalTitle || galleryItems.length === 0) {
@@ -94,21 +97,24 @@
 
         // Al hacer clic en una tarjeta de la galería principal
         galleryItems.forEach(item => {
-            item.addEventListener("click", function() {
-                const albumKey = this.getAttribute("data-album");
-                const albumData = albums[albumKey];
+            // Validamos que pertenezca a la galería y no a la sección de noticias
+            if (item.getAttribute("data-album")) {
+                item.addEventListener("click", function() {
+                    const albumKey = this.getAttribute("data-album");
+                    const albumData = albums[albumKey];
 
-                if (albumData && albumData.images.length > 0) {
-                    modalTitle.textContent = albumData.title;
-                    currentAlbumImages = albumData.images;
-                    currentImageIndex = 0; // Arranca siempre mostrando la primera foto del álbum
+                    if (albumData && albumData.images.length > 0) {
+                        modalTitle.textContent = albumData.title;
+                        currentAlbumImages = albumData.images;
+                        currentImageIndex = 0; // Arranca siempre mostrando la primera foto
 
-                    renderActiveImage();
+                        renderActiveImage();
 
-                    modal.classList.add("active");
-                    document.body.style.overflow = "hidden";
-                }
-            });
+                        modal.classList.add("active");
+                        document.body.style.overflow = "hidden";
+                    }
+                });
+            }
         });
 
         // Lógica de cierre de la ventana modal
@@ -123,41 +129,39 @@
         };
     }
 
+    // Inicializar el módulo de galería
     initGallery();
 
     // ==========================================================================
-    // 3. NUEVO: LÓGICA DE DETALLES PARA NOTICIAS
-    // ==========================================================================
-    // ==========================================================================
-    // 4. MÓDULO DE DETALLES INTEGRADOS PARA NOTICIAS
+    // MÓDULO DE DETALLES INTEGRADOS PARA NOTICIAS
     // ==========================================================================
     const newsData = {
-        "clima": {
-            title: "El tiempo en Santiago del Estero para este viernes 12 de junio: cielo mayormente nublado y una máxima de 19°C",
+        "noti1": {
+            title: "El valor del respeto: Claves para promover el buen trato hacia las personas mayores",
             tag: "Locales",
             date: "Viernes 12 de Junio, 2026",
-            image: "assets/clima_santiago.jpg",
-            text: "El Servicio Meteorológico Nacional anticipa una jornada fresca y con alta nubosidad para la Madre de Ciudades. Se prevén vientos leves del sector sur y una humedad que rondará el 80%. Ideal para mantenerse abrigados durante las actividades matutinas de los centros de contención social."
+            image: "assets/Buen-trato-a-las-personas-mayores-1024x576.png",
+            text: "Pequeñas acciones diarias en la familia, los comercios y el transporte público pueden hacer una gran diferencia. Conocé cómo construir entre todos una comunidad más inclusiva y respetuosa."
         },
-        "ranking": {
-            title: "Argentina 1° en el ranking de la belleza: un diario de EE.UU asegura que tiene la hinchada más atractiva del Mundial 2026",
-            tag: "Somos Deporte",
+        "noti2": {
+            title: "Visibilizar para proteger: Hablemos sobre el abandono y la soledad en la vejez",
+            tag: "Conciencia Social",
             date: "Jueves 11 de Junio, 2026",
-            image: "assets/hinchada_argentina.jpg",
-            text: "Un reconocido matutino estadounidense destacó el color, la pasión y el atractivo de la parcialidad albiceleste en los estadios norteamericanos. La publicación resalta cómo las familias completas y abuelos acompañan al seleccionado, contagiando alegría a todo el mundo."
+            image: "assets/maltrato.png",
+            text: "El aislamiento social es una realidad que afecta a muchos de nuestros mayores. Te contamos cómo identificar las señales de alerta y de qué manera las redes de contención barrial pueden intervenir a tiempo."
         },
-        "quimsa": {
-            title: "Quimsa tuvo una mala noche, cayó ante Gimnasia y se complica en la final",
-            tag: "Somos Deporte",
+        "noti3": {
+            title: "Cuidá tus ahorros: Cómo detectar y prevenir el abuso financiero",
+            tag: "Precaucion",
             date: "Miércoles 10 de Junio, 2026",
-            image: "assets/quimsa_basquet.jpg",
-            text: "La Fusión no pudo encontrar su juego característico en un partido duro y friccionado. A pesar del esfuerzo del plantel en el último cuarto, el conjunto de Comodoro Rivadavia se quedó con el punto clave. El próximo encuentro en Santiago será definitivo para las aspiraciones del campeonato."
+            image: "assets/ahorro.avif",
+            text: "Desde estafas telefónicas hasta firmas de documentos sin consentimiento claro. Te acercamos una guía práctica con consejos de seguridad para proteger tu economía y mantener tu autonomía."
         },
-        "invierno": {
-            title: "Lanzan el programa de actividades recreativas de invierno para personas mayores",
+        "noti4": {
+            title: "Nunca es tarde para aprender: ¡Abren las inscripciones para las nuevas actividades educativas!",
             tag: "Locales",
             date: "Viernes 12 de Junio, 2026",
-            image: "assets/TalleresAdultos_2.jpg",
+            image: "assets/talleres.png",
             text: "La Dirección General de Adultos Mayores presentó formalmente la grilla de encuentros, peñas y caminatas saludables adaptadas para los meses de frío. Las actividades se desarrollarán en los distintos centros diurnos de la capital y el interior santiagueño, buscando promover un envejecimiento activo y saludable."
         }
     };
@@ -178,35 +182,33 @@
                 const key = this.getAttribute("data-notice");
                 const data = newsData[key];
 
-                // ... dentro del evento click de las newsCards, buscá esta parte:
+                if (data) {
+                    mTag.textContent = data.tag;
+                    mTitle.textContent = data.title;
+                    mDate.textContent = data.date;
+                
+                    // Inyección limpia y forzada de la imagen
+                    mImgContainer.innerHTML = "";
+                    const img = document.createElement("img");
+                    img.src = data.image;
+                    img.alt = data.title;
+                
+                    // Estilos en línea directos para mantener consistencia
+                    img.style.width = "100%";
+                    img.style.maxWidth = "100%";
+                    img.style.height = "380px";
+                    img.style.objectFit = "cover";
+                    img.style.display = "block";
+                    img.style.borderRadius = "12px";
+                
+                    mImgContainer.appendChild(img);
+                
+                    // Inyección limpia del texto
+                    mText.innerHTML = `<p>${data.text}</p>`;
 
-            if (data) {
-        mTag.textContent = data.tag;
-        mTitle.textContent = data.title;
-        mDate.textContent = data.date;
-    
-    // Inyección limpia y FORZADA de la imagen desde JavaScript
-            mImgContainer.innerHTML = "";
-            const img = document.createElement("img");
-            img.src = data.image;
-            img.alt = data.title;
-    
-    // --- ESTILOS EN LÍNEA DIRECTOS PARA EVITAR DESBORDES ---
-    img.style.width = "100%";
-    img.style.maxWidth = "100%";
-    img.style.height = "380px";
-    img.style.objectFit = "cover";
-    img.style.display = "block";
-    img.style.borderRadius = "12px";
-    
-    mImgContainer.appendChild(img);
-    
-    // Inyección limpia de texto
-    mText.innerHTML = `<p>${data.text}</p>`;
-
-    newsModal.classList.add("active");
-    document.body.style.overflow = "hidden";
-}
+                    newsModal.classList.add("active");
+                    document.body.style.overflow = "hidden";
+                }
             });
         });
 
