@@ -68,3 +68,68 @@
   color: var(--text-medium);
   line-height: 1.5;
 }
+/* Contenedor general */
+.about-authority-container {
+    margin-top: 60px;
+    padding-top: 40px;
+    border-top: 1px solid #eef2f5;
+}
+
+/* Tarjeta flexible */
+.authority-card {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: #fdfdfd;
+    padding: 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    max-width: 900px;
+    margin: 30px auto 0 auto;
+}
+
+/* Caja de la foto */
+.authority-image-box {
+    flex: 0 0 200px;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%; /* La hace completamente redonda */
+    overflow: hidden;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.authority-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Caja del texto */
+.authority-info-box h3 {
+    font-family: 'Montserrat', sans-serif;
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 12px;
+}
+
+.authority-description {
+    font-family: 'Open Sans', sans-serif;
+    color: #666;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+/* Responsive para celulares */
+@media (max-width: 768px) {
+    .authority-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    .authority-image-box {
+        flex: 0 0 160px;
+        width: 160px;
+        height: 160px;
+    }
+}
