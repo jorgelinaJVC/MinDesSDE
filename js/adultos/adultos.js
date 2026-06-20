@@ -6,7 +6,6 @@
                 "assets/AsuncionDireccion.jpg",
                 "assets/Dire1.jpg", 
                 "assets/directoraAM.webp"
-                
             ]
         },
         "virgen-valle": {
@@ -148,7 +147,7 @@
             tag: "Conciencia Social",
             date: "Jueves 11 de Junio, 2026",
             image: "assets/maltrato.png",
-            text: "El aislamiento social es una realidad que afecta a muchos de nuestros mayores. Te contamos cómo identificar las señales de alerta y de qué manera las redes de contención barrial pueden intervenir a tiempo."
+            text: "El aislamiento social es una reality que afecta a muchos de nuestros mayores. Te contamos cómo identificar las señales de alerta y de qué manera las redes de contención barrial pueden intervenir a tiempo."
         },
         "noti3": {
             title: "Cuidá tus ahorros: Cómo detectar y prevenir el abuso financiero",
@@ -222,4 +221,27 @@
             if (e.target === newsModal) closeNews();
         };
     }
-})();
+
+    // ==========================================================================
+    // 🆕 NUEVO: CONTROL DEL FORMULARIO DE CONTACTO (SIMULACIÓN INSTITUCIONAL)
+    // ==========================================================================
+    const formulario = document.getElementById("contactForm");
+    if (formulario) {
+        formulario.addEventListener("submit", function(event) {
+            // Evitamos que intente recargar la página o ir a URLs externas rotas
+            event.preventDefault();
+
+            // Capturamos el nombre y el servicio elegidos para personalizar el mensaje
+            const nombreUser = document.getElementById("nombre").value;
+            const servicioSelect = document.getElementById("servicio");
+            const servicioTexto = servicioSelect.options[servicioSelect.selectedIndex].text;
+
+            // Mostramos el mensaje emergente estético
+            alert(`¡Muchas gracias, ${nombreUser}!\n\nTu consulta sobre "${servicioTexto}" ha sido procesada con éxito.\nEl equipo de la Dirección General se pondrá en contacto con vos en menos de 24 horas.`);
+
+            // Reseteamos el formulario limpiando los inputs
+            formulario.reset();
+        });
+    }
+
+})(); // Este es el cierre final de todo tu archivo
