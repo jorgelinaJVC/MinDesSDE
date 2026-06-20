@@ -5,14 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal de la Direccion General de Adultos Mayores</title>
   <link rel="shortcut icon" href="assets/LogoAM.png" type="image/x-icon" />
-<!-- ===== FUENTES Y ESTILOS ===== -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<!-- ===== ESTILOS Modulares===== -->
- 
-  <link rel="stylesheet" href="css/adultos/base.css" />
+<link rel="stylesheet" href="css/adultos/base.css" />
   <link rel="stylesheet" href="css/adultos/navbar.css" />
   <link rel="stylesheet" href="css/adultos/hero.css" />
   <link rel="stylesheet" href="css/adultos/about.css" />
@@ -32,16 +29,13 @@
 </head>
 <body>
 
-  <!-- ===== BOTÓN DE ACCESIBILIDAD ===== -->
   <button id="accessibility-toggle" class="accessibility-toggle-btn" aria-label="Menú de accesibilidad (Cambiar tamaño de texto y contraste)" data-tooltip="Menú de accesibilidad (Cambiar tamaño de texto y contraste)">
-  <i class="fa-solid fa-eye"></i>
-</button>
-  <!-- ===== PANEL DE ACCESIBILIDAD ===== -->
+    <i class="fa-solid fa-eye"></i>
+  </button>
+  
   <div id="accessibility-panel" class="accessibility-panel">
     <h2 class="accessibility-panel-title">Accesibilidad</h2>
-
     <div class="accessibility-section">
-      
       <label class="accessibility-label">Tamaño del texto</label>
       <div class="accessibility-font-controls">
         <button id="btn-desc-font" class="accessibility-font-btn"><i class="fa-solid fa-minus"></i></button>
@@ -49,19 +43,14 @@
         <button id="btn-inc-font" class="accessibility-font-btn"><i class="fa-solid fa-plus"></i></button>
       </div>
     </div>
-
     <div class="accessibility-section-sm">
       <button id="btn-toggle-contrast" class="accessibility-action-btn">Modo Alto Contraste</button>
     </div>
-
     <div class="accessibility-section">
       <button id="btn-toggle-links" class="accessibility-action-btn">Resaltar Enlaces</button>
     </div>
-
     <button id="btn-reset-accessibility" class="accessibility-reset-btn">Restablecer valores</button>
   </div>
-
-  <!-- ===== NAVBAR ===== -->
 
   <nav>
     <a href="#hero" class="nav-brand">
@@ -90,7 +79,6 @@
     </button>
   </nav>
 
-  <!-- ===== HERO ===== -->
   <section id="hero">
     <div class="hero-chevrons">
       <div class="chevron-group top-left">
@@ -145,304 +133,288 @@
     </div>
   </section>
 
-  <!-- Ultimas Noticias -->
-<section id="news">
-  <div class="section-container">
-    <div class="section-header centered fade-in">
-      <span class="section-label">Actualidad</span>
-      <h2 class="section-title">Últimas Noticias</h2>
-    </div>
-    
-    <div class="gallery-grid full-four-columns">
+  <section id="news">
+    <div class="section-container">
+      <div class="section-header centered fade-in">
+        <span class="section-label">Actualidad</span>
+        <h2 class="section-title">Últimas Noticias</h2>
+      </div>
       
-      <div class="gallery-item fade-in" data-notice="noti1">
-        <div class="gallery-image-wrapper">
-          <img src="assets/Buen-trato-a-las-personas-mayores-1024x576.png" alt="El Buen Trato" />
-          <div class="gallery-overlay"><p>Leer noticia</p></div>
+      <div class="gallery-grid full-four-columns">
+        <div class="gallery-item fade-in" data-notice="noti1">
+          <div class="gallery-image-wrapper">
+            <img src="assets/Buen-trato-a-las-personas-mayores-1024x576.png" alt="El Buen Trato" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Locales • 12 de Junio</h4>
+            <p><strong>El valor del respeto:</strong> Claves para promover el buen trato hacia las personas mayores.</p>
+          </div>
         </div>
-        <div class="gallery-caption">
-          <h4>Locales • 12 de Junio</h4>
-          <p><strong>El valor del respeto:</strong> Claves para promover el buen trato hacia las personas mayores.</p>
+
+        <div class="gallery-item fade-in" data-notice="noti2">
+          <div class="gallery-image-wrapper">
+            <img src="assets/maltrato.png" alt="Visibilizar para proteger" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Conciencia Social • 11 de Junio</h4>
+            <p><strong>Visibilizar para proteger:</strong> Hablemos sobre el abandono y la soledad en la vejez.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in" data-notice="noti3">
+          <div class="gallery-image-wrapper">
+            <img src="assets/ahorro.avif" alt="Cuidá tus ahorros" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Precaucion • 10 de Junio</h4>
+            <p><strong>Cuidá tus ahorros:</strong> Cómo detectar y prevenir el abuso financiero.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in" data-notice="noti4">
+          <div class="gallery-image-wrapper">
+            <img src="assets/talleres.png" alt="Nunca es tarde para aprender" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Locales • 12 de Junio</h4>
+            <p><strong>Nunca es tarde para aprender:</strong> ¡Abren las inscripciones para las nuevas actividades educativas!.</p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="gallery-item fade-in" data-notice="noti2">
-        <div class="gallery-image-wrapper">
-          <img src="assets/maltrato.png" alt="Visibilizar para proteger" />
-          <div class="gallery-overlay"><p>Leer noticia</p></div>
-        </div>
-        <div class="gallery-caption">
-          <h4>Conciencia Social • 11 de Junio</h4>
-          <p><strong>Visibilizar para proteger:</strong> Hablemos sobre el abandono y la soledad en la vejez.</p>
+  <div id="news-modal" class="modal-overlay">
+    <div class="modal-content news-modal-content">
+      <span class="modal-close news-modal-close">×</span>
+      <div class="news-layout-container">
+        <div id="modal-news-image-container" class="news-modal-image-box"></div>
+        <div class="news-modal-info-box">
+          <span id="modal-news-tag" class="news-tag-indicator">Categoría</span>
+          <h2 id="modal-news-title">Título de la Noticia</h2>
+          <p id="modal-news-date" class="news-modal-date">Fecha</p>
+          <div id="modal-news-text" class="news-modal-text-content"></div>
         </div>
       </div>
-
-      <div class="gallery-item fade-in" data-notice="noti3">
-        <div class="gallery-image-wrapper">
-          <img src="assets/ahorro.avif" alt="Cuidá tus ahorros" />
-          <div class="gallery-overlay"><p>Leer noticia</p></div>
-        </div>
-        <div class="gallery-caption">
-          <h4>Precaucion • 10 de Junio</h4>
-          <p><strong>Cuidá tus ahorros:</strong> Cómo detectar y prevenir el abuso financiero.</p>
-        </div>
-      </div>
-
-      <div class="gallery-item fade-in" data-notice="noti4">
-        <div class="gallery-image-wrapper">
-          <img src="assets/talleres.png" alt="Nunca es tarde para aprender" />
-          <div class="gallery-overlay"><p>Leer noticia</p></div>
-        </div>
-        <div class="gallery-caption">
-          <h4>Locales • 12 de Junio</h4>
-          <p><strong>Nunca es tarde para aprender:</strong> ¡Abren las inscripciones para las nuevas actividades educativas!.</p>
-        </div>
-      </div>
-
     </div>
   </div>
-</section>
 
-<div id="news-modal" class="modal-overlay">
-  <div class="modal-content news-modal-content">
-    <span class="modal-close news-modal-close">&times;</span>
-    
-    <div class="news-layout-container">
-      <div id="modal-news-image-container" class="news-modal-image-box"></div>
-      
-      <div class="news-modal-info-box">
-        <span id="modal-news-tag" class="news-tag-indicator">Categoría</span>
-        <h2 id="modal-news-title">Título de la Noticia</h2>
-        <p id="modal-news-date" class="news-modal-date">Fecha</p>
-        <div id="modal-news-text" class="news-modal-text-content"></div>
-      </div>
-    </div>
-    
-    </div>
-   </div>
- </section>
-<!-- ===== ABOUT ===== -->
-<section id="about">
-  <div class="section-container">
-    <div class="about-grid">
-      <div class="about-image-wrapper fade-in">
-        <div class="about-image-main">
-          <img src="assets/cover_photo.webp" alt="Adultos Mayores" />
-        </div>
-        <div class="about-badge-float"><span>DGAMSDE</span>Ministerio de Desarrollo Social<br>Sgo. del Estero</div>
-      </div>
-      <div class="about-content fade-in fade-in-delay-2">
-        <div class="section-header">
-          <span class="section-label">Nuestra Historia</span>
-          <h2 class="section-title">¿Quiénes somos?</h2>
-        </div>
-        <p class="about-story">
-          Somos el equipo de la <strong>Dirección de Adultos Mayores (DGAMSDE)</strong>, perteneciente a la Subsecretaría de Desarrollo Social del Ministerio de Desarrollo Social de Santiago del Estero. Trabajamos con el propósito de garantizar que cada persona mayor de nuestra provincia acceda plenamente a sus derechos, promoviendo un bienestar integral y una vida activa.
-        </p>
-        <p class="about-story">
-          Entendemos que el envejecimiento es una etapa de protagonismo. Por eso, acompañamos a las familias e instituciones para asegurar espacios de participación colectiva, brindando asesoramiento profesional y herramientas técnicas para que tus saberes sigan transformando la comunidad.
-        </p>
-        
-        <div class="about-values">
-          <div class="about-value">
-            <span class="about-value-icon">🩺</span>
-            <div class="about-value-content">
-              <h4>Enfoque Bio-Psico-Social</h4>
-              <p>Abordamos cada situación de forma integral, considerando la salud física, emotional y el contexto social de la persona mayor para una intervención efectiva.</p>
-            </div>
+  <section id="about">
+    <div class="section-container">
+      <div class="about-grid">
+        <div class="about-image-wrapper fade-in">
+          <div class="about-image-main">
+            <img src="assets/cover_photo.webp" alt="Adultos Mayores" />
           </div>
-          <div class="about-value">
-            <span class="about-value-icon">📋</span>
-            <div class="about-value-content">
-              <h4>Monitoreo y Calidad</h4>
-              <p>Contamos con un equipo interdisciplinario que supervisa residencias de larga estadía y centros de día, asegurando estándares óptimos de cuidado y recursos humanos.</p>
-            </div>
-          </div>
-          <div class="about-value">
-            <span class="about-value-icon">🤝</span>
-            <div class="about-value-content">
-              <h4>Red de Contención Provincial</h4>
-              <p>Articulamos acciones con hospitales, municipios, organizaciones y redes de DDHH para brindar respuestas rápidas ante situaciones de vulnerabilidad o emergencia.</p>
-            </div>
-          </div>
+          <div class="about-badge-float"><span>DGAMSDE</span>Ministerio de Desarrollo Social<br>Sgo. del Estero</div>
         </div>
-      </div>
-    </div>
-
-    <div class="about-authority-container fade-in">
-      <div class="section-header centered">
-        <span class="section-label">Gestión Actual</span>
-        <h2 class="section-title">Autoridad Institucional</h2>
-      </div>
-
-      <div class="authority-card">
-        <div class="authority-image-box">
-          <img src="assets/direAM1.png" alt="Directora de la Dirección General de Adultos Mayores" />
-        </div>
-        <div class="authority-info-box">
-          <h3>Directora General de Adultos Mayores</h3>
-          <p class="authority-description">
-            <strong>Lucía Wite</strong>, directora de Adultos Mayores de la provincia, conduce el diseño, la articulación y la ejecución de políticas públicas orientadas a la promoción, protección y fortalecimiento de los derechos de las personas mayores en todo el territorio santiagueño.
-            Desde una perspectiva integral e interinstitucional, lidera el trabajo del equipo interdisciplinario, impulsando acciones estratégicas que contribuyen al cumplimiento efectivo de la Ley Provincial N.º 7149 y al fortalecimiento de la red provincial de acompañamiento, inclusión y contención comunitaria.
-
+        <div class="about-content fade-in fade-in-delay-2">
+          <div class="section-header">
+            <span class="section-label">Nuestra Historia</span>
+            <h2 class="section-title">¿Quiénes somos?</h2>
+          </div>
+          <p class="about-story">
+            Somos el equipo de la <strong>Dirección de Adultos Mayores (DGAMSDE)</strong>, perteneciente a la Subsecretaría de Desarrollo Social del Ministerio de Desarrollo Social de Santiago del Estero. Trabajamos con el propósito de garantizar que cada persona mayor de nuestra provincia acceda plenamente a sus derechos, promoviendo un bienestar integral y una vida activa.
           </p>
+          <p class="about-story">
+            Entendemos que el envejecimiento es una etapa de protagonismo. Por eso, acompañamos a las familias e instituciones para asegurar espacios de participación colectiva, brindando asesoramiento profesional y herramientas técnicas para que tus saberes sigan transformando la comunidad.
+          </p>
+          
+          <div class="about-values">
+            <div class="about-value">
+              <span class="about-value-icon">🩺</span>
+              <div class="about-value-content">
+                <h4>Enfoque Bio-Psico-Social</h4>
+                <p>Abordamos cada situación de forma integral, considerando la salud física, emotional y el contexto social de la persona mayor para una intervención efectiva.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <span class="about-value-icon">📋</span>
+              <div class="about-value-content">
+                <h4>Monitoreo y Calidad</h4>
+                <p>Contamos con un equipo interdisciplinario que supervisa residencias de larga estadía y centros de día, asegurando estándares óptimos de cuidado y recursos humanos.</p>
+              </div>
+            </div>
+            <div class="about-value">
+              <span class="about-value-icon">🤝</span>
+              <div class="about-value-content">
+                <h4>Red de Contención Provincial</h4>
+                <p>Articulamos acciones con hospitales, municipios, organizaciones y redes de DDHH para brindar respuestas rápidas ante situaciones de vulnerabilidad o emergencia.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-authority-container fade-in">
+        <div class="section-header centered">
+          <span class="section-label">Gestión Actual</span>
+          <h2 class="section-title">Autoridad Institucional</h2>
+        </div>
+
+        <div class="authority-card">
+          <div class="authority-image-box">
+            <img src="assets/direAM1.png" alt="Directora de la Dirección General de Adultos Mayores" />
+          </div>
+          <div class="authority-info-box">
+            <h3>Directora General de Adultos Mayores</h3>
+            <p class="authority-description">
+              <strong>Lucía Wite</strong>, directora de Adultos Mayores de la provincia, conduce el diseño, la articulación y la ejecución de políticas públicas orientadas a la promoción, protección y fortalecimiento de los derechos de las personas mayores en todo el territorio santiagueño.
+              Desde una perspectiva integral e interinstitucional, lidera el trabajo del equipo interdisciplinario, impulsando acciones estratégicas que contribuyen al cumplimiento efectivo de la Ley Provincial N.º 7149 y al fortalecimiento de la red provincial de acompañamiento, inclusión y contención comunitaria.
+            </p>
+          </div>
         </div>
       </div>
     </div>
-    </div>
-</section>
+  </section>
 
-<!-- ===== SERVICIOS ===== -->
-<section id="services">
-  <div class="section-container">
-    <div class="section-header centered fade-in">
-      <span class="section-label">Lo que brindamos</span>
-      <h2 class="section-title"><span>Nuestros Servicios</span></h2>
-      <p class="section-desc">Trabajamos de manera integral para garantizar el bienestar bio-psico-social de las personas mayores, brindando acompañamiento profesional y herramientas para una participación activa en la comunidad.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card featured fade-in-delay-0">
-        <div class="service-icon-wrapper">👩‍💻</div>
-        <h3>Asesoramiento y Asistencia Integral</h3>
-        <p>Brindamos intervenciones profesionales y orientación ante situaciones de vulnerabilidad o contingencias que afecten a las personas mayores. Realizamos diagnósticos, seguimiento social y actuaciones de oficio cuando es necesario.</p>
-        <span class="service-tag">Servicio Principal</span>
+  <section id="services">
+    <div class="section-container">
+      <div class="section-header centered fade-in">
+        <span class="section-label">Lo que brindamos</span>
+        <h2 class="section-title"><span>Nuestros Servicios</span></h2>
+        <p class="section-desc">Trabajamos de manera integral para garantizar el bienestar bio-psico-social de las personas mayores, brindando acompañamiento profesional y herramientas para una participación activa en la comunidad.</p>
       </div>
-      <div class="service-card fade-in fade-in-delay-1">
-        <div class="service-icon-wrapper">👁</div>
-        <h3>Supervisión de Residencias de Larga Estadía y Centros de Día</h3>
-        <p>Apoyamos y asesoramos a instituciones de larga estadía y centros de día, tanto públicos como privados, bajo el marco de la Ley Provincial N.º 7149.</p>
-        <span class="service-tag">Calidad y Cuidado</span>
-      </div>
-      <div class="service-card fade-in fade-in-delay-2">
-        <div class="service-icon-wrapper">✍🏻</div>
-        <h3>Capacitación y Formación Gerontológica</h3>
-        <p>Generamos espacios de formación con perspectiva gerontológica dirigidos a familias, cuidadores domiciliarios, técnicos y profesionales del área.</p>
-        <span class="service-tag">Formación Continua</span>
-      </div>
-      <div class="service-card fade-in fade-in-delay-3">
-        <div class="service-icon-wrapper">🏢</div>
-        <h3>Fortalecimiento de Organizaciones</h3>
-        <p>Ofrecemos herramientas técnicas para la elaboración de proyectos desde las organizaciones de personas mayores, valorando sus saberes y su territorialidad.</p>
-        <span class="service-tag">Participación Activa</span>
-      </div>
-      <div class="service-card fade-in fade-in-delay-4">
-        <div class="service-icon-wrapper">📃</div>
-        <h3>Promoción de Derechos y Buen Trato</h3>
-        <p>Implementamos políticas de envejecimiento activo y campañas de sensibilización permanentes para fomentar el buen trato y el ejercicio pleno de los derechos.</p>
-        <span class="service-tag">Concientización</span>
-      </div>
-      <div class="service-card fade-in fade-in-delay-5">
-        <div class="service-icon-wrapper">👥</div>
-        <h3>Nuestro Equipo Interdisciplinario</h3>
-        <p>Contamos con un equipo de profesionales, integrado por trabajadoras sociales y personal administrativo, especializados en el monitoreo y la atención efectiva en todo el territorio provincial.</p>
-        <span class="service-tag">Calidez y Profesionalismo</span>
-      </div>
-      <div class="service-card fade-in fade-in-delay-6">
-        <div class="service-icon-wrapper">🌐</div>
-        <h3>Red de Articulación Institucional</h3>
-        <p>Trabajamos en conjunto con municipios, hospitales, policía comunitaria y el Consejo Provincial de Adultos Mayores para que nuestras soluciones lleguen a cada rincón.</p>
-        <span class="service-tag">Concientización</span>
-      </div>
-      <div class="service-card fade-in fade-in-delay-7">
-        <div class="service-icon-wrapper">📄</div>
+      <div class="services-grid">
+        <div class="service-card featured fade-in-delay-0">
+          <div class="service-icon-wrapper">👩‍💻</div>
+          <h3>Asesoramiento y Asistencia Integral</h3>
+          <p>Brindamos intervenciones profesionales y orientación ante situaciones de vulnerabilidad o contingencias que afecten a las personas mayores. Realizamos diagnósticos, seguimiento social y actuaciones de oficio cuando es necesario.</p>
+          <span class="service-tag">Servicio Principal</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-1">
+          <div class="service-icon-wrapper">👁</div>
+          <h3>Supervisión de Residencias de Larga Estadía y Centros de Día</h3>
+          <p>Apoyamos y asesoramos a instituciones de larga estadía y centros de día, tanto públicos como privados, bajo el marco de la Ley Provincial N.º 7149.</p>
+          <span class="service-tag">Calidad y Cuidado</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-2">
+          <div class="service-icon-wrapper">✍🏻</div>
+          <h3>Capacitación y Formación Gerontológica</h3>
+          <p>Generamos espacios de formación con perspectiva gerontológica dirigidos a familias, cuidadores domiciliarios, técnicos y profesionales del área.</p>
+          <span class="service-tag">Formación Continua</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-3">
+          <div class="service-icon-wrapper">🏢</div>
+          <h3>Fortalecimiento de Organizaciones</h3>
+          <p>Ofrecemos herramientas técnicas para la elaboración de proyectos desde las organizaciones de personas mayores, valorando sus saberes y su territorialidad.</p>
+          <span class="service-tag">Participación Activa</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-4">
+          <div class="service-icon-wrapper">📃</div>
+          <h3>Promoción de Derechos y Buen Trato</h3>
+          <p>Implementamos políticas de envejecimiento activo y campañas de sensibilización permanentes para fomentar el buen trato y el ejercicio pleno de los derechos.</p>
+          <span class="service-tag">Concientización</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-5">
+          <div class="service-icon-wrapper">👥</div>
+          <h3>Nuestro Equipo Interdisciplinario</h3>
+          <p>Contamos con un equipo de profesionales, integrado por trabajadoras sociales y personal administrativo, especializados en el monitoreo y la atención efectiva en todo el territorio provincial.</p>
+          <span class="service-tag">Calidez y Profesionalismo</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-6">
+          <div class="service-icon-wrapper">🌐</div>
+          <h3>Red de Articulación Institucional</h3>
+          <p>Trabajamos en conjunto con municipios, hospitales, policía comunitaria y el Consejo Provincial de Adultos Mayores para que nuestras soluciones lleguen a cada rincón.</p>
+          <span class="service-tag">Concientización</span>
+        </div>
+        <div class="service-card fade-in fade-in-delay-7">
+          <div class="service-icon-wrapper">📄</div>
           <h3>Habilitación de Residencia de larga estadia</h3>
           <p>Garantizando espacios seguros y de calidad bajo la Ley N.º 7149.</p>
           <p>En la provincia de Santiago del Estero, el funcionamiento de los espacios gerontológicos está regulado para asegurar que cada persona mayor reciba una atención digna y profesional. Nuestra Dirección es la encargada de supervisar que estos establecimientos cumplan con los estándares necesarios para su habilitación.</p>
-        <div class="card-action">
-          <a href="habilitacion.html" class="btn-card-link">
-            Ver requisitos y procesos <b>de habilitación</b>
-          </a>
+          <div class="card-action">
+            <a href="habilitacion.html" class="btn-card-link">
+              Ver requisitos y procesos <b>de habilitación</b>
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== MAPA TERRITORIAL ===== -->
+  <section id="mapa-territorial" class="section">
+    <div class="section-container">
+      <div class="section-header centered fade-in">
+        <span class="section-label">¿Donde ubicarnos?</span>
+        <h2 class="section-title"><span>Mapa territorial</span></h2>
+        <p class="section-desc">Todos los establecimientos listados cumplen con la Ley Provincial N.º 7149 y forman parte de nuestra red oficial.</p>
+      </div>
 
-<section id="mapa-territorial" class="section">
-  <div class="section-container">
-    
-    <div class="section-header centered fade-in">
-      <span class="section-label">¿Donde ubicarnos?</span>
-      <h2 class="section-title"><span>Mapa territorial</span></h2>
-      <p class="section-desc">Todos los establecimientos listados cumplen con la Ley Provincial N.º 7149 y forman parte de nuestra red oficial.</p>
-    </div>
+      <div class="mapa-centralizado">
+        <iframe src="https://www.google.com/maps/d/embed?mid=1QMOJNWNpvtL37zCXa_7JJHiUD_wHCwc&ehbc=2E312F&noprof=1" 
+                width="100%"
+                height="480"
+                class="mapa-iframe"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy">
+         Bled
+        </iframe>
+      </div>
 
-    <div class="mapa-centralizado">
-      <iframe src="https://www.google.com/maps/d/embed?mid=1QMOJNWNpvtL37zCXa_7JJHiUD_wHCwc&ehbc=2E312F&noprof=1" 
-              width="100%"
-              height="480"
-              class="mapa-iframe"
-              style="border:0;"
-              allowfullscreen=""
-              loading="lazy">
-      </iframe>
-    </div>
+      <div class="mapa-territorial-grid">
+        <div class="mapa-territorial-card fade-in">
+          <div class="mapa-territorial-icon-wrapper">🏫</div>
+          <h3>Dirección General de Adultos Mayores - Sede Principal</h3>
+          <p>🌍 Sáenz Peña 346, G4200 Santiago del Estero </p>
+          <p>📞 0385 431-6968</p>
+          <div class="card-action">
+            <a href="https://maps.app.goo.gl/4G4nZLtwXp1cdXUK6" class="btn-card-link">
+              Ver en Google Maps
+            </a>
+          </div>
+        </div>      
 
-    <div class="mapa-territorial-grid">
-      
-      <div class="mapa-territorial-card fade-in">
-        <div class="mapa-territorial-icon-wrapper">🏫</div>
-        <h3>Dirección General de Adultos Mayores - Sede Principal</h3>
-        <p>🌍​Sáenz Peña 346, G4200 Santiago del Estero </p>
-        <p>📞 0385 431-6968</p>
-        <div class="card-action">
-          
-          <a href="https://maps.app.goo.gl/4G4nZLtwXp1cdXUK6" class="btn-card-link">
-            Ver Ver en Google Maps
-          </a>
-        </div>
-      </div>      
+        <div class="mapa-territorial-card fade-in">
+          <div class="mapa-territorial-icon-wrapper">🏘️</div>
+          <h3>Residencia Mama Antula</h3>
+          <p>🌍 Av. Cmte. Besares 1537, G4302 La Banda, Santiago del Estero </p>
+          <p>📞 0385 xxxxxxx</p>
+          <div class="card-action">          
+            <a href="https://maps.app.goo.gl/qzhKD9Mm7u15dVkt7" class="btn-card-link">
+              Ver en Google Maps
+            </a>
+          </div>
+        </div>      
 
-      <div class="mapa-territorial-card fade-in">
-        <div class="mapa-territorial-icon-wrapper">🏘️</div>
-        <h3>Residencia Mama Antula</h3>
-        <p>🌍Av. Cmte. Besares 1537, G4302 La Banda, Santiago del Estero​Sáenz Peña 346, G4200 Santiago del Estero </p>
-        <p>📞 0385 xxxxxxx</p>
-        <div class="card-action">          
-        <a href="https://maps.app.goo.gl/qzhKD9Mm7u15dVkt7" class="btn-card-link">
-            Ver Ver en Google Maps
-        </a>
-        </div>
-      </div>      
+        <div class="mapa-territorial-card fade-in">
+          <div class="mapa-territorial-icon-wrapper">🏘️</div>
+          <h3>Hogar de ciegos</h3>
+          <p>🌍 Av. Belgrano Sur 1880, G4202 ABS, Santiago del Estero </p>
+          <p>📞 385 421-2445</p>
+          <div class="card-action">          
+            <a href="https://maps.app.goo.gl/HfanLnoLuKUKWfKW6" class="btn-card-link">
+              Ver en Google Maps
+            </a>
+          </div>
+        </div>  
 
-      <div class="mapa-territorial-card fade-in">
-        <div class="mapa-territorial-icon-wrapper">🏘️</div>
-        <h3>Hogar de ciegos</h3>
-        <p>🌍Av. Belgrano Sur 1880, G4202 ABS, Santiago del Estero </p>
-        <p>📞 385 421-2445</p>
-        <div class="card-action">          
-        <a href="https://maps.app.goo.gl/HfanLnoLuKUKWfKW6" class="btn-card-link">
-            Ver Ver en Google Maps
-        </a>
-        </div>
-      </div>  
-
-      <div class="mapa-territorial-card fade-in">
-        <div class="mapa-territorial-icon-wrapper">🏘️</div>
-        <h3>Hogar Diurno Virgen del Valle</h3>
-        <p>🌍Lamadrid 80, G4200 Santiago del Estero </p>
-        <p>📞 385 xxxxxxxxx</p>
-        <div class="card-action">          
-        <a href="https://maps.app.goo.gl/19AXiLvTcBXxfo3e7" class="btn-card-link">
-            Ver Ver en Google Maps
-        </a>
-        </div>
-      </div>  
-
+        <div class="mapa-territorial-card fade-in">
+          <div class="mapa-territorial-icon-wrapper">🏘️</div>
+          <h3>Hogar Diurno Virgen del Valle</h3>
+          <p>🌍 Lamadrid 80, G4200 Santiago del Estero </p>
+          <p>📞 385 xxxxxxxxx</p>
+          <div class="card-action">          
+            <a href="https://maps.app.goo.gl/19AXiLvTcBXxfo3e7" class="btn-card-link">
+              Ver en Google Maps
+            </a>
+          </div>
+        </div>  
+      </div> 
     </div> 
-  </div> 
-</section>
+  </section>
 
-
-  <!-- ===== METODOLOGÍA ===== -->
   <section id="methodology">
     <div class="section-container">
       <div class="section-header centered fade-in">
         <span class="section-label">¿Cómo trabajamos por vos?</span>
         <h2 class="section-title"><span>Nuestra Metodología</span></h2>
-        <p class="section-desc">La Dirección General de Adultos Mayores realiza intervenciones domiciliarias con el fin de  transformar la realidad de las personas mayores, promoviendo no solo su bienestar físico y emocional, sino también su inclusión plena en la sociedad. Con un enfoque integral y dinámico, se fomenta una participación activa que va más allá del cuidado, impulsando un cambio cultural que valore la experiencia y los derechos de los adultos mayores. Al trabajar de la mano con instituciones, profesionales y la comunidad, se crean espacios de colaboración y apoyo mutuo que garantizan intervenciones personalizadas y efectivas. Este esfuerzo colectivo busca construir un entorno en el que los adultos mayores sean protagonistas de su propia vida, disfrutando de un envejecimiento digno, respetado y lleno de oportunidades.</p>
+        <p class="section-desc">La Dirección General de Adultos Mayores realiza intervenciones domiciliarias con el fin de transformar la realidad de las personas mayores, promoviendo no solo su bienestar físico y emocional, sino también su inclusión plena en la sociedad. Con un enfoque integral y dinámico, se fomenta una participación activa que va más allá del cuidado, impulsando un cambio cultural que valore la experiencia y los derechos de los adultos mayores. Al trabajar de la mano con instituciones, profesionales y la comunidad, se crean espacios de colaboración y apoyo mutuo que garantizan intervenciones personalizadas y efectivas. Este esfuerzo colectivo busca construir un entorno en el que los adultos mayores sean protagonistas de su propia vida, disfrutando de un envejecimiento digno, respetado y lleno de oportunidades.</p>
       </div>
       <div class="services-grid">
         <div class="service-card featured fade-in-delay-0">
@@ -456,33 +428,32 @@
           <div class="service-icon-wrapper">🤝</div>
           <h3>Una Red que nos Fortalece</h3>
           <p><strong>Trabajo en Conjunto:</strong> Mantenemos una interacción permanente con instituciones clave para una respuesta integral.</p>
-          <p><strong>Salud y Seguridad:</strong> Colaboramos con Hospitales, APS, Obras Sociales y la Policía Comunitaria.</p>
+          <p><strong>Salul y Seguridad:</strong> Colaboramos con Hospitales, APS, Obras Sociales y la Policía Comunitaria.</p>
           <p><strong>Gobierno y Comunidad:</strong> Municipios, DDHH y el Consejo Provincial de Adultos Mayores.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ===== AUTOGESTIÓN ===== -->
   <section id="autogestion"> 
-      <div class="section-container">
-        <div class="section-header centered fade-in">
-          <span class="section-label">Estamos para ayudarte</span>
-          <h2 class="section-title"><span>Autogestión</span></h2>
-          <p class="section-desc">Optimiza tu tiempo. Accede, gestiona y resuelve todas tus gestiones operativas aquí.</p>
-        </div>
-        <div class="services-grid">
+    <div class="section-container">
+      <div class="section-header centered fade-in">
+        <span class="section-label">Estamos para ayudarte</span>
+        <h2 class="section-title"><span>Autogestión</span></h2>
+        <p class="section-desc">Optimiza tu tiempo. Accede, gestiona y resuelve todas tus gestiones operativas aquí.</p>
+      </div>
+      <div class="services-grid">
         <div class="service-card">
           <div class="service-icon-wrapper">
             <span class="icon-main">📅</span>
           </div>
           <h3>Sistema de Turnos</h3>
           <p>Solicitá entrevistas presenciales con nuestro equipo de trabajadoras sociales de forma organizada y sin esperas.👇 </p>          
-           <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
+          <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
-               Toca aquí para Solicitar Turno 
+            Toca aquí para Solicitar Turno 
           </a>
           <span class="service-tag">Gestión Online</span>
         </div>
@@ -508,78 +479,71 @@
         </div>
       </div>
     </div>
-  
   </section>
 
-  <!-- ===== GALERÍA ===== -->
   <section id="gallery">
-  <div class="section-container">
-    <div class="section-header centered fade-in">
-      <span class="section-label">Galería</span>
-      <h2 class="section-title">Galería de Imágenes</h2>
-    </div>
-    
-    <div class="gallery-grid full-four-columns">
+    <div class="section-container">
+      <div class="section-header centered fade-in">
+        <span class="section-label">Galería</span>
+        <h2 class="section-title">Galería de Imágenes</h2>
+      </div>
       
-      <div class="gallery-item fade-in" data-album="asuncion">
-        <div class="gallery-image-wrapper">
-          <img src="assets/AsuncionDireccion.jpg" alt="Juramento de asunción" />
-          <div class="gallery-overlay"><p>Ver más</p></div>
+      <div class="gallery-grid full-four-columns">
+        <div class="gallery-item fade-in" data-album="asuncion">
+          <div class="gallery-image-wrapper">
+            <img src="assets/AsuncionDireccion.jpg" alt="Juramento de asunción" />
+            <div class="gallery-overlay"><p>Ver más</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Juramento de Asunción</h4>
+            <p>Acto oficial en la Dirección de Adultos Mayores, Santiago del Estero.</p>
+          </div>
         </div>
-        <div class="gallery-caption">
-          <h4>Juramento de Asunción</h4>
-          <p>Acto oficial en la Dirección de Adultos Mayores, Santiago del Estero.</p>
+
+        <div class="gallery-item fade-in" data-album="virgen-valle">
+          <div class="gallery-image-wrapper">
+            <img src="assets/Centro Diurno Virgen del Valle.jpg" alt="Centro Virgen del Valle" />
+            <div class="gallery-overlay"><p>Ver más</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Centro Diurno Virgen del Valle</h4>
+            <p>Espacios de integración y contención diaria en la red provincial.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in" data-album="residencia">
+          <div class="gallery-image-wrapper">
+            <img src="assets/mamaantula1.jpg" alt="Residencia Mama Antula" />
+            <div class="gallery-overlay"><p>Ver más</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Residencia Mama Antula</h4>
+            <p>Espacios de vida independiente y cuidado integral para adultos mayores.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in" data-album="encuentro">
+          <div class="gallery-image-wrapper">
+            <img src="assets/encuentro1.jpg" alt="Encuentro Provincial" />
+            <div class="gallery-overlay"><p>Ver más</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Encuentro Provincial</h4>
+            <p>Celebración anual y exposición de trabajos de los centros diurnos.</p>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div class="gallery-item fade-in" data-album="virgen-valle">
-        <div class="gallery-image-wrapper">
-          <img src="assets/Centro Diurno Virgen del Valle.jpg" alt="Centro Virgen del Valle" />
-          <div class="gallery-overlay"><p>Ver más</p></div>
-        </div>
-        <div class="gallery-caption">
-          <h4>Centro Diurno Virgen del Valle</h4>
-          <p>Espacios de integración y contención diaria en la red provincial.</p>
-        </div>
-      </div>
-
-      <div class="gallery-item fade-in" data-album="residencia">
-        <div class="gallery-image-wrapper">
-          <img src="assets/mamaantula1.jpg" alt="Residencia Mama Antula" />
-          <div class="gallery-overlay"><p>Ver más</p></div>
-        </div>
-        <div class="gallery-caption">
-          <h4>Residencia Mama Antula</h4>
-          <p>Espacios de vida independiente y cuidado integral para adultos mayores.</p>
-        </div>
-      </div>
-
-      <div class="gallery-item fade-in" data-album="encuentro">
-        <div class="gallery-image-wrapper">
-          <img src="assets/encuentro1.jpg" alt="Encuentro Provincial" />
-          <div class="gallery-overlay"><p>Ver más</p></div>
-        </div>
-        <div class="gallery-caption">
-          <h4>Encuentro Provincial</h4>
-          <p>Celebración anual y exposición de trabajos de los centros diurnos.</p>
-        </div>
-      </div>
-
+  <div id="gallery-modal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close">×</span>
+      <h3 id="modal-title">Título del Álbum</h3>
+      <div id="modal-images-container" class="modal-grid"></div>
     </div>
   </div>
-</section>
 
-<div id="gallery-modal" class="modal-overlay">
-  <div class="modal-content">
-    <span class="modal-close">&times;</span>
-    <h3 id="modal-title">Título del Álbum</h3>
-    <div id="modal-images-container" class="modal-grid">
-      </div>
-  </div>
-</div>
-
-
-  <!-- ===== CONTACTO ===== -->
   <section id="contact">
     <div class="section-container">
       <div class="section-header centered fade-in">
@@ -620,7 +584,7 @@
           </div>
           <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
             </svg>
             Escribinos por WhatsApp
           </a>
@@ -629,7 +593,8 @@
         <div class="contact-form-card fade-in fade-in-delay-2">
           <h3>Solicitar información</h3>
           <p>Completá el formulario y nos pondremos en contacto con vos a la brevedad.</p>
-          <form id="contactForm" onsubmit="handleSubmit(event)">
+          
+          <form id="contactForm">
             <div class="form-row">
               <div class="form-group">
                 <label for="nombre">Nombre *</label>
@@ -674,7 +639,6 @@
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-container">
       <div class="footer-grid">
@@ -735,14 +699,12 @@
     </div>
   </footer>
 
-  <!-- ===== WHATSAPP FLOTANTE ===== -->
   <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20la%20Direcci%C3%B3n%20de%20Adultos%20Mayores." class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
 
-  <!-- ===== SCRIPTS ===== -->
   <script src="js/main.js"></script>
   <script src="js/adultos/accessibility.js"></script>
   <script src="js/adultos/adultos.js"></script>
