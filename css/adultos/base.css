@@ -71,7 +71,14 @@ section { padding: 5rem 2rem; }
   line-height: 1.6;    /* Opcional: le da un poquito más de espacio entre líneas para que respire */
   color: #4a5568;
 }
-.section-header { margin-bottom: 3rem; }
+.section-header { 
+  display: flex;
+  flex-direction: column; /* Apila la etiqueta arriba y el título abajo */
+  align-items: center;    /* ¡Este es el que centra horizontalmente ambos elementos! */
+  text-align: center;     /* Centra el texto por si acaso */
+  width: 100%;            /* Asegura que tome todo el ancho del contenedor */
+  margin-bottom: 20px;    /* Un espacio opcional abajo si notas que se junta mucho con el texto */
+  margin-bottom: 3rem; }
 .section-header.centered { text-align: center; }
 .section-header.centered .section-desc { margin: 0 auto; }
 
