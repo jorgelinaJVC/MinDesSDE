@@ -17,6 +17,7 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.2s, box-shadow 0.2s;
+  
 }
 
 /* Contenedor del cartelito (oculto por defecto) */
@@ -256,6 +257,7 @@
 }
 
 /* ===== MODO ALTO CONTRASTE ===== */
+
 .high-contrast {
   --white: #000000 !important;
   --background: #000000 !important;
@@ -269,7 +271,8 @@
 }
 
 .high-contrast body,
-.high-contrast section {
+.high-contrast section,
+.high-contrast main {
   background-color: #000000 !important;
   color: #ffffff !important;
 }
@@ -280,7 +283,10 @@
 .high-contrast h1,
 .high-contrast h2,
 .high-contrast h3,
-.high-contrast div:not(#accessibility-panel) {
+.high-contrast h4, /* 👈 Sumamos h4 para los títulos de las tarjetas */
+.high-contrast h5,
+.high-contrast h6,
+.high-contrast div:not(.accessibility-panel):not(.accessibility-panel *) { /* 👈 Protege el panel de control */
   color: #ffffff !important;
 }
 
@@ -290,8 +296,81 @@
   font-weight: bold !important;
 }
 
+/* ⬇️ NUEVAS REGLAS: ARREGLO ESPECÍFICO PARA LAS TARJETAS Y COMPONENTES ⬇️ */
+
+/* 1. Forzar a que las tarjetas tengan fondo negro y borde blanco grueso */
+.high-contrast .about-value,
+.high-contrast .repositorio-item,
+.high-contrast div[class*="card"], 
+.high-contrast .about-card { 
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* 2. Forzar a que todos los textos específicos de los lugares sean blancos */
+.high-contrast h4,
+.high-contrast [class*="title"],
+.high-contrast [class*="desc"],
+.high-contrast [class*="meta"] {
+  color: #ffffff !important;
+}
+
+/* 3. Asegurar que los iconos de Ubicación, Teléfono y los emoji/iconos sean verde brillante o amarillo flúor */
+.high-contrast i,
+.high-contrast span[class*="icon"],
+.high-contrast .repositorio-icon {
+  color: #00ff00 !important; /* Verde flúor para resaltar sobre negro */
+  filter: brightness(1.5) !important;
+}
+
+/* 4. Arreglar los botones "Ver en Google Maps" y de descargas */
+.high-contrast a[href*="maps"],
+.high-contrast .repositorio-download-btn,
+.high-contrast [class*="-btn"]:not(.accessibility-toggle-btn):not(.accessibility-panel *) {
+  background-color: #000000 !important;
+  background: #000000 !important;
+  color: #ffff00 !important; /* Texto amarillo flúor */
+  border: 2px solid #ffff00 !important; /* Borde amarillo flúor */
+  text-decoration: none !important; /* Quita el subrayado feo de los botones */
+  font-weight: bold !important;
+}
+
+/* Efecto hover accesible para los botones */
+.high-contrast a[href*="maps"]:hover,
+.high-contrast .repositorio-download-btn:hover {
+  background-color: #ffff00 !important;
+  color: #000000 !important;
+}
+/* ===== AJUSTES EXTRA PARA LA CABECERA EN ALTO CONTRASTE ===== */
+
+/* 1. Forzar texto negro dentro de botones con fondo amarillo flúor o muy claro */
+.high-contrast [style*="background-color: yellow"],
+.high-contrast [class*="btn-primary"], /* Cambia esto por la clase de tu botón amarillo si la tiene */
+.high-contrast div[style*="background: yellow"] {
+  color: #000000 !important;
+}
+
+/* 2. Forzar a que todos los textos dentro de los pequeños botones/cápsulas de info sean blancos */
+.high-contrast .info-item, /* Cambia esto por la clase de tus botones de "Atención", "Ubicación", etc. */
+.high-contrast [class*="badge"], 
+.high-contrast [class*="control"] span,
+.high-contrast div:not(.accessibility-panel) > span,
+.high-contrast div:not(.accessibility-panel) > p {
+  color: #ffffff !important;
+}
+
+/* 3. Asegurar que las descripciones de las tarjetas doradas de abajo pasen a blanco */
+.high-contrast .card-desc, /* Cambia por la clase de la descripción de tus tarjetas */
+.high-contrast .card p,
+.high-contrast [class*="card"] span,
+.high-contrast [class*="card"] p {
+  color: #ffffff !important;
+}
 /* ===== RESALTAR ENLACES ===== */
-.highlight-links a:not(.whatsapp-float):not(.contact-whatsapp-btn) {
+
+.highlight-links a:not(.whatsapp-float):not(.contact-whatsapp-btn):not(.accessibility-toggle-btn):not(.nav-brand):not(.nav-brand *) {
   background-color: #ffff00 !important;
   color: #000000 !important;
   padding: 2px 6px !important;
@@ -299,6 +378,147 @@
   font-weight: bold !important;
 }
 
+/* Parche de seguridad extra para que el logo y el texto del Ministerio nunca se pinten de amarillo */
+.highlight-links .nav-brand,
+.highlight-links .nav-brand-text,
+.highlight-links .nav-logo-box,
+.highlight-links .nav-logo-box img {
+  background-color: transparent !important;
+  background: transparent !important;
+  color: #ffffff !important; /* Mantiene las letras del Ministerio en blanco original */
+}
+
+/* ===== AJUSTE DEFINITIVO PARA LOS TEXTOS DE LA CABECERA ===== */
+
+/* Forzar el texto blanco en las cápsulas de información */
+.high-contrast .hero-info p,
+.high-contrast .hero-info span,
+.high-contrast div[class*="-info"] p,
+.high-contrast div[class*="-info"] span {
+  color: #ffffff !important;
+}
+
+/* Forzar el texto blanco en las descripciones de las tarjetas doradas */
+.high-contrast .features-grid p,
+.high-contrast .features-grid span,
+.high-contrast .card-body p,
+.high-contrast div[class*="card"] p {
+  color: #ffffff !important;
+}
+/* ===== ARREGLO PARA EL BOTÓN CONSULTAR AHORA EN ALTO CONTRASTE ===== */
+.high-contrast .nav-cta {
+  color: #000000 !important; /* 👈 Obliga a que la letra de 'Consultar ahora' sea negra */
+}
+/* ===== ARREGLO PARA LA TARJETA AMARILLA DGAMSDE EN ALTO CONTRASTE ===== */
+.high-contrast .about-card,
+.high-contrast [style*="background-color: yellow"] h4,
+.high-contrast [style*="background-color: yellow"] h5,
+.high-contrast [style*="background-color: yellow"] p,
+.high-contrast div[class*="-card"] h5 { /* Selectores para capturar el título interno */
+  color: #000000 !important; /* 👈 Fuerza las siglas y textos de la tarjeta amarilla a NEGRO */
+}
+/* ===== EL REMATE FINAL PARA LA TARJETA AMARILLA ===== */
+.high-contrast div.about-badge-float,
+.high-contrast div.about-badge-float span,
+.high-contrast .about-image-wrapper div.about-badge-float {
+  color: #000000 !important; /* 👈 Triplicamos la fuerza para obligarlo a ser negro */
+}
+
+/* ===== ARREGLO PARA EL BOTÓN VER REQUISITOS EN ALTO CONTRASTE ===== */
+.high-contrast .btn-card-link,
+.high-contrast .btn-card-link b {
+  color: #000000 !important; /* 👈 Fuerza a negro el texto común y el texto en negrita (b) */
+}
+/* ===== ARREGLOS PARA EL MÓDULO DE AUTOGESTIÓN EN ALTO CONTRASTE ===== */
+
+/* 1. Forzar a negro el texto del botón de Solicitar Turno de WhatsApp */
+.high-contrast .autogestion-turno-btn,
+.high-contrast [class*="turno-btn"],
+.high-contrast a[href*="Solicitar Turno"] {
+  color: #000000 !important;
+}
+
+/* 2. Adaptar la caja de Comisarías: fondo negro, borde blanco y textos legibles */
+.high-contrast .info-box-comisarias {
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: 2px solid #ffffff !important;
+  padding: 15px !important;
+}
+
+/* 3. Asegurar que el título, los nombres y teléfonos dentro de la caja sean blancos */
+.high-contrast .info-box-comisarias *,
+.high-contrast .info-box-title,
+.high-contrast .info-box-grid div,
+.high-contrast .info-box-grid b {
+  color: #ffffff !important;
+}
+
+/* ===== ARREGLO INTEGRAL PARA EL FOOTER EN ALTO CONTRASTE ===== */
+.high-contrast footer,
+.high-contrast footer p,
+.high-contrast footer span,
+.high-contrast footer a,
+.high-contrast footer h4,
+.high-contrast footer li,
+.high-contrast .footer-brand,
+.high-contrast .footer-col ul li a,
+.high-contrast .footer-bottom p {
+  color: #000000 !important; /* 👈 Obliga a que CUALQUIER texto o link del footer sea negro absoluto */
+}
+
+/* Forzar que los iconos SVG de redes sociales del footer también pasen a negro */
+.high-contrast .footer-social a svg {
+  fill: #000000 !important;
+  color: #000000 !important;
+}
+
+/* Efecto hover opcional para los links del footer en alto contraste */
+.high-contrast footer a:hover {
+  text-decoration: underline !important;
+  color: #1a1a1a !important;
+}
+
+/* ===== PARCHE ESPECÍFICO PARA TEXTOS PLANOS DEL FOOTER ===== */
+.high-contrast .footer-desc,
+.high-contrast .footer-bottom,
+.high-contrast .footer-bottom p,
+.high-contrast footer p:not(.nav-brand-text) {
+  color: #000000 !important; /* 👈 Fuerza la descripción y el copyright a negro absoluto */
+}
+
+/* ===== REGLA POR ID PARA EL INDICADOR DEL PORCENTAJE ===== */
+.high-contrast #font-size-indicator,
+#font-size-indicator {
+  color: #2563eb !important; /* 👈 Fuerza el color azul original sobre el 100% */
+}
+
+/* ===== REGLA PARA EL TÍTULO "ACCESIBILIDAD" ===== */
+.high-contrast .accessibility-panel-title {
+  color: #2563eb !important; /* 👈 Devuelve el azul al título principal del panel */
+}
+
+/* ===== ARREGLOS PARA EL BUSCADOR DE INSTITUCIONES EN ALTO CONTRASTE ===== */
+
+/* 1. Forzar a blanco puro todas las etiquetas de los campos para que contrasten sobre negro */
+.high-contrast .buscador-campo label {
+  color: #ffffff !important;
+}
+
+/* 2. Adaptar la caja de la nota: fondo negro, borde blanco o amarillo */
+.high-contrast .buscador-nota {
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: 2px solid #ffff00 !important; /* Un lindo borde amarillo para que llame la atención */
+  color: #ffffff !important;
+}
+
+/* 3. Asegurar que el texto interno de la nota (incluyendo las negritas) sea blanco */
+.high-contrast .buscador-nota,
+.high-contrast .buscador-nota strong,
+.high-contrast .buscador-nota b {
+  color: #ffffff !important;
+}
 /* ===== REDUCCIÓN DE MOVIMIENTO ===== */
 @media (prefers-reduced-motion: reduce) {
   * {
