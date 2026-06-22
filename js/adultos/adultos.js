@@ -222,21 +222,29 @@
         };
     }
 
-    // ==========================================================================
-    // 🆕 NUEVO: CONTROL DEL FORMULARIO DE CONTACTO (SIMULACIÓN INSTITUCIONAL)
+    /// ==========================================================================
+    // CONTROL DEL FORMULARIO DE CONTACTO (VALIDACIÓN INSTITUCIONAL)
     // ==========================================================================
     const formulario = document.getElementById("contactForm");
     if (formulario) {
         formulario.addEventListener("submit", function(event) {
-            // Evitamos que intente recargar la página o ir a URLs externas rotas
+            // Evitamos el comportamiento nativo de refresco
             event.preventDefault();
 
-            // Capturamos el nombre y el servicio elegidos para personalizar el mensaje
-            const nombreUser = document.getElementById("nombre").value;
+            // Capturamos los valores eliminando espacios en blanco extras con .trim()
+            const nombreUser = document.getElementById("nombre").value.trim();
+            const apellidoUser = document.getElementById("apellido").value.trim();
+            const emailUser = document.getElementById("email").value.trim();
             const servicioSelect = document.getElementById("servicio");
             const servicioTexto = servicioSelect.options[servicioSelect.selectedIndex].text;
 
-            // Mostramos el mensaje emergente estético
+            // Validación manual de seguridad por si falla el atributo "required" de HTML
+            if (nombreUser === "" || apellidoUser === "" || emailUser === "" || servicioSelect.value === "") {
+                alert("Por favor, completá todos los campos obligatorios marcados con asterisco (*).");
+                return; // Corta la ejecución del código si hay campos vacíos
+            }
+
+            // Si pasa la validación, muestra el cartel institucional de éxito
             alert(`¡Muchas gracias, ${nombreUser}!\n\nTu consulta sobre "${servicioTexto}" ha sido procesada con éxito.\nEl equipo de la Dirección General se pondrá en contacto con vos en menos de 24 horas.`);
 
             // Reseteamos el formulario limpiando los inputs
