@@ -4,612 +4,738 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <title>Solicitar Servicio - Servicios Fúnebres</title> 
+<link rel="icon" type="image/png" href="../img/logo.jpg">
+
 <!-- CSS -->
 <link rel="stylesheet" href="../css/funebres.css" />
-<link rel="stylesheet" href="../css/responsive.css" />
+<!-- Eliminado: responsive.css no existe -->
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
 <style>
-    /* Estilos específicos para el formulario */
+    /* ============================================================
+       ESTILOS DEL FORMULARIO (todos los estilos que ya tenías)
+       ============================================================ */
     .form-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
+        max-width: 1200px;
+        margin: 40px auto;
+        padding: 0 20px;
     }
     
     .form-card {
-    background: var(--color-white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-md);
-    overflow: hidden;
+        background: var(--color-white);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
     }
     
     .form-header {
-    background: var(--color-primary);
-    color: var(--color-white);
-    padding: 30px 40px;
+        background: var(--color-primary);
+        color: var(--color-white);
+        padding: 30px 40px;
     }
     
     .form-header h1 {
-    font-family: var(--font-cond);
-    font-size: 1.8rem;
-    margin-bottom: 8px;
+        font-family: var(--font-cond);
+        font-size: 1.8rem;
+        margin-bottom: 8px;
     }
     
     .form-header p {
-    opacity: 0.9;
-    font-size: 0.95rem;
+        opacity: 0.9;
+        font-size: 0.95rem;
     }
     
-    /* Progress Steps */
     .progress-steps {
-    display: flex;
-    background: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    padding: 20px 40px;
-    gap: 20px;
-    flex-wrap: wrap;
+        display: flex;
+        background: var(--color-bg);
+        border-bottom: 1px solid var(--color-border);
+        padding: 20px 40px;
+        gap: 20px;
+        flex-wrap: wrap;
     }
     
     .step {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex: 1;
-    min-width: 180px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex: 1;
+        min-width: 180px;
     }
     
     .step-number {
-    width: 36px;
-    height: 36px;
-    background: var(--color-border);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    color: var(--color-muted);
-    transition: all 0.3s ease;
+        width: 36px;
+        height: 36px;
+        background: var(--color-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        color: var(--color-muted);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
     }
     
     .step.active .step-number {
-    background: var(--color-accent);
-    color: var(--color-dark);
+        background: var(--color-accent);
+        color: var(--color-dark);
     }
     
     .step.completed .step-number {
-    background: var(--color-accent-2);
-    color: var(--color-white);
+        background: var(--color-accent-2);
+        color: var(--color-white);
     }
     
     .step-label {
-    font-weight: 500;
-    color: var(--color-text);
+        font-weight: 500;
+        color: var(--color-text);
     }
     
     .step.active .step-label {
-    color: var(--color-primary);
-    font-weight: 700;
+        color: var(--color-primary);
+        font-weight: 700;
     }
     
-    /* Formulario */
     .form-body {
-    padding: 40px;
+        padding: 40px;
     }
     
     .form-section {
-    margin-bottom: 40px;
-    padding-bottom: 30px;
-    border-bottom: 1px solid var(--color-border);
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid var(--color-border);
     }
     
     .form-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
     
     .form-section h2 {
-    font-family: var(--font-cond);
-    font-size: 1.4rem;
-    color: var(--color-primary);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+        font-family: var(--font-cond);
+        font-size: 1.4rem;
+        color: var(--color-primary);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
     
     .form-section h2 i {
-    color: var(--color-accent);
+        color: var(--color-accent);
     }
     
     .form-row {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-    margin-bottom: 20px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+        margin-bottom: 20px;
     }
     
     .form-group {
-    margin-bottom: 20px;
+        margin-bottom: 20px;
     }
     
     .form-group label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: var(--color-text);
-    font-size: 0.9rem;
+        display: block;
+        font-weight: 600;
+        margin-bottom: 8px;
+        color: var(--color-text);
+        font-size: 0.9rem;
     }
     
     .form-group label i {
-    color: var(--color-accent);
-    margin-right: 6px;
+        color: var(--color-accent);
+        margin-right: 6px;
     }
     
     .form-group input,
     .form-group select,
     .form-group textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius);
-    font-family: var(--font-main);
-    font-size: 0.95rem;
-    transition: var(--transition);
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        font-family: var(--font-main);
+        font-size: 0.95rem;
+        transition: var(--transition);
+        background: var(--color-white);
     }
     
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-    outline: none;
-    border-color: var(--color-accent);
-    box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1);
+        outline: none;
+        border-color: var(--color-accent);
+        box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1);
     }
     
-    .error-message {
-    color: #e30613;
-    font-size: 0.8rem;
-    margin-top: 5px;
+    .form-group textarea {
+        resize: vertical;
+        min-height: 80px;
     }
     
-    /* Upload de documentos */
+    .field-error {
+        border-color: #e30613 !important;
+        background: #fff5f5 !important;
+    }
+    
+    .conditional-field {
+        display: none;
+        border-left: 3px solid var(--color-accent);
+        padding-left: 20px;
+        margin-top: 10px;
+    }
+    
+    .conditional-field.visible {
+        display: block;
+    }
+    
     .document-upload {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
     }
     
     .upload-item {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 20px;
-    background: var(--color-bg);
-    border-radius: var(--radius);
-    border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 20px;
+        background: var(--color-bg);
+        border-radius: var(--radius);
+        border: 1px solid var(--color-border);
+        transition: var(--transition);
+    }
+    
+    .upload-item:hover {
+        border-color: var(--color-accent);
     }
     
     .upload-icon {
-    width: 50px;
-    height: 50px;
-    background: var(--color-primary);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-white);
-    font-size: 1.3rem;
+        width: 50px;
+        height: 50px;
+        background: var(--color-primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-white);
+        font-size: 1.3rem;
+        flex-shrink: 0;
     }
     
     .upload-info {
-    flex: 1;
+        flex: 1;
     }
     
     .upload-info h4 {
-    font-size: 1rem;
-    margin-bottom: 4px;
-    color: var(--color-primary);
+        font-size: 1rem;
+        margin-bottom: 4px;
+        color: var(--color-primary);
     }
     
     .upload-info p {
-    font-size: 0.8rem;
-    color: var(--color-muted);
+        font-size: 0.8rem;
+        color: var(--color-muted);
+    }
+    
+    .file-input-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex-wrap: wrap;
     }
     
     .file-input {
-    display: none;
+        display: none;
     }
     
     .btn-upload {
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    padding: 10px 20px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: var(--transition);
-    font-size: 0.85rem;
-    font-weight: 500;
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        padding: 10px 20px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        transition: var(--transition);
+        font-size: 0.85rem;
+        font-weight: 500;
+        white-space: nowrap;
     }
     
     .btn-upload:hover {
-    background: var(--color-accent);
-    border-color: var(--color-accent);
-    color: var(--color-dark);
+        background: var(--color-accent);
+        border-color: var(--color-accent);
+        color: var(--color-dark);
     }
     
-    /* Botones de acción */
+    .file-name {
+        font-size: 0.85rem;
+        color: var(--color-muted);
+    }
+    
+    .file-preview {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+        gap: 10px;
+        margin-top: 10px;
+    }
+    
+    .file-preview-item {
+        position: relative;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius);
+        padding: 10px;
+        text-align: center;
+        background: var(--color-white);
+    }
+    
+    .file-preview-item img {
+        max-width: 100%;
+        max-height: 80px;
+        object-fit: cover;
+    }
+    
     .form-actions {
-    display: flex;
-    gap: 20px;
-    justify-content: flex-end;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid var(--color-border);
+        display: flex;
+        gap: 20px;
+        justify-content: flex-end;
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid var(--color-border);
+        flex-wrap: wrap;
     }
     
     .btn-secondary-form {
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    padding: 12px 28px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
+        background: var(--color-white);
+        border: 1px solid var(--color-border);
+        padding: 12px 28px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-weight: 600;
+        transition: var(--transition);
+        text-decoration: none;
+        color: var(--color-text);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
     }
     
     .btn-secondary-form:hover {
-    background: var(--color-bg);
+        background: var(--color-bg);
     }
     
     .btn-primary-form {
-    background: var(--color-accent);
-    border: none;
-    padding: 12px 32px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    font-weight: 700;
-    transition: var(--transition);
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
+        background: var(--color-accent);
+        border: none;
+        padding: 12px 32px;
+        border-radius: var(--radius);
+        cursor: pointer;
+        font-weight: 700;
+        transition: var(--transition);
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--color-dark);
     }
     
     .btn-primary-form:hover {
-    background: #e0bc5a;
-    transform: translateY(-2px);
+        background: #e0bc5a;
+        transform: translateY(-2px);
     }
     
-    /* Sidebar información */
+    .btn-primary-form:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
     .info-sidebar {
-    background: var(--color-bg);
-    border-radius: var(--radius);
-    padding: 24px;
-    margin-top: 30px;
+        background: var(--color-bg);
+        border-radius: var(--radius);
+        padding: 24px;
+        margin-top: 30px;
     }
     
     .info-sidebar h3 {
-    font-family: var(--font-cond);
-    font-size: 1.2rem;
-    color: var(--color-primary);
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
+        font-family: var(--font-cond);
+        font-size: 1.2rem;
+        color: var(--color-primary);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
     }
     
     .info-list {
-    list-style: none;
-    margin-bottom: 24px;
+        list-style: none;
+        margin-bottom: 24px;
     }
     
     .info-list li {
-    padding: 8px 0;
-    padding-left: 24px;
-    position: relative;
+        padding: 8px 0;
+        padding-left: 24px;
+        position: relative;
     }
     
     .info-list li::before {
-    content: "✓";
-    position: absolute;
-    left: 0;
-    color: var(--color-accent);
-    font-weight: bold;
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--color-accent);
+        font-weight: bold;
     }
     
     .contact-info-form p {
-    margin: 8px 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
+        margin: 8px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
     }
     
-    @media (max-width: 768px){ 
-    .form-row {
-        grid-template-columns: 1fr;
-        gap: 0;
+    /* Responsive */
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+        .progress-steps {
+            flex-direction: column;
+            gap: 12px;
+            padding: 16px 20px;
+        }
+        .step {
+            min-width: auto;
+        }
+        .form-header, .form-body, .progress-steps {
+            padding: 20px;
+        }
+        .form-header h1 {
+            font-size: 1.4rem;
+        }
+        .upload-item {
+            flex-wrap: wrap;
+        }
+        .form-actions {
+            flex-direction: column;
+        }
+        .btn-primary-form, .btn-secondary-form {
+            width: 100%;
+            justify-content: center;
+        }
+        .file-input-wrapper {
+            width: 100%;
+        }
+        .btn-upload {
+            flex: 1;
+            text-align: center;
+        }
     }
-    .progress-steps {
-        flex-direction: column;
-        gap: 12px;
-    }
-    .step {
-        min-width: auto;
-    }
-    .form-header, .form-body, .progress-steps {
-        padding: 20px;
-    }
-    .upload-item {
-        flex-wrap: wrap;
-    }
-    .form-actions {
-        flex-direction: column;
-    .btn-primary-form, .btn-secondary-form {
-        width: 100%;
-        justify-content: center;
-    }
-    }}
 </style>
 </head>
 <body>
 
-<!-- HEADER (mismo que la página principal) -->
+<!-- HEADER -->
 <header class="header" id="header">
     <div class="header__inner container">
-    <a href="Inicio_funerarios.html" class="header__logo">
-        <img src="../img/logo.jpg" alt="Ministerio de Desarrollo Social" style="height: 40px; width: auto;">
-        <div>
-        <span class="logo-text">Ministerio de Desarrollo Social</span>
-        <span class="logo-sub">Santiago del Estero</span>
-        </div>
-    </a>
-    <nav class="header__nav" id="mainNav">
-        <ul class="nav__list">
-        <li><a href="Inicio_funerarios.html" class="nav__link">Inicio</a></li>
-        <li><a href="Inicio_funerarios.html#beneficios" class="nav__link">Beneficios</a></li>
-        <li><a href="Inicio_funerarios.html#requisitos" class="nav__link">Requisitos</a></li>
-        <li><a href="Inicio_funerarios.html#contacto" class="nav__link">Contacto</a></li>
-        </ul>
-    </nav>
-    <button class="header__burger" id="burgerBtn" aria-label="Menú">
-        <span></span><span></span><span></span>
-    </button>
+        <a href="Inicio_funerarios.html" class="header__logo">
+            <img src="../img/logo.jpg" alt="Ministerio de Desarrollo Social" style="height: 40px; width: auto;">
+            <div>
+                <span class="logo-text">Ministerio de Desarrollo Social</span>
+                <span class="logo-sub">Santiago del Estero</span>
+            </div>
+        </a>
+        <nav class="header__nav" id="mainNav">
+            <ul class="nav__list">
+                <li><a href="Inicio_funerarios.html" class="nav__link">Inicio</a></li>
+                <li><a href="Inicio_funerarios.html#beneficios" class="nav__link">Beneficios</a></li>
+                <li><a href="Inicio_funerarios.html#requisitos" class="nav__link">Requisitos</a></li>
+                <li><a href="Inicio_funerarios.html#contacto" class="nav__link">Contacto</a></li>
+            </ul>
+        </nav>
+        <button class="header__burger" id="burgerBtn" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </header>
 
 <!-- FORMULARIO PRINCIPAL -->
 <div class="form-container">
     <div class="form-card">
-    <div class="form-header">
-        <h1><i class="fas fa-file-alt"></i> Nueva Solicitud de Servicio Funebre</h1>
-        <p>Sistema Funebre Digital - Ministerio de Desarrollo Social de Santiago del Estero</p>
-    </div>
-    <!-- Progress Steps -->
-    <div class="progress-steps">
-        <div class="step active" data-step="1">
-        <span class="step-number">1</span>
-        <span class="step-label">Datos del Solicitante</span>
-        </div>
-        <div class="step" data-step="2">
-        <span class="step-number">2</span>
-        <span class="step-label">Datos del Fallecido</span>
-        </div>
-        <div class="step" data-step="3">
-        <span class="step-number">3</span>
-        <span class="step-label">Documentación</span>
-        </div>
-        <div class="step" data-step="4">
-        <span class="step-number">4</span>
-        <span class="step-label">Confirmación</span>
-        </div>
-    </div>
-    <!-- Formulario -->
-    <form id="solicitudForm" class="form-body">
-        <!-- PASO 1: Datos del Solicitante -->
-        <div class="form-step" id="step1">
-        <div class="form-section">
-            <h2><i class="fas fa-user-circle"></i> Datos del Solicitante</h2>
-            
-            <div class="form-row">
-            <div class="form-group">
-                <label><i class="fas fa-user"></i> Nombre del Responsable *</label>
-                <input type="text" id="nombre" name="nombre" required>
-                <div class="error-message" id="nombreError"></div>
-            </div>
-            <div class="form-group">
-                <label><i class="fas fa-id-card"></i> Nº Documento Responsable *</label>
-                <input type="text" id="dni" name="dni" placeholder="12345678" pattern="[0-9]{7,8}" required>
-                <div class="error-message" id="dniError"></div>
-            </div>
-            </div>
-            <div class="form-row">
-            <div class="form-group">
-                <label><i class="fas fa-calendar-alt"></i> Fecha de Registro *</label>
-                <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-            </div>
-            <div class="form-group">
-                <label><i class="fas fa-phone"></i> Teléfono *</label>
-                <input type="tel" id="telefono" name="telefono" placeholder="385-1234567" required>
-            </div>
-            </div>
-            
-            <div class="form-group">
-              <label><i class="fas fa-home"></i> Domicilio Responsable *</label>
-            <input type="text" id="domicilio" name="domicilio" required>
-            </div>
-            
-            <div class="form-row">
-            <div class="form-group">
-                <label><i class="fas fa-heart"></i> Provincia o Departamento *</label>
-                <select id="parentesco" name="parentesco" required>
-                <option value="">Seleccionar...</option>
-                <option value="Santiago del Estero">Santiago del Estero</option>
-                <option value="Córdoba">Córdoba</option>
-                <option value="Tucumán">Tucumán</option>
-                <option value="Jujuy">Jujuy</option>
-                <option value="otro">Otro</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label><i class="fas fa-city"></i> Localidad *</label>
-                <select id="ingresos" name="ingresos" required>
-                <option value="">Seleccionar...</option>
-                <option value="capital">Capital</option>
-                <option value="la-banda">La Banda</option>
-                <option value="termas">Termas de Río Hondo</option>
-                <option value="otra">Otra localidad</option>
-                </select>
-            </div>
-            <div class="form-group">
-    <label><i class="fas fa-map-signs"></i> Barrio Responsable *</label>
-    <input type="text" id="barrio-responsable" name="barrio_responsable" placeholder="Ej: Centro" required>
-</div>
-            </div>        
-            <div class="form-row">
-            <div class="form-group">
-                <label><i class="fas fa-box"></i> Servicio Solicitado *</label>
-                <select id="servicio" name="servicio" required>
-                <option value="">Seleccionar...</option>
-                <option value="ATAUD">ATAUD</option>
-                <option value="DE CALLE">DE CALLE</option>
-                <option value="DE CALLE SIN ATAUD">SERVICIO DE CALLE SIN ATAUD </option>
-                <option value="TRASLADO">TRASLADO</option>
-                <option value="CAJA">CAJA</option>
-                <option value="ATAUD y SOLDADURA">ATAUD Y SOLDADURA</option>
-                <option value="CREMACIÓN">CREMACION</option>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <label><i class="fas fa-chart-line"></i> Servicio Atúd</label>
-                <select id="ataud" name="ataud">
-                <option value="">Seleccionar...</option>
-                <option>ATAUD BORLA VACA DE 2.10 MTS CON CAJA METALIC</option>
-                <option>ATAUD CON CHAPA 1.20 MTS</option>
-                <option>ATAUD CON CHAPA 1.50 MTS</option>
-                <option>ATAUD CON CHAPA 1.70 MTS</option>
-                <option>ATAUD CON CHAPA 1.90 MTS</option>
-                <option>ATAUD CON CHAPA 2.10 MTS</option>
-                <option>ATAUD CON CHAPA ESPECIAL EXT. PERSONAS OBESAS</option>
-                </select>
-            </div>
-            </div>
-        </div>
+        <div class="form-header">
+            <h1><i class="fas fa-file-alt"></i> Nueva Solicitud de Servicio Funebre</h1>
+            <p>Sistema Funebre Digital - Ministerio de Desarrollo Social de Santiago del Estero</p>
         </div>
         
-        <div class="form-step" id="step2" style="display: none;">
-            <div class="form-section">
-                <h2><i class="fas fa-file-medical"></i> Datos del Fallecido</h2>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label><i class="fas fa-user"></i> Nombre del Fallecido *</label>
-                        <input type="text" id="nombreFallecido" name="nombreFallecido" required>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-id-card"></i> Tipo de Documento *</label>
-                        <select id="tipo-doc-fallecido" name="tipo_doc_fallecido" required>
-                            <option value="DNI">DNI</option>
-                            <option value="RNF">RNF (Recién nacido fallecido)</option>
-                            <option value="SD">S/D (Sin documento)</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-fingerprint"></i> Nº Documento Fallecido *</label>
-                        <input type="text" id="dniFallecido" name="dniFallecido" placeholder="Número de documento" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label><i class="fas fa-map"></i> Departamento *</label>
-                        <input type="text" id="depto-fallecido" name="depto_fallecido" placeholder="Ej: Capital" required>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-city"></i> Localidad *</label>
-                        <input type="text" id="localidad-fallecido" name="localidad_fallecido" placeholder="Ej: Termas de Río Hondo" required>
-                    </div>
-                </div>
-                
-                <div class="form-row">
-                    <div class="form-group">
-                        <label><i class="fas fa-map-signs"></i> Barrio Fallecido *</label>
-                        <input type="text" id="barrio-fallecido" name="barrio_fallecido" placeholder="Ej: Centro" required>
-                    </div>
-                    <div class="form-group">
-                        <label><i class="fas fa-home"></i> Domicilio Fallecido *</label>
-                        <input type="text" id="domicilio-fallecido" name="domicilio_fallecido" placeholder="Calle y Número" required>
-                    </div>
-                </div>
-            </div> </div> <div class="form-step" id="step3" style="display: none;">
-            <div class="form-section">
-                <h2><i class="fas fa-paperclip"></i> Documentación Adjunta</h2>
-                
-                <div class="document-upload">
-                    <div class="upload-item">
-                        <div class="upload-icon">
-                            <i class="fas fa-file-pdf"></i>
-                        </div>
-                        <div class="upload-info">
-                            <h4>DNI del Fallecido</h4>
-                            <p>Frente y dorso en formato PDF, JPG o PNG</p>
-                        </div>
-                        <input type="file" id="dniFile" accept=".pdf,.jpg,.png" class="file-input">
-                        <label for="dniFile" class="btn-upload">
-                            <i class="fas fa-upload"></i> Subir
-                        </label>
-                    </div>
-                    <div class="upload-item">
-                        <div class="upload-icon">
-                            <i class="fas fa-file-medical"></i>
-                        </div>
-                        <div class="upload-info">
-                            <h4>Certificado de Defunción</h4>
-                            <p>Certificado oficial emitido por el registro civil</p>
-                        </div>
-                        <input type="file" id="defuncionFile" accept=".pdf,.jpg,.png" class="file-input">
-                        <label for="defuncionFile" class="btn-upload">
-                            <i class="fas fa-upload"></i> Subir
-                        </label>
-                    </div>
-                </div>
+        <!-- Progress Steps -->
+        <div class="progress-steps">
+            <div class="step active" data-step="1">
+                <span class="step-number">1</span>
+                <span class="step-label">Datos del Fallecido</span>
+            </div>
+            <div class="step" data-step="2">
+                <span class="step-number">2</span>
+                <span class="step-label">Datos del Responsable</span>
+            </div>
+            <div class="step" data-step="3">
+                <span class="step-number">3</span>
+                <span class="step-label">Documentación</span>
             </div>
         </div>
         
-        <div class="form-step" id="step4" style="display: none;">
-            <div class="form-section">
-                <h2><i class="fas fa-check-circle"></i> Confirmación de Datos</h2>
-                <p style="margin-bottom: 20px;">Por favor, revise que todos los datos sean correctos antes de enviar la solicitud.</p>
-                <div id="confirmacionDatos" style="background: var(--color-bg); padding: 20px; border-radius: var(--radius);">
-                     </div>
+        <!-- Formulario -->
+        <form id="solicitudForm" class="form-body"
+            action="../sysfun/backend/api/solicitudes.php"
+            method="POST"
+            enctype="multipart/form-data">
+            
+            <!-- ==================== PASO 1: Datos del Fallecido ==================== -->
+            <div class="form-step" id="step1">
+                <div class="form-section">
+                    <h2><i class="fas fa-user-injured"></i> Datos del Fallecido</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Tipo de Documento *</label>
+                            <select id="tipoDocFallecido" name="tipoDocFallecido" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="DNI">DNI</option>
+                                <option value="RNF">RNF (Recién nacido fallecido)</option>
+                                <option value="SD">S/D (Sin documento)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-hashtag"></i> Nº Documento Fallecido *</label>
+                            <input type="text" id="nroDocFallecido" name="nroDocFallecido" placeholder="Número de documento" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Nombre del Fallecido *</label>
+                            <input type="text" id="nombreFallecido" name="nombreFallecido" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-alt"></i> Fecha de Fallecimiento *</label>
+                            <input type="date" id="fechaFallecimiento" name="fechaFallecimiento" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map"></i> Departamento *</label>
+                            <input type="text" id="deptoFallecido" name="deptoFallecido" placeholder="Ej: Capital" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-city"></i> Localidad *</label>
+                            <input type="text" id="localidadFallecido" name="localidadFallecido" placeholder="Ej: Termas de Río Hondo" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-signs"></i> Barrio Fallecido *</label>
+                            <input type="text" id="barrioFallecido" name="barrioFallecido" placeholder="Ej: Centro" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-home"></i> Domicilio Fallecido *</label>
+                            <input type="text" id="domicilioFallecido" name="domicilioFallecido" placeholder="Calle y Número" required>
+                        </div>
+                    </div>
+                    
+                    <!-- Campos condicionales para RNF -->
+                    <div id="rnfFields" class="conditional-field">
+                        <h3 style="font-size:1rem; color:var(--color-accent); margin-bottom:16px;"><i class="fas fa-baby"></i> Datos del Progenitor</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-id-card"></i> Nº Documento Progenitor</label>
+                                <input type="text" id="nroDocProgenitor" name="nroDocProgenitor" placeholder="DNI del progenitor">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-user"></i> Nombre del Progenitor</label>
+                                <input type="text" id="nombreProgenitor" name="nombreProgenitor" placeholder="Nombre completo del progenitor">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Sección de Traslado -->
+                    <div id="trasladoFields" class="conditional-field">
+                        <h3 style="font-size:1rem; color:var(--color-accent); margin-bottom:16px;"><i class="fas fa-truck"></i> Datos de Traslado</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label><i class="fas fa-map-pin"></i> Lugar donde se encuentra el fallecido</label>
+                                <input type="text" id="lugarOrigen" name="lugarOrigen" placeholder="Dirección actual del fallecido">
+                            </div>
+                            <div class="form-group">
+                                <label><i class="fas fa-flag-checkered"></i> Lugar de destino del fallecido</label>
+                                <input type="text" id="lugarDestino" name="lugarDestino" placeholder="Dirección de destino">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-boxes"></i> Tipo de Servicio *</label>
+                            <select id="tipoServicio" name="tipoServicio" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="ATAUD">Ataúd</option>
+                                <option value="TRASLADO">Traslado</option>
+                                <option value="ATAUD_TRASLADO">Ataúd y Traslado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-clipboard-list"></i> Observaciones</label>
+                            <textarea id="observaciones" name="observaciones" rows="3" placeholder="Observaciones adicionales..."></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group" id="ataudInfo" style="display:none; background: var(--color-bg); padding: 16px; border-radius: var(--radius); border-left: 4px solid var(--color-accent);">
+                        <p><i class="fas fa-info-circle" style="color: var(--color-accent);"></i> <strong>Aviso:</strong> Si eligió la opción con ataúd, deberá esperar a que internamente nos comuniquemos con el responsable para asignarle uno.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-actions">
-            <button type="button" id="prevBtn" class="btn-secondary-form" style="display: none;">
-                <i class="fas fa-arrow-left"></i> Anterior
-            </button>
-            <button type="button" id="nextBtn" class="btn-primary-form">
-                Siguiente <i class="fas fa-arrow-right"></i>
-            </button>
-            <button type="submit" id="submitBtn" class="btn-primary-form" style="display: none;">
-                <i class="fas fa-paper-plane"></i> Enviar Solicitud
-            </button>
-            <a href="Inicio_funerarios.html" class="btn-secondary-form">
-                <i class="fas fa-times"></i> Cancelar
-            </a>
-        </div>
-    </form> 
-    </div> <div class="info-sidebar">
+            
+            <!-- ==================== PASO 2: Datos del Responsable ==================== -->
+            <div class="form-step" id="step2" style="display: none;">
+                <div class="form-section">
+                    <h2><i class="fas fa-user-circle"></i> Datos del Responsable / Solicitante</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-id-card"></i> Tipo de Documento *</label>
+                            <select id="tipoDocResponsable" name="tipoDocResponsable" required>
+                                <option value="">Seleccionar...</option>
+                                <option value="DNI">DNI</option>
+                                <option value="LC">Libreta Cívica</option>
+                                <option value="LE">Libreta de Enrolamiento</option>
+                                <option value="CI">Cédula de Identidad</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-hashtag"></i> Nº Documento Responsable *</label>
+                            <input type="text" id="nroDocResponsable" name="nroDocResponsable" placeholder="Número de documento" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-user"></i> Nombre del Responsable *</label>
+                            <input type="text" id="nombreResponsable" name="nombreResponsable" placeholder="Nombre completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-calendar-alt"></i> Fecha de Registro *</label>
+                            <input type="date" id="fechaRegistro" name="fechaRegistro" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map"></i> Provincia o Departamento *</label>
+                            <input type="text" id="provinciaResponsable" name="provinciaResponsable" placeholder="Ej: Santiago del Estero" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-city"></i> Localidad *</label>
+                            <input type="text" id="localidadResponsable" name="localidadResponsable" placeholder="Ej: Capital" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-map-signs"></i> Barrio Responsable *</label>
+                            <input type="text" id="barrioResponsable" name="barrioResponsable" placeholder="Ej: Centro" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-home"></i> Domicilio Responsable *</label>
+                            <input type="text" id="domicilioResponsable" name="domicilioResponsable" placeholder="Calle y Número" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Teléfono de Contacto *</label>
+                            <input type="tel" id="telefonoResponsable" name="telefonoResponsable" placeholder="385-1234567" required>
+                        </div>
+                        <div class="form-group">
+                            <label><i class="fas fa-phone"></i> Teléfono de Contacto de Respaldo</label>
+                            <input type="tel" id="telefonoSecundario" name="telefonoSecundario" placeholder="385-1234567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="emailResponsable" name="emailResponsable" placeholder="correo@ejemplo.com">
+                        </div>
+                        <div class="form-group">
+                            <!-- Espacio vacío -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ==================== PASO 3: Documentación ==================== -->
+            <div class="form-step" id="step3" style="display: none;">
+                <div class="form-section">
+                    <h2><i class="fas fa-paperclip"></i> Documentación Adjunta (hasta 10 archivos)</h2>
+                    <p style="margin-bottom: 24px; color: var(--color-muted);">Puede subir imágenes, PDF u otros archivos relacionados con la solicitud.</p>
+                    
+                    <div class="document-upload" id="documentUpload">
+                        <div class="upload-item">
+                            <div class="upload-icon">
+                                <i class="fas fa-file-pdf"></i>
+                            </div>
+                            <div class="upload-info">
+                                <h4>Archivos adjuntos</h4>
+                                <p>Formatos permitidos: PDF, JPG, PNG, JPEG, DOC, DOCX</p>
+                                <div id="fileList" style="margin-top: 8px;">
+                                    <span style="color: var(--color-muted); font-size: 0.85rem;">No hay archivos seleccionados</span>
+                                </div>
+                            </div>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="archivosInput" name="archivos[]" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" multiple class="file-input">
+                                <label for="archivosInput" class="btn-upload">
+                                    <i class="fas fa-upload"></i> Subir archivos
+                                </label>
+                                <span class="file-name" id="fileCount">0/10</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="filePreview" class="file-preview"></div>
+                </div>
+            </div>
+            
+            <!-- ==================== BOTONES DE NAVEGACIÓN ==================== -->
+            <div class="form-actions">
+                <button type="button" id="prevBtn" class="btn-secondary-form" style="display: none;">
+                    <i class="fas fa-arrow-left"></i> Anterior
+                </button>
+                <button type="button" id="nextBtn" class="btn-primary-form">
+                    Siguiente <i class="fas fa-arrow-right"></i>
+                </button>
+                <button type="submit" id="submitBtn" class="btn-primary-form" style="display: none;">
+                    <i class="fas fa-paper-plane"></i> Enviar Solicitud
+                </button>
+                <a href="Inicio_funerarios.html" class="btn-secondary-form">
+                    <i class="fas fa-times"></i> Cancelar
+                </a>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Sidebar Informativo -->
+    <div class="info-sidebar">
         <h3><i class="fas fa-info-circle"></i> Información Importante</h3>
         <ul class="info-list">
             <li>Todos los campos marcados con * son obligatorios</li>
-            <li>Los documentos deben estar legibles</li>
+            <li>Los documentos deben estar legibles y en formato permitido</li>
             <li>El proceso de revisión tarda dentro de las 24h de realizada la solicitud</li>
             <li>Recibirás una notificación por correo electrónico</li>
         </ul>
@@ -620,7 +746,10 @@
             <p><i class="fas fa-map-marker-alt"></i> Av. Belgrano 937, Santiago del Estero</p>
         </div>
     </div>
-</div> <footer class="footer">
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
     <div class="container">
         <div class="footer__inner">
             <div class="footer__brand">
@@ -645,44 +774,89 @@
         </div>
     </div>
 </footer>
+
+<!-- ============================================================ -->
+<!-- JAVASCRIPT COMPLETO (CORREGIDO Y ORGANIZADO)                  -->
+<!-- ============================================================ -->
 <script>
-    // Burger menu
+// ============================================================
+// BURGER MENU
+// ============================================================
+(function() {
     const burger = document.getElementById('burgerBtn');
     const navMenu = document.getElementById('mainNav');
     if (burger && navMenu) {
-        burger.addEventListener('click', () => {
+        burger.addEventListener('click', function() {
             navMenu.classList.toggle('open');
             burger.classList.toggle('open');
         });
+        document.querySelectorAll('.nav__link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('open');
+                burger.classList.remove('open');
+            });
+        });
     }
-    
-    // Multi-step form
+})();
+
+// ============================================================
+// MULTI-STEP FORM
+// ============================================================
+(function() {
     let currentStep = 1;
-    const totalSteps = 4;
+    const totalSteps = 3;
     
     const step1 = document.getElementById('step1');
     const step2 = document.getElementById('step2');
     const step3 = document.getElementById('step3');
-    const step4 = document.getElementById('step4');
     const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const submitBtn = document.getElementById('submitBtn');
     const steps = document.querySelectorAll('.step');
     
+    const tipoDocFallecido = document.getElementById('tipoDocFallecido');
+    const tipoServicio = document.getElementById('tipoServicio');
+    const rnfFields = document.getElementById('rnfFields');
+    const trasladoFields = document.getElementById('trasladoFields');
+    const ataudInfo = document.getElementById('ataudInfo');
+    
+    function updateConditionalFields() {
+        if (tipoDocFallecido && tipoDocFallecido.value === 'RNF') {
+            rnfFields.classList.add('visible');
+        } else {
+            rnfFields.classList.remove('visible');
+        }
+        
+        if (tipoServicio && (tipoServicio.value === 'TRASLADO' || tipoServicio.value === 'ATAUD_TRASLADO')) {
+            trasladoFields.classList.add('visible');
+        } else {
+            trasladoFields.classList.remove('visible');
+        }
+        
+        if (tipoServicio && (tipoServicio.value === 'ATAUD' || tipoServicio.value === 'ATAUD_TRASLADO')) {
+            ataudInfo.style.display = 'block';
+        } else {
+            ataudInfo.style.display = 'none';
+        }
+    }
+    
+    if (tipoDocFallecido) {
+        tipoDocFallecido.addEventListener('change', updateConditionalFields);
+    }
+    if (tipoServicio) {
+        tipoServicio.addEventListener('change', updateConditionalFields);
+    }
+    
     function updateSteps() {
-        // Mostrar/Ocultar pasos
-        if(step1) step1.style.display = currentStep === 1 ? 'block' : 'none';
-        if(step2) step2.style.display = currentStep === 2 ? 'block' : 'none';
-        if(step3) step3.style.display = currentStep === 3 ? 'block' : 'none';
-        if(step4) step4.style.display = currentStep === 4 ? 'block' : 'none';
+        if (step1) step1.style.display = currentStep === 1 ? 'block' : 'none';
+        if (step2) step2.style.display = currentStep === 2 ? 'block' : 'none';
+        if (step3) step3.style.display = currentStep === 3 ? 'block' : 'none';
         
-        // Actualizar botones
-        if(prevBtn) prevBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
-        if(nextBtn) nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
-        if(submitBtn) submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
+        if (prevBtn) prevBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
+        if (nextBtn) nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
+        if (submitBtn) submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
         
-        // Actualizar estilos de la barra de progreso superior
-        steps.forEach((step, index) => {
+        steps.forEach(function(step, index) {
             const stepNum = index + 1;
             if (stepNum < currentStep) {
                 step.classList.add('completed');
@@ -695,46 +869,45 @@
             }
         });
     }
-
-    // Eventos de los botones de navegación
-    if (nextBtn) {
-    nextBtn.addEventListener('click', () => {
-        // Buscar el contenedor del paso en el que estamos parados actualmente
-        const pasoActual = document.getElementById(`step${currentStep}`);
+    
+    function validateStep(stepNumber) {
+        const stepElement = document.getElementById('step' + stepNumber);
+        if (!stepElement) return true;
         
-        if (pasoActual) {
-            // Buscar todos los inputs, selects y textareas requeridos dentro de este paso
-            const camposObligatorios = pasoActual.querySelectorAll('[required]');
-            let pasoValido = true;
-
-            camposObligatorios.forEach(campo => {
-                // Si el campo está vacío o no es válido, marcamos el error
-                if (!campo.value.trim() || !campo.checkValidity()) {
-                    pasoValido = false;
-                    campo.style.borderColor = '#cc3300'; // Le pinta el borde de rojo
-                } else {
-                    campo.style.borderColor = 'var(--color-border)'; // Si está bien, vuelve al color normal
-                }
-            });
-
-            // Si falta completar algo, frena y muestra la alerta
-            if (!pasoValido) {
-                alert('Por favor, complete todos los campos obligatorios (*) antes de continuar.');
-                return; // Corta la ejecución para que no avance de paso
+        const requiredFields = stepElement.querySelectorAll('[required]');
+        let valid = true;
+        
+        requiredFields.forEach(function(field) {
+            const value = field.value.trim();
+            if (!value || (field.type === 'select-one' && value === '')) {
+                field.classList.add('field-error');
+                valid = false;
+            } else {
+                field.classList.remove('field-error');
             }
+        });
+        
+        if (!valid) {
+            alert('Por favor, complete todos los campos obligatorios (*) correctamente.');
         }
-
-        // Si todo está correcto, avanza normalmente al siguiente paso
-        if (currentStep < totalSteps) {
-            currentStep++;
-            updateSteps();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-    });
-}
-
+        return valid;
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', function() {
+            if (validateStep(currentStep)) {
+                updateConditionalFields();
+                if (currentStep < totalSteps) {
+                    currentStep++;
+                    updateSteps();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            }
+        });
+    }
+    
     if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
+        prevBtn.addEventListener('click', function() {
             if (currentStep > 1) {
                 currentStep--;
                 updateSteps();
@@ -742,11 +915,366 @@
             }
         });
     }
-
-    // Inicializar el formulario al cargar la página
-    document.addEventListener('DOMContentLoaded', () => {
+    
+    document.addEventListener('DOMContentLoaded', function() {
         updateSteps();
+        updateConditionalFields();
+        
+        const fechaRegistro = document.getElementById('fechaRegistro');
+        if (fechaRegistro) {
+            const today = new Date().toISOString().split('T')[0];
+            fechaRegistro.value = today;
+        }
     });
+})();
+
+// ============================================================
+// FILE UPLOAD (hasta 10 archivos)
+// ============================================================
+(function() {
+    const fileInput = document.getElementById('archivosInput');
+    const fileList = document.getElementById('fileList');
+    const fileCount = document.getElementById('fileCount');
+    const filePreview = document.getElementById('filePreview');
+    let files = [];
+    const MAX_FILES = 10;
+    const MAX_FILE_SIZE = 5 * 1024 * 1024;
+    
+    if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
+            const newFiles = Array.from(e.target.files);
+            
+            if (files.length + newFiles.length > MAX_FILES) {
+                alert('Solo puedes subir hasta 10 archivos.');
+                this.value = '';
+                return;
+            }
+            
+            for (let file of newFiles) {
+                if (file.size > MAX_FILE_SIZE) {
+                    alert('El archivo "' + file.name + '" excede el tamaño máximo de 5MB.');
+                    this.value = '';
+                    return;
+                }
+            }
+            
+            files = files.concat(newFiles);
+            updateFileDisplay();
+            this.value = '';
+        });
+    }
+    
+    function updateFileDisplay() {
+        if (fileCount) {
+            fileCount.textContent = files.length + '/' + MAX_FILES;
+        }
+        
+        if (fileList) {
+            if (files.length === 0) {
+                fileList.innerHTML = '<span style="color: var(--color-muted); font-size: 0.85rem;">No hay archivos seleccionados</span>';
+            } else {
+                let html = '<ul style="list-style:none; padding:0; margin:0;">';
+                files.forEach(function(file, index) {
+                    const size = (file.size / 1024).toFixed(1);
+                    html += '<li style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--color-border); font-size:0.85rem;">';
+                    html += '<span><i class="fas fa-file" style="color:var(--color-accent); margin-right:8px;"></i> ' + file.name + ' (' + size + ' KB)</span>';
+                    html += '<button type="button" class="remove-file-btn" data-index="' + index + '" style="background:none; border:none; color:#e30613; cursor:pointer;"><i class="fas fa-times"></i></button>';
+                    html += '</li>';
+                });
+                html += '</ul>';
+                fileList.innerHTML = html;
+                
+                document.querySelectorAll('.remove-file-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        files.splice(index, 1);
+                        updateFileDisplay();
+                    });
+                });
+            }
+        }
+        
+        if (filePreview) {
+            filePreview.innerHTML = '';
+            files.forEach(function(file) {
+                if (file.type.startsWith('image/')) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const div = document.createElement('div');
+                        div.className = 'file-preview-item';
+                        div.innerHTML = '<img src="' + e.target.result + '" alt="' + file.name + '">';
+                        filePreview.appendChild(div);
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    const div = document.createElement('div');
+                    div.className = 'file-preview-item';
+                    div.innerHTML = '<i class="fas fa-file-pdf" style="font-size:40px; color:var(--color-accent);"></i><br><span style="font-size:0.7rem;">' + file.name.substring(0, 10) + '...</span>';
+                    filePreview.appendChild(div);
+                }
+            });
+        }
+    }
+})();
+
+// ============================================================
+// ENVIAR FORMULARIO CON AJAX
+// ============================================================
+(function() {
+    const form = document.getElementById('solicitudForm');
+    const fileList = document.getElementById('fileList');
+    
+    // Función para obtener los archivos actuales (acceder a la variable files del scope anterior)
+    function getFiles() {
+        // Buscar el array de archivos en el scope de la función anterior
+        // Usamos una variable global temporal o accedemos al DOM
+        const fileItems = document.querySelectorAll('#fileList .remove-file-btn');
+        // Si no hay elementos, retornar array vacío
+        if (fileItems.length === 0) {
+            // Verificar si hay archivos en el fileInput
+            const fileInput = document.getElementById('archivosInput');
+            if (fileInput && fileInput.files.length > 0) {
+                return Array.from(fileInput.files);
+            }
+            return [];
+        }
+        // No podemos acceder fácilmente a la variable 'files' desde aquí,
+        // así que usamos el input file como fuente de verdad
+        const fileInput = document.getElementById('archivosInput');
+        if (fileInput && fileInput.files.length > 0) {
+            return Array.from(fileInput.files);
+        }
+        return [];
+    }
+    
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Verificar archivos desde el input
+            const fileInput = document.getElementById('archivosInput');
+            let hasFiles = false;
+            
+            if (fileInput && fileInput.files && fileInput.files.length > 0) {
+                hasFiles = true;
+            }
+            
+            // También verificar en la lista visual
+            const fileListItems = document.querySelectorAll('#fileList .remove-file-btn');
+            if (fileListItems.length > 0) {
+                hasFiles = true;
+            }
+            
+            if (!hasFiles) {
+                alert('Por favor, suba al menos un archivo antes de enviar la solicitud.');
+                return;
+            }
+            
+            // Crear FormData
+            const formData = new FormData(this);
+            
+            // Si hay archivos en el input, agregarlos
+            if (fileInput && fileInput.files) {
+                for (let i = 0; i < fileInput.files.length; i++) {
+                    formData.append('archivos[]', fileInput.files[i]);
+                }
+            }
+            
+            // Mostrar mensaje de carga
+            const submitBtn = document.getElementById('submitBtn');
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+                submitBtn.disabled = true;
+            }
+            
+            // Enviar con fetch
+            fetch('../sysfun/backend/api/solicitudes.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.success) {
+                    alert('✅ ¡Solicitud enviada con éxito!\n\nNúmero de pedido: #' + data.nro_pedido + '\nArchivos subidos: ' + (data.archivos_subidos || 0));
+                    if (submitBtn) {
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+                        submitBtn.style.background = '#10b981';
+                    }
+                    setTimeout(function() {
+                        window.location.href = 'Inicio_funerarios.html';
+                    }, 3000);
+                } else {
+                    alert('❌ Error: ' + data.message);
+                    if (submitBtn) {
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud';
+                        submitBtn.disabled = false;
+                    }
+                }
+            })
+            .catch(function(error) {
+                alert('❌ Error de conexión: ' + error.message);
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud';
+                    submitBtn.disabled = false;
+                }
+            });
+        });
+    }
+})();
+
+// ============================================================
+// SMOOTH SCROLL
+// ============================================================
+(function() {
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '') return;
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 70;
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - headerHeight - 15;
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+})();
+
+// ============================================================
+// ACCESIBILIDAD - ZOOM
+// ============================================================
+(function() {
+    function createAccessibilityButtons() {
+        let container = document.querySelector('.accesibilidad-container');
+        if (!container) {
+            container = document.createElement('div');
+            container.className = 'accesibilidad-container';
+            container.style.cssText = 'position:fixed; bottom:20px; right:20px; z-index:9999; display:flex; flex-direction:column; gap:8px;';
+            document.body.appendChild(container);
+        }
+        
+        if (!document.getElementById('btnZoomMas')) {
+            const btnMas = document.createElement('button');
+            btnMas.id = 'btnZoomMas';
+            btnMas.className = 'accesibilidad-btn';
+            btnMas.title = 'Aumentar tamaño';
+            btnMas.textContent = 'A+';
+            btnMas.style.cssText = 'background:#1a3a6b; border:none; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif;';
+            container.appendChild(btnMas);
+        }
+        
+        if (!document.getElementById('btnZoomMenos')) {
+            const btnMenos = document.createElement('button');
+            btnMenos.id = 'btnZoomMenos';
+            btnMenos.className = 'accesibilidad-btn';
+            btnMenos.title = 'Disminuir tamaño';
+            btnMenos.textContent = 'A-';
+            btnMenos.style.cssText = 'background:#1a3a6b; border:none; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif;';
+            container.appendChild(btnMenos);
+        }
+        
+        if (!document.getElementById('btnZoomNormal')) {
+            const btnNormal = document.createElement('button');
+            btnNormal.id = 'btnZoomNormal';
+            btnNormal.className = 'accesibilidad-btn';
+            btnNormal.title = 'Tamaño normal';
+            btnNormal.textContent = 'A';
+            btnNormal.style.cssText = 'background:#1a3a6b; border:none; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif;';
+            container.appendChild(btnNormal);
+        }
+        
+        return {
+            btnMas: document.getElementById('btnZoomMas'),
+            btnMenos: document.getElementById('btnZoomMenos'),
+            btnNormal: document.getElementById('btnZoomNormal')
+        };
+    }
+    
+    const buttons = createAccessibilityButtons();
+    
+    function mostrarMensaje(texto) {
+        let msg = document.getElementById('zoomMensaje');
+        if (!msg) {
+            msg = document.createElement('div');
+            msg.id = 'zoomMensaje';
+            msg.style.cssText = 'position:fixed; bottom:80px; right:20px; background:#1a3a6b; color:white; padding:8px 16px; border-radius:30px; font-size:14px; z-index:10000; font-family:Arial; box-shadow:0 2px 8px rgba(0,0,0,0.2);';
+            document.body.appendChild(msg);
+        }
+        msg.textContent = texto;
+        msg.style.display = 'block';
+        setTimeout(function() {
+            msg.style.display = 'none';
+        }, 1500);
+    }
+    
+    function cambiarZoom(tipo) {
+        document.body.classList.remove('zoom-normal', 'zoom-grande', 'zoom-muy-grande');
+        
+        if (tipo === 'mas') {
+            if (document.body.classList.contains('zoom-grande')) {
+                document.body.classList.add('zoom-muy-grande');
+                localStorage.setItem('zoom', 'muy-grande');
+                mostrarMensaje('🔍 Texto muy grande (140%)');
+            } else if (document.body.classList.contains('zoom-muy-grande')) {
+                document.body.classList.add('zoom-muy-grande');
+                mostrarMensaje('🔍🔍 Ya está en máximo');
+            } else {
+                document.body.classList.add('zoom-grande');
+                localStorage.setItem('zoom', 'grande');
+                mostrarMensaje('🔍 Texto grande (120%)');
+            }
+        } else if (tipo === 'menos') {
+            if (document.body.classList.contains('zoom-muy-grande')) {
+                document.body.classList.add('zoom-grande');
+                localStorage.setItem('zoom', 'grande');
+                mostrarMensaje('🔍 Texto grande (120%)');
+            } else if (document.body.classList.contains('zoom-grande')) {
+                document.body.classList.add('zoom-normal');
+                localStorage.setItem('zoom', 'normal');
+                mostrarMensaje('📏 Texto normal (100%)');
+            } else {
+                mostrarMensaje('📏 Ya está en tamaño normal');
+            }
+        } else if (tipo === 'normal') {
+            document.body.classList.add('zoom-normal');
+            localStorage.setItem('zoom', 'normal');
+            mostrarMensaje('📏 Texto normal (100%)');
+        }
+    }
+    
+    if (buttons.btnMas) {
+        buttons.btnMas.onclick = function() { cambiarZoom('mas'); };
+        buttons.btnMas.onmouseover = function() { this.style.background = '#c8a84b'; this.style.color = '#0d2240'; };
+        buttons.btnMas.onmouseout = function() { this.style.background = '#1a3a6b'; this.style.color = 'white'; };
+    }
+    if (buttons.btnMenos) {
+        buttons.btnMenos.onclick = function() { cambiarZoom('menos'); };
+        buttons.btnMenos.onmouseover = function() { this.style.background = '#c8a84b'; this.style.color = '#0d2240'; };
+        buttons.btnMenos.onmouseout = function() { this.style.background = '#1a3a6b'; this.style.color = 'white'; };
+    }
+    if (buttons.btnNormal) {
+        buttons.btnNormal.onclick = function() { cambiarZoom('normal'); };
+        buttons.btnNormal.onmouseover = function() { this.style.background = '#c8a84b'; this.style.color = '#0d2240'; };
+        buttons.btnNormal.onmouseout = function() { this.style.background = '#1a3a6b'; this.style.color = 'white'; };
+    }
+    
+    const zoomGuardado = localStorage.getItem('zoom');
+    if (zoomGuardado === 'grande') {
+        document.body.classList.add('zoom-grande');
+    } else if (zoomGuardado === 'muy-grande') {
+        document.body.classList.add('zoom-muy-grande');
+    } else {
+        document.body.classList.add('zoom-normal');
+    }
+})();
 </script>
 </body>
 </html>
