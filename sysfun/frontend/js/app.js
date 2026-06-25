@@ -79,7 +79,7 @@ function getCurrentPage() {
 function checkAuth() {
     const currentPage = getCurrentPage();
     const protectedPages = [
-        'dashboard.html', 'solicitudes.html', 'empleados.html',
+        'panel_datos.html', 'solicitudes.html', 'empleados.html',
         'ataudes.html', 'vehiculos.html', 'proveedores.html',
         'reportes.html', 'solicitud.html'
     ];
@@ -231,7 +231,7 @@ function initLogin() {
                 console.log('✅ Login exitoso!');
                 window._userData = data.user;
                 sessionStorage.setItem('user_data', JSON.stringify(data.user));
-                window.location.href = 'dashboard.html';
+                window.location.href = 'panel_datos.html';
             } else {
                 errorDiv.textContent = data.message || 'Credenciales incorrectas';
                 errorDiv.classList.add('show');
@@ -1532,7 +1532,7 @@ document.addEventListener('DOMContentLoaded', function() {
             initLogin();
             break;
             
-        case 'dashboard.html':
+        case 'panel_datos.html':
             loadDashboard();
             break;
             
