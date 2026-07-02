@@ -1,194 +1,225 @@
 /* ============================================================
-funebres.css — Servicios Funerarios
-Colores oficiales del Ministerio
+   funebres.css — Servicios Funerarios
+   Versión: 3.0 - Optimizada y Corregida
    ============================================================ */
 
 /* ---------- Variables & Reset ---------- */
 :root {
---color-primary:    #1a3a6b;
---color-dark:       #0d2240;
---color-accent:     #c8a84b;
---color-accent-2:   #4a90d9;
---color-bg:         #f5f6f8;
---color-white:      #ffffff;
---color-text:       #2c2c2c;
---color-muted:      #6b7280;
---color-border:     #dde2ea;
+    --color-primary: #1a3a6b;
+    --color-dark: #0d2240;
+    --color-accent: #c8a84b;
+    --color-accent-2: #4a90d9;
+    --color-bg: #f5f6f8;
+    --color-white: #ffffff;
+    --color-text: #2c2c2c;
+    --color-muted: #6b7280;
+    --color-border: #dde2ea;
+    --color-danger: #c50f2a;
 
---font-main:        'Barlow', sans-serif;
---font-cond:        'Barlow Condensed', sans-serif;
+    --font-main: 'Barlow', sans-serif;
+    --font-cond: 'Barlow Condensed', sans-serif;
 
---radius:           6px;
---shadow-sm:        0 2px 8px rgba(0,0,0,.08);
---shadow-md:        0 6px 24px rgba(0,0,0,.13);
---transition:       .25s ease;
+    --radius: 6px;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, .08);
+    --shadow-md: 0 6px 24px rgba(0, 0, 0, .13);
+    --transition: .25s ease;
 
---header-h:         70px;
+    --header-h: 70px;
+    --container-max: 1200px;
 }
 
+/* ---------- Reset ---------- */
 *,
 *::before,
 *::after {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
-/* ========== TAMAÑOS BASE ========== */
 body {
-font-family: var(--font-main);
-background: var(--color-bg);
-color: var(--color-text);
-font-size: 1rem;
-line-height: 1.65;
+    font-family: var(--font-main);
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.65;
 }
 
 img {
-display: block;
-max-width: 100%;
-height: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
 }
 
 a {
-text-decoration: none;
-color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 ul {
-list-style: none;
+    list-style: none;
 }
 
 .container {
-max-width: 1200px;
-margin-inline: auto;
-padding-inline: 20px;
+    max-width: var(--container-max);
+    margin-inline: auto;
+    padding-inline: 20px;
 }
 
 /* ---------- Section Titles ---------- */
 .section-title {
-font-family: var(--font-cond);
-font-size: clamp(1.6rem, 4vw, 2.2rem);
-font-weight: 700;
-color: var(--color-primary);
-text-transform: uppercase;
-letter-spacing: .05em;
-margin-bottom: 28px;
-position: relative;
-padding-bottom: 12px;
+    font-family: var(--font-cond);
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin-bottom: 28px;
+    position: relative;
+    padding-bottom: 12px;
 }
 
 .section-title::after {
-content: '';
-position: absolute;
-bottom: 0;
-left: 0;
-width: 52px;
-height: 3px;
-background: var(--color-accent);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 52px;
+    height: 3px;
+    background: var(--color-accent);
+}
+
+.section-title--center {
+    text-align: center;
+}
+
+.section-title--center::after {
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 /* ============================================================
-HEADER
+   HEADER
    ============================================================ */
 .header {
-position: sticky;
-top: 0;
-z-index: 1000;
-background: var(--color-dark);
-height: var(--header-h);
-box-shadow: 0 2px 12px rgba(0, 0, 0, .3);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: var(--color-dark);
+    height: var(--header-h);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .3);
 }
 
 .header__inner {
-height: 100%;
-display: flex;
-align-items: center;
-justify-content: space-between;
-gap: 20px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 20px;
 }
 
 /* Logo */
 .header__logo {
-display: flex;
-align-items: center;
-gap: 12px;
-flex-shrink: 0;
-text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.header__logo img {
+    height: 45px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 4px;
 }
 
 .logo-text {
-color: var(--color-white);
-font-family: var(--font-cond);
-font-size: 1rem;
-text-transform: uppercase;
-letter-spacing: .04em;
+    color: var(--color-white);
+    font-family: var(--font-cond);
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
 }
 
 .logo-sub {
-color: var(--color-accent);
-font-size: 0.85rem;
-letter-spacing: .06em;
-text-transform: uppercase;
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
 }
 
 /* Nav */
 .nav__list {
-display: flex;
-gap: 4px;
+    display: flex;
+    gap: 4px;
 }
 
 .nav__link {
-display: block;
-padding: 8px 14px;
-color: rgba(255, 255, 255, .85);
-font-size: 0.95rem;
-font-weight: 500;
-letter-spacing: .02em;
-border-radius: var(--radius);
-transition: background var(--transition), color var(--transition);
+    display: block;
+    padding: 8px 14px;
+    color: rgba(255, 255, 255, .85);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+    border-radius: var(--radius);
+    transition: background var(--transition), color var(--transition);
 }
 
-.nav__link:hover {
-background: rgba(255, 255, 255, .1);
-color: var(--color-white);
+.nav__link:hover,
+.nav__link.active {
+    background: rgba(255, 255, 255, .1);
+    color: var(--color-white);
 }
 
 /* Burger Menu */
 .header__burger {
-display: none;
-flex-direction: column;
-gap: 5px;
-background: none;
-border: none;
-cursor: pointer;
-padding: 6px;
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    z-index: 1002;
 }
 
 .header__burger span {
-display: block;
-width: 26px;
-height: 2px;
-background: var(--color-white);
-border-radius: 2px;
-transition: var(--transition);
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--color-white);
+    border-radius: 2px;
+    transition: var(--transition);
+}
+
+.header__burger.open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.header__burger.open span:nth-child(2) {
+    opacity: 0;
+}
+.header__burger.open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ============================================================
-HERO - Azul con foto difuminada
+   HERO
    ============================================================ */
 .hero-funerario {
     position: relative;
-    padding: 100px 0;
+    padding: 80px 0;
     min-height: 400px;
-    overflow: hidden; /* Para contener el blur */
+    overflow: hidden;
     background-color: var(--color-primary);
+    display: flex;
+    align-items: center;
 }
 
-/* Capa de imagen difuminada */
 .hero__bg-blur {
     position: absolute;
     top: -20px;
@@ -200,18 +231,13 @@ HERO - Azul con foto difuminada
     background-position: center 30%;
     background-repeat: no-repeat;
     filter: blur(8px) brightness(0.5);
-    -webkit-filter: blur(8px) brightness(0.5);
     transform: scale(1.05);
     z-index: 0;
 }
 
-/* Overlay azul transparente */
 .hero__overlay {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background: linear-gradient(
         135deg,
         rgba(26, 58, 107, 0.6) 0%,
@@ -221,753 +247,844 @@ HERO - Azul con foto difuminada
     z-index: 1;
 }
 
-/* Contenido */
 .hero__content {
     position: relative;
     z-index: 2;
     text-align: center;
     color: var(--color-white);
+    width: 100%;
+    padding: 20px 0;
 }
 
-/* Resto de estilos igual */
 .hero__ministerio {
     font-family: var(--font-cond);
-    font-size: 1rem;
+    font-size: clamp(0.7rem, 2vw, 1rem);
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-accent);
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 }
 
 .hero__title {
     font-family: var(--font-cond);
-    font-size: clamp(2rem, 5vw, 3rem);
+    font-size: clamp(2rem, 5vw, 3.5rem);
     font-weight: 700;
-    margin-bottom: 20px;
     text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    line-height: 1.15;
+    margin-bottom: 16px;
 }
 
 .hero__subtitle {
-    font-size: 1.25rem;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     max-width: 700px;
     margin: 0 auto;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    opacity: 0.9;
 }
 
-/* ============================================================
-BOTONES DEL HÉROE
-   ============================================================ */
+/* Hero Buttons */
 .hero__buttons {
-display: flex;
-gap: 20px;
-justify-content: center;
-margin-top: 40px;
-flex-wrap: wrap;
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .btn-hero {
-display: inline-flex;
-align-items: center;
-justify-content: center;
-padding: 0 28px;
-height: 56px;
-min-width: 220px;
-font-family: var(--font-main);
-font-size: 1.1rem;
-font-weight: 600;
-border-radius: 50px;
-cursor: pointer;
-transition: all 0.3s ease;
-text-decoration: none;
-border: none;
-line-height: 1;
-background: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 28px;
+    height: 54px;
+    min-width: 180px;
+    font-family: var(--font-main);
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    line-height: 1;
+    text-decoration: none;
 }
 
 .btn-hero-primary {
-background-color: var(--color-accent);
-color: var(--color-dark);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .btn-hero-primary:hover {
-background-color: #e0bc5a;
-transform: translateY(-3px);
+    background-color: #e0bc5a;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
 }
 
 .btn-hero-secondary {
-background-color: transparent;
-color: var(--color-white);
-border: 2px solid var(--color-white);
+    background-color: transparent;
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
 }
 
 .btn-hero-secondary:hover {
-background-color: rgba(255, 255, 255, 0.15);
-transform: translateY(-3px);
-border-color: var(--color-accent);
+    background-color: rgba(255, 255, 255, 0.15);
+    transform: translateY(-3px);
+    border-color: var(--color-accent);
 }
 
-
 /* ============================================================
-BENEFICIOS
+   BENEFICIOS
    ============================================================ */
 .servicios {
-padding: 60px 0;
-background: var(--color-bg);
+    padding: 60px 0;
+    background: var(--color-bg);
 }
 
 .servicios__grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-gap: 28px;
-margin-bottom: 40px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
 }
 
 .servicio-card {
-background: var(--color-white);
-border: 1px solid var(--color-border);
-border-radius: var(--radius);
-padding: 32px 24px;
-text-align: center;
-transition: var(--transition);
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    text-align: center;
+    transition: var(--transition);
 }
 
 .servicio-card:hover {
-transform: translateY(-4px);
-box-shadow: var(--shadow-md);
-border-color: var(--color-accent);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
 }
 
 .servicio-card__icon {
-font-size: 2.5rem;
-color: var(--color-accent);
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
 .servicio-card h4 {
-font-family: var(--font-cond);
-font-size: 1.4rem;
-font-weight: 700;
-color: var(--color-primary);
-margin: 12px 0 8px;
+    font-family: var(--font-cond);
+    font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+    font-weight: 700;
+    color: var(--color-primary);
+    margin: 10px 0 6px;
 }
 
 .servicio-card p {
-font-size: 1rem;
-color: var(--color-muted);
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: var(--color-muted);
+    line-height: 1.4;
 }
 
-/* Lista de beneficios 2 columnas */
+/* Lista de beneficios */
 .lista-beneficios {
-background: var(--color-white);
-border-radius: var(--radius);
-padding: 32px 36px;
-border: 1px solid var(--color-border);
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    border: 1px solid var(--color-border);
 }
 
 .lista-beneficios h3 {
-font-family: var(--font-cond);
-font-size: 1.6rem;
-margin-bottom: 24px;
-color: var(--color-primary);
-text-align: center;
+    font-family: var(--font-cond);
+    font-size: clamp(1.2rem, 3vw, 1.6rem);
+    margin-bottom: 18px;
+    color: var(--color-primary);
+    text-align: center;
 }
 
 .lista-items {
-display: grid;
-grid-template-columns: repeat(2, 1fr);
-gap: 18px 28px;
-list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 20px;
 }
 
 .lista-items li {
-display: flex;
-align-items: center;
-gap: 12px;
-font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
 }
 
 .lista-items li::before {
-content: "✓";
-color: var(--color-accent);
-font-weight: bold;
-font-size: 1.3rem;
+    content: "✓";
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+    flex-shrink: 0;
 }
 
 /* ============================================================
-CÓMO SOLICITAR (PASOS)
+   CÓMO SOLICITAR
    ============================================================ */
 .como-solicitar {
-padding: 60px 0;
-background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-white) 100%);
+    padding: 60px 0;
+    background: linear-gradient(135deg, var(--color-bg) 0%, var(--color-white) 100%);
 }
 
 .pasos-grid {
-display: grid;
-grid-template-columns: repeat(4, 1fr);
-gap: 24px;
- margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 20px;
 }
 
 .paso-card {
-background: var(--color-white);
-border-radius: var(--radius);
-padding: 32px 24px;
-text-align: center;
-transition: var(--transition);
-border: 1px solid var(--color-border);
-box-shadow: var(--shadow-sm);
+    background: var(--color-white);
+    border-radius: var(--radius);
+    padding: 32px 24px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid var(--color-border);
+    box-shadow: var(--shadow-sm);
 }
 
 .paso-card:hover {
-transform: translateY(-6px);
-box-shadow: var(--shadow-md);
-border-color: var(--color-accent);
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--color-accent);
 }
 
 .paso-number {
-width: 60px;
-height: 60px;
-background: var(--color-primary);
-color: var(--color-white);
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 2rem;
-font-weight: 700;
-margin: 0 auto 20px;
-transition: var(--transition);
+    width: 60px;
+    height: 60px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 20px;
+    transition: var(--transition);
 }
 
 .paso-card:hover .paso-number {
-background: var(--color-accent);
-color: var(--color-dark);
+    background: var(--color-accent);
+    color: var(--color-dark);
 }
 
 .paso-card h3 {
-font-family: var(--font-cond);
-font-size: 1.4rem;
-font-weight: 700;
-color: var(--color-primary);
-margin-bottom: 12px;
+    font-family: var(--font-cond);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 12px;
 }
 
 .paso-card p {
-font-size: 1rem;
-color: var(--color-muted);
-line-height: 1.5;
+    font-size: 1rem;
+    color: var(--color-muted);
+    line-height: 1.5;
 }
 
 .paso-card p a {
-color: var(--color-accent);
-text-decoration: underline;
+    color: var(--color-accent);
+    text-decoration: underline;
 }
 
 .paso-card p a:hover {
-color: var(--color-primary);
-}
-
-/* Responsive pasos */
-@media (max-width: 1024px) {
-.pasos-grid {
-    grid-template-columns: repeat(2, 1fr);
-}
-}
-
-@media (max-width: 768px) {
-.pasos-grid {
-    grid-template-columns: 1fr;
-}
-
-.paso-card {
-    padding: 24px 20px;
-}
-
-.paso-number {
-width: 50px;
-    height: 50px;
-    font-size: 1.6rem;
-}
+    color: var(--color-primary);
 }
 
 /* ============================================================
-REQUISITOS
+   REQUISITOS
    ============================================================ */
 .requisitos {
-padding: 60px 0;
-background: var(--color-white);
+    padding: 60px 0;
+    background: var(--color-white);
 }
 
 .requisitos-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 24px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
 }
 
 .requisito-card {
-background: var(--color-bg);
-border-radius: var(--radius);
-padding: 24px;
-border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    border-radius: var(--radius);
+    padding: 24px;
+    border: 1px solid var(--color-border);
 }
 
 .requisito-card strong {
-display: block;
-font-size: 1.2rem;
-color: var(--color-primary);
-margin-bottom: 8px;
+    display: block;
+    font-size: 1.1rem;
+    color: var(--color-primary);
+    margin-bottom: 8px;
 }
 
 .requisito-card p {
-font-size: 1rem;
+    font-size: 0.95rem;
+    color: var(--color-muted);
 }
 
-/* Horario */
+/* ============================================================
+   HORARIOS
+   ============================================================ */
+.horarios {
+    padding: 30px 0;
+    background: var(--color-bg);
+}
+
 .horario-card {
-background: #c50f2a;
-color: white;
-padding: 28px;
-border-radius: var(--radius);
-text-align: center;
-margin: 40px 0 0;
+    background: var(--color-danger);
+    color: white;
+    padding: 28px 24px;
+    border-radius: var(--radius);
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .horario-card h3 {
-font-family: var(--font-cond);
-font-size: 1.6rem;
-margin-bottom: 12px;
+    font-family: var(--font-cond);
+    font-size: 1.6rem;
+    margin-bottom: 12px;
 }
 
 .horario-card p {
-font-size: 1.1rem;
+    font-size: 1.1rem;
+}
+
+.horario-aviso {
+    opacity: 0.9;
+    margin-top: 8px;
+    font-size: 0.95rem !important;
 }
 
 /* ============================================================
-CONTACTO
+   CONTACTO
    ============================================================ */
+.contacto {
+    padding: 60px 0;
+    background: var(--color-white);
+}
+
 .contacto-grid {
-display: flex;
-flex-wrap: wrap;
-gap: 24px;
-justify-content: center;
-margin: 32px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: center;
+    margin: 32px 0;
 }
 
 .contact-item {
-display: flex;
-align-items: center;
-gap: 14px;
-background: var(--color-white);
-padding: 14px 32px;
-border-radius: 60px;
-border: 1px solid var(--color-border);
-text-decoration: none;
-color: var(--color-text);
-transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--color-bg);
+    padding: 14px 32px;
+    border-radius: 60px;
+    border: 1px solid var(--color-border);
+    transition: var(--transition);
 }
 
 .contact-item:hover {
-background: var(--color-accent);
-color: var(--color-dark);
+    background: var(--color-accent);
+    color: var(--color-dark);
+    transform: translateY(-2px);
 }
 
 .contact-icon {
-width: 48px;
-height: 48px;
-background: var(--color-primary);
-border-radius: 50%;
-display: flex;
-align-items: center;
-justify-content: center;
-color: white;
-font-size: 1.3rem;
+    width: 48px;
+    height: 48px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+}
+
+.contacto-cta {
+    text-align: center;
+    margin-top: 32px;
 }
 
 .btn-solicitar {
-background-color: var(--color-accent);
-color: var(--color-dark);
-border: none;
-padding: 14px 36px;
-border-radius: var(--radius);
-font-size: 1.1rem;
-font-weight: 700;
-cursor: pointer;
-transition: var(--transition);
-display: inline-flex;
-align-items: center;
-gap: 10px;
+    display: inline-block;
+    background-color: var(--color-accent);
+    color: var(--color-dark);
+    border: none;
+    padding: 14px 36px;
+    border-radius: var(--radius);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition);
 }
 
 .btn-solicitar:hover {
-background-color: #e0bc5a;
-transform: translateY(-2px);
+    background-color: #e0bc5a;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.contacto-leyenda {
+    font-size: 0.85rem;
+    margin-top: 12px;
+    color: var(--color-muted);
 }
 
 /* ============================================================
-FOOTER
+   FOOTER
    ============================================================ */
 .footer {
-background: #07162a;
-color: rgba(255, 255, 255, .75);
-font-size: 0.95rem;
-margin-top: 60px;
+    background: #07162a;
+    color: rgba(255, 255, 255, .75);
+    font-size: 0.95rem;
+    margin-top: 60px;
 }
 
 .footer__inner {
-display: grid;
-grid-template-columns: 1.5fr 1fr 1fr;
-gap: 40px;
-padding: 48px 20px 40px;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 40px;
+    padding: 48px 20px 40px;
 }
 
 .footer__brand p {
-font-size: 0.95rem;
-line-height: 1.5;
+    font-size: 0.95rem;
+    line-height: 1.5;
 }
 
 .footer__brand span {
-color: var(--color-accent);
+    color: var(--color-accent);
+}
+
+.footer-logo {
+    height: 40px;
+    width: auto;
+    margin-bottom: 10px;
+    border-radius: 4px;
 }
 
 .footer__links h5,
 .footer__contact h5 {
-font-family: var(--font-cond);
-font-size: 0.95rem;
-font-weight: 700;
-text-transform: uppercase;
-letter-spacing: .08em;
-color: var(--color-accent);
-margin-bottom: 14px;
+    font-family: var(--font-cond);
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--color-accent);
+    margin-bottom: 14px;
 }
 
 .footer__links ul {
-display: flex;
-flex-direction: column;
-gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .footer__links a {
-font-size: 0.95rem;
-color: rgba(255, 255, 255, .7);
-transition: color var(--transition);
+    color: rgba(255, 255, 255, .7);
+    transition: color var(--transition);
 }
 
 .footer__links a:hover {
-color: var(--color-white);
+    color: var(--color-white);
 }
 
 .footer__contact p {
-font-size: 0.95rem;
-margin-bottom: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+    opacity: 0.85;
 }
 
 .footer__bottom {
-border-top: 1px solid rgba(255, 255, 255, .1);
-text-align: center;
-padding: 18px;
-font-size: 0.9rem;
-color: rgba(255, 255, 255, .4);
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    text-align: center;
+    padding: 18px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, .4);
 }
 
 /* ============================================================
-MODAL
+   MODAL
    ============================================================ */
 .modal-funerario {
-display: none;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0, 0, 0, 0.75);
-align-items: center;
-justify-content: center;
-z-index: 2000;
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
 }
 
 .modal-content {
-background: white;
-max-width: 500px;
-width: 90%;
-border-radius: var(--radius);
-padding: 32px;
-text-align: center;
+    background: white;
+    max-width: 500px;
+    width: 90%;
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
 }
 
 .modal-content input,
 .modal-content textarea {
-width: 100%;
-padding: 12px;
-margin: 12px 0;
-border-radius: var(--radius);
-border: 1px solid var(--color-border);
-font-family: inherit;
-font-size: 1rem;
+    width: 100%;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--color-border);
+    font-family: inherit;
+    font-size: 1rem;
 }
 
 .modal-btn-primary {
-background: var(--color-accent);
-color: var(--color-dark);
-border: none;
-padding: 12px 28px;
-border-radius: var(--radius);
-cursor: pointer;
-font-weight: 600;
-font-size: 1rem;
+    background: var(--color-accent);
+    color: var(--color-dark);
+    border: none;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .modal-btn-secondary {
-background: #ccc;
-border: none;
-padding: 12px 28px;
-border-radius: var(--radius);
-cursor: pointer;
-font-weight: 600;
-font-size: 1rem;
-}
-
-/* ============================================================
-RESPONSIVE
-   ============================================================ */
-@media (max-width: 768px) {
-:root {
-    --header-h: 60px;
-}
-
-.header__nav {
-    position: fixed;
-    top: var(--header-h);
-    left: 0;
-    right: 0;
-    background: var(--color-dark);
-    padding: 20px;
-    transform: translateY(-110%);
-    opacity: 0;
-    transition: transform .3s ease, opacity .3s ease;
-    border-top: 2px solid var(--color-accent);
-}
-
-.header__nav.open {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.nav__list {
-    flex-direction: column;
-    gap: 6px;
-}
-
-.nav__link {
-    padding: 12px 16px;
+    background: #ccc;
+    border: none;
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: 600;
     font-size: 1rem;
 }
 
-.header__burger {
-    display: flex;
-}
-
-.hero__buttons {
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-}
-
-.btn-hero {
-    height: 52px;
-    width: 80%;
-    min-width: unset;
-    font-size: 1rem;
-}
-
-.lista-items {
-    grid-template-columns: 1fr;
-}
-
-.footer__inner {
-    grid-template-columns: 1fr;
-}
-}
-
 /* ============================================================
-BOTONES DE ACCESIBILIDAD FLOTANTES
+   BOTONES DE ACCESIBILIDAD
    ============================================================ */
 .accesibilidad-container {
-position: fixed;
-bottom: 20px;
-right: 20px;
-z-index: 9999;
-display: flex;
-flex-direction: column;
-gap: 8px;
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 99999;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .accesibilidad-btn {
-background: #1a3a6b;
-border: none;
-color: white;
-font-weight: bold;
-width: 48px;
-height: 48px;
-border-radius: 50%;
-cursor: pointer;
-font-size: 1.2rem;
-transition: all 0.3s ease;
-box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-display: flex;
-align-items: center;
-justify-content: center;
-font-family: Arial, sans-serif;
+    background: var(--color-primary);
+    border: 2px solid var(--color-accent);
+    color: white;
+    font-weight: bold;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    user-select: none;
 }
 
 .accesibilidad-btn:hover {
-background: #c8a84b;
-color: #0d2240;
-transform: scale(1.08);
+    background: var(--color-accent);
+    color: var(--color-dark);
+    transform: scale(1.08);
 }
 
-/* Tamaños de letra - MÉTODO SIMPLE */
+/* ============================================================
+   ACCESIBILIDAD - ZOOM DE TEXTO (CORREGIDO)
+   ============================================================ */
+
+/* ✅ El zoom se aplica a TODO el body */
 body.zoom-normal {
-font-size: 100%;
+    font-size: 100% !important;
 }
 
 body.zoom-grande {
-font-size: 120%;
+    font-size: 120% !important;
 }
 
 body.zoom-muy-grande {
-font-size: 140%;
+    font-size: 140% !important;
 }
 
-@media (max-width: 768px) {
-.accesibilidad-container {
-    bottom: 15px;
-    right: 15px;
-}
-.accesibilidad-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-}
-}
-
-/* Ajustes para elementos específicos */
-body.letra-grande p,
-body.letra-grande li,
-body.letra-grande .servicio-card p,
-body.letra-grande .lista-items li,
-body.letra-grande .paso-card p,
-body.letra-grande .requisito-card p,
-body.letra-grande .contact-item,
-body.letra-grande .footer p,
-body.letra-grande .footer a,
-body.letra-grande .horario-card p {
-font-size: inherit !important;
-}
-
-body.letra-muy-grande p,
-body.letra-muy-grande li,
-body.letra-muy-grande .servicio-card p,
-body.letra-muy-grande .lista-items li,
-body.letra-muy-grande .paso-card p,
-body.letra-muy-grande .requisito-card p,
-body.letra-muy-grande .contact-item,
-body.letra-muy-grande .footer p,
-body.letra-muy-grande .footer a,
-body.letra-muy-grande .horario-card p {
-font-size: inherit !important;
-}
-
-/* Títulos se mantienen con su tamaño relativo */
-body.letra-grande .hero__title,
-body.letra-muy-grande .hero__title {
-font-size: clamp(2rem, 6vw, 3.2rem) !important;
-}
-
-body.letra-grande .section-title,
-body.letra-muy-grande .section-title {
-font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
-}
-
-body.letra-grande h4,
-body.letra-muy-grande h4 {
-font-size: 1.3rem !important;
-}
-
-/* Botones se mantienen */
-body.letra-grande .btn-hero,
-body.letra-muy-grande .btn-hero {
-font-size: 1rem !important;
-height: auto !important;
-min-height: 56px !important;
-}
-
-body.letra-grande .accesibilidad-btn,
-body.letra-muy-grande .accesibilidad-btn {
-font-size: 1rem !important;
-width: 44px !important;
-height: 44px !important;
-}
-
-/* Nav se mantiene legible */
-body.letra-grande .nav__link,
-body.letra-muy-grande .nav__link {
-font-size: 0.95rem !important;
-}
-
-@media (max-width: 768px) {
-.accesibilidad-container {
-    bottom: 15px;
-    right: 15px;
-}
-.accesibilidad-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 0.9rem;
-}
-}
-/* ========== ACCESIBILIDAD: FORZAR QUE TODO EL TEXTO HEREDE EL TAMAÑO ========== */
-body.zoom-normal,
-body.zoom-grande,
-body.zoom-muy-grande {
-font-size: 100% !important;
-}
-
-body.zoom-grande,
-body.zoom-grande * {
-font-size: 1.2rem !important;
-}
-
-body.zoom-muy-grande,
-body.zoom-muy-grande * {
-font-size: 1.4rem !important;
-}
-
-/* Excepciones: elementos que deben mantener su tamaño relativo */
+/* ✅ Ajustes para elementos específicos que no deben escalar tanto */
 body.zoom-grande .hero__title,
 body.zoom-muy-grande .hero__title {
-font-size: clamp(2rem, 6vw, 3.2rem) !important;
+    font-size: clamp(2rem, 6vw, 3.2rem) !important;
 }
 
 body.zoom-grande .section-title,
 body.zoom-muy-grande .section-title {
-font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
+    font-size: clamp(1.6rem, 5vw, 2.2rem) !important;
 }
 
 body.zoom-grande .btn-hero,
 body.zoom-muy-grande .btn-hero {
-font-size: 1rem !important;
-height: auto !important;
-min-height: 56px !important;
+    font-size: 1rem !important;
+    height: auto !important;
+    min-height: 56px !important;
+}
+
+body.zoom-grande .btn-solicitar,
+body.zoom-muy-grande .btn-solicitar {
+    font-size: 1rem !important;
+    padding: 14px 32px !important;
 }
 
 body.zoom-grande .accesibilidad-btn,
 body.zoom-muy-grande .accesibilidad-btn {
-font-size: 1rem !important;
-width: 44px !important;
-height: 44px !important;
+    font-size: 1rem !important;
+    width: 44px !important;
+    height: 44px !important;
 }
 
 body.zoom-grande .nav__link,
 body.zoom-muy-grande .nav__link {
-font-size: 0.95rem !important;
+    font-size: 0.95rem !important;
+}
+
+/* ✅ Asegurar que TODO el texto herede el tamaño */
+body.zoom-grande *,
+body.zoom-muy-grande * {
+    font-size: inherit;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+/* Tablets */
+@media (max-width: 1024px) {
+    .pasos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .footer__inner {
+        grid-template-columns: 1fr 1fr;
+    }
+    .footer__brand {
+        grid-column: span 2;
+    }
+}
+
+/* Móviles */
+@media (max-width: 768px) {
+    :root {
+        --header-h: 60px;
+    }
+
+    .header__logo img {
+        height: 35px;
+    }
+    .logo-text {
+        font-size: 0.85rem;
+    }
+    .logo-sub {
+        font-size: 0.7rem;
+    }
+
+    .header__burger {
+        display: flex;
+    }
+
+    .header__nav {
+        position: fixed;
+        top: var(--header-h);
+        left: 0;
+        right: 0;
+        background: var(--color-dark);
+        padding: 20px;
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+        border-top: 3px solid var(--color-accent);
+        z-index: 1001;
+        pointer-events: none;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .header__nav.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav__list {
+        flex-direction: column;
+        gap: 4px;
+        width: 100%;
+    }
+
+    .nav__link {
+        padding: 14px 20px;
+        font-size: 1.1rem;
+        color: var(--color-white);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .nav__link:last-child {
+        border-bottom: none;
+    }
+
+    .hero-funerario {
+        padding: 50px 0;
+        min-height: 300px;
+    }
+
+    .hero__buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 14px;
+    }
+
+    .btn-hero {
+        height: 50px;
+        min-width: 150px;
+        padding: 0 24px;
+        font-size: 0.95rem;
+    }
+
+    .servicios__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lista-items {
+        grid-template-columns: 1fr;
+    }
+
+    .pasos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .paso-card {
+        padding: 24px 20px;
+    }
+    .paso-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.6rem;
+    }
+
+    .contacto-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+    .contact-item {
+        width: 100%;
+        max-width: 320px;
+        justify-content: center;
+    }
+
+    .footer__inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    .footer__brand {
+        grid-column: span 1;
+    }
+
+    .accesibilidad-container {
+        bottom: 16px;
+        right: 16px;
+        gap: 6px;
+    }
+    .accesibilidad-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    .header__logo img {
+        height: 28px;
+    }
+    .logo-text {
+        font-size: 0.7rem;
+    }
+    .logo-sub {
+        font-size: 0.6rem;
+    }
+
+    .hero-funerario {
+        padding: 40px 0;
+        min-height: 280px;
+    }
+    .hero__title {
+        font-size: clamp(1.4rem, 5vw, 1.8rem);
+    }
+    .hero__subtitle {
+        font-size: clamp(0.85rem, 2vw, 1rem);
+    }
+    .hero__buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .btn-hero {
+        height: 48px;
+        width: 100%;
+        max-width: 280px;
+        min-width: unset;
+        font-size: 0.95rem;
+        padding: 0 20px;
+    }
+
+    .servicio-card {
+        padding: 20px 16px;
+    }
+    .lista-beneficios {
+        padding: 20px 16px;
+    }
+    .lista-items {
+        grid-template-columns: 1fr;
+    }
+    .lista-items li {
+        font-size: 0.9rem;
+    }
+
+    .requisito-card {
+        padding: 16px;
+    }
+
+    .horario-card {
+        padding: 20px 16px;
+    }
+    .horario-card h3 {
+        font-size: 1.2rem;
+    }
+    .horario-card p {
+        font-size: 0.95rem;
+    }
+
+    .modal-content {
+        padding: 24px 16px;
+    }
+
+    .nav__link {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    .accesibilidad-container {
+        bottom: 12px;
+        right: 12px;
+        gap: 5px;
+    }
+    .accesibilidad-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
 }
