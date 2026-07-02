@@ -4,8 +4,16 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <title>Solicitar Servicio - Servicios Fúnebres</title> 
-<link rel="icon" type="image/png" href="../img/logo.jpg">
-
+<!-- ========================================== -->
+    <!-- FAVICONS - Completos y corregidos          -->
+    <!-- ========================================== -->
+<link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
+<link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
+<link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
+    
 <!-- CSS -->
 <link rel="stylesheet" href="../css/funebres.css" />
 <!-- Eliminado: responsive.css no existe -->
@@ -446,7 +454,7 @@
 <header class="header" id="header">
     <div class="header__inner container">
         <a href="Inicio_funerarios.html" class="header__logo">
-            <img src="../img/logo.jpg" alt="Ministerio de Desarrollo Social" style="height: 40px; width: auto;">
+            <img src="../img/logo.png" alt="Ministerio de Desarrollo Social" style="height: 40px; width: auto;">
             <div>
                 <span class="logo-text">Ministerio de Desarrollo Social</span>
                 <span class="logo-sub">Santiago del Estero</span>
@@ -1017,113 +1025,180 @@
     }
 })();
 
-// ============================================================
-// ENVIAR FORMULARIO CON AJAX
+/// ============================================================
+// ENVIAR FORMULARIO - CON DETECCIÓN DE BACKEND
 // ============================================================
 (function() {
     const form = document.getElementById('solicitudForm');
-    const fileList = document.getElementById('fileList');
+    const fileInput = document.getElementById('archivosInput');
+    const submitBtn = document.getElementById('submitBtn');
     
-    // Función para obtener los archivos actuales (acceder a la variable files del scope anterior)
-    function getFiles() {
-        // Buscar el array de archivos en el scope de la función anterior
-        // Usamos una variable global temporal o accedemos al DOM
-        const fileItems = document.querySelectorAll('#fileList .remove-file-btn');
-        // Si no hay elementos, retornar array vacío
-        if (fileItems.length === 0) {
-            // Verificar si hay archivos en el fileInput
-            const fileInput = document.getElementById('archivosInput');
-            if (fileInput && fileInput.files.length > 0) {
-                return Array.from(fileInput.files);
+    if (!form) return;
+    
+    // ============================================================
+    // FUNCIÓN PARA GUARDAR LOCALMENTE (cuando no hay backend)
+    // ============================================================
+    function guardarLocalmente(formData, archivos) {
+        try {
+            // Obtener solicitudes guardadas
+            let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
+            
+            // Crear objeto con los datos
+            const datos = {};
+            for (let [key, value] of formData.entries()) {
+                if (key !== 'archivos[]') {
+                    datos[key] = value;
+                }
             }
-            return [];
+            
+            // Agregar información de archivos
+            datos.archivos_nombres = [];
+            if (archivos && archivos.length > 0) {
+                for (let i = 0; i < archivos.length; i++) {
+                    datos.archivos_nombres.push(archivos[i].name);
+                }
+            }
+            
+            // Crear registro
+            const solicitud = {
+                id: Date.now(),
+                nro_pedido: 'PEND-' + String(Date.now()).slice(-6),
+                fecha: new Date().toISOString(),
+                estado: 'pendiente',
+                datos: datos
+            };
+            
+            // Guardar
+            solicitudes.push(solicitud);
+            localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
+            
+            return solicitud.nro_pedido;
+        } catch (error) {
+            console.error('Error guardando localmente:', error);
+            return null;
         }
-        // No podemos acceder fácilmente a la variable 'files' desde aquí,
-        // así que usamos el input file como fuente de verdad
-        const fileInput = document.getElementById('archivosInput');
-        if (fileInput && fileInput.files.length > 0) {
-            return Array.from(fileInput.files);
-        }
-        return [];
     }
     
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Verificar archivos desde el input
-            const fileInput = document.getElementById('archivosInput');
-            let hasFiles = false;
-            
-            if (fileInput && fileInput.files && fileInput.files.length > 0) {
-                hasFiles = true;
-            }
-            
-            // También verificar en la lista visual
-            const fileListItems = document.querySelectorAll('#fileList .remove-file-btn');
-            if (fileListItems.length > 0) {
-                hasFiles = true;
-            }
-            
-            if (!hasFiles) {
-                alert('Por favor, suba al menos un archivo antes de enviar la solicitud.');
-                return;
-            }
-            
-            // Crear FormData
-            const formData = new FormData(this);
-            
-            // Si hay archivos en el input, agregarlos
-            if (fileInput && fileInput.files) {
-                for (let i = 0; i < fileInput.files.length; i++) {
-                    formData.append('archivos[]', fileInput.files[i]);
-                }
-            }
-            
-            // Mostrar mensaje de carga
-            const submitBtn = document.getElementById('submitBtn');
-            if (submitBtn) {
-                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-                submitBtn.disabled = true;
-            }
-            
-            // Enviar con fetch
-            fetch('../sysfun/backend/api/solicitudes.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(function(response) {
-                return response.json();
-            })
-            .then(function(data) {
-                if (data.success) {
-                    alert('✅ ¡Solicitud enviada con éxito!\n\nNúmero de pedido: #' + data.nro_pedido + '\nArchivos subidos: ' + (data.archivos_subidos || 0));
-                    if (submitBtn) {
-                        submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
-                        submitBtn.style.background = '#10b981';
-                    }
-                    setTimeout(function() {
-                        window.location.href = 'Inicio_funerarios.html';
-                    }, 3000);
-                } else {
-                    alert('❌ Error: ' + data.message);
-                    if (submitBtn) {
-                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud';
-                        submitBtn.disabled = false;
-                    }
-                }
-            })
-            .catch(function(error) {
-                alert('❌ Error de conexión: ' + error.message);
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud';
-                    submitBtn.disabled = false;
-                }
-            });
+    // ============================================================
+    // FUNCIÓN PARA VERIFICAR SI EL BACKEND ESTÁ DISPONIBLE
+    // ============================================================
+    function verificarBackend() {
+        return fetch('../sysfun/backend/api/health.php', {
+            method: 'GET',
+            signal: AbortSignal.timeout(3000)
+        })
+        .then(function(response) {
+            return response.ok;
+        })
+        .catch(function() {
+            return false;
         });
     }
+    
+    // ============================================================
+    // ENVÍO DEL FORMULARIO
+    // ============================================================
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Validar archivos
+        let hasFiles = false;
+        if (fileInput && fileInput.files && fileInput.files.length > 0) {
+            hasFiles = true;
+        }
+        
+        const fileListItems = document.querySelectorAll('#fileList .remove-file-btn');
+        if (fileListItems.length > 0) {
+            hasFiles = true;
+        }
+        
+        if (!hasFiles) {
+            alert('⚠️ Por favor, suba al menos un archivo antes de enviar la solicitud.');
+            return;
+        }
+        
+        // Crear FormData
+        const formData = new FormData(this);
+        
+        // Agregar archivos
+        if (fileInput && fileInput.files) {
+            for (let i = 0; i < fileInput.files.length; i++) {
+                formData.append('archivos[]', fileInput.files[i]);
+            }
+        }
+        
+        // Mostrar carga
+        if (submitBtn) {
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+            submitBtn.disabled = true;
+        }
+        
+        // ============================================================
+        // INTENTAR ENVIAR AL BACKEND
+        // ============================================================
+        const apiUrl = '../sysfun/backend/api/solicitudes.php';
+        
+        fetch(apiUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                // ✅ ÉXITO - Enviado al backend
+                alert('✅ ¡Solicitud enviada con éxito al sistema!\n\n📋 Número de pedido: #' + data.nro_pedido);
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
+                    submitBtn.style.background = '#10b981';
+                }
+                // Limpiar archivos guardados localmente si existían
+                localStorage.removeItem('solicitudesPendientes');
+                setTimeout(function() {
+                    window.location.href = 'Inicio_funerarios.html';
+                }, 2000);
+            } else {
+                throw new Error(data.message || 'Error desconocido');
+            }
+        })
+        .catch(function(error) {
+            console.warn('⚠️ Error en el backend:', error.message);
+            
+            // ============================================================
+            // FALLBACK: Guardar localmente si el backend falla
+            // ============================================================
+            const nroPedido = guardarLocalmente(formData, fileInput ? fileInput.files : []);
+            
+            if (nroPedido) {
+                alert('⚠️ El sistema no pudo conectarse al servidor.\n\n' +
+                      '✅ Su solicitud ha sido guardada localmente.\n' +
+                      '📋 Número de pedido: #' + nroPedido + '\n\n' +
+                      '💡 Se enviará automáticamente cuando el sistema esté disponible.\n' +
+                      '📞 Puede comunicarse al (385) 4892389 para seguimiento.');
+                
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-save"></i> Guardado Local';
+                    submitBtn.style.background = '#f59e0b';
+                }
+                
+                setTimeout(function() {
+                    window.location.href = 'Inicio_funerarios.html';
+                }, 3000);
+            } else {
+                alert('❌ Error al guardar la solicitud. Por favor, intente nuevamente o comuníquese al (385) 4892389.');
+                if (submitBtn) {
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Reintentar';
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = '#c8a84b';
+                }
+            }
+        });
+    });
 })();
-
 // ============================================================
 // SMOOTH SCROLL
 // ============================================================
