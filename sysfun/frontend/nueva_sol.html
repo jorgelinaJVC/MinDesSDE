@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nueva Solicitud - Servicios Funebres</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos específicos para el formulario */
+        .form-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+        }
+
+        .form-section .section-title {
+            font-size: 18px;
+            color: #2d3748;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-section .section-title i {
+            color: #3498db;
+        }
+
+        .form-section .section-title .badge {
+            background: #3498db;
+            color: white;
+            font-size: 12px;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+
+        .form-row-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-row-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group-full {
+            margin-bottom: 15px;
+        }
+
+        .form-group label.required::after {
+            content: " *";
+            color: #e74c3c;
+            font-weight: 700;
+        }
+
+        .form-group .help-text {
+            font-size: 12px;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        /* Estilos para la sección de servicios */
+        .service-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .service-card {
+            background: #f7fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            border-color: #3498db;
+            background: #edf2f7;
+        }
+
+        .service-card.selected {
+            border-color: #2ecc71;
+            background: #f0fff4;
+        }
+
+        .service-card .service-name {
+            font-weight: 600;
+            color: #2d3748;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .service-card .service-name i {
+            color: #3498db;
+        }
+
+        .service-card .service-desc {
+            font-size: 13px;
+            color: #718096;
+            margin-top: 5px;
+        }
+
+        .service-card input[type="radio"] {
+            margin-right: 8px;
+            accent-color: #2ecc71;
+        }
+
+        /* Selector de ataúdes */
+        .ataud-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .ataud-option {
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 13px;
+        }
+
+        .ataud-option:hover {
+            border-color: #3498db;
+            background: #f7fafc;
+        }
+
+        .ataud-option.selected {
+            border-color: #2ecc71;
+            background: #f0fff4;
+        }
+
+        .ataud-option .ataud-stock {
+            font-size: 11px;
+            color: #718096;
+            margin-top: 4px;
+        }
+
+        .ataud-option .ataud-stock.bajo {
+            color: #e74c3c;
+        }
+
+        @media (max-width: 1024px) {
+            .form-row-3 {
+                grid-template-columns: 1fr 1fr;
+            }
+            .service-grid {
+                grid-template-columns: 1fr;
+            }
+            .ataud-selector {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-row-2, .form-row-3 {
+                grid-template-columns: 1fr;
+            }
+            .ataud-selector {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .btn-submit {
+            padding: 12px 40px;
+            font-size: 16px;
+        }
+
+        .nro-pedido-display {
+            background: #1a202c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- MENÚ SUPERIOR -->
+    <nav class="top-nav">
+        <div class="logo">
+            <i class="fas fa-cross"></i>
+            <span>Sistema Funebre</span>
+        </div>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="panel_datos.html"><i class="fas fa-home"></i> Panel de Datos</a></li>
+            <li><a href="solicitudes.html"><i class="fas fa-file-alt"></i> Solicitudes</a></li>
+            <li><a href="empleados.html"><i class="fas fa-users"></i> Empleados</a></li>
+            <li><a href="ataudes.html"><i class="fas fa-box"></i> Ataúdes</a></li>
+            <li><a href="vehiculos.html"><i class="fas fa-truck"></i> Vehículos</a></li>
+            <li><a href="proveedores.html"><i class="fas fa-building"></i> Proveedores</a></li>
+            <li><a href="reportes.html"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+        </ul>
+        <div class="user-menu">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-left">
+                <h1>📝 Nueva Solicitud</h1>
+                <p>Complete todos los campos para registrar una nueva solicitud</p>
+            </div>
+            <div class="header-actions">
+                <span class="nro-pedido-display">
+                    <i class="fas fa-hashtag"></i> <span id="nroPedidoDisplay">Nuevo</span>
+                </span>
+                <button class="btn btn-secondary" onclick="window.location.href='solicitudes.html'">
+                    <i class="fas fa-arrow-left"></i> Cancelar
+                </button>
+            </div>
+        </header>
+
+        <form id="nuevaSolicitudForm">
+            <!-- ============================================ -->
+            <!-- SECCIÓN 1: DATOS DEL FALLECIDO               -->
+            <!-- ============================================ -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-user-injured"></i> Datos del Fallecido
+                    <span class="badge">Obligatorio</span>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label class="required">Tipo de Documento</label>
+                        <select id="fallecido_tipo_doc" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="DNI">DNI</option>
+                            <option value="RNF">RNF (Recién Nacido Fallecido)</option>
+                            <option value="S/D">S/D (Sin Documento)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Nº de Documento</label>
+                        <input type="text" id="fallecido_doc" placeholder="Ej: 12345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Nombre del Fallecido</label>
+                        <input type="text" id="fallecido_nombre" placeholder="Nombre completo" required>
+                    </div>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Departamento</label>
+                        <input type="text" id="fallecido_departamento" placeholder="Ej: Capital">
+                    </div>
+                    <div class="form-group">
+                        <label>Localidad</label>
+                        <input type="text" id="fallecido_localidad" placeholder="Ej: San Miguel">
+                    </div>
+                    <div class="form-group">
+                        <label>Barrio</label>
+                        <input type="text" id="fallecido_barrio" placeholder="Ej: Centro">
+                    </div>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Domicilio</label>
+                        <input type="text" id="fallecido_domicilio" placeholder="Calle y número">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Fecha de Fallecimiento</label>
+                        <input type="date" id="fallecido_fecha" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nº Documento del Progenitor</label>
+                        <input type="text" id="progenitor_doc" placeholder="DNI del progenitor">
+                    </div>
+                </div>
+
+                <div class="form-row-2">
+                    <div class="form-group">
+                        <label>Nombre del Progenitor</label>
+                        <input type="text" id="progenitor_nombre" placeholder="Nombre completo del progenitor">
+                    </div>
+                    <div class="form-group">
+                        <label>Observaciones</label>
+                        <textarea id="fallecido_observaciones" rows="2" placeholder="Observaciones adicionales"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================ -->
+            <!-- SECCIÓN 2: DATOS DEL RESPONSABLE              -->
+            <!-- ============================================ -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-user"></i> Datos del Responsable / Solicitante
+                    <span class="badge">Obligatorio</span>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label class="required">Tipo de Documento</label>
+                        <select id="responsable_tipo_doc" required>
+                            <option value="">Seleccionar...</option>
+                            <option value="DNI">DNI</option>
+                            <option value="RNF">RNF (Recién Nacido Fallecido)</option>
+                            <option value="S/D">S/D (Sin Documento)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Nº de Documento</label>
+                        <input type="text" id="responsable_doc" placeholder="Ej: 12345678" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Nombre del Responsable</label>
+                        <input type="text" id="responsable_nombre" placeholder="Nombre completo" required>
+                    </div>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Provincia / Departamento</label>
+                        <input type="text" id="responsable_provincia" placeholder="Ej: Mendoza">
+                    </div>
+                    <div class="form-group">
+                        <label>Localidad</label>
+                        <input type="text" id="responsable_localidad" placeholder="Ej: Guaymallén">
+                    </div>
+                    <div class="form-group">
+                        <label>Barrio</label>
+                        <input type="text" id="responsable_barrio" placeholder="Ej: Villa Nueva">
+                    </div>
+                </div>
+
+                <div class="form-row-3">
+                    <div class="form-group">
+                        <label>Domicilio</label>
+                        <input type="text" id="responsable_domicilio" placeholder="Calle y número">
+                    </div>
+                    <div class="form-group">
+                        <label class="required">Fecha de Registro</label>
+                        <input type="date" id="fecha_registro" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="text" id="responsable_telefono" placeholder="Ej: 261-1234567">
+                    </div>
+                </div>
+
+                <div class="form-group-full">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="responsable_email" placeholder="correo@ejemplo.com">
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================ -->
+            <!-- SECCIÓN 3: SERVICIOS                          -->
+            <!-- ============================================ -->
+            <div class="form-section">
+                <div class="section-title">
+                    <i class="fas fa-cogs"></i> Asignar Servicios
+                    <span class="badge">Seleccionar</span>
+                </div>
+
+                <!-- Tipo de Servicio -->
+                <div class="form-group-full">
+                    <label class="required">Tipo de Servicio</label>
+                    <div class="service-grid" id="serviceGrid">
+                        <div class="service-card" data-service="ataud">
+                            <label>
+                                <input type="radio" name="tipo_servicio" value="ataud">
+                                <span class="service-name"><i class="fas fa-box"></i> Ataúd</span>
+                                <div class="service-desc">Servicio con ataúd incluido</div>
+                            </label>
+                        </div>
+                        <div class="service-card" data-service="calle">
+                            <label>
+                                <input type="radio" name="tipo_servicio" value="calle">
+                                <span class="service-name"><i class="fas fa-road"></i> De Calle</span>
+                                <div class="service-desc">Servicio de calle sin ataúd</div>
+                            </label>
+                        </div>
+                        <div class="service-card" data-service="calle_sin_ataud">
+                            <label>
+                                <input type="radio" name="tipo_servicio" value="calle_sin_ataud">
+                                <span class="service-name"><i class="fas fa-walking"></i> Servicio de Calle sin Ataúd</span>
+                                <div class="service-desc">Traslado sin ataúd</div>
+                            </label>
+                        </div>
+                        <div class="service-card" data-service="traslado">
+                            <label>
+                                <input type="radio" name="tipo_servicio" value="traslado">
+                                <span class="service-name"><i class="fas fa-truck"></i> Traslado</span>
+                                <div class="service-desc">Traslado de cuerpo</div>
+                            </label>
+                        </div>
+                        <div class="service-card" data-service="ataud_soldadura">
+                            <label>
+                                <input type="radio" name="tipo_servicio" value="ataud_soldadura">
+                                <span class="service-name"><i class="fas fa-weld"></i> Ataúd y Soldadura</span>
+                                <div class="service-desc">Ataúd con soldadura</div>
+                            </label>
+                        </div>
+                        <div class="service-card" data-service="cremacion">
+                            <label>
+                                <input type="radio" name="tipo_servicio" value="cremacion">
+                                <span class="service-name"><i class="fas fa-fire"></i> Cremación</span>
+                                <div class="service-desc">Servicio de cremación</div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selección de Ataúd (visible según servicio) -->
+                <div id="ataudSection" style="display: none; margin-top: 20px;">
+                    <div class="form-group-full">
+                        <label class="required">Seleccionar Ataúd</label>
+                        <div class="ataud-selector" id="ataudSelector">
+                            <!-- Se llena con JS desde la API -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Datos adicionales de servicio -->
+                <div class="form-row-2" style="margin-top: 20px;">
+                    <div class="form-group">
+                        <label>Lugar donde se encuentra el cuerpo</label>
+                        <input type="text" id="lugar_origen" placeholder="Dirección actual del cuerpo">
+                    </div>
+                    <div class="form-group">
+                        <label>Lugar destino del cuerpo</label>
+                        <input type="text" id="lugar_destino" placeholder="Dirección de destino">
+                    </div>
+                </div>
+
+                <div class="form-group-full">
+                    <div class="form-group">
+                        <label>Observaciones del Servicio</label>
+                        <textarea id="servicio_observaciones" rows="2" placeholder="Observaciones adicionales del servicio"></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============================================ -->
+            <!-- BOTONES DE ACCIÓN                            -->
+            <!-- ============================================ -->
+            <div style="display: flex; gap: 15px; justify-content: flex-end; margin-top: 20px; flex-wrap: wrap;">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='solicitudes.html'">
+                    <i class="fas fa-times"></i> Cancelar
+                </button>
+                <button type="reset" class="btn btn-warning">
+                    <i class="fas fa-undo"></i> Limpiar
+                </button>
+                <button type="submit" class="btn btn-success btn-submit">
+                    <i class="fas fa-save"></i> Guardar Solicitud
+                </button>
+            </div>
+        </form>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        // ============================================
+        // FUNCIONALIDAD DEL FORMULARIO
+        // ============================================
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Menú hamburguesa
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('open');
+                });
+            }
+
+            // Fecha por defecto
+            const hoy = new Date();
+            const fechaInput = document.getElementById('fecha_registro');
+            if (fechaInput) {
+                fechaInput.value = hoy.toISOString().split('T')[0];
+            }
+
+            const fechaFalle = document.getElementById('fallecido_fecha');
+            if (fechaFalle) {
+                fechaFalle.value = hoy.toISOString().split('T')[0];
+            }
+
+            // Selección de servicio - mostrar/ocultar ataúd
+            const serviceRadios = document.querySelectorAll('input[name="tipo_servicio"]');
+            const ataudSection = document.getElementById('ataudSection');
+            const serviceCards = document.querySelectorAll('.service-card');
+
+            serviceRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    // Resaltar card seleccionada
+                    serviceCards.forEach(card => {
+                        card.classList.remove('selected');
+                    });
+                    const parentCard = this.closest('.service-card');
+                    if (parentCard) {
+                        parentCard.classList.add('selected');
+                    }
+
+                    // Mostrar/ocultar sección de ataúd
+                    const serviciosConAtaud = ['ataud', 'ataud_soldadura', 'calle'];
+                    if (serviciosConAtaud.includes(this.value)) {
+                        ataudSection.style.display = 'block';
+                        cargarAtaudes();
+                    } else {
+                        ataudSection.style.display = 'none';
+                    }
+                });
+            });
+
+            // Click en card para seleccionar radio
+            serviceCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const radio = this.querySelector('input[type="radio"]');
+                    if (radio) {
+                        radio.checked = true;
+                        radio.dispatchEvent(new Event('change'));
+                    }
+                });
+            });
+
+            // Cargar ataúdes desde la API
+            function cargarAtaudes() {
+                const container = document.getElementById('ataudSelector');
+                if (container.children.length > 0) return; // Ya cargados
+
+                fetch('http://localhost:8000/backend/api/ataudes.php', {
+                    credentials: 'include'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    container.innerHTML = '';
+                    data.forEach(ataud => {
+                        const div = document.createElement('div');
+                        div.className = 'ataud-option';
+                        div.dataset.id = ataud.id_ataud;
+                        div.innerHTML = `
+                            <input type="radio" name="ataud_seleccionado" value="${ataud.id_ataud}" id="ataud_${ataud.id_ataud}">
+                            <label for="ataud_${ataud.id_ataud}" style="cursor:pointer;">
+                                <strong>${ataud.nombre}</strong>
+                                <div class="ataud-stock ${ataud.stock_actual < ataud.stock_minimo ? 'bajo' : ''}">
+                                    Stock: ${ataud.stock_actual} ${ataud.stock_actual < ataud.stock_minimo ? '⚠️' : '✅'}
+                                </div>
+                            </label>
+                        `;
+                        div.addEventListener('click', function() {
+                            const radio = this.querySelector('input[type="radio"]');
+                            if (radio) {
+                                radio.checked = true;
+                                document.querySelectorAll('.ataud-option').forEach(opt => opt.classList.remove('selected'));
+                                this.classList.add('selected');
+                            }
+                        });
+                        container.appendChild(div);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error cargando ataúdes:', error);
+                    container.innerHTML = '<p style="color: red;">Error al cargar ataúdes</p>';
+                });
+            }
+
+            // Generar número de pedido (simulado)
+            function generarNroPedido() {
+                const fecha = new Date();
+                const year = fecha.getFullYear().toString().slice(-2);
+                const month = String(fecha.getMonth() + 1).padStart(2, '0');
+                const day = String(fecha.getDate()).padStart(2, '0');
+                const random = String(Math.floor(Math.random() * 10000)).padStart(4, '0');
+                return `${year}${month}${day}-${random}`;
+            }
+
+            document.getElementById('nroPedidoDisplay').textContent = generarNroPedido();
+
+            // ============================================
+            // ENVÍO DEL FORMULARIO
+            // ============================================
+            document.getElementById('nuevaSolicitudForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Obtener datos del formulario
+                const formData = {
+                    fallecido: {
+                        tipo_doc: document.getElementById('fallecido_tipo_doc').value,
+                        nro_doc: document.getElementById('fallecido_doc').value,
+                        nombre: document.getElementById('fallecido_nombre').value,
+                        departamento: document.getElementById('fallecido_departamento').value,
+                        localidad: document.getElementById('fallecido_localidad').value,
+                        barrio: document.getElementById('fallecido_barrio').value,
+                        domicilio: document.getElementById('fallecido_domicilio').value,
+                        fecha_fallecimiento: document.getElementById('fallecido_fecha').value,
+                        progenitor_doc: document.getElementById('progenitor_doc').value,
+                        progenitor_nombre: document.getElementById('progenitor_nombre').value,
+                        observaciones: document.getElementById('fallecido_observaciones').value
+                    },
+                    responsable: {
+                        tipo_doc: document.getElementById('responsable_tipo_doc').value,
+                        nro_doc: document.getElementById('responsable_doc').value,
+                        nombre: document.getElementById('responsable_nombre').value,
+                        provincia: document.getElementById('responsable_provincia').value,
+                        localidad: document.getElementById('responsable_localidad').value,
+                        barrio: document.getElementById('responsable_barrio').value,
+                        domicilio: document.getElementById('responsable_domicilio').value,
+                        fecha_registro: document.getElementById('fecha_registro').value,
+                        telefono: document.getElementById('responsable_telefono').value,
+                        email: document.getElementById('responsable_email').value
+                    },
+                    servicio: {
+                        tipo: document.querySelector('input[name="tipo_servicio"]:checked')?.value || '',
+                        ataud_id: document.querySelector('input[name="ataud_seleccionado"]:checked')?.value || null,
+                        lugar_origen: document.getElementById('lugar_origen').value,
+                        lugar_destino: document.getElementById('lugar_destino').value,
+                        observaciones: document.getElementById('servicio_observaciones').value
+                    }
+                };
+
+                // Validar campos requeridos
+                if (!formData.fallecido.tipo_doc || !formData.fallecido.nro_doc || !formData.fallecido.nombre) {
+                    alert('⚠️ Complete los datos obligatorios del fallecido');
+                    return;
+                }
+
+                if (!formData.responsable.tipo_doc || !formData.responsable.nro_doc || !formData.responsable.nombre) {
+                    alert('⚠️ Complete los datos obligatorios del responsable');
+                    return;
+                }
+
+                if (!formData.servicio.tipo) {
+                    alert('⚠️ Seleccione un tipo de servicio');
+                    return;
+                }
+
+                console.log('📋 Datos del formulario:', formData);
+
+                // Enviar al backend
+                fetch('http://localhost:8000/backend/api/solicitudes.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    credentials: 'include',
+                    body: JSON.stringify(formData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('✅ Solicitud creada exitosamente!');
+                        window.location.href = 'solicitudes.html';
+                    } else {
+                        alert('❌ Error al crear la solicitud: ' + (data.message || 'Error desconocido'));
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('❌ Error de conexión con el servidor');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

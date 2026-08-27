@@ -1,306 +1,393 @@
-// ========== BURGER MENU ==========
+/* ============================================================
+   funebres.js — Servicios Funerarios
+   Versión: 4.0 - Completamente Corregido
+   ============================================================ */
+
+// ============================================================
+// 1. BURGER MENU
+// ============================================================
 (function() {
-const burger = document.getElementById('burgerBtn');
-const navMenu = document.getElementById('mainNav');
+    'use strict';
+    
+    const burger = document.getElementById('burgerBtn');
+    const navMenu = document.getElementById('mainNav');
 
-if (burger && navMenu) {
-    burger.addEventListener('click', function() {
-    navMenu.classList.toggle('open');
-    burger.classList.toggle('open');
-    });
-}
+    if (burger && navMenu) {
+        burger.addEventListener('click', function() {
+            navMenu.classList.toggle('open');
+            burger.classList.toggle('open');
+            burger.setAttribute('aria-expanded', navMenu.classList.contains('open'));
+        });
 
-  // Cerrar menú al hacer click en enlaces
-document.querySelectorAll('.nav__link').forEach(function(link) {
-    link.addEventListener('click', function() {
-    if (navMenu) navMenu.classList.remove('open');
-    if (burger) burger.classList.remove('open');
-    });
-});
+        // Cerrar menú al hacer click en enlaces
+        document.querySelectorAll('.nav__link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navMenu.classList.remove('open');
+                burger.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Cerrar al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !burger.contains(e.target)) {
+                navMenu.classList.remove('open');
+                burger.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Cerrar con ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+                navMenu.classList.remove('open');
+                burger.classList.remove('open');
+                burger.setAttribute('aria-expanded', 'false');
+                burger.focus();
+            }
+        });
+    }
 })();
 
-// ========== MODAL DE SOLICITUD ==========
+// ============================================================
+// 2. MODAL DE SOLICITUD - CORREGIDO
+// ============================================================
 (function() {
+    'use strict';
+    
+    // ✅ DEFINIR LA VARIABLE modal CORRECTAMENTE
+    const modal = document.getElementById('solicitudModal');
     const openBtn = document.getElementById('openSolicitudModalBtn');
     const closeBtn = document.getElementById('cerrarModalBtn');
     const enviarBtn = document.getElementById('enviarSolicitudBtn');
     const feedbackSpan = document.getElementById('modalFeedback');
 
-function openModal() {
-    if (modal) modal.style.display = 'flex';
-}
-
-function closeModal() {
-    if (modal) modal.style.display = 'none';
-    if (feedbackSpan) feedbackSpan.innerHTML = '';
-    const nombreInput = document.getElementById('nombreSolicitante');
-    const telefonoInput = document.getElementById('telefonoSolicitante');
-    const mensajeInput = document.getElementById('mensajeSolicitud');
-    if (nombreInput) nombreInput.value = '';
-    if (telefonoInput) telefonoInput.value = '';
-    if (mensajeInput) mensajeInput.value = '';
-}
-
-if (openBtn) openBtn.addEventListener('click', openModal);
-if (closeBtn) closeBtn.addEventListener('click', closeModal);
-
-if (window) {
-    window.addEventListener('click', function(e) {
-    if (modal && e.target === modal) closeModal();
-    });
-}
-
-if (enviarBtn) {
-    enviarBtn.addEventListener('click', function() {
-    const nombre = document.getElementById('nombreSolicitante')?.value.trim() || '';
-    const telefono = document.getElementById('telefonoSolicitante')?.value.trim() || '';
-
-    if (!nombre || !telefono) {
-        if (feedbackSpan) {
-        feedbackSpan.innerHTML = '⚠️ Por favor, complete nombre y teléfono.';
-        feedbackSpan.style.color = '#e30613';
+    function openModal() {
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
-        return;
     }
 
-    if (feedbackSpan) {
-        feedbackSpan.innerHTML = '✅ ¡Gracias ' + nombre + '! Su solicitud ha sido registrada. Un asesor se comunicará al ' + telefono + ' dentro del horario de atención.';
-        feedbackSpan.style.color = '#10b981';
+    function closeModal() {
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        if (feedbackSpan) feedbackSpan.innerHTML = '';
+        
+        const nombreInput = document.getElementById('nombreSolicitante');
+        const telefonoInput = document.getElementById('telefonoSolicitante');
+        const mensajeInput = document.getElementById('mensajeSolicitud');
+        if (nombreInput) nombreInput.value = '';
+        if (telefonoInput) telefonoInput.value = '';
+        if (mensajeInput) mensajeInput.value = '';
     }
 
-    setTimeout(function() {
-        closeModal();
-    }, 2800);
-    });
-}
-})();
+    if (openBtn) openBtn.addEventListener('click', openModal);
+    if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-// ========== SMOOTH SCROLL CON OFFSET ==========
-(function() {
-document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-    anchor.addEventListener('click', function(e) {
-    const href = this.getAttribute('href');
-    if (href === '#' || href === '' || href === 'javascript:void(0)') return;
-    if (this.id === 'openSolicitudModalBtn') return;
-
-    const targetElem = document.querySelector(href);
-    if (targetElem) {
-        e.preventDefault();
-        const header = document.querySelector('.header');
-        const headerHeight = header ? header.offsetHeight : 70;
-        const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset;
-        const offsetPosition = targetPosition - headerHeight - 15;
-
-        window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
+    // Cerrar al hacer clic fuera del modal
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) closeModal();
         });
     }
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+            closeModal();
+        }
     });
-});
+
+    if (enviarBtn) {
+        enviarBtn.addEventListener('click', function() {
+            const nombreInput = document.getElementById('nombreSolicitante');
+            const telefonoInput = document.getElementById('telefonoSolicitante');
+            const nombre = nombreInput ? nombreInput.value.trim() : '';
+            const telefono = telefonoInput ? telefonoInput.value.trim() : '';
+
+            if (!nombre || !telefono) {
+                if (feedbackSpan) {
+                    feedbackSpan.innerHTML = '⚠️ Por favor, complete nombre y teléfono.';
+                    feedbackSpan.style.color = '#e30613';
+                }
+                if (nombreInput) nombreInput.style.borderColor = nombre ? '' : '#e30613';
+                if (telefonoInput) telefonoInput.style.borderColor = telefono ? '' : '#e30613';
+                return;
+            }
+
+            if (feedbackSpan) {
+                feedbackSpan.innerHTML = '✅ ¡Gracias ' + nombre + '! Su solicitud ha sido registrada. Un asesor se comunicará al ' + telefono + ' dentro del horario de atención.';
+                feedbackSpan.style.color = '#10b981';
+            }
+
+            setTimeout(function() {
+                closeModal();
+            }, 2800);
+        });
+    }
 })();
 
-// ========== ACCESIBILIDAD: TAMAÑO DE LETRA ==========
+// ============================================================
+// 3. SMOOTH SCROLL CON OFFSET
+// ============================================================
 (function() {
-console.log('Script de accesibilidad cargado');
-
-const aumentarBtn = document.getElementById('aumentarLetraBtn');
-const disminuirBtn = document.getElementById('disminuirLetraBtn');
-const resetBtn = document.getElementById('resetLetraBtn');
-
-console.log('Botones encontrados:', { 
-    aumentar: aumentarBtn ? 'SI' : 'NO', 
-    disminuir: disminuirBtn ? 'SI' : 'NO', 
-    reset: resetBtn ? 'SI' : 'NO' 
-});
-
-function mostrarMensaje(texto) {
-    let msg = document.getElementById('accesibilidadMsg');
-    if (!msg) {
-    msg = document.createElement('div');
-    msg.id = 'accesibilidadMsg';
-    msg.style.cssText = 'position:fixed; bottom:80px; right:20px; background:#1a3a6b; color:white; padding:8px 16px; border-radius:30px; font-size:0.8rem; z-index:10000; font-family:sans-serif;';
-    document.body.appendChild(msg);
-    }
-    msg.textContent = texto;
-    msg.style.opacity = '1';
-    setTimeout(function() {
-    msg.style.opacity = '0';
-    }, 1500);
-}
-
-function aplicarTamaño(tamaño) {
-    // Limpiar clases existentes
-    document.body.classList.remove('letra-grande', 'letra-muy-grande');
+    'use strict';
     
-    if (tamaño === 'grande') {
-    document.body.classList.add('letra-grande');
-    localStorage.setItem('tamañoLetra', 'grande');
-    mostrarMensaje('🔍 Texto aumentado (20px)');
-    console.log('Aplicando tamaño: GRANDE');
-    } else if (tamaño === 'muy-grande') {
-    document.body.classList.add('letra-muy-grande');
-    localStorage.setItem('tamañoLetra', 'muy-grande');
-    mostrarMensaje('🔍🔍 Texto muy grande (24px)');
-    console.log('Aplicando tamaño: MUY GRANDE');
-    } else {
-    localStorage.setItem('tamañoLetra', 'normal');
-    mostrarMensaje('📏 Texto normal (16px)');
-    console.log('Aplicando tamaño: NORMAL');
-    }
-    
-    // Forzar reflow para que los cambios se apliquen
-    document.body.style.display = 'none';
-    document.body.offsetHeight;
-    document.body.style.display = '';
-}
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href === '#' || href === '' || href === 'javascript:void(0)') return;
+            if (this.id === 'openSolicitudModalBtn') return;
 
-  // Ciclo de tamaños: normal -> grande -> muy-grande -> normal
-function siguienteTamaño(actual) {
-    if (actual === 'muy-grande') return 'normal';
-    if (actual === 'grande') return 'muy-grande';
-    return 'grande';
-}
+            const targetElem = document.querySelector(href);
+            if (targetElem) {
+                e.preventDefault();
+                const header = document.querySelector('.header');
+                const headerHeight = header ? header.offsetHeight : 70;
+                const targetPosition = targetElem.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - headerHeight - 15;
 
-function anteriorTamaño(actual) {
-    if (actual === 'grande') return 'normal';
-    if (actual === 'muy-grande') return 'grande';
-    return 'muy-grande';
-}
-
-if (aumentarBtn) {
-    aumentarBtn.onclick = function(e) {
-    e.preventDefault();
-    const actual = localStorage.getItem('tamañoLetra') || 'normal';
-    console.log('Click A+, actual:', actual);
-    const nuevo = siguienteTamaño(actual);
-    console.log('Nuevo tamaño:', nuevo);
-    aplicarTamaño(nuevo);
-    };
-}
-
-if (disminuirBtn) {
-    disminuirBtn.onclick = function(e) {
-    e.preventDefault();
-    const actual = localStorage.getItem('tamañoLetra') || 'normal';
-    console.log('Click A-, actual:', actual);
-    const nuevo = anteriorTamaño(actual);
-    console.log('Nuevo tamaño:', nuevo);
-    aplicarTamaño(nuevo);
-    };
-}
-
-if (resetBtn) {
-    resetBtn.onclick = function(e) {
-    e.preventDefault();
-    console.log('Click Reset');
-    aplicarTamaño('normal');
-    };
-}
-
-  // Cargar preferencia guardada
-const letraGuardada = localStorage.getItem('tamañoLetra');
-console.log('Preferencia cargada al inicio:', letraGuardada || 'normal');
-if (letraGuardada === 'grande') {
-    document.body.classList.add('letra-grande');
-} else if (letraGuardada === 'muy-grande') {
-    document.body.classList.add('letra-muy-grande');
-}
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
 })();
-// ========== ACCESIBILIDAD: ZOOM DE TEXTO (VERSIÓN SIMPLE Y FUNCIONAL) ==========
+
+// ============================================================
+// 4. ACCESIBILIDAD: ZOOM DE TEXTO - UNIFICADO Y CORREGIDO
+// ============================================================
 (function() {
-console.log('✅ Iniciando botones de accesibilidad...');
-  // Buscar los botones
-const btnMas = document.getElementById('btnZoomMas');
-const btnMenos = document.getElementById('btnZoomMenos');
-const btnNormal = document.getElementById('btnZoomNormal');
-console.log('Botón A+:', btnMas ? '✅ Encontrado' : '❌ No encontrado');
-console.log('Botón A-:', btnMenos ? '✅ Encontrado' : '❌ No encontrado');
-console.log('Botón A:', btnNormal ? '✅ Encontrado' : '❌ No encontrado');
-  // Función para cambiar el zoom
-function cambiarZoom(tipo) {
-    // Eliminar todas las clases de zoom
-    document.body.classList.remove('zoom-normal', 'zoom-grande', 'zoom-muy-grande');
+    'use strict';
     
-    if (tipo === 'mas') {
-      // Obtener el zoom actual
-    if (document.body.classList.contains('zoom-grande')) {
-        document.body.classList.add('zoom-muy-grande');
-        localStorage.setItem('zoom', 'muy-grande');
-        mostrarMensaje('🔍 Texto muy grande (140%)');
-    } else if (document.body.classList.contains('zoom-muy-grande')) {
-        document.body.classList.add('zoom-muy-grande');
-        mostrarMensaje('🔍🔍 Ya está en máximo');
-    } else {
-        document.body.classList.add('zoom-grande');
-        localStorage.setItem('zoom', 'grande');
-        mostrarMensaje('🔍 Texto grande (120%)');
+    console.log('✅ Iniciando botones de accesibilidad...');
+    
+    const btnMas = document.getElementById('btnZoomMas');
+    const btnMenos = document.getElementById('btnZoomMenos');
+    const btnNormal = document.getElementById('btnZoomNormal');
+    
+    console.log('Botón A+:', btnMas ? '✅ Encontrado' : '❌ No encontrado');
+    console.log('Botón A-:', btnMenos ? '✅ Encontrado' : '❌ No encontrado');
+    console.log('Botón A:', btnNormal ? '✅ Encontrado' : '❌ No encontrado');
+    
+    // Si no se encuentran, crearlos
+    if (!btnMas || !btnMenos || !btnNormal) {
+        console.warn('⚠️ Botones no encontrados, creándolos...');
+        crearBotonesAccesibilidad();
+        return;
     }
-    } 
-    else if (tipo === 'menos') {
-    if (document.body.classList.contains('zoom-muy-grande')) {
+    
+    // Función para mostrar mensaje flotante
+    function mostrarMensaje(texto) {
+        let msg = document.getElementById('zoomMensaje');
+        if (!msg) {
+            msg = document.createElement('div');
+            msg.id = 'zoomMensaje';
+            msg.style.cssText = 'position:fixed; bottom:80px; right:20px; background:#1a3a6b; color:white; padding:10px 20px; border-radius:30px; font-size:14px; z-index:100000; font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: opacity 0.3s ease;';
+            document.body.appendChild(msg);
+        }
+        msg.textContent = texto;
+        msg.style.display = 'block';
+        msg.style.opacity = '1';
+        
+        clearTimeout(msg._timeout);
+        msg._timeout = setTimeout(function() {
+            msg.style.opacity = '0';
+            setTimeout(function() {
+                msg.style.display = 'none';
+            }, 300);
+        }, 2000);
+    }
+    
+    // Función para cambiar el zoom
+    function cambiarZoom(tipo) {
+        // Eliminar todas las clases de zoom
+        document.body.classList.remove('zoom-normal', 'zoom-grande', 'zoom-muy-grande');
+        
+        if (tipo === 'mas') {
+            if (document.body.classList.contains('zoom-grande')) {
+                document.body.classList.add('zoom-muy-grande');
+                localStorage.setItem('zoom', 'muy-grande');
+                mostrarMensaje('🔍🔍 Texto muy grande (140%)');
+            } else if (document.body.classList.contains('zoom-muy-grande')) {
+                document.body.classList.add('zoom-muy-grande');
+                mostrarMensaje('🔍🔍 Ya está en máximo');
+            } else {
+                document.body.classList.add('zoom-grande');
+                localStorage.setItem('zoom', 'grande');
+                mostrarMensaje('🔍 Texto grande (120%)');
+            }
+        } 
+        else if (tipo === 'menos') {
+            if (document.body.classList.contains('zoom-muy-grande')) {
+                document.body.classList.add('zoom-grande');
+                localStorage.setItem('zoom', 'grande');
+                mostrarMensaje('🔍 Texto grande (120%)'); // ✅ CORREGIDO: mostrarMensaje (con j)
+            } else if (document.body.classList.contains('zoom-grande')) {
+                document.body.classList.add('zoom-normal');
+                localStorage.setItem('zoom', 'normal');
+                mostrarMensaje('📏 Texto normal (100%)');
+            } else {
+                mostrarMensaje('📏 Ya está en tamaño normal');
+            }
+        } 
+        else if (tipo === 'normal') {
+            document.body.classList.add('zoom-normal');
+            localStorage.setItem('zoom', 'normal');
+            mostrarMensaje('📏 Texto normal (100%)');
+        }
+        
+        console.log('Zoom aplicado. Clases actuales:', document.body.className);
+    }
+    
+    // Asignar eventos
+    if (btnMas) {
+        btnMas.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('✅ Click en A+');
+            cambiarZoom('mas');
+        });
+    }
+    
+    if (btnMenos) {
+        btnMenos.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('✅ Click en A-');
+            cambiarZoom('menos');
+        });
+    }
+    
+    if (btnNormal) {
+        btnNormal.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('✅ Click en A');
+            cambiarZoom('normal');
+        });
+    }
+    
+    // Hover effects
+    [btnMas, btnMenos, btnNormal].forEach(function(btn) {
+        btn.addEventListener('mouseenter', function() {
+            this.style.background = '#c8a84b';
+            this.style.color = '#0d2240';
+            this.style.borderColor = 'white';
+        });
+        btn.addEventListener('mouseleave', function() {
+            this.style.background = '#1a3a6b';
+            this.style.color = 'white';
+            this.style.borderColor = '#c8a84b';
+        });
+    });
+    
+    // Cargar zoom guardado
+    const zoomGuardado = localStorage.getItem('zoom');
+    console.log('Zoom guardado:', zoomGuardado);
+    if (zoomGuardado === 'grande') {
         document.body.classList.add('zoom-grande');
-        localStorage.setItem('zoom', 'grande');
-        mostrarMensage('🔍 Texto grande (120%)');
-    } else if (document.body.classList.contains('zoom-grande')) {
+    } else if (zoomGuardado === 'muy-grande') {
+        document.body.classList.add('zoom-muy-grande');
+    } else {
         document.body.classList.add('zoom-normal');
-        localStorage.setItem('zoom', 'normal');
-        mostrarMensaje('📏 Texto normal (100%)');
-    } else {
-        mostrarMensaje('📏 Ya está en tamaño normal');
-    }
-    } 
-    else if (tipo === 'normal') {
-    document.body.classList.add('zoom-normal');
-    localStorage.setItem('zoom', 'normal');
-    mostrarMensaje('📏 Texto normal (100%)');
     }
     
-    console.log('Zoom aplicado. Clases actuales:', document.body.className);
-} 
-  // Función para mostrar mensaje flotante
-function mostrarMensaje(texto) {
-    let msg = document.getElementById('zoomMensaje');
-    if (!msg) {
-    msg = document.createElement('div');
-    msg.id = 'zoomMensaje';
-    msg.style.cssText = 'position:fixed; bottom:80px; right:20px; background:#1a3a6b; color:white; padding:8px 16px; border-radius:30px; font-size:14px; z-index:10000; font-family:Arial; box-shadow:0 2px 8px rgba(0,0,0,0.2);';
-    document.body.appendChild(msg);
+    console.log('✅ Botones de accesibilidad listos!');
+    
+    // ============================================================
+    // FUNCIÓN PARA CREAR BOTONES SI NO EXISTEN
+    // ============================================================
+    function crearBotonesAccesibilidad() {
+        const container = document.createElement('div');
+        container.className = 'accesibilidad-container';
+        container.setAttribute('role', 'toolbar');
+        container.setAttribute('aria-label', 'Controles de accesibilidad');
+        container.style.cssText = 'position:fixed; bottom:24px; right:24px; display:flex; flex-direction:column; gap:10px; z-index:99999;';
+        
+        // Botón A+
+        const btnMas2 = document.createElement('button');
+        btnMas2.id = 'btnZoomMas';
+        btnMas2.className = 'accesibilidad-btn';
+        btnMas2.textContent = 'A+';
+        btnMas2.setAttribute('title', 'Aumentar tamaño');
+        btnMas2.setAttribute('aria-label', 'Aumentar tamaño de letra');
+        btnMas2.style.cssText = 'background:#1a3a6b; border:2px solid #c8a84b; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; box-shadow:0 4px 16px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif; transition:all 0.3s ease;';
+        
+        // Botón A-
+        const btnMenos2 = document.createElement('button');
+        btnMenos2.id = 'btnZoomMenos';
+        btnMenos2.className = 'accesibilidad-btn';
+        btnMenos2.textContent = 'A-';
+        btnMenos2.setAttribute('title', 'Disminuir tamaño');
+        btnMenos2.setAttribute('aria-label', 'Disminuir tamaño de letra');
+        btnMenos2.style.cssText = 'background:#1a3a6b; border:2px solid #c8a84b; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; box-shadow:0 4px 16px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif; transition:all 0.3s ease;';
+        
+        // Botón A (normal)
+        const btnNormal2 = document.createElement('button');
+        btnNormal2.id = 'btnZoomNormal';
+        btnNormal2.className = 'accesibilidad-btn';
+        btnNormal2.textContent = 'A';
+        btnNormal2.setAttribute('title', 'Tamaño normal');
+        btnNormal2.setAttribute('aria-label', 'Restablecer tamaño de letra');
+        btnNormal2.style.cssText = 'background:#1a3a6b; border:2px solid #c8a84b; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; box-shadow:0 4px 16px rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif; transition:all 0.3s ease;';
+        
+        container.appendChild(btnMas2);
+        container.appendChild(btnMenos2);
+        container.appendChild(btnNormal2);
+        document.body.appendChild(container);
+        
+        console.log('✅ Botones de accesibilidad creados automáticamente');
+        location.reload();
     }
-    msg.textContent = texto;
-    msg.style.display = 'block';
-    setTimeout(() => {
-    msg.style.display = 'none';
-    }, 1500);
-}
-  // Asignar eventos
-if (btnMas) {
-    btnMas.onclick = function() {
-    console.log('✅ Click en A+');
-    cambiarZoom('mas');
-    };
-}
-if (btnMenos) {
-    btnMenos.onclick = function() {
-    console.log('✅ Click en A-');
-    cambiarZoom('menos');
-    };
-}
-if (btnNormal) {
-    btnNormal.onclick = function() {
-    console.log('✅ Click en A');
-    cambiarZoom('normal');
-    };
-}
-  // Cargar zoom guardado
-const zoomGuardado = localStorage.getItem('zoom');
-console.log('Zoom guardado:', zoomGuardado);
-if (zoomGuardado === 'grande') {
-    document.body.classList.add('zoom-grande');
-} else if (zoomGuardado === 'muy-grande') {
-    document.body.classList.add('zoom-muy-grande');
-} else {
-    document.body.classList.add('zoom-normal');
-}
-console.log('✅ Botones de accesibilidad listos!');
 })();
+
+// ============================================================
+// 5. ACTIVE LINK DESTACADO AL SCROLLEAR
+// ============================================================
+(function() {
+    'use strict';
+    
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav__link');
+    
+    if (sections.length && navLinks.length) {
+        function updateActiveLink() {
+            const scrollPos = window.pageYOffset + 100;
+            let currentSection = '';
+            
+            sections.forEach(function(section) {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(function(link) {
+                link.classList.remove('active');
+                const href = link.getAttribute('href');
+                if (href === '#' + currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    updateActiveLink();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        
+        updateActiveLink();
+    }
+})();
+
+console.log('✅ Servicios Funerarios - JS cargado correctamente');

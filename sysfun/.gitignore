@@ -1,0 +1,41 @@
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Archivos de VSCode
+.vscode/
+*.code-workspace
+
+# Archivos temporales
+*.tmp
+*.log
+*.cache
+*.swp
+*.swo
+
+# Archivos de PHP
+*.old
+*.bak
+
+# Archivos de base de datos
+*.sqlite
+*.db
+
+# Dependencias (si usas Composer)
+vendor/
+composer.lock
+
+# Carpeta de uploads (si tiene archivos subidos)
+frontend/uploads/
+backend/uploads/
+
+# Archivos de configuración local
+.env
+.env.local
+.env.*.local
+
+# Archivos de prueba
+test.php
+test_*.php
+*_test.php

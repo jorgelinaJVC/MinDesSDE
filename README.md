@@ -17,6 +17,9 @@ Incluye estructura HTML, estilos en CSS y funcionalidades con JavaScript.
 - HTML5
 - CSS3
 - JavaScript
+- React
+- Node.Js
+- MySQL
 
 ---
 

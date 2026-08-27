@@ -1,0 +1,1004 @@
+/* ============================================================================
+   ESTILOS GENERALES - CLÍNICA SALUD
+   Sistema de Gestión de Turnos Médicos
+   Examen Parcial I - Programación III
+   ============================================================================ */
+
+/* ============================================================================
+   SECCIÓN 1: RESET Y VARIABLES GLOBALES
+   ============================================================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* Paleta de Colores */
+    --color-primario: #0066cc;
+    --color-primario-oscuro: #0052a3;
+    --color-primario-claro: #e6f0ff;
+    --color-secundario: #00cc99;
+    --color-fondo: #ffffff;
+    --color-fondo-alterno: #f5f7fa;
+    --color-texto-principal: #1a1a1a;
+    --color-texto-secundario: #666666;
+    --color-texto-claro: #999999;
+    --color-borde: #e0e0e0;
+    --color-exito: #28a745;
+    --color-advertencia: #ffc107;
+    --color-error: #dc3545;
+    
+    /* Tipografía */
+    --fuente-principal: 'Poppins', sans-serif;
+    --fuente-secundaria: 'Inter', sans-serif;
+    
+    /* Espaciado */
+    --espaciado-xs: 0.5rem;
+    --espaciado-sm: 1rem;
+    --espaciado-md: 1.5rem;
+    --espaciado-lg: 2rem;
+    --espaciado-xl: 3rem;
+    --espaciado-2xl: 4rem;
+    
+    /* Sombras */
+    --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --sombra-media: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --sombra-fuerte: 0 8px 24px rgba(0, 0, 0, 0.16);
+    
+    /* Transiciones */
+    --transicion-rapida: 150ms ease-in-out;
+    --transicion-media: 300ms ease-in-out;
+    --transicion-lenta: 500ms ease-in-out;
+    
+    /* Border Radius */
+    --radio-pequeno: 4px;
+    --radio-medio: 8px;
+    --radio-grande: 12px;
+    --radio-redondo: 50%;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--fuente-secundaria);
+    color: var(--color-texto-principal);
+    background-color: var(--color-fondo);
+    line-height: 1.6;
+    font-size: 16px;
+}
+
+/* ============================================================================
+   SECCIÓN 2: TIPOGRAFÍA
+   ============================================================================ */
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--fuente-principal);
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: var(--espaciado-md);
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+p {
+    margin-bottom: var(--espaciado-md);
+    color: var(--color-texto-secundario);
+}
+
+a {
+    color: var(--color-primario);
+    text-decoration: none;
+    transition: color var(--transicion-rapida);
+}
+
+a:hover {
+    color: var(--color-primario-oscuro);
+}
+
+/* ============================================================================
+   SECCIÓN 3: COMPONENTES GLOBALES
+   ============================================================================ */
+
+.contenedor-seccion {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--espaciado-lg) var(--espaciado-md);
+}
+
+.titulo-seccion {
+    text-align: center;
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-md);
+    font-size: 2rem;
+}
+
+.descripcion-seccion {
+    text-align: center;
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--espaciado-xl);
+    font-size: 1.1rem;
+}
+
+/* BOTONES */
+.boton-principal,
+.boton-reservar,
+.boton-buscar,
+.boton-filtro,
+.boton-menu-movil {
+    padding: var(--espaciado-sm) var(--espaciado-lg);
+    border: none;
+    border-radius: var(--radio-medio);
+    font-family: var(--fuente-principal);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transicion-rapida);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--espaciado-xs);
+}
+
+.boton-principal {
+    background-color: var(--color-primario);
+    color: white;
+    padding: var(--espaciado-md) var(--espaciado-xl);
+    font-size: 1.1rem;
+    box-shadow: var(--sombra-media);
+}
+
+.boton-principal:hover {
+    background-color: var(--color-primario-oscuro);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.boton-principal:active {
+    transform: translateY(0);
+}
+
+.boton-reservar {
+    background-color: var(--color-secundario);
+    color: white;
+    width: 100%;
+    margin-top: var(--espaciado-md);
+}
+
+.boton-reservar:hover {
+    background-color: #00b386;
+    transform: translateY(-1px);
+    box-shadow: var(--sombra-media);
+}
+
+.boton-buscar {
+    background-color: var(--color-primario);
+    color: white;
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    font-size: 1.2rem;
+}
+
+.boton-buscar:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+.boton-filtro {
+    background-color: var(--color-fondo-alterno);
+    color: var(--color-texto-principal);
+    border: 2px solid var(--color-borde);
+    padding: var(--espaciado-sm) var(--espaciado-lg);
+    margin: var(--espaciado-xs);
+    transition: all var(--transicion-rapida);
+}
+
+.boton-filtro:hover {
+    border-color: var(--color-primario);
+    color: var(--color-primario);
+}
+
+.boton-filtro.activo {
+    background-color: var(--color-primario);
+    color: white;
+    border-color: var(--color-primario);
+}
+
+.boton-menu-movil {
+    display: none;
+    background-color: transparent;
+    color: var(--color-primario);
+    font-size: 1.5rem;
+    padding: var(--espaciado-sm);
+}
+
+/* ============================================================================
+   SECCIÓN 4: ENCABEZADO Y NAVEGACIÓN
+   ============================================================================ */
+
+.encabezado {
+    background-color: var(--color-fondo);
+    box-shadow: var(--sombra-suave);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.barra-navegacion {
+    padding: var(--espaciado-md) 0;
+}
+
+.contenedor-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--espaciado-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--espaciado-lg);
+}
+
+.logo-contenedor {
+    flex-shrink: 0;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primario);
+    margin: 0;
+}
+
+.buscador-contenedor {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-xs);
+    max-width: 400px;
+}
+
+.buscador-entrada {
+    flex: 1;
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-medio);
+    font-family: var(--fuente-secundaria);
+    font-size: 1rem;
+    transition: border-color var(--transicion-rapida);
+}
+
+.buscador-entrada:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px var(--color-primario-claro);
+}
+
+.menu-enlaces {
+    display: flex;
+    list-style: none;
+    gap: var(--espaciado-lg);
+    flex: 1;
+    justify-content: center;
+}
+
+.enlace-menu {
+    color: var(--color-texto-principal);
+    font-weight: 500;
+    padding: var(--espaciado-xs) var(--espaciado-sm);
+    border-bottom: 2px solid transparent;
+    transition: all var(--transicion-rapida);
+}
+
+.enlace-menu:hover {
+    color: var(--color-primario);
+    border-bottom-color: var(--color-primario);
+}
+
+/* ============================================================================
+   SECCIÓN 5: SECCIÓN PRINCIPAL (HERO)
+   ============================================================================ */
+
+.seccion-principal {
+    background: linear-gradient(135deg, var(--color-primario-claro) 0%, var(--color-fondo) 100%);
+    padding: var(--espaciado-2xl) var(--espaciado-md);
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+}
+
+.contenedor-principal {
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-2xl);
+    align-items: center;
+}
+
+.contenido-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.titulo-principal {
+    font-size: 3rem;
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-md);
+    line-height: 1.2;
+}
+
+.subtitulo-principal {
+    font-size: 1.2rem;
+    color: var(--color-texto-secundario);
+    margin-bottom: var(--espaciado-lg);
+    line-height: 1.8;
+}
+
+.imagen-principal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-hero {
+    max-width: 100%;
+    height: auto;
+    border-radius: var(--radio-grande);
+    box-shadow: var(--sombra-fuerte);
+    transition: transform var(--transicion-media);
+}
+
+.imagen-hero:hover {
+    transform: scale(1.05);
+}
+
+/* ============================================================================
+   SECCIÓN 6: ESPECIALIDADES
+   ============================================================================ */
+
+.seccion-especialidades {
+    background-color: var(--color-fondo-alterno);
+    padding: var(--espaciado-2xl) var(--espaciado-md);
+}
+
+.grilla-especialidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--espaciado-lg);
+    margin-top: var(--espaciado-xl);
+}
+
+.tarjeta-especialidad {
+    background-color: var(--color-fondo);
+    padding: var(--espaciado-lg);
+    border-radius: var(--radio-grande);
+    box-shadow: var(--sombra-suave);
+    text-align: center;
+    transition: all var(--transicion-media);
+    border: 2px solid transparent;
+}
+
+.tarjeta-especialidad:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-fuerte);
+    border-color: var(--color-primario);
+}
+
+.icono-especialidad {
+    font-size: 3rem;
+    margin-bottom: var(--espaciado-md);
+    display: block;
+    transition: transform var(--transicion-media);
+}
+
+.tarjeta-especialidad:hover .icono-especialidad {
+    transform: scale(1.2) rotate(10deg);
+}
+
+.nombre-especialidad {
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-sm);
+}
+
+.descripcion-especialidad {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+}
+
+/* ============================================================================
+   SECCIÓN 7: PROFESIONALES
+   ============================================================================ */
+
+.seccion-profesionales {
+    background-color: var(--color-fondo);
+    padding: var(--espaciado-2xl) var(--espaciado-md);
+}
+
+.contenedor-filtros {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--espaciado-md);
+    margin-bottom: var(--espaciado-2xl);
+}
+
+.grilla-medicos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--espaciado-lg);
+    margin-top: var(--espaciado-xl);
+}
+
+.tarjeta-medico {
+    background-color: var(--color-fondo);
+    border-radius: var(--radio-grande);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: all var(--transicion-media);
+    border: 2px solid var(--color-borde);
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-medico:hover {
+    transform: translateY(-12px);
+    box-shadow: var(--sombra-fuerte);
+    border-color: var(--color-primario);
+}
+
+.contenedor-imagen-medico {
+    position: relative;
+    overflow: hidden;
+    height: 280px;
+}
+
+.imagen-medico {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transicion-media);
+}
+
+.tarjeta-medico:hover .imagen-medico {
+    transform: scale(1.1);
+}
+
+.insignia-especialidad {
+    position: absolute;
+    top: var(--espaciado-md);
+    right: var(--espaciado-md);
+    background-color: var(--color-primario);
+    color: white;
+    padding: var(--espaciado-xs) var(--espaciado-md);
+    border-radius: var(--radio-medio);
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: var(--sombra-media);
+}
+
+.contenido-tarjeta-medico {
+    padding: var(--espaciado-lg);
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.nombre-medico {
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-sm);
+    font-size: 1.25rem;
+}
+
+.especialidad-medico {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+    margin-bottom: var(--espaciado-sm);
+}
+
+.disponibilidad-medico {
+    color: var(--color-exito);
+    font-weight: 600;
+    margin-bottom: var(--espaciado-md);
+    font-size: 0.9rem;
+}
+
+/* ============================================================================
+   SECCIÓN 8: TURNOS DISPONIBLES
+   ============================================================================ */
+
+.seccion-turnos {
+    background-color: var(--color-fondo-alterno);
+    padding: var(--espaciado-2xl) var(--espaciado-md);
+}
+
+.grilla-turnos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--espaciado-lg);
+    margin-top: var(--espaciado-xl);
+}
+
+.tarjeta-turno {
+    background-color: var(--color-fondo);
+    border-radius: var(--radio-grande);
+    overflow: hidden;
+    box-shadow: var(--sombra-suave);
+    transition: all var(--transicion-media);
+    display: flex;
+    flex-direction: column;
+}
+
+.tarjeta-turno:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.fotografia-turno {
+    overflow: hidden;
+    height: 200px;
+}
+
+.imagen-turno {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transicion-media);
+}
+
+.tarjeta-turno:hover .imagen-turno {
+    transform: scale(1.08);
+}
+
+.contenido-turno {
+    padding: var(--espaciado-lg);
+}
+
+.titulo-turno {
+    color: var(--color-primario);
+    margin-bottom: var(--espaciado-sm);
+    font-size: 1.25rem;
+}
+
+.descripcion-turno {
+    color: var(--color-texto-secundario);
+    font-size: 0.95rem;
+    margin-bottom: var(--espaciado-sm);
+}
+
+.horario-turno {
+    color: var(--color-texto-claro);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* ============================================================================
+   SECCIÓN 9: FOOTER
+   ============================================================================ */
+
+.pie-pagina {
+    background-color: var(--color-texto-principal);
+    color: white;
+    padding: var(--espaciado-2xl) var(--espaciado-md);
+}
+
+.contenedor-footer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--espaciado-lg);
+    margin-bottom: var(--espaciado-xl);
+}
+
+.seccion-footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.titulo-footer {
+    color: var(--color-secundario);
+    margin-bottom: var(--espaciado-md);
+    font-size: 1.1rem;
+}
+
+.texto-footer {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.95rem;
+    line-height: 1.8;
+}
+
+.lista-contacto,
+.lista-enlaces-footer {
+    list-style: none;
+}
+
+.lista-contacto li,
+.lista-enlaces-footer li {
+    margin-bottom: var(--espaciado-md);
+}
+
+.enlace-footer {
+    color: rgba(255, 255, 255, 0.8);
+    transition: color var(--transicion-rapida);
+}
+
+.enlace-footer:hover {
+    color: var(--color-secundario);
+}
+
+.linea-separadora-footer {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: var(--espaciado-lg) 0;
+}
+
+.pie-derechos {
+    text-align: center;
+    padding-top: var(--espaciado-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.texto-derechos {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ============================================================================
+   SECCIÓN 10: MEDIA QUERIES - RESPONSIVE DESIGN
+   ============================================================================ */
+
+/* TABLETS - 768px */
+@media (max-width: 768px) {
+    :root {
+        --espaciado-lg: 1.5rem;
+        --espaciado-xl: 2rem;
+        --espaciado-2xl: 2.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .titulo-principal {
+        font-size: 2rem;
+    }
+
+    .contenedor-nav {
+        flex-wrap: wrap;
+        gap: var(--espaciado-md);
+    }
+
+    .buscador-contenedor {
+        order: 3;
+        width: 100%;
+        max-width: none;
+    }
+
+    .menu-enlaces {
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        gap: var(--espaciado-md);
+        margin-top: var(--espaciado-md);
+        display: none;
+    }
+
+    .menu-enlaces.activo {
+        display: flex;
+    }
+
+    .boton-menu-movil {
+        display: flex;
+        order: 2;
+    }
+
+    .contenedor-principal {
+        grid-template-columns: 1fr;
+        gap: var(--espaciado-lg);
+    }
+
+    .seccion-principal {
+        min-height: auto;
+        padding: var(--espaciado-lg) var(--espaciado-md);
+    }
+
+    .imagen-principal {
+        order: -1;
+    }
+
+    .grilla-especialidades {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: var(--espaciado-md);
+    }
+
+    .grilla-medicos {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: var(--espaciado-md);
+    }
+
+    .contenedor-filtros {
+        gap: var(--espaciado-sm);
+        margin-bottom: var(--espaciado-lg);
+    }
+
+    .boton-filtro {
+        padding: var(--espaciado-xs) var(--espaciado-md);
+        margin: var(--espaciado-xs) var(--espaciado-xs);
+        font-size: 0.9rem;
+    }
+
+    .grilla-turnos {
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor-footer {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* MÓVILES - 480px */
+@media (max-width: 480px) {
+    :root {
+        --espaciado-md: 1rem;
+        --espaciado-lg: 1.25rem;
+        --espaciado-xl: 1.5rem;
+        --espaciado-2xl: 2rem;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    h1 {
+        font-size: 1.75rem;
+    }
+
+    h2 {
+        font-size: 1.25rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
+
+    .titulo-principal {
+        font-size: 1.75rem;
+    }
+
+    .subtitulo-principal {
+        font-size: 1rem;
+    }
+
+    .contenedor-nav {
+        padding: 0 var(--espaciado-sm);
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .buscador-entrada {
+        padding: var(--espaciado-xs) var(--espaciado-sm);
+        font-size: 0.9rem;
+    }
+
+    .boton-principal {
+        padding: var(--espaciado-md) var(--espaciado-lg);
+        font-size: 1rem;
+    }
+
+    .boton-reservar {
+        padding: var(--espaciado-sm) var(--espaciado-md);
+    }
+
+    .contenedor-seccion {
+        padding: var(--espaciado-lg) var(--espaciado-sm);
+    }
+
+    .grilla-especialidades {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta-especialidad {
+        padding: var(--espaciado-md);
+    }
+
+    .icono-especialidad {
+        font-size: 2.5rem;
+    }
+
+    .grilla-medicos {
+        grid-template-columns: 1fr;
+    }
+
+    .contenedor-imagen-medico {
+        height: 200px;
+    }
+
+    .contenido-tarjeta-medico {
+        padding: var(--espaciado-md);
+    }
+
+    .nombre-medico {
+        font-size: 1.1rem;
+    }
+
+    .grilla-turnos {
+        grid-template-columns: 1fr;
+    }
+
+    .fotografia-turno {
+        height: 150px;
+    }
+
+    .contenedor-footer {
+        gap: var(--espaciado-md);
+    }
+
+    .titulo-footer {
+        font-size: 1rem;
+    }
+
+    .texto-footer {
+        font-size: 0.9rem;
+    }
+}
+
+/* MÓVILES PEQUEÑOS - 360px */
+@media (max-width: 360px) {
+    .contenedor-nav {
+        gap: var(--espaciado-sm);
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .titulo-principal {
+        font-size: 1.5rem;
+    }
+
+    .subtitulo-principal {
+        font-size: 0.95rem;
+    }
+
+    .boton-principal {
+        padding: var(--espaciado-sm) var(--espaciado-md);
+        font-size: 0.9rem;
+    }
+
+    .grilla-especialidades {
+        gap: var(--espaciado-sm);
+    }
+
+    .tarjeta-especialidad {
+        padding: var(--espaciado-sm);
+    }
+
+    .icono-especialidad {
+        font-size: 2rem;
+    }
+}
+
+/* ============================================================================
+   SECCIÓN 11: ANIMACIONES Y TRANSICIONES
+   ============================================================================ */
+
+@keyframes deslizar-arriba {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulso {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+@keyframes brillo {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 102, 204, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 102, 204, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 102, 204, 0);
+    }
+}
+
+.tarjeta-especialidad,
+.tarjeta-medico,
+.tarjeta-turno {
+    animation: deslizar-arriba 0.6s ease-out;
+}
+
+.boton-principal {
+    animation: brillo 2s infinite;
+}
+
+/* ============================================================================
+   SECCIÓN 12: UTILIDADES Y ESTADOS
+   ============================================================================ */
+
+.oculto {
+    display: none !important;
+}
+
+.visible {
+    display: block !important;
+}
+
+.centrado {
+    text-align: center;
+}
+
+.alineado-izquierda {
+    text-align: left;
+}
+
+.alineado-derecha {
+    text-align: right;
+}
+
+/* Estados de enfoque para accesibilidad */
+button:focus,
+input:focus,
+a:focus {
+    outline: 2px solid var(--color-primario);
+    outline-offset: 2px;
+}
+
+/* Estilos para impresión */
+@media print {
+    .encabezado,
+    .pie-pagina,
+    .boton-reservar,
+    .boton-filtro {
+        display: none;
+    }
+
+    body {
+        background-color: white;
+    }
+
+    .tarjeta-medico,
+    .tarjeta-turno {
+        page-break-inside: avoid;
+    }
+}

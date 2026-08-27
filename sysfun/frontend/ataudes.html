@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ataúdes - Servicios Funebres</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- MENÚ SUPERIOR -->
+    <nav class="top-nav">
+        <div class="logo">
+            <i class="fas fa-cross"></i>
+            <span>Sistema Funebre</span>
+        </div>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="panel_datos.html"><i class="fas fa-home"></i> Panel de Datos</a></li>
+            <li><a href="solicitudes.html"><i class="fas fa-file-alt"></i> Solicitudes</a></li>
+            <li><a href="empleados.html"><i class="fas fa-users"></i> Empleados</a></li>
+            <li><a href="ataudes.html" class="active"><i class="fas fa-box"></i> Ataúdes</a></li>
+            <li><a href="vehiculos.html"><i class="fas fa-truck"></i> Vehículos</a></li>
+            <li><a href="proveedores.html"><i class="fas fa-building"></i> Proveedores</a></li>
+            <li><a href="reportes.html"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+        </ul>
+        <div class="user-menu">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="header-left">
+                <h1>📦 Gestión de Ataúdes</h1>
+                <p>Listado completo de ataúdes y su stock</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-success" onclick="mostrarFormularioAtaud()">
+                    <i class="fas fa-plus"></i> Nuevo Ataúd
+                </button>
+            </div>
+        </header>
+
+        <!-- Formulario de Ataúdes -->
+        <div id="formContainer" class="form-container hidden">
+            <h2 id="formTitle">Nuevo Ataúd</h2>
+            <form id="ataudForm">
+                <input type="hidden" id="editId" value="">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Código Renglón</label>
+                        <input type="text" id="codigo_renglon" placeholder="Ej: AT-001">
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre *</label>
+                        <input type="text" id="nombre" placeholder="Ej: Modelo Clásico" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Largo (metros) *</label>
+                        <input type="number" id="largo_mts" step="0.01" placeholder="Ej: 2.10" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tiene Chapa</label>
+                        <select id="tiene_chapa">
+                            <option value="0">No</option>
+                            <option value="1">Sí</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Stock Actual *</label>
+                        <input type="number" id="stock_actual" placeholder="Ej: 5" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Stock Mínimo *</label>
+                        <input type="number" id="stock_minimo" placeholder="Ej: 2" required>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="ocultarFormularioAtaud()"><i class="fas fa-times"></i> Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2><i class="fas fa-list"></i> Listado de Ataúdes</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Nombre</th>
+                            <th>Largo</th>
+                            <th>Chapa</th>
+                            <th>Stock</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaAtaudes">
+                        <!-- Se llena con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

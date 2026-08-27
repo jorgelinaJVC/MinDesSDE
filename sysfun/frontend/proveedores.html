@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proveedores - Servicios Funebres</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- MENÚ SUPERIOR -->
+    <nav class="top-nav">
+        <div class="logo">
+            <i class="fas fa-cross"></i>
+            <span>Sistema Funebre</span>
+        </div>
+        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="panel_datos.html"><i class="fas fa-home"></i> Panel de Datos</a></li>
+            <li><a href="solicitudes.html"><i class="fas fa-file-alt"></i> Solicitudes</a></li>
+            <li><a href="empleados.html"><i class="fas fa-users"></i> Empleados</a></li>
+            <li><a href="ataudes.html"><i class="fas fa-box"></i> Ataúdes</a></li>
+            <li><a href="vehiculos.html"><i class="fas fa-truck"></i> Vehículos</a></li>
+            <li><a href="proveedores.html" class="active"><i class="fas fa-building"></i> Proveedores</a></li>
+            <li><a href="reportes.html"><i class="fas fa-chart-bar"></i> Reportes</a></li>
+        </ul>
+        <div class="user-menu">
+            <span id="userName">Usuario</span>
+            <button class="btn-logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <header class="page-header">
+            <div class="header-left">
+                <h1>🏢 Gestión de Proveedores</h1>
+                <p>Listado completo de proveedores</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-success" onclick="mostrarFormularioProveedor()">
+                    <i class="fas fa-plus"></i> Nuevo Proveedor
+                </button>
+            </div>
+        </header>
+
+        <!-- Formulario de Proveedores -->
+        <div id="formContainer" class="form-container hidden">
+            <h2 id="formTitle">Nuevo Proveedor</h2>
+            <form id="proveedorForm">
+                <input type="hidden" id="editId" value="">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Razón Social *</label>
+                        <input type="text" id="razon_social" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nombre Comercial</label>
+                        <input type="text" id="nombre_comercial">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>CUIT</label>
+                        <input type="text" id="cuit">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono</label>
+                        <input type="text" id="telefono">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="email">
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección</label>
+                        <input type="text" id="direccion">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Contacto</label>
+                        <input type="text" id="contacto_nombre" placeholder="Nombre del contacto">
+                    </div>
+                    <div class="form-group">
+                        <label>Teléfono Contacto</label>
+                        <input type="text" id="contacto_telefono">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Condición IVA</label>
+                        <select id="condicion_iva">
+                            <option value="">Seleccionar</option>
+                            <option value="RESPONSABLE_INSCRIPTO">Responsable Inscripto</option>
+                            <option value="MONOTRIBUTISTA">Monotributista</option>
+                            <option value="EXENTO">Exento</option>
+                            <option value="CONSUMIDOR_FINAL">Consumidor Final</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Activo</label>
+                        <select id="activo">
+                            <option value="1">Activo</option>
+                            <option value="0">Inactivo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                    <button type="button" class="btn btn-secondary" onclick="ocultarFormularioProveedor()"><i class="fas fa-times"></i> Cancelar</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla -->
+        <div class="table-container">
+            <div class="table-header">
+                <h2><i class="fas fa-list"></i> Listado de Proveedores</h2>
+            </div>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Razón Social</th>
+                            <th>CUIT</th>
+                            <th>Teléfono</th>
+                            <th>Contacto</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaProveedores">
+                        <!-- Se llena con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburgerBtn');
+            const navLinks = document.getElementById('navLinks');
+            if (hamburger && navLinks) {
+                hamburger.addEventListener('click', function() {
+                    navLinks.classList.toggle('open');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

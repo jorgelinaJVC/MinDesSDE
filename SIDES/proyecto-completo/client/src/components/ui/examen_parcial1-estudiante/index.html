@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sistema de gestión de turnos médicos - Clínica Salud">
+    <meta name="author" content="Estudiante de Programación III">
+    <title>Clínica Salud - Sistema de Turnos Médicos</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ENCABEZADO PRINCIPAL -->
+    <header class="encabezado">
+        <nav class="barra-navegacion">
+            <div class="contenedor-nav">
+                <div class="logo-contenedor">
+                    <h1 class="logo">🏥 Clínica Salud</h1>
+                </div>
+                
+                <div class="buscador-contenedor">
+                    <input 
+                        type="text" 
+                        class="buscador-entrada" 
+                        placeholder="Buscar especialista..." 
+                        aria-label="Buscador de especialistas"
+                    >
+                    <button class="boton-buscar" aria-label="Ejecutar búsqueda">
+                        🔍
+                    </button>
+                </div>
+
+                <ul class="menu-enlaces" role="navigation">
+                    <li><a href="#inicio" class="enlace-menu">Inicio</a></li>
+                    <li><a href="#especialidades" class="enlace-menu">Especialidades</a></li>
+                    <li><a href="#profesionales" class="enlace-menu">Profesionales</a></li>
+                    <li><a href="#contacto" class="enlace-menu">Contacto</a></li>
+                </ul>
+
+                <button class="boton-menu-movil" aria-label="Menú móvil">
+                    ☰
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- SECCIÓN PRINCIPAL (HERO) -->
+    <section class="seccion-principal" id="inicio">
+        <div class="contenedor-principal">
+            <div class="contenido-principal">
+                <h2 class="titulo-principal">Bienvenido a Clínica Salud</h2>
+                <p class="subtitulo-principal">
+                    Accede a los mejores profesionales médicos de la región. 
+                    Reserva tu turno de forma rápida y segura.
+                </p>
+                <button class="boton-principal" aria-label="Reservar turno">
+                    Reservar Turno Ahora
+                </button>
+            </div>
+            <div class="imagen-principal">
+                <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=500&h=500&fit=crop" 
+                     alt="Médico profesional en la clínica" 
+                     class="imagen-hero">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE ESPECIALIDADES -->
+    <section class="seccion-especialidades" id="especialidades">
+        <div class="contenedor-seccion">
+            <h2 class="titulo-seccion">Nuestras Especialidades</h2>
+            <p class="descripcion-seccion">
+                Contamos con profesionales especializados en diversas áreas de la medicina
+            </p>
+
+            <div class="grilla-especialidades">
+                <article class="tarjeta-especialidad">
+                    <div class="icono-especialidad">🫀</div>
+                    <h3 class="nombre-especialidad">Cardiología</h3>
+                    <p class="descripcion-especialidad">
+                        Especialistas en enfermedades del corazón y sistema cardiovascular
+                    </p>
+                </article>
+
+                <article class="tarjeta-especialidad">
+                    <div class="icono-especialidad">👶</div>
+                    <h3 class="nombre-especialidad">Pediatría</h3>
+                    <p class="descripcion-especialidad">
+                        Atención médica especializada para niños y adolescentes
+                    </p>
+                </article>
+
+                <article class="tarjeta-especialidad">
+                    <div class="icono-especialidad">🦷</div>
+                    <h3 class="nombre-especialidad">Odontología</h3>
+                    <p class="descripcion-especialidad">
+                        Cuidado integral de la salud bucal y dental
+                    </p>
+                </article>
+
+                <article class="tarjeta-especialidad">
+                    <div class="icono-especialidad">⚕️</div>
+                    <h3 class="nombre-especialidad">Clínica General</h3>
+                    <p class="descripcion-especialidad">
+                        Consultas médicas generales y diagnóstico inicial
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PROFESIONALES DISPONIBLES -->
+    <section class="seccion-profesionales" id="profesionales">
+        <div class="contenedor-seccion">
+            <h2 class="titulo-seccion">Profesionales Disponibles Hoy</h2>
+            
+            <!-- FILTRO DE ESPECIALIDADES -->
+            <div class="contenedor-filtros">
+                <button class="boton-filtro activo" data-especialidad="todos">
+                    Todos
+                </button>
+                <button class="boton-filtro" data-especialidad="cardiologia">
+                    Cardiología
+                </button>
+                <button class="boton-filtro" data-especialidad="pediatria">
+                    Pediatría
+                </button>
+                <button class="boton-filtro" data-especialidad="odontologia">
+                    Odontología
+                </button>
+                <button class="boton-filtro" data-especialidad="clinica">
+                    Clínica General
+                </button>
+            </div>
+
+            <!-- GRILLA DE MÉDICOS -->
+            <div class="grilla-medicos">
+                <!-- TARJETA MÉDICO 1 -->
+                <article class="tarjeta-medico" data-especialidad="cardiologia">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=400https://images.unsplash.com/photo-1612349317150-e88e6ff1fcc2?w=400&h=400&fit=croph=400https://images.unsplash.com/photo-1612349317150-e88e6ff1fcc2?w=400&h=400&fit=cropfit=crop" 
+                             alt="Dr. Carlos Rodríguez - Cardiólogo" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Cardiología</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dr. Carlos Rodríguez</h3>
+                        <p class="especialidad-medico">Cardiología</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dr. Carlos Rodríguez">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 2 -->
+                <article class="tarjeta-medico" data-especialidad="pediatria">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400https://images.unsplash.com/photo-1559839734033-6461efaf3fc3?w=400&h=400&fit=croph=400https://images.unsplash.com/photo-1559839734033-6461efaf3fc3?w=400&h=400&fit=cropfit=crop" 
+                             alt="Dra. María González - Pediatra" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Pediatría</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dra. María González</h3>
+                        <p class="especialidad-medico">Pediatría</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dra. María González">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 3 -->
+                <article class="tarjeta-medico" data-especialidad="odontologia">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=400&h=400&fit=crop" 
+                             alt="Dr. Juan López - Odontólogo" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Odontología</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dr. Juan López</h3>
+                        <p class="especialidad-medico">Odontología</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dr. Juan López">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 4 -->
+                <article class="tarjeta-medico" data-especialidad="clinica">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                             alt="Dra. Ana Martínez - Médica General" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Clínica General</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dra. Ana Martínez</h3>
+                        <p class="especialidad-medico">Clínica General</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dra. Ana Martínez">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 5 -->
+                <article class="tarjeta-medico" data-especialidad="cardiologia">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                             alt="Dr. Pedro Sánchez - Cardiólogo" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Cardiología</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dr. Pedro Sánchez</h3>
+                        <p class="especialidad-medico">Cardiología</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dr. Pedro Sánchez">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 6 -->
+                <article class="tarjeta-medico" data-especialidad="pediatria">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop" 
+                             alt="Dr. Luis Fernández - Pediatra" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Pediatría</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dr. Luis Fernández</h3>
+                        <p class="especialidad-medico">Pediatría</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dr. Luis Fernández">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 7 -->
+                <article class="tarjeta-medico" data-especialidad="odontologia">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" 
+                             alt="Dra. Laura Gómez - Odontóloga" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Odontología</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dra. Laura Gómez</h3>
+                        <p class="especialidad-medico">Odontología</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dra. Laura Gómez">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+
+                <!-- TARJETA MÉDICO 8 -->
+                <article class="tarjeta-medico" data-especialidad="clinica">
+                    <div class="contenedor-imagen-medico">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" 
+                             alt="Dr. Roberto Díaz - Médico General" 
+                             class="imagen-medico">
+                        <div class="insignia-especialidad">Clínica General</div>
+                    </div>
+                    <div class="contenido-tarjeta-medico">
+                        <h3 class="nombre-medico">Dr. Roberto Díaz</h3>
+                        <p class="especialidad-medico">Clínica General</p>
+                        <p class="disponibilidad-medico">✓ Disponible</p>
+                        <button class="boton-reservar" aria-label="Reservar turno con Dr. Roberto Díaz">
+                            Reservar Turno
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE TURNOS DISPONIBLES -->
+    <section class="seccion-turnos">
+        <div class="contenedor-seccion">
+            <h2 class="titulo-seccion">Turnos Disponibles</h2>
+            
+            <div class="grilla-turnos">
+                <div class="tarjeta-turno">
+                    <div class="fotografia-turno">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=300&h=200&fit=crop" 
+                             alt="Consulta de cardiología" 
+                             class="imagen-turno">
+                    </div>
+                    <div class="contenido-turno">
+                        <h3 class="titulo-turno">Consulta Cardiológica</h3>
+                        <p class="descripcion-turno">Revisión completa del sistema cardiovascular</p>
+                        <p class="horario-turno">Disponible: Lunes a Viernes, 8:00 - 18:00</p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-turno">
+                    <div class="fotografia-turno">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=300https://images.unsplash.com/photo-1631217314830-4ec5a0a49304?w=300&h=200&fit=croph=200https://images.unsplash.com/photo-1631217314830-4ec5a0a49304?w=300&h=200&fit=cropfit=crop" 
+                             alt="Consulta pediátrica" 
+                             class="imagen-turno">
+                    </div>
+                    <div class="contenido-turno">
+                        <h3 class="titulo-turno">Consulta Pediátrica</h3>
+                        <p class="descripcion-turno">Atención médica para niños y adolescentes</p>
+                        <p class="horario-turno">Disponible: Lunes a Viernes, 9:00 - 17:00</p>
+                    </div>
+                </div>
+
+                <div class="tarjeta-turno">
+                    <div class="fotografia-turno">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=300https://images.unsplash.com/photo-1606811841689-23db3c3298c0?w=300&h=200&fit=croph=200https://images.unsplash.com/photo-1606811841689-23db3c3298c0?w=300&h=200&fit=cropfit=crop" 
+                             alt="Consulta odontológica" 
+                             class="imagen-turno">
+                    </div>
+                    <div class="contenido-turno">
+                        <h3 class="titulo-turno">Consulta Odontológica</h3>
+                        <p class="descripcion-turno">Limpieza, revisión y tratamientos dentales</p>
+                        <p class="horario-turno">Disponible: Lunes a Sábado, 8:00 - 19:00</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CONTACTO Y FOOTER -->
+    <footer class="pie-pagina" id="contacto">
+        <div class="contenedor-footer">
+            <div class="seccion-footer">
+                <h3 class="titulo-footer">Clínica Salud</h3>
+                <p class="texto-footer">
+                    Brindamos atención médica de calidad con profesionales especializados
+                </p>
+            </div>
+
+            <div class="seccion-footer">
+                <h3 class="titulo-footer">Contacto</h3>
+                <ul class="lista-contacto">
+                    <li><a href="tel:+5491234567890" class="enlace-footer">📞 +54 9 1234 567890</a></li>
+                    <li><a href="mailto:info@clinicasalud.com" class="enlace-footer">📧 info@clinicasalud.com</a></li>
+                    <li class="texto-footer">📍 Av. Principal 123, Santiago del Estero</li>
+                </ul>
+            </div>
+
+            <div class="seccion-footer">
+                <h3 class="titulo-footer">Enlaces Rápidos</h3>
+                <ul class="lista-enlaces-footer">
+                    <li><a href="#" class="enlace-footer">Términos de Uso</a></li>
+                    <li><a href="#" class="enlace-footer">Política de Privacidad</a></li>
+                    <li><a href="#" class="enlace-footer">Ayuda</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="linea-separadora-footer"></div>
+
+        <div class="pie-derechos">
+            <p class="texto-derechos">
+                © 2026 Clínica Salud. Todos los derechos reservados. 
+                Desarrollado para Examen Parcial I - Programación III
+            </p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
