@@ -3,46 +3,95 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes" />
-    <title>Servicios Fúnebres - Ministerio de Desarrollo Social</title>
+    <title>Servicios Fúnebres Gratuitos | Ministerio de Desarrollo Social - Santiago del Estero</title>
+    <meta name="description" content="Servicio fúnebre gratuito y exclusivo para residentes de Santiago del Estero. Trámite 100% online. Atención de 7:00 a 19:00 hs.">
     
-    <!-- ========================================== -->
-    <!-- FAVICONS - Completos y corregidos          -->
-    <!-- ========================================== -->
+    <!-- Open Graph / Facebook / WhatsApp -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ministeriodesarrollosocial.sde.gob.ar/funebres">
+    <meta property="og:title" content="Servicios Fúnebres Gratuitos | Ministerio de Desarrollo Social">
+    <meta property="og:description" content="Trámite 100% gratuito y online para residentes de Santiago del Estero. Atención de 7:00 a 19:00 hs.">
+    <meta property="og:image" content="../img/og-funebres.jpg">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ministeriodesarrollosocial.sde.gob.ar/funebres">
+    <meta property="twitter:title" content="Servicios Fúnebres Gratuitos">
+    <meta property="twitter:description" content="Trámite 100% gratuito y online para residentes de Santiago del Estero.">
+    <meta property="twitter:image" content="../img/og-funebres.jpg">
+    
+    <!-- FAVICONS -->
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
     
-    <!-- ========================================== -->
-    <!-- CSS - Unificado                            -->
-    <!-- ========================================== -->
+    <!-- CSS -->
     <link rel="stylesheet" href="../css/funebres.css" />
     
-    <!-- ========================================== -->
-    <!-- GOOGLE FONTS                               -->
-    <!-- ========================================== -->
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
-    <!-- ========================================== -->
-    <!-- FONT AWESOME                               -->
-    <!-- ========================================== -->
+    <!-- FONT AWESOME -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "GovernmentOrganization",
+        "name": "Ministerio de Desarrollo Social - Servicios Fúnebres",
+        "alternateName": "SIDES",
+        "url": "https://ministeriodesarrollosocial.sde.gob.ar",
+        "logo": "https://ministeriodesarrollosocial.sde.gob.ar/img/logo.png",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+54-385-4892389",
+            "contactType": "customer service",
+            "availableLanguage": ["Spanish"]
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Sáenz Peña 346",
+            "addressLocality": "Santiago del Estero",
+            "postalCode": "G4200",
+            "addressCountry": "AR"
+        },
+        "openingHours": "Mo-Su 07:00-19:00",
+        "sameAs": [
+            "https://www.facebook.com/MinisterioDesarrolloSocialSDE",
+            "https://www.instagram.com/ministeriodesarrollosocialsde"
+        ]
+    }
+    </script>
 </head>
 <body>
 
-    <!-- ========================================== -->
-    <!-- HEADER - Mejorado con accesibilidad        -->
-    <!-- ========================================== -->
+    <!-- Barra de progreso de scroll -->
+    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+    <!-- Barra de emergencia -->
+    <div class="emergency-bar">
+        <div class="container">
+            <div class="emergency-bar__content">
+                <div class="emergency-bar__info">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span><strong>Emergencia médica:</strong> Llame primero al <a href="tel:107">107</a> o <a href="tel:911">911</a></span>
+                </div>
+                <div class="emergency-bar__contact">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>Atención: 7:00 - 19:00 hs | <a href="tel:+543854892389">385-4892389</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HEADER -->
     <header class="header" id="header">
         <div class="header__inner container">
             <a href="../index.html" class="header__logo">
-                <img src="../img/logo.png" alt="Ministerio de Desarrollo Social" class="logo-img" 
-                style="height: 45px; width: auto; object-fit: contain;"/> 
-
+                <img src="../img/logo.png" alt="Escudo Ministerio de Desarrollo Social" class="logo-img" loading="lazy" /> 
                 <div>
                     <span class="logo-text">Ministerio de Desarrollo Social</span>
                     <span class="logo-sub">Santiago del Estero</span>
@@ -52,7 +101,8 @@
                 <ul class="nav__list">
                     <li><a href="../index.html" class="nav__link">Inicio</a></li>
                     <li><a href="#beneficios" class="nav__link">Beneficios</a></li>
-                    <li><a href="#requisitos" class="nav__link">Requisitos</a></li>
+                    <li><a href="#requisitos" class="nav__link">Documentación</a></li>
+                    <li><a href="#faq" class="nav__link">Preguntas Frecuentes</a></li>
                     <li><a href="#contacto" class="nav__link">Contacto</a></li>
                 </ul>
             </nav>
@@ -62,193 +112,305 @@
         </div>
     </header>
 
-    <!-- ========================================== -->
-    <!-- HERO - Mejorado                            -->
-    <!-- ========================================== -->
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+            <ol class="breadcrumb__list">
+                <li class="breadcrumb__item"><a href="../index.html">Inicio</a></li>
+                <li class="breadcrumb__item"><a href="../index.html#servicios">Servicios</a></li>
+                <li class="breadcrumb__item" aria-current="page">Servicios Fúnebres</li>
+            </ol>
+        </div>
+    </nav>
+
+    <!-- HERO -->
     <section class="hero-funerario" id="inicio">
-        <div class="hero__bg-blur"></div>
         <div class="hero__overlay"></div>
         <div class="hero__content container">
             <div class="hero__ministerio">Ministerio de Desarrollo Social</div>
-            <h1 class="hero__title">Área de Servicios Funebres</h1>
-            <p class="hero__subtitle">Servicio gratuito y exclusivo para residentes de la Provincia de Santiago del Estero, brindado por el Estado provincial con calidez y eficiencia</p>
+            <h1 class="hero__title">Área de Servicios Fúnebres</h1>
+            <p class="hero__subtitle">Acompañamos a las familias de Santiago del Estero en momentos difíciles, brindando un servicio gratuito, digno y eficiente.</p>
             <div class="hero__buttons">
-                <a href="solicitar-servicio.html" class="btn-hero btn-hero-primary">Solicitar Servicio</a>
-                <a href="#como-solicitar" class="btn-hero btn-hero-secondary">Más información</a>
+                <a href="solicitar-servicio.html" class="btn-hero btn-hero-primary">
+                    <i class="fas fa-hands-helping" style="margin-right: 8px;"></i> Solicitar Acompañamiento
+                </a>
+                <a href="#como-solicitar" class="btn-hero btn-hero-secondary">Conocer el proceso</a>
             </div>
+            <p class="hero__time-estimate"><i class="far fa-clock"></i> Tiempo estimado de trámite: 5 minutos</p>
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- BENEFICIOS - Mejorado                      -->
-    <!-- ========================================== -->
-    <section id="beneficios" class="servicios">
+    <!-- BENEFICIOS -->
+    <section id="beneficios" class="servicios reveal">
         <div class="container">
-            <h2 class="section-title section-title--center">Beneficios del Servicio Fúnebre</h2>
+            <h2 class="section-title section-title--center">Nuestro Compromiso con su Familia</h2>
             <div class="servicios__grid">
                 <div class="servicio-card">
-                    <h4>Trámite Rápido</h4>
-                    <p>Proceso simplificado y rápido. Respuesta dentro de las 24hs de realizada la solicitud.</p>
+                    <div class="servicio-card__icon"><i class="fas fa-clock" style="color: var(--color-accent);"></i></div>
+                    <h4>Atención Ágil</h4>
+                    <p>Proceso simplificado. Nos esforzamos por dar respuesta dentro de las 24 horas de realizada la solicitud.</p>
                 </div>
                 <div class="servicio-card">
+                    <div class="servicio-card__icon"><i class="fas fa-shield-alt" style="color: var(--color-accent);"></i></div>
                     <h4>Seguro y Confiable</h4>
-                    <p>Sistema oficial del Ministerio con protección de datos y seguimiento completo.</p>
+                    <p>Sistema oficial del Ministerio con total protección de sus datos y seguimiento transparente del trámite.</p>
+                </div>
+                <div class="servicio-card">
+                    <div class="servicio-card__icon"><i class="fas fa-hand-holding-heart" style="color: var(--color-accent);"></i></div>
+                    <h4>Acompañamiento Humano</h4>
+                    <p>Brindamos contención y asesoramiento personalizado durante todo el proceso.</p>
                 </div>
             </div>
             <div class="lista-beneficios">
-                <h3>Incluye además:</h3>
+                <h3>El servicio incluye sin costo:</h3>
                 <ul class="lista-items">
-                    <li>Entrega de ataúdes sin cargo para familiares</li>
-                    <li>Traslado del fallecido sin costo adicional (Capital e interior)</li>
-                    <li>Cobertura en toda la provincia de Santiago del Estero (interior y capital)</li>
-                    <li>Traslados desde fuera de la provincia hacia Santiago (con requisitos específicos)</li>
+                    <li>Provisión de ataúd para familiares residentes.</li>
+                    <li>Traslado del fallecido (Capital e interior provincial).</li>
+                    <li>Cobertura en toda la provincia de Santiago del Estero.</li>
+                    <li>Traslados desde fuera de la provincia (sujeto a verificación de domicilio en DNI).</li>
                 </ul>
             </div>
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- CÓMO SOLICITAR - Mejorado                  -->
-    <!-- ========================================== -->
-    <section id="como-solicitar" class="como-solicitar">
+    <!-- CÓMO SOLICITAR -->
+    <section id="como-solicitar" class="como-solicitar reveal">
         <div class="container">
-            <h2 class="section-title section-title--center">Cómo Solicitar el Beneficio</h2>
+            <h2 class="section-title section-title--center">Pasos para Solicitar el Beneficio</h2>
             <div class="pasos-grid">
                 <div class="paso-card">
                     <div class="paso-number">1</div>
-                    <h3>Solicitar Servicio</h3>
-                    <p>Haga clic en el botón "Solicitar Servicio" que se encuentra en la parte superior de esta página.</p>
+                    <h3>Iniciar Trámite</h3>
+                    <p>Haga clic en el botón "Solicitar Acompañamiento" en la parte superior de esta página.</p>
                 </div>
                 <div class="paso-card">
                     <div class="paso-number">2</div>
-                    <h3>Completar el Formulario</h3>
-                    <p>Complete todos los datos del solicitante (usted) y del fallecido, asegurándose de que sean correctos.</p>
+                    <h3>Completar Datos</h3>
+                    <p>Complete con calma la información del solicitante y del fallecido en nuestro formulario guiado.</p>
                 </div>
                 <div class="paso-card">
                     <div class="paso-number">3</div>
                     <h3>Adjuntar Documentación</h3>
-                    <p>Suba los documentos necesarios en formato digital (pueden ser fotos o PDF). Revise en la sección <a href="#requisitos">Requisitos Obligatorios</a> para más detalles.</p>
+                    <p>Suba fotos o PDFs de los documentos necesarios. Puede consultar la lista en la sección de <a href="#requisitos">Documentación</a>.</p>
                 </div>
                 <div class="paso-card">
                     <div class="paso-number">4</div>
-                    <h3>Aguarde una respuesta</h3>
-                    <p>Un representante del Área se comunicará con usted vía telefónica para confirmar su solicitud y coordinar la prestación del servicio. Recuerde revisar nuestros <a href="#horarios">horarios de atención</a>.</p>
+                    <h3>Seguimiento Personalizado</h3>
+                    <p>Un representante del Área se comunicará con usted por teléfono para confirmar los detalles y coordinar el servicio.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- REQUISITOS - Mejorado                      -->
-    <!-- ========================================== -->
-    <section id="requisitos" class="requisitos">
+    <!-- REQUISITOS -->
+    <section id="requisitos" class="requisitos reveal">
         <div class="container">
-            <h2 class="section-title section-title--center">Requisitos Obligatorios</h2>
+            <h2 class="section-title section-title--center">Documentación Necesaria</h2>
             <div class="requisitos-grid">
                 <div class="requisito-card">
-                    <strong>Certificado de defunción</strong>
-                    <p>Original o copia certificada, indispensable para iniciar el trámite.</p>
+                    <strong><i class="fas fa-file-medical" style="color: var(--color-accent); margin-right: 8px;"></i> Certificado de Defunción</strong>
+                    <p>Original o copia certificada. Es el documento indispensable para iniciar el trámite.</p>
                 </div>
                 <div class="requisito-card">
-                    <strong>DNI del fallecido</strong>
-                    <p>Fotocopia clara de ambos lados o imagen digital legible.</p>
+                    <strong><i class="fas fa-id-card" style="color: var(--color-accent); margin-right: 8px;"></i> DNI del Fallecido</strong>
+                    <p>Fotocopia clara de ambas caras o una imagen digital legible tomada con el celular.</p>
                 </div>
                 <div class="requisito-card">
-                    <strong>En caso de bebés recién nacidos (sin DNI propio)</strong>
-                    <p>Certificado de defunción + DNI de la madre o persona responsable.</p>
+                    <strong><i class="fas fa-baby" style="color: var(--color-accent); margin-right: 8px;"></i> Para Bebés Recién Nacidos</strong>
+                    <p>Certificado de defunción + DNI de la madre o persona responsable a cargo.</p>
                 </div>
                 <div class="requisito-card">
-                    <strong>Traslados desde fuera de la provincia</strong>
-                    <p>El fallecido debe tener domicilio en Santiago del Estero, verificado exclusivamente con la última versión vigente del DNI.</p>
+                    <strong><i class="fas fa-truck-moving" style="color: var(--color-accent); margin-right: 8px;"></i> Traslados Interprovinciales</strong>
+                    <p>El fallecido debe acreditar domicilio en Santiago del Estero mediante su último DNI vigente.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- HORARIOS - Mejorado                        -->
-    <!-- ========================================== -->
-    <section id="horarios" class="horarios">
+    <!-- FAQ -->
+    <section id="faq" class="faq-section reveal">
+        <div class="container">
+            <h2 class="section-title section-title--center">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>¿Qué hago si el fallecimiento ocurre de madrugada o fuera del horario de atención?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Si el fallecimiento ocurre fuera de nuestro horario de atención (7:00 - 19:00 hs), puede realizar la solicitud al día siguiente a partir de las 7:00 hs. Mientras tanto, le recomendamos contactar a una funeraria particular para los servicios inmediatos. Nuestro servicio se hará cargo del traslado y/o ataúd una vez iniciado el trámite.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>¿Puedo elegir el tipo de ataúd?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El Ministerio provee ataúdes estándar de madera. En casos especiales, puede consultar disponibilidad de otros modelos comunicándose directamente al (385) 4892389.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>¿Qué pasa si no tengo todos los documentos al momento de solicitar?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Puede iniciar la solicitud con los documentos que tenga disponibles. Nuestro personal le indicará cómo completar la documentación faltante. Sin embargo, el Certificado de Defunción es obligatorio para cualquier tipo de servicio.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>¿El servicio incluye ceremonia religiosa o velatorio?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El servicio del Ministerio incluye provisión de ataúd y/o traslado. La ceremonia religiosa y el velatorio deben coordinarse por separado con la iglesia o lugar de culto que la familia elija. Podemos orientarlo sobre cementerios y capillas disponibles.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>¿Cuánto tiempo tarda el traslado?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>El tiempo de traslado depende de la distancia. Para Capital e interior provincial, el traslado se realiza dentro de las 24-48 horas de aprobada la solicitud. Para traslados interprovinciales, el tiempo puede ser mayor. Le informaremos el cronograma exacto al confirmar su solicitud.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>¿Puedo consultar el estado de mi trámite?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Sí. Al finalizar la solicitud recibirá un número de pedido. Puede consultar el estado comunicándose al (385) 4892389 o enviando un WhatsApp con su número de pedido.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HORARIOS -->
+    <section id="horarios" class="horarios reveal">
         <div class="container">
             <div class="horario-card">
-                <h3>⏰ Horarios de atención</h3>
+                <h3><i class="far fa-clock"></i> Horarios de Atención</h3>
                 <p><strong>Lunes a domingo: 7:00 a 19:00 hs.</strong></p>
-                <p class="horario-aviso">⚠️ No hay atención las 24 horas. Mensajes fuera de horario se responderán al día siguiente.</p>
+                <p class="horario-aviso"><i class="fas fa-info-circle"></i> Importante: No contamos con atención las 24 horas. Los mensajes recibidos fuera de este horario serán respondidos a primera hora del día siguiente.</p>
             </div>
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- CONTACTO - Mejorado con clases específicas -->
-    <!-- ========================================== -->
-    <section id="contacto" class="contacto">
+    <!-- UBICACIÓN (Solo Mapa - Sin datos duplicados) -->
+    <section id="ubicacion" class="ubicacion-section reveal">
         <div class="container">
-            <h2 class="section-title section-title--center">Contacto oficial</h2>
+            <h2 class="section-title section-title--center">Nuestra Ubicación</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3464.1234567890123!2d-64.26667!3d-27.79556!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9421c0b0b0b0b0b0%3A0x0!2zU8OhZW56IFBlw7FhIDM0NiwgRzQyMDAgU2FudGlhZ28gZGVsIEVzdGVybw!5e0!3m2!1ses!2sar!4v1234567890123!5m2!1ses!2sar" 
+                    width="100%" 
+                    height="450" 
+                    style="border:0; border-radius: var(--radius);" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Ubicación Ministerio de Desarrollo Social - Sáenz Peña 346">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="contacto reveal">
+        <div class="container">
+            <h2 class="section-title section-title--center">Estamos para Ayudarle</h2>
             
             <div class="contacto-grid">
-                <a href="https://wa.me/543854892389" target="_blank" class="contact-item" aria-label="WhatsApp">
+                <a href="https://wa.me/543854892389" target="_blank" class="contact-item" aria-label="Contactar por WhatsApp">
                     <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
                     <div><strong>WhatsApp</strong><br>385-4892389</div>
                 </a>
-                <a href="mailto:Serviciosfunebressgo@gmail.com" class="contact-item" aria-label="Correo electrónico">
+                <a href="mailto:Serviciosfunebressgo@gmail.com" class="contact-item" aria-label="Enviar correo electrónico">
                     <div class="contact-icon"><i class="far fa-envelope"></i></div>
-                    <div><strong>Email</strong><br>Serviciosfunebressgo@gmail.com</div>
+                    <div><strong>Correo Electrónico</strong><br>Serviciosfunebressgo@gmail.com</div>
+                </a>
+                <a href="tel:+543854892389" class="contact-item" aria-label="Llamar por teléfono">
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div><strong>Teléfono</strong><br>385-4892389</div>
                 </a>
             </div>
             
             <div class="contacto-cta">
                 <a href="solicitar-servicio.html" class="btn-solicitar">
-                    📝 Solicitar Servicio Funebre
+                    <i class="fas fa-file-signature" style="margin-right: 8px;"></i> Iniciar Solicitud de Servicio
                 </a>
-                <p class="contacto-leyenda">*Atención prioritaria, trámite gratuito para residentes de Santiago del Estero.</p>
+                <p class="contacto-leyenda">Trámite 100% gratuito y prioritario para residentes de Santiago del Estero.</p>
             </div>
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- FOOTER - Mejorado                          -->
-    <!-- ========================================== -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer__inner">
                 <div class="footer__brand">
-                    <img src="../img/logo.png" alt="Ministerio de Desarrollo Social" class="footer-logo" />
+                    <img src="../img/logo.png" alt="Ministerio de Desarrollo Social" class="footer-logo" loading="lazy" />
                     <p><strong>Ministerio de Desarrollo Social</strong><br><span>Santiago del Estero</span></p>
+                    <p style="margin-top: 12px; font-size: 0.85rem;">Sáenz Peña 346, Santiago del Estero</p>
                 </div>
                 <div class="footer__links">
-                    <h5>Enlaces Rápidos</h5>
+                    <h5>Navegación</h5>
                     <ul>
                         <li><a href="#inicio">Inicio</a></li>
                         <li><a href="#beneficios">Beneficios</a></li>
-                        <li><a href="#requisitos">Requisitos</a></li>
+                        <li><a href="#requisitos">Documentación</a></li>
+                        <li><a href="#faq">Preguntas Frecuentes</a></li>
                         <li><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="footer__contact">
-                    <h5>Horario de Atención</h5>
-                    <p>Lun a Dom: 7:00 - 19:00 hs</p>
-                    <p>Respuesta a consultas dentro del horario</p>
+                    <h5>Atención</h5>
+                    <p><i class="far fa-clock"></i> Lun a Dom: 7:00 - 19:00 hs</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Sáenz Peña 346, Santiago del Estero</p>
+                    <p><i class="fas fa-phone"></i> (385) 489-2389</p>
                 </div>
             </div>
             <div class="footer__bottom">
-                <p>© SIDES 2026 — Santiago del Estero | Servicios Fúnebres Gratuitos</p>
+                <p>© 2026 SIDES — Santiago del Estero | Servicios Fúnebres Gratuitos</p>
+                <p style="margin-top: 8px; font-size: 0.75rem;">
+                    <a href="#" style="color: rgba(255,255,255,0.4);">Política de Privacidad</a> | 
+                    <a href="#" style="color: rgba(255,255,255,0.4);">Términos de Uso</a>
+                </p>
             </div>
         </div>
     </footer>
 
-    <!-- ========================================== -->
-    <!-- ACCESIBILIDAD - Mejorado                   -->
-    <!-- ========================================== -->
+    <!-- Botón Volver Arriba -->
+    <button id="scrollTopBtn" class="scroll-top-btn" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/543854892389" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- ACCESIBILIDAD -->
     <div class="accesibilidad-container" role="toolbar" aria-label="Controles de accesibilidad">
-        <button id="btnZoomMas" class="accesibilidad-btn" title="Aumentar tamaño" aria-label="Aumentar tamaño de letra">A+</button>
-        <button id="btnZoomMenos" class="accesibilidad-btn" title="Disminuir tamaño" aria-label="Disminuir tamaño de letra">A-</button>
-        <button id="btnZoomNormal" class="accesibilidad-btn" title="Tamaño normal" aria-label="Restablecer tamaño de letra">A</button>
+        <button id="btnContraste" class="accesibilidad-btn" title="Alternar alto contraste" aria-label="Alternar modo de alto contraste">
+            <i class="fas fa-adjust"></i>
+        </button>
+        <button id="btnZoom" class="accesibilidad-btn" title="Cambiar tamaño de texto" aria-label="Cambiar tamaño de texto">
+            <i class="fas fa-text-height"></i> <span style="font-size: 0.7rem; margin-left: 4px;">100%</span>
+        </button>
     </div>
 
-    <!-- ========================================== -->
-    <!-- JAVASCRIPT - Un solo script                -->
-    <!-- ========================================== -->
+    <!-- JAVASCRIPT -->
     <script src="../js/funebres.js"></script>
-
 </body>
 </html>
