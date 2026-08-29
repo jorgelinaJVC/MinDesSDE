@@ -1,0 +1,95 @@
+:root {
+    --sidebar-width: 250px;
+    --primary-color: #4e73df;
+    --dark-bg: #2c3e50;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f4f6f9;
+}
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    transition: all 0.3s;
+    background: var(--dark-bg);
+}
+
+#sidebar.collapsed {
+    margin-left: calc(-1 * var(--sidebar-width));
+}
+
+#sidebar .nav-link {
+    padding: 0.75rem 1rem;
+    border-radius: 5px;
+    margin-bottom: 3px;
+    transition: all 0.2s;
+}
+
+#sidebar .nav-link:hover,
+#sidebar .nav-link.active {
+    background-color: rgba(255,255,255,0.1);
+    color: #fff !important;
+}
+
+.main-content {
+    flex: 1;
+    width: calc(100% - var(--sidebar-width));
+    transition: all 0.3s;
+}
+
+#sidebar.collapsed + .main-content {
+    width: 100%;
+    margin-left: 0;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.card-header {
+    background-color: #fff;
+    border-bottom: 1px solid #e3e6f0;
+    font-weight: 600;
+}
+
+.table th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: #6c757d;
+}
+
+.badge {
+    font-weight: 500;
+    padding: 0.4em 0.7em;
+}
+
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.85rem;
+}
+
+.login-bg {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: calc(-1 * var(--sidebar-width));
+    }
+    #sidebar.show {
+        margin-left: 0;
+    }
+    .main-content {
+        width: 100%;
+    }
+}
