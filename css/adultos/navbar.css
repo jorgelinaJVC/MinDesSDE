@@ -126,3 +126,86 @@ nav {
     transform: translateY(0);
   }
 }
+/********************************/
+
+/* =========================================
+   DROPDOWN - INSTITUCIONES DEPENDIENTES
+   ========================================= */
+
+.dropdown {
+    position: relative;
+}
+
+/* El menú desplegable permanece OCULTO */
+.dropdown > .dropdown-menu {
+    display: none !important;
+
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 330px;
+
+    background-color: #ffffff;
+
+    margin: 0;
+    padding: 8px 0;
+
+    list-style: none;
+
+    border-radius: 6px;
+    border-top: 3px solid #f2b705;
+
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    z-index: 9999;
+}
+
+
+/* Mostrar SOLO cuando pasamos el mouse */
+.dropdown:hover > .dropdown-menu {
+    display: block !important;
+}
+
+
+/* Las opciones del dropdown */
+.dropdown > .dropdown-menu li {
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* Enlaces */
+.dropdown > .dropdown-menu li a {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 14px 20px;
+
+    color: #1a2b6b;
+    background-color: #ffffff;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    white-space: normal;
+}
+
+
+/* Hover de cada institución */
+.dropdown > .dropdown-menu li a:hover {
+    background-color: #f4f6fa;
+    color: #1a2b6b;
+}
+
+
+/* Separación entre instituciones */
+.dropdown > .dropdown-menu li + li {
+    border-top: 1px solid #e9ecf2;
+}
