@@ -13,16 +13,17 @@
   <link rel="stylesheet" href="css/adultos/navbar.css" />
   <link rel="stylesheet" href="css/adultos/hero.css" />
   <link rel="stylesheet" href="css/adultos/about.css" />
-  <link rel="stylesheet" href="css/adultos/news.css" />
   <link rel="stylesheet" href="css/adultos/services.css" />
+  <link rel="stylesheet" href="css/adultos/news.css" />
+  
   <link rel="stylesheet" href="css/adultos/gallery.css" />
-  <link rel="stylesheet" href="css/adultos/methodology.css" />
-  <link rel="stylesheet" href="css/adultos/autogestion.css" />
+  <!-- <link rel="stylesheet" href="css/adultos/methodology.css" /> -->
+  <!-- <link rel="stylesheet" href="css/adultos/autogestion.css" /> -->
   <link rel="stylesheet" href="css/adultos/contact.css" />
   <link rel="stylesheet" href="css/adultos/footer.css" />
   <link rel="stylesheet" href="css/adultos/floating.css" />
   <link rel="stylesheet" href="css/adultos/responsive.css" />
-  <link rel="stylesheet" href="css/adultos/geriatricos.css" />
+  <!-- <link rel="stylesheet" href="css/adultos/geriatricos.css" /> -->
   <link rel="stylesheet" href="css/adultos/acceso.css" />
   <link rel="stylesheet" href="css/adultos/accessibility.css" />
   <link rel="stylesheet" href="css/adultos/mapa-territorial.css" />
@@ -66,11 +67,37 @@
         </div>
       </li>
       <li><a href="../index.html" class="nav__link">Inicio</a></li>
-      <li><a href="#news">Noticias</a></li>
-      <li><a href="#about">Nosotros</a></li>
-      <li><a href="#services">Servicios</a></li>
+      <li><a href="#about">Nosotros</a></li> 
+      <li><a href="#services">Servicios</a></li>  
+        
+<li class="dropdown">
+
+    <a href="#" class="dropdown-toggle">
+        Instituciones Dependientes
+        <span class="arrow">▾</span>
+    </a>
+
+    <ul class="dropdown-menu">
+
+        <li>
+            <a href="mama-antula.html">
+                Residencia de Adultos Mayores "Mama Antula"
+            </a>
+        </li>
+
+        <li>
+            <a href="centro-dia.html">
+                Centro de Día
+            </a>
+        </li>
+
+    </ul>
+
+</li>
+ 
       <li><a href="#mapa-territorial">Ubicación</a></li>
-      <li><a href="#methodology">Metodología</a></li>      
+      <!-- <li><a href="#methodology">Metodología</a></li>       -->
+       <li><a href="#news">Noticias</a></li>   
       <li><a href="#gallery">Galeria</a></li>
       <li><a href="#contact" class="nav-cta">Consultar ahora</a></li>
     </ul>
@@ -133,75 +160,9 @@
     </div>
   </section>
 
-  <section id="news">
-    <div class="section-container">
-      <div class="section-header centered fade-in">
-        <span class="section-label">Actualidad</span>
-        <h2 class="section-title">Últimas Noticias</h2>
-      </div>
-      
-      <div class="gallery-grid full-four-columns">
-        <div class="gallery-item fade-in" data-notice="noti1">
-          <div class="gallery-image-wrapper">
-            <img src="assets/Buen-trato-a-las-personas-mayores-1024x576.png" alt="El Buen Trato" />
-            <div class="gallery-overlay"><p>Leer noticia</p></div>
-          </div>
-          <div class="gallery-caption">
-            <h4>Locales • 12 de Junio</h4>
-            <p><strong>El valor del respeto:</strong> Claves para promover el buen trato hacia las personas mayores.</p>
-          </div>
-        </div>
+  
 
-        <div class="gallery-item fade-in" data-notice="noti2">
-          <div class="gallery-image-wrapper">
-            <img src="assets/maltrato.png" alt="Visibilizar para proteger" />
-            <div class="gallery-overlay"><p>Leer noticia</p></div>
-          </div>
-          <div class="gallery-caption">
-            <h4>Conciencia Social • 11 de Junio</h4>
-            <p><strong>Visibilizar para proteger:</strong> Hablemos sobre el abandono y la soledad en la vejez.</p>
-          </div>
-        </div>
-
-        <div class="gallery-item fade-in" data-notice="noti3">
-          <div class="gallery-image-wrapper">
-            <img src="assets/ahorro.avif" alt="Cuidá tus ahorros" />
-            <div class="gallery-overlay"><p>Leer noticia</p></div>
-          </div>
-          <div class="gallery-caption">
-            <h4>Precaucion • 10 de Junio</h4>
-            <p><strong>Cuidá tus ahorros:</strong> Cómo detectar y prevenir el abuso financiero.</p>
-          </div>
-        </div>
-
-        <div class="gallery-item fade-in" data-notice="noti4">
-          <div class="gallery-image-wrapper">
-            <img src="assets/talleres.png" alt="Nunca es tarde para aprender" />
-            <div class="gallery-overlay"><p>Leer noticia</p></div>
-          </div>
-          <div class="gallery-caption">
-            <h4>Locales • 12 de Junio</h4>
-            <p><strong>Nunca es tarde para aprender:</strong> ¡Abren las inscripciones para las nuevas actividades educativas!.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div id="news-modal" class="modal-overlay">
-    <div class="modal-content news-modal-content">
-      <span class="modal-close news-modal-close">×</span>
-      <div class="news-layout-container">
-        <div id="modal-news-image-container" class="news-modal-image-box"></div>
-        <div class="news-modal-info-box">
-          <span id="modal-news-tag" class="news-tag-indicator">Categoría</span>
-          <h2 id="modal-news-title">Título de la Noticia</h2>
-          <p id="modal-news-date" class="news-modal-date">Fecha</p>
-          <div id="modal-news-text" class="news-modal-text-content"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Sección de Nosotros(Quienes somos, Autoridad y metodología) -->
 
   <section id="about">
     <div class="section-container">
@@ -212,6 +173,7 @@
           </div>
           <div class="about-badge-float"><span>DGAMSDE</span>Ministerio de Desarrollo Social<br>Sgo. del Estero</div>
         </div>
+
         <div class="about-content fade-in fade-in-delay-2">
           <div class="section-header">
             <span class="section-label">Nuestra Historia</span>
@@ -272,6 +234,34 @@
     </div>
   </section>
 
+  <section id="methodology">
+    <div class="section-container">
+      <div class="section-header centered fade-in">
+        <span class="section-label">¿Cómo trabajamos por vos?</span>
+        <h2 class="section-title"><span>Nuestra Metodología</span></h2>
+        <p class="section-desc">La Dirección General de Adultos Mayores realiza intervenciones domiciliarias con el fin de transformar la realidad de las personas mayores, promoviendo no solo su bienestar físico y emocional, sino también su inclusión plena en la sociedad. Con un enfoque integral y dinámico, se fomenta una participación activa que va más allá del cuidado, impulsando un cambio cultural que valore la experiencia y los derechos de los adultos mayores. Al trabajar de la mano con instituciones, profesionales y la comunidad, se crean espacios de colaboración y apoyo mutuo que garantizan intervenciones personalizadas y efectivas. Este esfuerzo colectivo busca construir un entorno en el que los adultos mayores sean protagonistas de su propia vida, disfrutando de un envejecimiento digno, respetado y lleno de oportunidades.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card featured fade-in-delay-0">
+          <div class="service-icon-wrapper">🛡️</div>
+          <h3>Respaldo Profesional Interdisciplinario</h3>
+          <p><strong>Nuestro Equipo:</strong> Contamos con el aval de un equipo especializado de Trabajadoras Sociales y personal administrativo.</p>
+          <p><strong>Acción en Territorio:</strong> Realizamos un seguimiento constante y monitoreo para asegurar el cumplimiento de la Ley Provincial N.º 7149.</p>
+          <p><strong>Garantía de Derechos:</strong> Cada intervención busca un bienestar pleno y participación activa.</p>
+        </div>
+        <div class="service-card fade-in fade-in-delay-1">
+          <div class="service-icon-wrapper">🤝</div>
+          <h3>Una Red que nos Fortalece</h3>
+          <p><strong>Trabajo en Conjunto:</strong> Mantenemos una interacción permanente con instituciones clave para una respuesta integral.</p>
+          <p><strong>Salul y Seguridad:</strong> Colaboramos con Hospitales, APS, Obras Sociales y la Policía Comunitaria.</p>
+          <p><strong>Gobierno y Comunidad:</strong> Municipios, DDHH y el Consejo Provincial de Adultos Mayores.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- servicios -->
+
   <section id="services">
     <div class="section-container">
       <div class="section-header centered fade-in">
@@ -286,12 +276,12 @@
           <p>Brindamos intervenciones profesionales y orientación ante situaciones de vulnerabilidad o contingencias que afecten a las personas mayores. Realizamos diagnósticos, seguimiento social y actuaciones de oficio cuando es necesario.</p>
           <span class="service-tag">Servicio Principal</span>
         </div>
-        <div class="service-card fade-in fade-in-delay-1">
+        <!-- <div class="service-card fade-in fade-in-delay-1">
           <div class="service-icon-wrapper">👁</div>
           <h3>Supervisión de Residencias de Larga Estadía y Centros de Día</h3>
           <p>Apoyamos y asesoramos a instituciones de larga estadía y centros de día, tanto públicos como privados, bajo el marco de la Ley Provincial N.º 7149.</p>
           <span class="service-tag">Calidad y Cuidado</span>
-        </div>
+        </div> -->
         <div class="service-card fade-in fade-in-delay-2">
           <div class="service-icon-wrapper">✍🏻</div>
           <h3>Capacitación y Formación Gerontológica</h3>
@@ -324,7 +314,7 @@
         </div>
         <div class="service-card fade-in fade-in-delay-7">
           <div class="service-icon-wrapper">📄</div>
-          <h3>Habilitación de Residencia de larga estadia</h3>
+          <h3>Habilitación de Residencia de larga Estadía y Centro de Día</h3>
           <p>Garantizando espacios seguros y de calidad bajo la Ley N.º 7149.</p>
           <p>En la provincia de Santiago del Estero, el funcionamiento de los espacios gerontológicos está regulado para asegurar que cada persona mayor reciba una atención digna y profesional. Nuestra Dirección es la encargada de supervisar que estos establecimientos cumplan con los estándares necesarios para su habilitación.</p>
           <div class="card-action">
@@ -409,31 +399,79 @@
     </div> 
   </section>
 
-  <section id="methodology">
+  <!-- Sección de galeria y noticias -->
+
+   <section id="news">
     <div class="section-container">
       <div class="section-header centered fade-in">
-        <span class="section-label">¿Cómo trabajamos por vos?</span>
-        <h2 class="section-title"><span>Nuestra Metodología</span></h2>
-        <p class="section-desc">La Dirección General de Adultos Mayores realiza intervenciones domiciliarias con el fin de transformar la realidad de las personas mayores, promoviendo no solo su bienestar físico y emocional, sino también su inclusión plena en la sociedad. Con un enfoque integral y dinámico, se fomenta una participación activa que va más allá del cuidado, impulsando un cambio cultural que valore la experiencia y los derechos de los adultos mayores. Al trabajar de la mano con instituciones, profesionales y la comunidad, se crean espacios de colaboración y apoyo mutuo que garantizan intervenciones personalizadas y efectivas. Este esfuerzo colectivo busca construir un entorno en el que los adultos mayores sean protagonistas de su propia vida, disfrutando de un envejecimiento digno, respetado y lleno de oportunidades.</p>
+        <span class="section-label">Actualidad</span>
+        <h2 class="section-title">Últimas Noticias</h2>
       </div>
-      <div class="services-grid">
-        <div class="service-card featured fade-in-delay-0">
-          <div class="service-icon-wrapper">🛡️</div>
-          <h3>Respaldo Profesional Interdisciplinario</h3>
-          <p><strong>Nuestro Equipo:</strong> Contamos con el aval de un equipo especializado de Trabajadoras Sociales y personal administrativo.</p>
-          <p><strong>Acción en Territorio:</strong> Realizamos un seguimiento constante y monitoreo para asegurar el cumplimiento de la Ley Provincial N.º 7149.</p>
-          <p><strong>Garantía de Derechos:</strong> Cada intervención busca un bienestar pleno y participación activa.</p>
+      
+      <div class="gallery-grid full-four-columns">
+        <div class="gallery-item fade-in" data-notice="noti1">
+          <div class="gallery-image-wrapper">
+            <img src="assets/Buen-trato-a-las-personas-mayores-1024x576.png" alt="El Buen Trato" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Locales • 12 de Junio</h4>
+            <p><strong>El valor del respeto:</strong> Claves para promover el buen trato hacia las personas mayores.</p>
+          </div>
         </div>
-        <div class="service-card fade-in fade-in-delay-1">
-          <div class="service-icon-wrapper">🤝</div>
-          <h3>Una Red que nos Fortalece</h3>
-          <p><strong>Trabajo en Conjunto:</strong> Mantenemos una interacción permanente con instituciones clave para una respuesta integral.</p>
-          <p><strong>Salul y Seguridad:</strong> Colaboramos con Hospitales, APS, Obras Sociales y la Policía Comunitaria.</p>
-          <p><strong>Gobierno y Comunidad:</strong> Municipios, DDHH y el Consejo Provincial de Adultos Mayores.</p>
+
+        <div class="gallery-item fade-in" data-notice="noti2">
+          <div class="gallery-image-wrapper">
+            <img src="assets/maltrato.png" alt="Visibilizar para proteger" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Conciencia Social • 11 de Junio</h4>
+            <p><strong>Visibilizar para proteger:</strong> Hablemos sobre el abandono y la soledad en la vejez.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in" data-notice="noti3">
+          <div class="gallery-image-wrapper">
+            <img src="assets/ahorro.avif" alt="Cuidá tus ahorros" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Precaucion • 10 de Junio</h4>
+            <p><strong>Cuidá tus ahorros:</strong> Cómo detectar y prevenir el abuso financiero.</p>
+          </div>
+        </div>
+
+        <div class="gallery-item fade-in" data-notice="noti4">
+          <div class="gallery-image-wrapper">
+            <img src="assets/talleres.png" alt="Nunca es tarde para aprender" />
+            <div class="gallery-overlay"><p>Leer noticia</p></div>
+          </div>
+          <div class="gallery-caption">
+            <h4>Locales • 12 de Junio</h4>
+            <p><strong>Nunca es tarde para aprender:</strong> ¡Abren las inscripciones para las nuevas actividades educativas!.</p>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div id="news-modal" class="modal-overlay">
+    <div class="modal-content news-modal-content">
+      <span class="modal-close news-modal-close">×</span>
+      <div class="news-layout-container">
+        <div id="modal-news-image-container" class="news-modal-image-box"></div>
+        <div class="news-modal-info-box">
+          <span id="modal-news-tag" class="news-tag-indicator">Categoría</span>
+          <h2 id="modal-news-title">Título de la Noticia</h2>
+          <p id="modal-news-date" class="news-modal-date">Fecha</p>
+          <div id="modal-news-text" class="news-modal-text-content"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de autogestión -->
 
   <section id="autogestion"> 
     <div class="section-container">
@@ -544,101 +582,247 @@
     </div>
   </div>
 
-  <section id="contact">
-    <div class="section-container">
-      <div class="section-header centered fade-in">
-        <span class="section-label">Contacto</span>
-        <h2 class="section-title">Iniciá tu <span>trámite hoy</span></h2>
-        <p class="section-desc">Completá el formulario o escribinos directamente por WhatsApp. Te respondemos en menos de 24 horas.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info fade-in">
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📍</div>
-            <div class="contact-info-content">
-              <h4>Ubicación</h4>
-              <p>Santiago del Estero, Argentina</p>
-              <p>Atención Presencial y Online</p>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📱</div>
-            <div class="contact-info-content">
-              <h4>Teléfono / WhatsApp</h4>
-              <a href="tel:+5493854169685">+54 9 385 416-9685</a>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">✉️</div>
-            <div class="contact-info-content">
-              <h4>Correo Electrónico</h4>
-              <a href="mailto:Adultosmayores@gmail.com">Adultosmayores@gmail.com</a>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📸</div>
-            <div class="contact-info-content">
-              <h4>Instagram</h4>
-              <a href="https://www.instagram.com/direcciondeadultosmayores.sgo/" target="_blank">@direcciondeadultosmayores.sgo</a>
-            </div>
-          </div>
-          <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-            </svg>
-            Escribinos por WhatsApp
-          </a>
-        </div>
+  <!-- Sección de contactos -->
 
-        <div class="contact-form-card fade-in fade-in-delay-2">
-          <h3>Solicitar información</h3>
-          <p>Completá el formulario y nos pondremos en contacto con vos a la brevedad.</p>
-          
-          <form id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-              </div>
-              <div class="form-group">
-                <label for="apellido">Apellido *</label>
-                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico *</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="telefono">WhatsApp / Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" placeholder="+54 9 385 000-0000" />
-            </div>
-            <div class="form-group">
-              <label for="servicio">Servicio de interés *</label>
-              <select id="servicio" name="servicio" required>
-                <option value="">Seleccioná un servicio</option>
-                <option value="asesoramiento">Asesoramiento y Asistencia Integral</option>
-                <option value="supervision">Supervisión de Residencias y Centro de día</option>
-                <option value="formacion">Capacitación y Formación Gerontológica</option>
-                <option value="fortalecimiento">Fortalecimiento de Organizaciones</option>
-                <option value="promocion">Promoción de Derechos y Buen Trato</option>
-                <option value="interdisciplinario">Nuestro Equipo Interdisciplinario</option>
-                <option value="articulacion">Red de Articulacion Institucional</option>
-                <option value="habilitacion">Habilitacion de Residencia de larga estadía</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente tu situación o consulta..."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Enviar consulta →</button>
-            <p class="form-note">Te respondemos en menos de 24 horas. Tu información es confidencial.</p>
-          </form>
-        </div>
+  <section id="contact">
+  <div class="section-container">
+    <div class="section-header centered fade-in">
+      <span class="section-label">Contacto y Denuncias</span>
+      <h2 class="section-title">Canal de <span>Atención y Alertas</span></h2>
+      <p class="section-desc">Completá el formulario para consultas o denuncias ciudadanas. Derivamos tu mensaje al área correspondiente.</p>
+    </div>
+
+    <div class="alert-banner-public fade-in">
+      <div class="alert-banner-icon">⚠️</div>
+      <div class="alert-banner-body">
+        <h4>Canal de Alerta y Denuncia Ciudadana</h4>
+        <p>Tu reporte ayuda a cuidar a las personas mayores. Informá de manera confidencial sobre:</p>
+        <ul class="alert-list">
+          <li><strong>Lugares clandestinos</strong> sin autorización.</li>
+          <li><strong>Residencias no habilitadas</strong> o que no cumplan normas mínimas.</li>
+          <li><strong>Situaciones irregulares</strong>, maltrato o vulneración de derechos.</li>
+        </ul>
       </div>
     </div>
-  </section>
 
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div class="contact-info-content">
+            <h4>Ubicación</h4>
+            <p>Santiago del Estero, Argentina</p>
+            <p>Atención Presencial y Online</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📱</div>
+          <div class="contact-info-content">
+            <h4>Teléfono / WhatsApp Central</h4>
+            <a href="tel:+5493854169685">+54 9 385 416-9685</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉️</div>
+          <div class="contact-info-content">
+            <h4>Correo Electrónico Central</h4>
+            <a href="mailto:Adultosmayores@gmail.com">Adultosmayores@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📸</div>
+          <div class="contact-info-content">
+            <h4>Instagram</h4>
+            <a href="https://www.instagram.com/direcciondeadultosmayores.sgo/" target="_blank">@direcciondeadultosmayores.sgo</a>
+          </div>
+        </div>
+        <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+
+      <div class="contact-form-card fade-in fade-in-delay-2">
+        <h3>Formulario de Atención y Denuncias</h3>
+        <p>Completá los datos y seleccioná el medio por el cual querés gestionar el trámite.</p>
+        
+        <form id="contactForm" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <label for="tipo_tramite">Tipo de mensaje *</label>
+            <select id="tipo_tramite" name="tipo_tramite" required>
+              <option value="Consulta / Solicitud">Consulta o Solicitud de Información</option>
+              <option value="Denuncia / Alerta">Denuncia o Alerta Ciudadana</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre (o 'Anónimo')" required />
+            </div>
+            <div class="form-group">
+              <label for="apellido">Apellido</label>
+              <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tu@email.com" />
+          </div>
+
+          <div class="form-group">
+            <label for="telefono">WhatsApp / Teléfono de contacto</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+54 9 385 000-0000" />
+          </div>
+
+          <div class="form-group">
+            <label for="servicio">Área / Motivo de interés *</label>
+            <select id="servicio" name="servicio" required onchange="mostrarInfoDestino()">
+              <option value="">Seleccioná un área o motivo...</option>
+              <option value="mama_antula">Residencia Mama Antula</option>
+              <option value="centro_dia">Centro de Día</option>
+              <option value="habilitacion">Habilitación de residencias</option>
+              <option value="asistencia">Asistencia integral</option>
+              <option value="otros">Otros</option>
+            </select>
+            <div id="destinoFeedback" class="destino-feedback" style="display:none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Detalle del mensaje o denuncia *</label>
+            <textarea id="mensaje" name="mensaje" required placeholder="Describí tu consulta o detallá la dirección y características del lugar a informar..."></textarea>
+          </div>
+
+          <div class="form-actions-grid">
+            <button type="button" class="btn-action btn-wa-action" onclick="enviarPorWhatsApp()">
+              Enviar por WhatsApp
+            </button>
+            <button type="button" class="btn-action btn-mail-action" onclick="enviarPorEmail()">
+              Enviar por Correo
+            </button>
+          </div>
+
+          <p class="form-note">La información remitida como denuncia es tratada de manera reservada y confidencial.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Directorio de contactos por área (completar números y correos específicos)
+  const directorioContactos = {
+    mama_antula: {
+      nombre: "Residencia Mama Antula",
+      telefono: "5493854169685", // Reemplazar con el número directo si es diferente
+      email: "residencia.mamaantula@gmail.com"
+    },
+    centro_dia: {
+      nombre: "Centro de Día",
+      telefono: "5493854169685", // Reemplazar con el número directo si es diferente
+      email: "centrodedia.adultos@gmail.com"
+    },
+    habilitacion: {
+      nombre: "Habilitación de Residencias",
+      telefono: "5493854169685",
+      email: "habilitaciones.adultos@gmail.com"
+    },
+    asistencia: {
+      nombre: "Asistencia Integral",
+      telefono: "5493854169685",
+      email: "asistencia.adultos@gmail.com"
+    },
+    otros: {
+      nombre: "Dirección General (Mesa de Entradas)",
+      telefono: "5493854169685",
+      email: "Adultosmayores@gmail.com"
+    }
+  };
+
+  function mostrarInfoDestino() {
+    const areaKey = document.getElementById("servicio").value;
+    const feedback = document.getElementById("destinoFeedback");
+    
+    if (directorioContactos[areaKey]) {
+      const destino = directorioContactos[areaKey];
+      feedback.style.display = "block";
+      feedback.innerHTML = `📌 <strong>Derivación directa:</strong> ${destino.nombre} (Mail: ${destino.email})`;
+    } else {
+      feedback.style.display = "none";
+    }
+  }
+
+  function validarFormulario() {
+    const servicio = document.getElementById("servicio").value;
+    const mensaje = document.getElementById("mensaje").value.trim();
+    const nombre = document.getElementById("nombre").value.trim();
+
+    if (!nombre) {
+      alert("Por favor ingresá tu nombre o indicá 'Anónimo'.");
+      return false;
+    }
+    if (!servicio) {
+      alert("Por favor seleccioná el área o motivo de interés.");
+      return false;
+    }
+    if (!mensaje) {
+      alert("Por favor completá el detalle del mensaje o denuncia.");
+      return false;
+    }
+    return true;
+  }
+
+  function enviarPorWhatsApp() {
+    if (!validarFormulario()) return;
+
+    const tipo = document.getElementById("tipo_tramite").value;
+    const areaKey = document.getElementById("servicio").value;
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const telefono = document.getElementById("telefono").value.trim() || "No especificado";
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const destino = directorioContactos[areaKey] || directorioContactos.otros;
+
+    const textoWA = `*NUEVA COMUNICACIÓN CIUDADANA*\n` +
+                    `------------------------------\n` +
+                    `*Tipo:* ${tipo}\n` +
+                    `*Área Destino:* ${destino.nombre}\n` +
+                    `*Nombre:* ${nombre} ${apellido}\n` +
+                    `*Teléfono:* ${telefono}\n` +
+                    `*Detalle:*\n${mensaje}`;
+
+    const url = `https://wa.me/${destino.telefono}?text=${encodeURIComponent(textoWA)}`;
+    window.open(url, "_blank");
+  }
+
+  function enviarPorEmail() {
+    if (!validarFormulario()) return;
+
+    const tipo = document.getElementById("tipo_tramite").value;
+    const areaKey = document.getElementById("servicio").value;
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const remitenteEmail = document.getElementById("email").value.trim() || "No informado";
+    const telefono = document.getElementById("telefono").value.trim() || "No informado";
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const destino = directorioContactos[areaKey] || directorioContactos.otros;
+
+    const asunto = `[${tipo.toUpperCase()}] - ${destino.nombre} - ${nombre} ${apellido}`;
+    const cuerpo = `Tipo de trámite: ${tipo}\n` +
+                   `Área: ${destino.nombre}\n` +
+                   `Remitente: ${nombre} ${apellido}\n` +
+                   `Correo de contacto: ${remitenteEmail}\n` +
+                   `Teléfono: ${telefono}\n\n` +
+                   `Detalle / Descripción:\n${mensaje}`;
+
+    window.location.href = `mailto:${destino.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+  }
+</script>
   <footer>
     <div class="footer-container">
       <div class="footer-grid">

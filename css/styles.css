@@ -560,6 +560,8 @@ ul { list-style: none; }
   display: inline-block;
 }
 
+
+
 /* ============================================================
    FOOTER
    ============================================================ */
@@ -611,6 +613,8 @@ ul { list-style: none; }
   font-size: .78rem;
   color: rgba(255,255,255,.4);
 }
+
+
 
 /* ============================================================
    MEDIA QUERIES (RESPONSIVE COMPLETO)
@@ -687,3 +691,4 @@ ul { list-style: none; }
   .noticias__grid { grid-template-columns: repeat(2, 1fr); }
   .header__logo svg { height: 32px; } /* Ajuste extra para pantallas diminutas */
 }
+

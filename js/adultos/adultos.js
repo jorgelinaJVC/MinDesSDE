@@ -253,3 +253,19 @@
     }
 
 })(); // Este es el cierre final de todo tu archivo
+
+/* menu */
+
+function toggleMenu(event) {
+  event.preventDefault(); // evita saltar al inicio de la página
+  const submenu = document.getElementById("submenu");
+  submenu.classList.toggle("show");
+}
+
+// Cerrar el menú si se hace clic fuera de él
+document.addEventListener("click", function (e) {
+  const dropdown = document.querySelector(".dropdown");
+  if (!dropdown.contains(e.target)) {
+    document.getElementById("submenu").classList.remove("show");
+  }
+});
