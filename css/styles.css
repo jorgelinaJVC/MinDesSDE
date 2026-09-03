@@ -1,5 +1,5 @@
 /* ============================================================
-   styles.css — Ministerio de Desarrollo Social - SDE
+  styles.css — Ministerio de Desarrollo Social - SDE
    ============================================================ */
 
 /* Estilos adicionales para la sección de subsecretarías mejorada */
@@ -218,6 +218,157 @@ ul { list-style: none; }
 .nav__link:hover, .nav-links a:hover {
   background: rgba(255,255,255,.1);
   color: var(--color-accent-2);
+}
+
+/* ============================================================
+   MENÚ JERÁRQUICO DE ÁREAS
+   ============================================================ */
+.nav-item-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 7px;
+}
+
+.arrow {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 235px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-dark);
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+  z-index: 1100;
+}
+
+.nav-item-dropdown:hover > .dropdown-menu,
+.nav-item-dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 14px 20px;
+  color: #fff;
+  border-radius: 0;
+}
+
+.dropdown-menu li a:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ============================================================
+   MENÚ DE ÁREAS — ESTRUCTURA VERTICAL
+   Las subsecretarías quedan una debajo de otra y las dos
+   direcciones generales de Desarrollo Social se muestran
+   siempre dentro del mismo bloque.
+   ============================================================ */
+.areas-mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(720px, calc(100vw - 20px));
+  max-width: calc(100vw - 20px);
+  flex-direction: column;
+  background: var(--color-dark);
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+  z-index: 2000;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.nav-areas:hover > .areas-mega-menu,
+.nav-areas:focus-within > .areas-mega-menu {
+  display: flex;
+}
+
+.areas-mega-column {
+  width: 100%;
+  min-width: 0;
+  flex: none;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-sizing: border-box;
+}
+
+.areas-mega-column:last-child {
+  border-bottom: none;
+}
+
+.areas-mega-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  color: #fff !important;
+  background: var(--color-accent);
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.areas-mega-title:hover {
+  background: #c53030;
+}
+
+/* Las dos direcciones generales quedan una debajo de otra. */
+.areas-mega-submenu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.areas-mega-group {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.areas-mega-group:last-child {
+  border-bottom: none;
+}
+
+.areas-mega-title.secondary {
+  background: rgba(255,255,255,.06);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.areas-mega-title.secondary:hover {
+  background: #c53030;
+}
+
+.areas-mega-group > a:not(.areas-mega-title) {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 38px;
+  color: rgba(255,255,255,.88);
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+.areas-mega-group > a:not(.areas-mega-title):hover {
+  background: rgba(255,255,255,.08);
+  color: #fff;
 }
 
 /* Burger / Hamburger Menú */
@@ -648,6 +799,25 @@ ul { list-style: none; }
     flex-direction: column; 
     gap: 6px; 
   }
+
+  .nav-item-dropdown { position: static; }
+  .dropdown-menu, .areas-mega-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    background: rgba(0,0,0,.12);
+  }
+  .nav-item-dropdown:hover > .dropdown-menu,
+  .nav-item-dropdown:focus-within > .dropdown-menu,
+  .nav-areas:hover > .areas-mega-menu,
+  .nav-areas:focus-within > .areas-mega-menu {
+    display: block;
+  }
+  .areas-mega-menu { flex-direction: column; }
+  .areas-mega-column { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .areas-mega-submenu { grid-template-columns: 1fr; }
+  .areas-mega-group { border-right: none; }
+  .areas-mega-title, .areas-mega-column:not(.areas-mega-main) .areas-mega-title { min-height: auto; }
   
   .nav-links a, .nav__link { 
     padding: 12px 16px; 
@@ -686,4 +856,180 @@ ul { list-style: none; }
   .hero { height: 75vw; min-height: 260px; }
   .noticias__grid { grid-template-columns: repeat(2, 1fr); }
   .header__logo svg { height: 32px; } /* Ajuste extra para pantallas diminutas */
+}
+/* ============================================================
+   AJUSTE RESPONSIVE DEL MENÚ JERÁRQUICO
+   Evita desbordamientos y espacios blancos laterales.
+   ============================================================ */
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.header,
+.header__inner,
+.nav-brand,
+.nav-links {
+  max-width: 100%;
+}
+
+/* ============================================================
+   TABLET Y CELULAR
+   ============================================================ */
+@media (max-width: 768px) {
+  .header__inner {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+  }
+
+  /* Panel del menú móvil: ocupa exactamente la pantalla */
+  .nav-brand {
+    width: 100%;
+    max-width: 100vw;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - var(--header-h));
+  }
+
+  .nav-links {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .nav-links > li {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nav-links a {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Los desplegables dejan de ser menús flotantes y pasan a formar
+     parte del flujo de la pantalla. Así no aparece espacio vacío. */
+  .dropdown-menu,
+  .areas-mega-menu {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    overflow: hidden;
+  }
+
+  .dropdown-menu {
+    padding: 0;
+  }
+
+  .areas-mega-menu {
+    display: none;
+    flex-direction: column;
+  }
+
+  .nav-areas:focus-within > .areas-mega-menu,
+  .nav-areas:hover > .areas-mega-menu {
+    display: flex;
+  }
+
+  .areas-mega-column,
+  .areas-mega-main,
+  .areas-mega-group {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-right: none !important;
+  }
+
+  .areas-mega-column {
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+
+  .areas-mega-column:last-child {
+    border-bottom: none;
+  }
+
+  .areas-mega-submenu {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .areas-mega-title,
+  .areas-mega-group > a:not(.areas-mega-title) {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .areas-mega-title {
+    min-height: 0 !important;
+    padding: 13px 16px;
+    line-height: 1.35;
+  }
+
+  .areas-mega-group > a:not(.areas-mega-title) {
+    padding: 11px 26px;
+    line-height: 1.35;
+  }
+
+  /* El submenú secundario queda visualmente indentado */
+  .areas-mega-title.secondary {
+    padding-left: 22px;
+    background: rgba(255,255,255,.04);
+  }
+
+  /* Evita que el contenido de los desplegables pueda ensanchar la página */
+  .nav-item-dropdown,
+  .nav-areas,
+  .dropdown-menu,
+  .areas-mega-menu,
+  .areas-mega-column,
+  .areas-mega-submenu,
+  .areas-mega-group {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand {
+    padding: 12px;
+  }
+
+  .nav-links {
+    gap: 3px;
+  }
+
+  .nav-links a {
+    padding: 11px 13px;
+    font-size: .9rem;
+  }
+
+  .areas-mega-title {
+    padding: 12px 13px;
+    font-size: .9rem;
+  }
+
+  .areas-mega-group > a:not(.areas-mega-title) {
+    padding: 10px 22px;
+    font-size: .86rem;
+  }
 }
