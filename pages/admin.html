@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Servicios Fúnebres</title>
+    <link rel="stylesheet" href="../css/funebres.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- SDK EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          // Reemplaza TU_PUBLIC_KEY por tu clave pública real
+          emailjs.init("rrmlLmlN8yxn3p5aa");
+       })();
+    </script>
+
+    <style>
+        body { background: #f4f6f9; font-family: 'Barlow', sans-serif; padding: 30px; }
+        .admin-card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .status-select { padding: 6px 12px; border-radius: 4px; border: 1px solid #ccc; font-family: inherit; }
+        .table-responsive { overflow-x: auto; }
+        .table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        .table th, .table td { border: 1px solid #e2e8f0; padding: 12px; text-align: left; font-size: 0.9rem; }
+        .table th { background: #1a365d; color: white; }
+        .btn-save { background: #059669; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; transition: 0.2s; }
+        .btn-save:hover { background: #047857; }
+        .btn-clear { background: #ef4444; color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; float: right; }
+    </style>
+</head>
+<body>
+
+<div class="admin-card">
+    <button class="btn-clear" onclick="limpiarRegistros()"><i class="fas fa-trash"></i> Vaciar Registros</button>
+    <h2><i class="fas fa-user-shield"></i> Panel Administrativo - Gestión de Solicitudes</h2>
+    <p>Administra las solicitudes recibidas, actualiza sus estados e ingresa el motivo si la solicitud es desaprobada.</p>
+</div>
+
+<div class="admin-card">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>N° Trámite</th>
+                    <th>Solicitante</th>
+                    <th>DNI Fallecido</th>
+                    <th>Fecha</th>
+                    <th>Estado</th>
+                    <th>Motivo de Desaprobación / Nota</th>
+                    <th>Documentación</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+            <tbody id="adminTableBody">
+                <!-- Se cargará mediante JavaScript -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+function cargarSolicitudesAdmin() {
+    console.log("Cargando solicitudes...");
+    const tbody = document.getElementById('adminTableBody');
+    if (!tbody) return;
+
+    let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
+    
+    if (solicitudes.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="8" style="text-align:center; padding: 20px; color: #666;">No hay solicitudes registradas actualmente. Realiza una desde el formulario.</td></tr>';
+        return;
+    }
+
+    let html = '';
+    solicitudes.forEach((sol, index) => {
+        const nombreResp = sol.datos ? sol.datos.nombreResponsable : 'N/D';
+        const docResp = sol.datos ? sol.datos.nroDocResponsable : 'N/D';
+        const nombreFall = sol.datos ? sol.datos.nombreFallecido : 'N/D';
+        const docFall = sol.datos ? sol.datos.nroDocFallecido : 'N/D';
+
+        // Procesar archivos/PDFs adjuntos
+        let archivosHTML = '<small style="color:#888;">Sin archivos</small>';
+        if (sol.archivos && sol.archivos.length > 0) {
+            archivosHTML = '<ul style="padding-left:15px; margin:0; font-size:0.85rem; list-style:none;">';
+            sol.archivos.forEach(arch => {
+                archivosHTML += `
+                    <li style="margin-bottom:4px;">
+                        <a href="${arch.data}" download="${arch.name}" style="color:#0284c7; font-weight:bold; text-decoration:none;">
+                            <i class="fas fa-file-pdf" style="color:#dc2626; margin-right:4px;"></i>${arch.name}
+                        </a>
+                    </li>`;
+            });
+            archivosHTML += '</ul>';
+        }
+
+        html += `
+            <tr>
+                <td><strong>#${sol.nro_pedido}</strong></td>
+                <td>${nombreResp}<br><small style="color:#666;">DNI: ${docResp}</small></td>
+                <td>${nombreFall}<br><small style="color:#666;">DNI: ${docFall}</small></td>
+                <td>${new Date(sol.fecha).toLocaleDateString()}</td>
+                <td>
+                    <select class="status-select" id="status_${index}">
+                        <option value="pendiente" ${sol.estado === 'pendiente' ? 'selected' : ''}>Pendiente</option>
+                        <option value="en_revision" ${sol.estado === 'en_revision' ? 'selected' : ''}>En Revisión</option>
+                        <option value="aprobado" ${sol.estado === 'aprobado' ? 'selected' : ''}>Aprobado</option>
+                        <option value="desaprobado" ${sol.estado === 'desaprobado' ? 'selected' : ''}>Desaprobado</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" id="motivo_${index}" value="${sol.motivo_rechazo || ''}" placeholder="Escriba el motivo en caso de rechazo..." style="width:90%; padding:6px; border:1px solid #ccc; border-radius:4px;">
+                </td>
+                <td>${archivosHTML}</td>
+                <td>
+                    <button class="btn-save" onclick="guardarEstado(${index})"><i class="fas fa-save"></i> Guardar</button>
+                </td>
+            </tr>
+        `;
+    });
+    tbody.innerHTML = html;
+}
+
+function guardarEstado(index) {
+    let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
+    const nuevoEstado = document.getElementById(`status_${index}`).value;
+    const nuevoMotivo = document.getElementById(`motivo_${index}`).value;
+
+    const solicitud = solicitudes[index];
+    solicitud.estado = nuevoEstado;
+    solicitud.motivo_rechazo = nuevoMotivo;
+
+    localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
+
+    const emailDestino = solicitud.datos ? solicitud.datos.emailResponsable : null;
+    const nombreResp = solicitud.datos ? solicitud.datos.nombreResponsable : 'Solicitante';
+
+    if (emailDestino) {
+        const btnSave = document.querySelectorAll('.btn-save')[index];
+        if (btnSave) btnSave.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+
+        const templateParams = {
+            to_email: emailDestino,
+            nombre_solicitante: nombreResp,
+            nro_tramite: solicitud.nro_pedido,
+            estado: nuevoEstado.toUpperCase(),
+            motivo: nuevoMotivo || 'Sin observaciones adicionales.'
+        };
+
+        emailjs.send('service_0fsm4x5', 'template_5k52tjv', templateParams)
+            .then(function() {
+                alert(`✅ Estado actualizado y notificación enviada por correo a: ${emailDestino}`);
+                cargarSolicitudesAdmin();
+            }, function(error) {
+                alert(`⚠️ Estado actualizado, pero ocurrió un error al enviar el correo: ${JSON.stringify(error)}`);
+                cargarSolicitudesAdmin();
+            });
+    } else {
+        alert(`✅ Estado actualizado a "${nuevoEstado.toUpperCase()}". (No se envió correo porque no registró dirección).`);
+        cargarSolicitudesAdmin();
+    }
+}
+
+function limpiarRegistros() {
+    if (confirm('⚠️ ¿Estás seguro de que deseas borrar todas las solicitudes de prueba?')) {
+        localStorage.removeItem('solicitudesPendientes');
+        cargarSolicitudesAdmin();
+    }
+}
+
+// Ejecución directa de la carga
+cargarSolicitudesAdmin();
+</script>
+</body>
+</html>

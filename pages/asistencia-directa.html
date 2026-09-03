@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Asistencia Directa - Ministerio de Desarrollo Social</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: #334155; }
+    
+    /* NAV SUPERIOR AZUL INSTITUCIONAL */
+    .top-header { background: #0f2b48; color: white; padding: 12px 20px; }
+    .top-header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+    .header-brand { display: flex; align-items: center; gap: 12px; }
+    .header-brand img { height: 38px; width: auto; }
+    .header-brand-text { display: flex; flex-direction: column; }
+    .header-brand-title { font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .header-brand-sub { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
+    
+    .main-nav { display: flex; gap: 24px; }
+    .main-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; opacity: 0.9; transition: opacity 0.2s; }
+    .main-nav a:hover { opacity: 1; text-decoration: underline; }
+
+    /* CONTENIDO PRINCIPAL */
+    .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 20px 20px 10px; font-size: 13px; color: #64748b; }
+    .breadcrumb a { color: #64748b; text-decoration: none; }
+    
+    .area-banner-wrapper { max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; }
+    .area-banner { padding: 40px; color: white; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8); }
+    .area-banner h1 { margin: 0 0 10px 0; font-size: 28px; display: flex; align-items: center; gap: 10px; }
+    .area-banner p { margin: 0; opacity: 0.95; max-width: 800px; line-height: 1.5; font-size: 15px; }
+    
+    .area-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; max-width: 1200px; margin: 0 auto 40px; padding: 0 20px; }
+    
+    .left-col { background: white; padding: 30px; border-radius: 12px; border: 1px solid #f1f5f9; }
+    .left-col h2 { margin-top: 0; color: #1d4ed8; font-size: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
+    .left-col p { line-height: 1.6; font-size: 14px; color: #475569; }
+
+    .info-card { background: #eff6ff; border-left: 4px solid #2563eb; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+    .info-card h4 { margin: 0 0 5px 0; color: #1e40af; font-size: 15px; }
+    .info-card p { margin: 0; font-size: 13px; color: #1e3a8a; }
+
+    /* BARRA LATERAL Y BOTONES CON EFECTO TECLA */
+    .side-card { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; }
+    .side-card h3 { margin-top: 0; color: #1e293b; font-size: 17px; }
+    .side-desc { font-size: 13px; color: #64748b; margin-bottom: 15px; line-height: 1.4; }
+    .form-group { margin-bottom: 12px; }
+    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
+    .btn-sub { width: 100%; padding: 10px; color: white; background: #2563eb; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; }
+    .btn-sub:hover { background: #1d4ed8; }
+
+    .social-btn-box { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
+    .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; color: white; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, opacity 0.2s ease; }
+    .social-btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15); opacity: 0.95; }
+    .social-btn:active { transform: translateY(-1px) scale(0.99); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+    .btn-fb { background: #1877f2; }
+    .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+    .btn-wa { background: #25d366; }
+
+    /* FOOTER AZUL INSTITUCIONAL */
+    .site-footer { background: #0f2b48; color: #94a3b8; padding: 40px 20px 20px; font-size: 13px; margin-top: 60px; }
+    .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 40px; }
+    .footer-brand-title { color: #ffffff; font-weight: bold; font-size: 16px; margin-bottom: 4px; }
+    .footer-brand-sub { color: #cbd5e1; font-size: 12px; margin-bottom: 12px; }
+    .footer-col h4 { color: #d97706; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-top: 0; margin-bottom: 15px; }
+    .footer-col ul { list-style: none; padding: 0; margin: 0; }
+    .footer-col li { margin-bottom: 8px; }
+    .footer-col a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
+    .footer-col a:hover { color: #ffffff; }
+    .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid #1e3a5f; padding-top: 20px; text-align: center; font-size: 12px; color: #64748b; }
+
+    @media (max-width: 850px) {
+      .area-container { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .main-nav { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BARRITA AZUL SUPERIOR (HEADER) -->
+  <header class="top-header">
+    <div class="top-header-inner">
+      <div class="header-brand">
+        <img src="../assets/logo.png" alt="Logo Ministerio" onerror="this.style.display='none'">
+        <div class="header-brand-text">
+          <span class="header-brand-title">Ministerio de Desarrollo Social</span>
+          <span class="header-brand-sub">Santiago del Estero</span>
+        </div>
+      </div>
+      <nav class="main-nav">
+        <a href="../index.html">Institución</a>
+        <a href="#">Programas</a>
+        <a href="#">Trámites</a>
+        <a href="#">Noticias</a>
+        <a href="#">SIDES</a>
+        <a href="#">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="../index.html">Inicio</a> / <span>Subsecretarías</span> / <span>Asistencia Directa</span>
+  </div>
+
+  <div class="area-banner-wrapper">
+    <section class="area-banner">
+      <h1>🤝 Asistencia Directa y Contención Social</h1>
+      <p>Atención prioritaria y respuestas inmediatas frente a emergencias climáticas, habitacionales e insumos básicos para familias vulnerables de la provincia.</p>
+    </section>
+  </div>
+
+  <main class="area-container">
+    <div class="left-col">
+      <h2>Programa de Acompañamiento Inmediato</h2>
+      <p>Nuestra prioridad es intervenir ante emergencias sociales y casos críticos, canalizando recursos urgentes de manera articulada con municipios y comisiones municipales.</p>
+
+      <div class="info-card">
+        <h4>Atención Presencial de Situaciones Críticas</h4>
+        <p>Evaluación socioeconómica expedita para la entrega de materiales de construcción de primera necesidad, abrigo y módulos de contención urgente.</p>
+      </div>
+
+      <p><b>¿Qué servicios brindamos?</b></p>
+      <ul>
+        <li><b>Asistencia por Emergencia Climática:</b> Entrega de chapas, tirantes y elementos de resguardo ante situaciones meteorológicas adversas.</li>
+        <li><b>Módulos de Primer Auxilio Familiar:</b> Abastecimiento alimentario e insumos de necesidad primaria.</li>
+        <li><b>Gestión de Casos Complejos:</b> Trabajo conjunto con trabajadores sociales para soluciones habitacionales progresivas.</li>
+      </ul>
+    </div>
+
+    <div class="right-col">
+      <div class="side-card">
+        <h3>📋 Registro de Solicitudes</h3>
+        <p class="side-desc">Inicie el trámite para asistencia de emergencia o evaluación socio-habitacional.</p>
+        <form>
+          <div class="form-group">
+            <input type="text" placeholder="Nombre Completo del Solicitante" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="DNI" required>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Municipio / Localidad" required>
+          </div>
+          <div class="form-group">
+            <select required>
+              <option value="">Tipo de Solicitud...</option>
+              <option value="emergencia">Emergencia Climática</option>
+              <option value="habitacional">Materiales Habitacionales</option>
+              <option value="alimentaria">Módulo de Asistencia</option>
+            </select>
+          </div>
+          <button type="submit" class="btn-sub">Iniciar Solicitud</button>
+        </form>
+      </div>
+
+      <div class="side-card">
+        <h3>📢 Nuestras Redes Oficiales</h3>
+        <p class="side-desc">Canales directos para enterarte de los cronogramas de entrega y relevamientos:</p>
+        
+        <div class="social-btn-box">
+          <a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" class="social-btn btn-fb">
+            <span>Seguir en Facebook</span>
+          </a>
+          <a href="https://www.instagram.com/gobiernosde/" target="_blank" class="social-btn btn-ig">
+            <span>Seguir en Instagram</span>
+          </a>
+          <a href="https://wa.me/5493850000000" target="_blank" class="social-btn btn-wa">
+            <span>Canal de WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BARRITA AZUL INFERIOR (FOOTER ESTÁNDAR) -->
+  <footer class="site-footer">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-brand-title">SANTIAGO</div>
+        <div class="footer-brand-sub">Gobierno de la Provincia de Santiago del Estero</div>
+        <strong style="color:white; display:block; margin-top:10px;">Ministerio de Desarrollo Social</strong>
+      </div>
+      <div class="footer-col">
+        <h4>SUBSECRETARÍAS</h4>
+        <ul>
+          <li><a href="#">Desarrollo Social</a></li>
+          <li><a href="#">Promoción Humana</a></li>
+          <li><a href="#">Defensa Civil</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>ÁREAS</h4>
+        <ul>
+          <li><a href="nutricion-comedores.html">Nutrición y Comedores</a></li>
+          <li><a href="area-redes.html">Área Redes</a></li>
+          <li><a href="#">Programas</a></li>
+          <li><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>REDES</h4>
+        <ul>
+          <li><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank">Facebook</a></li>
+          <li><a href="https://www.instagram.com/gobiernosde/" target="_blank">Instagram</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>INSTITUCIÓN</h4>
+        <ul>
+          <li><a href="#">Autoridades</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 SIDES — Santiago del Estero
+    </div>
+  </footer>
+
+</body>
+</html>
