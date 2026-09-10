@@ -143,7 +143,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================ 
-   HEADER RESPONSIVO INTEGRADO 
+  HEADER RESPONSIVO INTEGRADO 
    ============================================================ */
 .header {
   position: sticky;
@@ -221,7 +221,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   MENÚ JERÁRQUICO DE ÁREAS
+  MENÚ JERÁRQUICO DE ÁREAS
    ============================================================ */
 .nav-item-dropdown {
   position: relative;
@@ -270,10 +270,10 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   MENÚ DE ÁREAS — ESTRUCTURA VERTICAL
-   Las subsecretarías quedan una debajo de otra y las dos
-   direcciones generales de Desarrollo Social se muestran
-   siempre dentro del mismo bloque.
+  MENÚ DE ÁREAS — ESTRUCTURA VERTICAL
+  Las subsecretarías quedan una debajo de otra y las dos
+  direcciones generales de Desarrollo Social se muestran
+  siempre dentro del mismo bloque.
    ============================================================ */
 .areas-mega-menu {
   display: none;
@@ -397,7 +397,7 @@ ul { list-style: none; }
 
 
 /* ============================================================
-   HERO CAROUSEL
+  HERO CAROUSEL
    ============================================================ */
 .hero {
   position: relative;
@@ -507,7 +507,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   INGRESOS / SUBSECRETARIAS
+  INGRESOS / SUBSECRETARIAS
    ============================================================ */
 .ingresos {
   padding: 48px 0;
@@ -522,6 +522,7 @@ ul { list-style: none; }
 .ingreso-card {
   display: flex;
   flex-direction: column;
+  height: 100%; /* Fuerza a todas las tarjetas de la fila a estirarse igual */
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -533,20 +534,27 @@ ul { list-style: none; }
   transform: translateY(-3px);
 }
 .ingreso-card__img {
-  height: 180px;
+  height: 200px; /* Altura uniforme para todas las cajas */
   overflow: hidden;
-  background: var(--color-primary);
-}
-.ingreso-card__img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform .4s ease;
-}
-.ingreso-card:hover .ingreso-card__img img { transform: scale(1.04); }
-.ingreso-card__body {
+  background: #ffffff; /* Fondo blanco para que los logos no muestren franjas azules */
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+.ingreso-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Muestra el logo/imagen completo sin deformar ni recortar */
+  padding: 12px; /* Margen interno para que los logos respiren y no toquen los bordes */
+  transition: transform .4s ease;
+}
+.ingreso-card:hover .ingreso-card__img img { 
+  transform: scale(1.04); }
+.ingreso-card__body {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1; /* Rellena el espacio sobrante para alinear los pies de tarjeta */
   padding: 14px 18px;
   background: var(--color-primary);
   color: var(--color-white);
@@ -564,7 +572,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   NOTICIAS INSTITUCIONALES & VIDEOS
+  NOTICIAS INSTITUCIONALES & VIDEOS
    ============================================================ */
 .noticias {
   padding: 56px 0;
@@ -644,7 +652,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   AUTORIDADES 
+  AUTORIDADES 
    ============================================================ */
 .autoridades-grid {
   display: grid;
@@ -712,7 +720,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   FOOTER
+  FOOTER
    ============================================================ */
 .footer {
   background: #07162a;
@@ -764,7 +772,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   MEDIA QUERIES (RESPONSIVE COMPLETO)
+  MEDIA QUERIES (RESPONSIVE COMPLETO)
    ============================================================ */
 @media (max-width: 900px) {
   .footer__inner { grid-template-columns: 1fr 1fr; }
@@ -858,8 +866,8 @@ ul { list-style: none; }
   .header__logo svg { height: 32px; } /* Ajuste extra para pantallas diminutas */
 }
 /* ============================================================
-   AJUSTE RESPONSIVE DEL MENÚ JERÁRQUICO
-   Evita desbordamientos y espacios blancos laterales.
+  AJUSTE RESPONSIVE DEL MENÚ JERÁRQUICO
+  Evita desbordamientos y espacios blancos laterales.
    ============================================================ */
 
 html, body {
@@ -875,7 +883,7 @@ html, body {
 }
 
 /* ============================================================
-   TABLET Y CELULAR
+  TABLET Y CELULAR
    ============================================================ */
 @media (max-width: 768px) {
   .header__inner {
