@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residencia de Larga Estadia "Mama Antula" | Espacio de Larga Estadía</title>
+    <!-- Tipografía Google e Íconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/logoMA.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/adultos/mamaantula.css">
+</head>
+<body id="page-body">
+
+    <!-- Accesibilidad y Topbar Rápido -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span class="top-tagline"><i class="fa-solid fa-heart-pulse"></i> Cuidado humanizado, integral y promoción de la autonomía</span>
+            <div class="top-actions">
+                <span class="acc-label">Accesibilidad:</span>
+                <button id="btn-increase-font" title="Aumentar tamaño de letra" aria-label="Aumentar fuente">A+</button>
+                <button id="btn-decrease-font" title="Disminuir tamaño de letra" aria-label="Disminuir fuente">A-</button>
+                <button id="btn-contrast" title="Modo alto contraste" aria-label="Alto contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- WhatsApp Flotante Directo -->
+    <a href="https://wa.me/5493850000000?text=Hola,%20quisiera%20comunicarme%20directamente%20con%20la%20Residencia%20Mama%20Antula" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Contactar por WhatsApp a la Residencia">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="float-tooltip">Contacto directo</span>
+    </a>
+
+    <!-- Encabezado Principal / Navbar -->
+    <header class="site-header">
+        <div class="container header-wrapper">
+            <div class="brand">
+                <div class="brand-icon">
+<img src="assets/logoMA.png" alt="Logo Residencia Mama Antula" class="logo-img">                </div>
+                <div class="brand-text">
+                    <span class="brand-sub">Residencia de Larga Estadía</span>
+                    <h1 class="brand-title">Mama Antula</h1>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#servicios">Servicios</a>
+                <a href="#admision">Admisión</a>
+                <a href="#visitas">Visitas</a>
+                <a href="#proyectos">Proyectos</a>
+                <a href="#novedades">Novedades</a>
+                <a href="#galeria">Instalaciones</a>
+                <a href="#contacto-directo" class="nav-btn-highlight">Contacto Directo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="container hero-inner">
+                <div class="hero-badge">Atención Pública y Comunitaria</div>
+                <h2 class="hero-heading">Residencia de Larga Estadía</h2>
+                <h2 class="hero-heading">"Mama Antula"</h2>
+                <p class="hero-subtext">
+                    Espacio dedicado al cuidado integral, estadía prolongada y fomento activo de la autonomía funcional y social de nuestras personas mayores en un entorno cálido y profesional.Cuidado integral, dignidad y contención para nuestros adultos mayores. Un espacio dependiente de la Dirección General de Adultos Mayores del Ministerio de Desarrollo Social de Santiago del Estero.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#admision" class="btn btn-gold">
+                        <i class="fa-solid fa-clipboard-list"></i> Solicitar Información de Admisión
+                    </a>
+                    <a href="https://wa.me/5493850000000?text=Hola,%20quisiera%20coordinar%20una%20visita%20a%20la%20Residencia%20Mama%20Antula" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-hero">
+                        <i class="fa-brands fa-whatsapp"></i> Coordinar Visita vía WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Barra de Canales Directos e Independientes -->
+        <section class="direct-channels-bar">
+            <div class="container channels-grid">
+                <div class="channel-card">
+                    <div class="ch-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="ch-info">
+                        <h3>Ubicación Física</h3>
+                        <p>Av. Cmte. Besares 1537, La Banda, Santiago del Estero</p>
+                        <a href="https://maps.google.com/?q=Av+Cmte+Besares+1537+La+Banda+Santiago+del+Estero" target="_blank" rel="noopener noreferrer" class="ch-link">
+                            Cómo llegar en mapa <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="channel-card">
+                    <div class="ch-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <div class="ch-info">
+                        <h3>Guardia / Administración</h3>
+                        <p>Atención y seguimiento diario: <strong>+54 (385) 421-0000</strong></p>
+                        <a href="tel:+543854210000" class="ch-link">Llamar a recepción <i class="fa-solid fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="channel-card">
+                    <div class="ch-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="ch-info">
+                        <h3>Buzón Directo de la Residencia</h3>
+                        <p>residencia.mamaantula@sgo.gov.ar</p>
+                        <a href="mailto:residencia.mamaantula@sgo.gov.ar" class="ch-link">Enviar correo <i class="fa-solid fa-paper-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Servicios y Vida en la Residencia -->
+        <section id="servicios" class="section-block">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Calidad de Vida</span>
+                    <h2 class="section-title">Servicios y Cuidado Integral</h2>
+                    <p class="section-description">Nuestro equipo profesional brinda abordaje interdisciplinario permanente, priorizando el bienestar físico, anímico y social de cada residente.</p>
+                </div>
+
+                <div class="cards-grid grid-3">
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-user-nurse"></i></div>
+                        <h3>Enfermería & Guardia Médica</h3>
+                        <p>El establecimiento cuenta con servicios médicos internos que se complementan con un equipo de enfermería permanente para la administración de medicación, control de signos vitales y curaciones.Respuesta protocolizada ante emergencias 24/7.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-plate-wheat"></i></div>
+                        <h3>Nutrición Adaptada</h3>
+                        <p>Planes dietarios personalizados confeccionados por nutricionistas, contemplando dietas hiposódicas, celiaquía o requerimientos específicos.(Por ej. Menús adaptados para residentes con diabetes o hipertensión)</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                        <h3>Trabajo Social y Acompañamiento</h3>
+                        <p>Vínculo permanente con familias, referentes afectivos, resolución de trámites previsionales y mediación psicosocial.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-person-walking-with-cane"></i></div>
+                        <h3>Kinesiología y Rehabilitación</h3>
+                        <p>Se enfoca en la rehabilitación motriz para adultos mayores que han sufrido accidentes cerebrovasculares (ACV), fracturas o deterioro de la marcha.Rutinas diarias orientadas a prevenir caídas, preservar la marcha, movilidad articular y ejercicios de motricidad fina y gruesa.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-palette"></i></div>
+                        <h3>Talleres y Recreación</h3>
+                        <p>El cuidado integral abarca el derecho al ocio y al desarrollo personal. Se planifican de forma continua actividades culturales, música en vivo, baile y festejos comunitarios para mantener a los residentes integrados socialmente.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
+                        <h3>Confort y Hotelería</h3>
+                        <p>Servicio de lavandería, limpieza exhaustiva de dormitorios, salas de reposo climatizadas y espacios verdes seguros.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
+                        <h3>1. Intervención en Crisis y Operativos en Terreno</h3>
+                        <p><strong>Rescate Ante Denuncias de Abandono:</strong> Ante alertas comunitarias, judiciales o publicaciones de vulnerabilidad extrema en redes sociales, el área social coordina operativos directamente en el domicilio del adulto mayor.</p>
+                        <p><strong>Intervención Inmediata:</strong> Se evalúan las condiciones habitacionales y sanitarias en el lugar, gestionando el traslado médico inmediato del anciano y resguardando su documentación personal o pertenencias básicas.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
+                        <h3>2. Regularización Legal e Identidad</h3>
+                        <p><strong>Casos Judicializados:</strong>  El equipo es el nexo directo con las fiscalías y juzgados de la provincia en los casos de adultos mayores que ingresan bajo medidas cautelares de protección por violencia familiar, maltrato o desamparo total.</p>
+                        <p><strong>Restitución de Derechos Civiles:</strong>  Muchos de los residentes ingresan indocumentados o en situación de calle. Trabajo Social gestiona la renovación de DNI, la tramitación de pensiones no contributivas y coberturas sociales básicas para asegurar su ciudadanía activa.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
+                        <h3>3. Acompañamiento Emocional y Vinculación Comunitaria</h3>
+                        <p><strong>Contención del Desarraigo:</strong>  Se brinda un soporte diario para mitigar el impacto psicológico que genera la institucionalización, promoviendo un ambiente hogareño de escucha afectiva.</p>
+                        <p><strong>Puertas Abiertas e Intergeneracionalidad: </strong>   El área fomenta actividades junto a escuelas primarias, secundarias y organizaciones de la sociedad civil (ONG). Esto incluye talleres recreativos ("Promoviendo un Envejecimiento Activo") y jornadas de esparcimiento para mantener a los residentes conectados con la vida comunitaria de La Banda y Santiago del Estero. </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Admisión e Ingreso -->
+        <section id="admision" class="section-block bg-soft">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Transparencia y Trámites</span>
+                    <h2 class="section-title">Condiciones de Admisión e Ingreso</h2>
+                    <p class="section-description">El trámite de admisión para la Residencia Mama Antula no se gestiona de forma espontánea en el edificio de La Banda, sino a través de la Dirección 
+                        General de Adultos Mayores del Ministerio de Desarrollo Social.
+                        El proceso de incorporación es coordinado por el equipo técnico para garantizar que el centro sea la respuesta idónea para la persona mayor.Puede ser presentada por un familiar referente, tutor legal o por derivación judicial/social.</p>
+                </div>
+
+                <div class="admission-grid">
+                    <div class="adm-card">
+                        <div class="adm-header">
+                            <span class="adm-step">01</span>
+                            <h3>Criterios de Ingreso</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li>Tener 60 años o más.</li>
+                            <li>Residencia acreditable en la provincia de Santiago del Estero. </li>
+                            <li>Evaluación del perfil de autonomía / dependencia funcional.
+                            <li>No registrar patologías psiquiátricas agudas no compensadas ni cuadros infectocontagiosos activos.</li>
+                            <li>Consentimiento libre e informado del residente o apoderado legal.</li>
+                            <li>Encontrarse en situación de vulnerabilidad social y/o carencia de red familiar de cuidados.</li>
+                        </ul>
+                    </div>
+
+                    <div class="adm-card">
+                        <div class="adm-header">
+                            <span class="adm-step">02</span>
+                            <h3>Documentación Necesaria</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li>Fotocopia de DNI (anverso y reverso) del solicitante.</li>
+                            <li>Constancia de CUIL y carnet de cobertura médica (PAMI u otra obra social).</li>
+                            <li>Resumen de Historia Clínica y estudios complementarios recientes(análisis clínicos básicos, ECG, etc.)..</li>
+                            <li>Datos de contacto y DNI del familiar responsable o referente afectivo.</li>
+                        </ul>
+                    </div>
+
+                    <div class="adm-card">
+                        <div class="adm-header">
+                            <span class="adm-step">03</span>
+                            <h3>Evaluación del Equipo</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li>Entrevista diagnóstica con Medicina y Trabajo Social.</li>
+                            <li>Valoración geriátrica interdisciplinaria preliminar.</li>
+                            <li>Coordinación de período de adaptación institucional.</li>
+                            <li>Elaboración de plan individual de cuidados y acompañamiento.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Guía y Protocolo de Visitas -->
+        <section id="visitas" class="section-block">
+            <div class="container">
+                <div class="protocol-box">
+                    <div class="protocol-text">
+                        <span class="section-kicker">Encuentro Familiar</span>
+                        <h2 class="section-title text-left">Protocolo y Guía de Visitas</h2>
+                        <p class="mb-3">El contacto con familiares y seres queridos es fundamental para la salud afectiva de los residentes. Para mantener la armonía de las rutinas médicas y de descanso, establecemos las siguientes pautas:</p>
+                        
+                        <div class="schedule-pill">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <div>
+                                <strong>Días y Franjas Horarias Habilitadas:</strong>
+                                <span>Lunes a Domingos: Mañana (10:00 - 12:00 hs) | Tarde (16:30 - 19:00 hs)</span>
+                            </div>
+                        </div>
+
+                        <ul class="rules-list">
+                            <li><i class="fa-solid fa-circle-check"></i> Registrarse en el libro de ingresos al presentarse en la recepción.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Consultar previamente con el área de nutrición o enfermería antes de suministrar alimentos o infusiones traídas desde el exterior.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Evitar asistir con síntomas gripales o respiratorios para cuidar a toda la comunidad de la residencia.</li>
+                        </ul>
+                    </div>
+
+                    <div class="protocol-action">
+                        <div class="action-card">
+                            <i class="fa-brands fa-whatsapp action-card-icon"></i>
+                            <h3>Registro o Aviso Previo de Visita</h3>
+                            <p>¿Vas a concurrir en un grupo familiar o en un día festivo? Notifícalo con antelación para acondicionar el espacio de recibimiento.</p>
+                            <a href="https://wa.me/5493850000000?text=Hola,%20quisiera%20dar%20aviso%20de%20visita%20para%20el%20residente:%20" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-hero full-width">
+                                Dar aviso por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. Proyectos Institucionales en Curso -->
+        <section id="proyectos" class="section-block bg-soft">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Desarrollo y Participación</span>
+                    <h2 class="section-title">Proyectos Institucionales en Curso</h2>
+                    <p class="section-description">Iniciativas vivas que promueven la socialización, la estimulación cognitiva y el disfrute diario en la institución.</p>
+                </div>
+
+                <div class="cards-grid grid-3">
+                    <div class="project-card">
+                        <div class="project-tag">Terapéutico</div>
+                        <i class="fa-solid fa-seedling proj-icon"></i>
+                        <h3>Huerta Orgánica Comunitaria</h3>
+                        <p>Espacio al aire libre donde residentes cultivan plantas medicinales, aromáticas y verduras, combinando laborterapia y contacto con la naturaleza.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Cognitivo</div>
+                        <i class="fa-solid fa-brain proj-icon"></i>
+                        <h3>Gimnasio de la Memoria</h3>
+                        <p>Sesiones guiadas de estimulación de la memoria episódica, resolución de acertijos, narraciones de vida y literatura clásica compartida.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Integración</div>
+                        <i class="fa-solid fa-map-location-dot proj-icon"></i>
+                        <h3>Paseos y Salidas Adaptadas</h3>
+                        <p>Itinerarios a paseos públicos, parroquias, ferias de artesanos y centros culturales, con movilidad y soporte profesional dedicado.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Botón para cargar nuevo proyecto (Idealmente visible solo para personal autorizado) -->
+        <div style="text-align: center; margin: 30px 0;">
+            <button id="openModalBtn" class="btn" style="background: #4A2E80; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold;">
+               <i class="fa-solid fa-plus-circle"></i> Cargar Nuevo Proyecto Institucional
+            </button>
+        </div>
+
+        <!-- Ventana Oculta (Modal) con el Formulario -->
+        <div id="projectModal" class="modal-overlay" style="display: none;">
+             <div class="modal-content">
+                <span id="closeModalBtn" class="close-btn">&times;</span>
+                <h3 style="color: #4A2E80; margin-bottom: 10px;">Nuevo Proyecto Institucional</h3>
+                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">El proyecto quedará pendiente de aprobación por la dirección antes de publicarse en la web.</p>
+        
+        <form action="guardar_proyecto.php" method="POST" enctype="multipart/form-data">
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Título del Proyecto</label>
+                <input type="text" name="titulo" required placeholder="Ej: Proyecto con Escuelas Secundarias" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Categoría / Etiqueta</label>
+                <select name="categoria" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                    <option value="EDUCACIÓN">Escuelas Secundarias</option>
+                    <option value="ADMINISTRACIÓN">Próximos a jubilarse</option>
+                    <option value="COMUNIDAD">Policía Comunitaria</option>
+                    <option value="INSTITUCIONAL">Otros proyectos institucionales</option>
+                </select>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 15px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Descripción</label>
+                <textarea name="descripcion" rows="4" required placeholder="Breve detalle de la iniciativa..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+            </div>
+
+            <div class="form-group" style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Imagen representativa</label>
+                <input type="file" name="imagen" accept="image/*" required style="width: 100%;">
+            </div>
+
+            <button type="submit" style="background: #25d366; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                Enviar a Revisión
+            </button>
+        </form>
+    </div>
+</div>
+        </section>
+
+        <!-- 7. Novedades y Actividades del Centro -->
+        <section id="novedades" class="section-block">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Vida Institucional</span>
+                    <h2 class="section-title">Novedades y Actividades Recientes</h2>
+                    <p class="section-description">Un reflejo de los momentos compartidos, aniversarios y encuentros de nuestra comunidad.</p>
+                </div>
+
+                <div class="cards-grid grid-3">
+                    <article class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">Celebración</span>
+                            <span class="news-date">Septiembre 2026</span>
+                        </div>
+                        <h3>Cumpleaños Colectivo del Mes</h3>
+                        <p>Celebramos los natalicios de nuestros residentes con torta artesanal, merienda compartida y música folclórica en vivo en el salón central.</p>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">Cultura</span>
+                            <span class="news-date">Agosto 2026</span>
+                        </div>
+                        <h3>Jornada de Arte y Exposición</h3>
+                        <p>Muestra de cuadros, cerámicas y telares confeccionados por los residentes durante los talleres de laborterapia del ciclo invernal.</p>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">Comunidad</span>
+                            <span class="news-date">Julio 2026</span>
+                        </div>
+                        <h3>Encuentro Intergeneracional</h3>
+                        <p>Visita de jóvenes y voluntarios que compartieron juegos de mesa, charlas y anécdotas de nuestra provincia.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Galería de Fotos e Instalaciones -->
+        <section id="galeria" class="section-block bg-soft">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Conoce Nuestro Hogar</span>
+                    <h2 class="section-title">Galería de Espacios e Instalaciones</h2>
+                    <p class="section-description">Ambientes luminosos, seguros, climatizados y diseñados con accesibilidad motriz total.</p>
+                </div>
+
+                <div class="gallery-layout">
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=11" alt="Habitaciones luminosas y adaptadas">
+                        <figcaption>Dormitorios con baño adaptado</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=12" alt="Galería y jardines externos">
+                        <figcaption>Patios arbolados y galerías</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=13" alt="Salón comedor principal">
+                        <figcaption>Comedor y zona de encuentros</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=14" alt="Sala de kinesiología y ejercicios">
+                        <figcaption>Gimnasio kinésico y de rehabilitación</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=15" alt="Sala de descanso y lectura">
+                        <figcaption>Salas de recreación y televisión</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=16" alt="Sector de enfermería y consultorios">
+                        <figcaption>Consultorios de enfermería y atención médica</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Formulario y Contacto Directo -->
+        <section id="contacto-directo" class="section-block">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="form-intro">
+                        <span class="section-kicker">Comunicación Inmediata</span>
+                        <h2 class="section-title text-left">Buzón Directo de la Residencia</h2>
+                        <p class="mb-3">
+                            Este formulario envía su mensaje de forma <strong>exclusiva e independiente</strong> a la oficina de atención y secretaría de la Residencia "Mama Antula".
+                        </p>
+                        <div class="contact-badges">
+                            <div class="c-badge"><i class="fa-solid fa-shield-halved"></i> Datos tratados con estricta confidencialidad médica e institucional.</div>
+                            <div class="c-badge"><i class="fa-solid fa-clock-rotate-left"></i> Respuestas en un lapso estimado de 24 a 48 hs hábiles.</div>
+                        </div>
+                    </div>
+
+                    <div class="form-card">
+                        <form id="directContactForm" novalidate>
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="form-nombre">Nombre y Apellido del Solicitante *</label>
+                                    <input type="text" id="form-nombre" name="nombre" required placeholder="Ej. Mariana Gómez">
+                                </div>
+                                <div class="form-field">
+                                    <label for="form-telefono">Teléfono / Celular de Contacto *</label>
+                                    <input type="tel" id="form-telefono" name="telefono" required placeholder="Ej. 385 154 999999">
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="form-email">Correo Electrónico</label>
+                                    <input type="email" id="form-email" name="email" placeholder="mariana@ejemplo.com">
+                                </div>
+                                <div class="form-field">
+                                    <label for="form-asunto">Motivo de Consulta *</label>
+                                    <select id="form-asunto" name="asunto" required>
+                                        <option value="" disabled selected>Seleccione una opción...</option>
+                                        <option value="admision">Información de requisitos y vacantes</option>
+                                        <option value="visita">Coordinar visita particular o institucional</option>
+                                        <option value="seguimiento">Consulta sobre un residente alojado</option>
+                                        <option value="voluntariado">Talleres, donaciones o voluntariado</option>
+                                        <option value="otro">Otras consultas generales</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-field">
+                                <label for="form-mensaje">Detalle de la consulta *</label>
+                                <textarea id="form-mensaje" name="mensaje" rows="4" required placeholder="Describa brevemente la situación, antecedentes o preguntas específicas..."></textarea>
+                            </div>
+
+                            <button type="submit" class="btn btn-gold full-width" id="btn-submit-form">
+                                <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje a la residencia de Larga Estadía Mama Antula
+                            </button>
+
+                            <div id="form-alert" class="alert-box" style="display: none;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página Propio de la Residencia -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="f-col">
+                <div class="brand-text text-white">
+                    <span class="brand-sub">Residencia de Larga Estadía</span>
+                    <h3 class="brand-title">Mama Antula</h3>
+                </div>
+                <p class="mt-2 text-muted-light">Institución pública abocada al amparo, acompañamiento integral y valoración activa de las personas adultas mayores.</p>
+            </div>
+            <div class="f-col">
+                <h4>Vías Rápidas</h4>
+                <ul class="f-links">
+                    <li><a href="#servicios">Servicios y Cuidados</a></li>
+                    <li><a href="#admision">Requisitos de Admisión</a></li>
+                    <li><a href="#visitas">Horarios de Visitas</a></li>
+                    <li><a href="#proyectos">Proyectos Activos</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Sede Institucional</h4>
+                <p class="text-muted-light">Av. Cmte. Besares 1537, La Banda</p>
+                <p class="text-muted-light">Santiago del Estero, Argentina</p>
+                <p class="text-muted-light">Tel: +54 (385) 421-0000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Residencia de Larga Estadía "Mama Antula". Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20la%20Direcci%C3%B3n%20de%20Adultos%20Mayores." class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+  <script>
+const openModalBtn = document.getElementById('openModalBtn');
+const closeModalBtn = document.getElementById('closeModalBtn');
+const projectModal = document.getElementById('projectModal');
+
+openModalBtn.addEventListener('click', () => {
+    projectModal.style.display = 'flex';
+});
+
+closeModalBtn.addEventListener('click', () => {
+    projectModal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target === projectModal) {
+        projectModal.style.display = 'none';
+    }
+});
+</script>
+
+    <!-- Script de Funcionalidad -->
+    <script src="script-mamaantula.js"></script>
+    
+</body>
+</html>
