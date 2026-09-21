@@ -8,10 +8,20 @@ nav {
   height: 68px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  
+  /* --- CAMBIOS PARA CENTRAR SIN TOCAR EL HTML --- */
+  justify-content: center; /* En lugar de space-between */
+  gap: 4rem;               /* Espacio armónico entre tu logo y los enlaces */
   box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
-.nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+
+.nav-brand { 
+  display: flex; 
+  align-items: center; 
+  gap: 2rem; 
+  list-style: none; 
+  margin-right: 0; /* Cambiar los 50px por 0 para que no quede inclinado hacia la izquierda */
+}
 
 /* El contenedor muestra el logo del Ministerio dentro de una caja  */
 .nav-logo-box {
@@ -37,8 +47,8 @@ nav {
 }
 /* El contenedor muestra el logo de Santiago dentro de una caja  */
 .nav-logo-extra-box {
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
   background: var(--white); /* color del box */
   border-radius: 8px;
   display: flex;
@@ -75,7 +85,7 @@ nav {
 .nav-links a:hover { color: var(--gold); }
 .nav-cta {
   background: var(--gold);
-  color: var(--slate-deeper) !important;
+  color: var(--green) !important;
   padding: 8px 20px;
   border-radius: 6px;
   font-weight: 700 !important;
@@ -125,6 +135,23 @@ nav {
   .nav-links.active {
     transform: translateY(0);
   }
+}
+
+/* Botón Acceso Interno */
+.btn-acceso-navbar {
+  background-color: #000000;
+  color: #ffffff !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 700 !important;
+  text-decoration: none;
+  display: inline-block;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.btn-acceso-navbar:hover {
+  background-color: #1f2937;
+  transform: translateY(-1px);
 }
 /********************************/
 

@@ -1,16 +1,21 @@
-document.getElementById('btn-ingresar')?.addEventListener('click', () => {
-    // 1. Objeto con los datos de la sesión institucional
-    const usuarioInstitucional = {
-        nombre: "Jorgelina Campos",
-        email: "jorgelinacamposjc@gmail.com",
-        rol: "Administrador", // Puede ser: Administrador, Director de área, Colaborador, Observador
-        area: "Desarrollo de Software"
-    };
+<script>
+  const hamburger = document.querySelector('.nav-hamburger');
+  const navLinks = document.querySelector('.nav-links');
 
-    // 2. Guardamos el objeto en el almacenamiento local del navegador
-    localStorage.setItem('usuarioNexo', JSON.stringify(usuarioInstitucional));
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+      // Abre/cierra el menú desplegándolo
+      navLinks.classList.toggle('active');
+      // Transforma las 3 barritas en una "X"
+      hamburger.classList.toggle('active');
+    });
 
-    // 3. Redirigimos al usuario hacia el panel de control (dashboard)
-    window.location.href = 'dashboard.html'; 
-    // Nota: Si tu archivo del dashboard está en otra carpeta, ajustá la ruta (ej. 'pages/dashboard.html')
-});
+    // Cierra el menú al hacer clic en cualquier enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.classList.remove('active');
+      });
+    });
+  }
+</script>
