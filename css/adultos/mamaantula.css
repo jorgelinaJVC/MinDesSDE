@@ -349,8 +349,8 @@ body {
 .ch-icon {
     font-size: 1.8rem;
     color: var(--primary-dark);
-    background: #8b74e1;
-    padding: 14px;
+    background: #673ab7;
+    padding: 10px;
     border-radius: 12px;
 }
 
