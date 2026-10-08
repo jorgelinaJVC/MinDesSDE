@@ -3,83 +3,190 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Programa de Nutrición y Comedores - Ministerio de Desarrollo Social</title>
+  <title>Área de Nutrición - Ministerio de Desarrollo Social</title>
   <link rel="stylesheet" href="../css/styles.css">
   <style>
     * { box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: #334155; }
-    
-    /* NAV SUPERIOR AZUL INSTITUCIONAL */
-    .top-header { background: #0f2b48; color: white; padding: 12px 20px; }
+    body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: #334155; }
+
+    .top-header { background: #0f2b48; color: white; padding: 12px 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
     .top-header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .header-brand { display: flex; align-items: center; gap: 12px; }
     .header-brand img { height: 38px; width: auto; }
     .header-brand-text { display: flex; flex-direction: column; }
-    .header-brand-title { font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .header-brand-title { font-weight: 700; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
     .header-brand-sub { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
-    
     .main-nav { display: flex; gap: 24px; }
-    .main-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; opacity: 0.9; transition: opacity 0.2s; }
+    .main-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; opacity: 0.9; transition: all 0.2s; }
     .main-nav a:hover { opacity: 1; text-decoration: underline; }
 
-    /* CONTENIDO PRINCIPAL */
     .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 20px 20px 10px; font-size: 13px; color: #64748b; }
     .breadcrumb a { color: #64748b; text-decoration: none; }
-    
+
     .area-banner-wrapper { max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; }
-    .area-banner { padding: 40px; color: white; border-radius: 12px; background: linear-gradient(135deg, #10b981, #059669); }
-    .area-banner h1 { margin: 0 0 10px 0; font-size: 28px; display: flex; align-items: center; gap: 10px; }
-    .area-banner p { margin: 0; opacity: 0.95; max-width: 800px; line-height: 1.5; font-size: 15px; }
-    
+    .area-banner { padding: 35px 40px; color: white; border-radius: 20px; background: linear-gradient(135deg, #d97706 0%, #f59e0b 50%, #10b981 100%); display: flex; align-items: center; gap: 30px; box-shadow: 0 12px 30px -5px rgba(245, 158, 11, 0.35); border: 3px solid #78350f; }
+    .logo-badge { background: #ffffff; padding: 10px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0,0,0,0.2); flex-shrink: 0; border: 4px solid #78350f; transition: transform 0.3s ease; }
+    .logo-badge:hover { transform: scale(1.06) rotate(3deg); }
+    .area-banner-text h1 { margin: 0 0 8px 0; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+    .area-banner-text p { margin: 0; opacity: 0.98; max-width: 800px; line-height: 1.6; font-size: 15px; font-weight: 500; }
+
     .area-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; max-width: 1200px; margin: 0 auto 40px; padding: 0 20px; }
+    .left-col { background: white; padding: 35px; border-radius: 20px; border: 1px solid #f1f5f9; box-shadow: 0 4px 15px rgba(0,0,0,0.03); }
+    .left-col h2 { margin-top: 35px; color: #78350f; font-size: 20px; font-weight: 700; border-bottom: 2px solid #fef3c7; padding-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+    .left-col h2:first-of-type { margin-top: 0; }
+
+    .team-left-layout { display: grid; grid-template-columns: 280px 1fr; gap: 20px; align-items: start; margin-top: 15px; }
+    .team-card-single { background: white; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
+    .team-card-single img { width: 100%; height: 230px; object-fit: cover; display: block; }
+    .team-info { padding: 14px 16px; background: white; }
+    .team-info h4 { margin: 0; font-size: 15px; color: #1e293b; font-weight: 700; }
+    .team-info p { margin: 4px 0 0 0; font-size: 12px; color: #64748b; }
+
+    .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 25px 0; }
+    .metric-card { padding: 16px; border-radius: 12px; border-left: 5px solid; }
+    .metric-card.brown { background: #fdf8f6; border-color: #78350f; }
+    .metric-card.green { background: #f0fdf4; border-color: #10b981; }
+    .metric-card.blue { background: #eff6ff; border-color: #0284c7; }
+    .metric-num { font-size: 24px; font-weight: 800; display: block; line-height: 1; margin-bottom: 4px; }
+    .metric-card.brown .metric-num { color: #78350f; }
+    .metric-card.green .metric-num { color: #047857; }
+    .metric-card.blue .metric-num { color: #0369a1; }
+    .metric-label { font-size: 12px; color: #64748b; font-weight: 600; }
+
+    .tabs-header { display: flex; flex-wrap: wrap; gap: 8px; border-bottom: 2px solid #f1f5f9; margin-bottom: 20px; padding-bottom: 10px; }
+    .tab-btn { padding: 10px 16px; border: none; background: #f8fafc; color: #64748b; font-weight: 700; font-size: 13px; border-radius: 10px; cursor: pointer; transition: all 0.2s ease; white-space: nowrap; }
+    .tab-btn.active { background: #f59e0b; color: white; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
+    .tab-btn:hover:not(.active) { background: #f1f5f9; color: #334155; }
+    .tab-content { display: none; animation: fadeIn 0.3s ease; }
+    .tab-content.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .function-card-detailed { background: linear-gradient(135deg, #ffffff 0%, #fffbebe6 100%); border: 1px solid #fef3c7; border-left: 6px solid #f59e0b; border-radius: 14px; padding: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.03); }
+    .function-card-detailed h3 { margin: 0 0 12px 0; font-size: 18px; color: #78350f; font-weight: 700; }
+    .function-card-detailed ul { margin: 0; padding-left: 20px; color: #475569; font-size: 14px; line-height: 1.7; }
+    .function-card-detailed li { margin-bottom: 8px; }
+
+    /* MAPA */
+    .map-layout { display: grid; grid-template-columns: 320px 1fr; gap: 28px; align-items: center; background: linear-gradient(135deg, #fffbeb 0%, #f0fdf4 100%); border: 1px solid #fde68a; border-radius: 18px; padding: 24px; margin-top: 15px; box-shadow: 0 6px 18px rgba(120,53,15,0.08); }
+    .map-col { text-align: center; }
+    .dep { stroke: #b45309; stroke-width: 1.1; stroke-linejoin: round; cursor: pointer; transition: fill .2s; }
+    .dep-off { fill: #fef3c7; }
+    .dep-on { fill: #fbbf24; }
+    .dep-off:hover { fill: #bbf7d0; }
+    .dep-on:hover { fill: #f59e0b; }
+    #map-info { margin: 10px 0 4px; font-size: 14px; font-weight: 800; color: #78350f; min-height: 20px; }
+    .map-note { margin: 0; font-size: 11px; color: #64748b; }
+    .map-note .sw { display: inline-block; width: 10px; height: 10px; border-radius: 3px; border: 1px solid #b45309; margin: 0 4px 0 8px; vertical-align: middle; }
+    .map-note .sw.on { background: #fbbf24; } .map-note .sw.off { background: #fef3c7; }
+    .map-svg { width: 100%; max-width: 320px; height: auto; margin: 0 auto; display: block; overflow: visible; }
     
-    .left-col { background: white; padding: 30px; border-radius: 12px; border: 1px solid #f1f5f9; }
-    .left-col h2 { margin-top: 0; color: #059669; font-size: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
-    .left-col p { line-height: 1.6; font-size: 14px; color: #475569; }
+    .map-pin { cursor: pointer; transition: transform 0.2s; transform-box: fill-box; transform-origin: 50% 100%; }
+    .map-pin:hover { transform: scale(1.25); }
+    .map-label { font-size: 12px; font-weight: 800; fill: #78350f; paint-order: stroke; stroke: #fff; stroke-width: 3.5px; stroke-linejoin: round; }
+    .map-legend-title { font-size: 11px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin: 0 0 12px; }
+    .map-legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+    .map-legend li { background: #fff; border: 1px solid #fde68a; border-radius: 10px; padding: 8px 12px; transition: transform .2s, border-color .2s; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: #334155; }
+    .map-legend li:hover { transform: translateX(4px); border-color: #f59e0b; }
+    .map-legend .num { width: 26px; height: 26px; border-radius: 50%; background: #dc2626; color: #fff; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 
-    .info-card { background: #ecfdf5; border-left: 4px solid #10b981; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
-    .info-card h4 { margin: 0 0 5px 0; color: #065f46; font-size: 15px; }
-    .info-card p { margin: 0; font-size: 13px; color: #047857; }
+    .testimonial-card { background: #ffffff; border-left: 4px solid #10b981; padding: 14px 16px; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); margin-top: 15px; }
+    .testimonial-text { font-size: 13px; font-style: italic; color: #475569; margin: 0 0 8px 0; line-height: 1.5; }
+    .testimonial-author { font-size: 11px; font-weight: 700; color: #0f2b48; text-transform: uppercase; }
 
-    /* BARRA LATERAL Y BOTONES CON EFECTO TECLA */
-    .side-card { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; }
-    .side-card h3 { margin-top: 0; color: #1e293b; font-size: 17px; }
-    .side-desc { font-size: 13px; color: #64748b; margin-bottom: 15px; line-height: 1.4; }
-    .form-group { margin-bottom: 12px; }
-    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
-    .btn-sub { width: 100%; padding: 10px; color: white; background: #10b981; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; }
-    .btn-sub:hover { background: #059669; }
+    .faq-container { display: flex; flex-direction: column; gap: 12px; margin: 20px 0 30px; }
+    .faq-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; cursor: pointer; transition: border-color 0.2s; }
+    .faq-item:hover { border-color: #cbd5e1; }
+    .faq-item summary { font-weight: 700; color: #0f2b48; font-size: 14px; outline: none; }
+    .faq-item p { margin: 10px 0 0 0; font-size: 13px; color: #64748b; line-height: 1.6; }
 
+    .reuniones-section { margin-top: 35px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 16px; overflow: hidden; }
+    .reuniones-banner-img { width: 100%; height: 280px; object-fit: cover; display: block; }
+    .reuniones-content { padding: 20px; }
+    .reuniones-content h3 { margin: 0 0 6px 0; color: #0f2b48; font-size: 18px; font-weight: 700; }
+    .reuniones-content p { margin: 0; font-size: 13.5px; color: #64748b; line-height: 1.5; }
+
+    .side-card { background: white; padding: 25px; border-radius: 16px; border: 1px solid #e2e8f0; margin-bottom: 25px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+    .side-card h3 { margin-top: 0; color: #0f172a; font-size: 18px; font-weight: 700; }
+    .side-desc { font-size: 13px; color: #64748b; margin-bottom: 18px; line-height: 1.5; }
+    .form-group { margin-bottom: 14px; }
+    .form-group input, .form-group select { width: 100%; padding: 11px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 13px; outline: none; transition: all 0.2s; background: #f8fafc; }
+    .form-group input:focus, .form-group select:focus { border-color: #f59e0b; background: white; box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.2); }
+    .btn-sub { width: 100%; padding: 12px; color: white; background: #f59e0b; border: none; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 13.5px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3); }
+    .btn-sub:hover { background: #d97706; transform: translateY(-1px); }
+    .doc-btn { display: flex; align-items: center; gap: 10px; padding: 11px 14px; background: #f8fafc; color: #334155; text-decoration: none; border: 1px solid #e2e8f0; border-radius: 10px; font-size: 12.5px; font-weight: 600; margin-bottom: 10px; transition: all 0.2s; }
+    .doc-btn:hover { background: #fef3c7; border-color: #f59e0b; color: #b45309; }
     .social-btn-box { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-    .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; color: white; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, opacity 0.2s ease; }
-    .social-btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15); opacity: 0.95; }
-    .social-btn:active { transform: translateY(-1px) scale(0.99); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+    .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 10px; text-decoration: none; font-size: 13px; font-weight: 700; color: white; transition: all 0.25s; }
+    .social-btn:hover { transform: translateY(-2px); opacity: 0.95; }
     .btn-fb { background: #1877f2; }
     .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
     .btn-wa { background: #25d366; }
 
-    /* FOOTER AZUL INSTITUCIONAL */
-    .site-footer { background: #0f2b48; color: #94a3b8; padding: 40px 20px 20px; font-size: 13px; margin-top: 60px; }
+    .site-footer { background: #0f2b48; color: #94a3b8; padding: 45px 20px 25px; font-size: 13px; margin-top: 60px; }
     .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 40px; }
-    .footer-brand-title { color: #ffffff; font-weight: bold; font-size: 16px; margin-bottom: 4px; }
+    .footer-brand-title { color: #ffffff; font-weight: 800; font-size: 16px; margin-bottom: 4px; }
     .footer-brand-sub { color: #cbd5e1; font-size: 12px; margin-bottom: 12px; }
-    .footer-col h4 { color: #d97706; font-size: 11px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; margin-top: 0; margin-bottom: 15px; }
+    .footer-col h4 { color: #f59e0b; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-top: 0; margin-bottom: 15px; }
     .footer-col ul { list-style: none; padding: 0; margin: 0; }
-    .footer-col li { margin-bottom: 8px; }
+    .footer-col li { margin-bottom: 9px; }
     .footer-col a { color: #cbd5e1; text-decoration: none; transition: color 0.2s; }
-    .footer-col a:hover { color: #ffffff; }
-    .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid #1e3a5f; padding-top: 20px; text-align: center; font-size: 12px; color: #64748b; }
+    .footer-col a:hover { color: #ffffff; text-decoration: underline; }
+    .footer-bottom a { color:#94a3b8; text-decoration:none; } .footer-bottom a:hover{ text-decoration:underline; }
+    .footer-bottom { line-height:1.9; max-width: 1200px; margin: 0 auto; border-top: 1px solid #1e3a5f; padding-top: 20px; text-align: center; font-size: 12px; color: #64748b; }
 
     @media (max-width: 850px) {
       .area-container { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
+      .team-left-layout { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: 1fr; }
+      .map-layout { grid-template-columns: 1fr; }
       .main-nav { display: none; }
+      .area-banner { flex-direction: column; text-align: center; }
     }
+    html { scroll-behavior: smooth; }
+    .sub-nav { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,.05); display: flex; gap: 4px; overflow-x: auto; padding: 8px 20px; justify-content: center; }
+    .sub-nav a { white-space: nowrap; padding: 7px 12px; border-radius: 8px; font-size: 13px; font-weight: 700; color: #78350f; text-decoration: none; }
+    .sub-nav a:hover { background: #fef3c7; }
+    .left-col section { margin-top: 48px; scroll-margin-top: 70px; }
+    .left-col section:first-child { margin-top: 0; }
+    .lead { font-size: 15px; line-height: 1.7; color: #475569; }
+    .sub { color: #78350f; font-size: 16px; margin: 26px 0 12px; }
+    .btn-link { display: inline-block; background: #f59e0b; color: #fff; font-weight: 800; font-size: 13.5px; padding: 11px 20px; border-radius: 10px; text-decoration: none; box-shadow: 0 4px 12px rgba(245,158,11,.3); }
+    .btn-link:hover { background: #d97706; }
+    .acc-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .acc-card { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 6px; padding: 16px 10px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 14px; text-decoration: none; color: #78350f; font-size: 13px; transition: transform .2s, box-shadow .2s; }
+    .acc-card:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(120,53,15,.12); border-color: #f59e0b; }
+    .ic { font-size: 26px; line-height: 1; }
+    .ejes, .area-grid, .res-grid, .news-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .eje, .res-box, .news-card { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 16px; }
+    .eje h4, .res-box h4 { margin: 6px 0; color: #0f2b48; font-size: 15px; }
+    .eje p { margin: 0; font-size: 13px; color: #64748b; line-height: 1.5; }
+    .area-card { display: flex; gap: 12px; align-items: flex-start; background: #fff; border: 1px solid #e2e8f0; border-left: 5px solid #f59e0b; border-radius: 12px; padding: 14px 16px; }
+    .area-card h3 { margin: 0 0 4px; font-size: 15px; color: #78350f; }
+    .area-card p { margin: 0; font-size: 13px; color: #64748b; line-height: 1.5; }
+    .res-box ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: #475569; line-height: 1.7; }
+    .mini { margin: 0 0 6px; font-size: 13px; color: #64748b; }
+    .paac { background: linear-gradient(135deg, #fffbeb, #f0fdf4); border: 1px solid #fde68a; border-radius: 16px; padding: 22px; margin-bottom: 16px; }
+    .paac h3 { margin: 6px 0 2px; color: #78350f; font-size: 19px; }
+    .paac-sub { margin: 0 0 12px; font-weight: 700; color: #047857; }
+    .paac h4 { margin: 14px 0 4px; color: #0f2b48; font-size: 14px; }
+    .paac p { margin: 0; line-height: 1.6; }
+    .recipe-tag { display: inline-block; background: #fef3c7; color: #b45309; font-size: 10px; font-weight: 800; padding: 4px 8px; border-radius: 6px; text-transform: uppercase; }
+    .callout { background: linear-gradient(135deg, #ecfdf5, #fffbeb); border: 1px solid #a7f3d0; border-radius: 18px; padding: 26px; }
+    .callout h3 { margin: 10px 0; color: #065f46; font-size: 19px; line-height: 1.4; }
+    .callout p { margin: 0 0 14px; line-height: 1.7; }
+    .callout.contact { background: #f8fafc; border-color: #e2e8f0; }
+    .callout.contact h3 { color: #0f2b48; font-size: 17px; }
+    .news-grid { grid-template-columns: repeat(3, 1fr); }
+    .news-card small { color: #b45309; font-weight: 800; text-transform: uppercase; font-size: 10px; }
+    .news-card strong { display: block; margin: 4px 0; color: #0f2b48; }
+    .news-card p { margin: 0; font-size: 12.5px; color: #64748b; }
+    @media (max-width: 850px) { .acc-grid, .news-grid { grid-template-columns: repeat(2, 1fr); } .ejes, .area-grid, .res-grid { grid-template-columns: 1fr; } .sub-nav { justify-content: flex-start; } }
+    @media (max-width: 520px) { .acc-grid, .news-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
 
-  <!-- BARRITA AZUL SUPERIOR (HEADER) -->
   <header class="top-header">
     <div class="top-header-inner">
       <div class="header-brand">
@@ -101,48 +208,260 @@
   </header>
 
   <div class="breadcrumb">
-    <a href="../index.html">Inicio</a> / <span>Subsecretarías</span> / <span>Nutrición y Comedores</span>
+    <a href="../index.html">Inicio</a> / <span>Subsecretarías</span> / <span>Área de Nutrición</span>
   </div>
 
+  <nav class="sub-nav" aria-label="Secciones del Área">
+    <a href="#inicio">Inicio</a><a href="#el-area">El Área</a><a href="#objetivos">Objetivos y Funciones</a><a href="#areas">Áreas de Intervención</a><a href="#programas">Programas</a><a href="#recursos">Recursos</a><a href="#capacitacion">Capacitación</a><a href="#noticias">Noticias</a><a href="#contacto">Contacto</a>
+  </nav>
+
+  <!-- BANNER CON NUEVO LOGOTIPO: personas + corazón sostenido por manos (desarrollo social) -->
   <div class="area-banner-wrapper">
     <section class="area-banner">
-      <h1>🍏 Programa de Nutrición y Comedores</h1>
-      <p>Garantizando seguridad alimentaria y dietas saludables para el óptimo desarrollo infantil y familiar en la provincia.</p>
+      <div class="logo-badge">
+        <svg width="84" height="84" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Logotipo del Área de Nutrición">
+          <circle cx="50" cy="50" r="46" fill="#ffffff" stroke="#78350f" stroke-width="3"/>
+          <circle cx="50" cy="50" r="42" stroke="#78350f" stroke-width="1" stroke-dasharray="3 3"/>
+          <!-- tres personas (comunidad) -->
+          <circle cx="30" cy="24" r="6" fill="#0284c7"/>
+          <path d="M21 38 Q30 27 39 38" stroke="#0284c7" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="50" cy="16" r="6.5" fill="#10b981"/>
+          <path d="M40 31 Q50 19 60 31" stroke="#10b981" stroke-width="5" stroke-linecap="round"/>
+          <circle cx="70" cy="24" r="6" fill="#f59e0b"/>
+          <path d="M61 38 Q70 27 79 38" stroke="#f59e0b" stroke-width="5" stroke-linecap="round"/>
+          <!-- corazón (cuidado) -->
+          <path d="M50 72 C30 58 30 44 42 44 C46 44 49 46 50 49 C51 46 54 44 58 44 C70 44 70 58 50 72 Z" fill="#dc2626"/>
+          <!-- manos que sostienen (asistencia) -->
+          <path d="M18 56 C24 76 40 84 50 84 C60 84 76 76 82 56" stroke="#78350f" stroke-width="5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="area-banner-text">
+        <h1>Área de Nutrición</h1>
+        <p><strong>Nutrición al servicio de las políticas sociales.</strong><br>Ministerio de Desarrollo Social</p>
+      </div>
     </section>
   </div>
 
   <main class="area-container">
     <div class="left-col">
-      <h2>Plan Alimentario Provincial</h2>
-      <p>Nuestra misión no se limita al abastecimiento de insumos, sino a robustecer la calidad de la nutrición comunitaria con controles periódicos de peso y talla en articulación con las postas de salud locales.</p>
 
-      <div class="info-card">
-        <h4>El Plato Saludable Santiagueño</h4>
-        <p>Promovemos la inclusión obligatoria de legumbres, verduras de estación y proteínas frescas en cada menú semanal distribuido a los comedores adheridos.</p>
+      <section id="inicio">
+        <h2>🏠 Una alimentación adecuada también es inclusión</h2>
+        <p class="lead">El Área de Nutrición interviene de manera transversal en las políticas y programas del Ministerio de Desarrollo Social, brindando asesoramiento técnico en materia alimentaria y nutricional.</p>
+        <p class="lead">Nuestro trabajo comprende la planificación y evaluación de servicios de alimentación, el diseño de menús y proyectos, la capacitación de equipos, la elaboración de especificaciones técnicas para la adquisición de alimentos y el abordaje de situaciones de vulnerabilidad alimentaria y nutricional.</p>
+        <a class="btn-link" href="#el-area">Conocé el Área</a>
+        <h3 class="sub">Accesos rápidos</h3>
+        <div class="acc-grid"><a class="acc-card" href="#a-mayores"><span class="ic">👵</span><strong>Personas Mayores</strong></a><a class="acc-card" href="#a-escolares"><span class="ic">🏫</span><strong>Comedores Escolares</strong></a><a class="acc-card" href="#a-comunitarios"><span class="ic">🍲</span><strong>Comedores Comunitarios</strong></a><a class="acc-card" href="#a-tarjetas"><span class="ic">💳</span><strong>Tarjetas Sociales</strong></a><a class="acc-card" href="#programas"><span class="ic">🌾</span><strong>Tarjetas para Personas con Celiaquía</strong></a><a class="acc-card" href="#a-compras"><span class="ic">🛒</span><strong>Compras y Contrataciones</strong></a><a class="acc-card" href="#a-asistencia"><span class="ic">🤝</span><strong>Asistencia Directa</strong></a><a class="acc-card" href="#recursos"><span class="ic">📚</span><strong>Recursos y Capacitación</strong></a><a class="acc-card" href="#recursos"><span class="ic">🥕</span><strong>Educación Alimentaria</strong></a></div>
+        <!-- INDICADORES INSTITUCIONALES: habilitar cuando se cuente con los datos oficiales
+        <div class="kpi-strip"><div><b>XX</b> instituciones acompañadas</div><div><b>XX</b> capacitaciones</div><div><b>XX</b> localidades</div><div><b>XX</b> personas alcanzadas</div></div>
+        -->
+      </section>
+
+      <section id="el-area">
+        <h2>El Área</h2>
+        <div class="team-left-layout">
+          <div class="team-card-single">
+          <img src="../assets/equipo-nutricion.jpg.jpg" alt="Responsable del Área" onerror="this.src='../assets/equipo-nutricion.jpg'">
+          <div class="team-info">
+            <h4>Responsable del Área</h4>
+            <p>Licenciadas en Nutrición al frente de las intervenciones provinciales</p>
+          </div>
+        </div>
+          <div>
+            <p style="margin-top:0; line-height: 1.6;">Intervenir en forma transversal en las distintas áreas del Ministerio de Desarrollo Social en lo que respecta al aspecto alimentario nutricional (Área de Adulto Mayor, Políticas Alimentarias, Comedores Escolares, Comedores Comunitarios, Dirección General de Contrataciones y Compras de Alimentos, Asistencia Directa).</p>
+          </div>
+        </div>
+        <div class="reuniones-section">
+        <img src="../assets/equipo-nutricion.jpg2.jpg" alt="Reuniones Institucionales" class="reuniones-banner-img" onerror="this.src='../assets/reuniones-institucionales.jpg'">
+        <div class="reuniones-content">
+          <h3>Reuniones Institucionales</h3>
+          <p>Planificación estratégica y trabajo articulado junto a las máximas autoridades del Ministerio de Desarrollo Social para la gestión alimentaria provincial.</p>
+        </div>
+      </div>
+      </section>
+
+      <section id="objetivos">
+        <h2>🎯 Objetivos y Funciones</h2>
+        <div class="ejes"><div class="eje"><span class="ic">🍎</span><h4>Alimentación y nutrición</h4><p>Incorporar el enfoque alimentario-nutricional en políticas y programas.</p></div><div class="eje"><span class="ic">🏛️</span><h4>Asesoramiento técnico</h4><p>Brindar asistencia especializada a las distintas áreas del Ministerio.</p></div><div class="eje"><span class="ic">👥</span><h4>Fortalecimiento de equipos</h4><p>Capacitar a quienes participan de los servicios de alimentación.</p></div><div class="eje"><span class="ic">🤝</span><h4>Abordaje territorial</h4><p>Intervenir ante situaciones de vulnerabilidad alimentaria y nutricional.</p></div></div>
+        <h3 class="sub">Funciones del personal técnico (Lic. en Nutrición)</h3>
+        <div class="tabs-header"><button class="tab-btn active" onclick="openTab(event, 'adulto-mayor')">👴 Personas Mayores</button><button class="tab-btn" onclick="openTab(event, 'tarjetas')">💳 Tarjetas Sociales</button><button class="tab-btn" onclick="openTab(event, 'celiaquia')">🌾 Celiaquía (PAAC)</button><button class="tab-btn" onclick="openTab(event, 'escolares')">🏫 Comedores Escolares</button><button class="tab-btn" onclick="openTab(event, 'comunitarios')">🍲 Comedores Comunitarios</button><button class="tab-btn" onclick="openTab(event, 'contrataciones')">🛒 Compras y Contrataciones</button><button class="tab-btn" onclick="openTab(event, 'asistencia')">🤝 Asistencia Directa</button></div>
+        <div id="adulto-mayor" class="tab-content active"><div class="function-card-detailed"><h3>Personas Mayores: servicio y cuidado gerontológico</h3><ul><li>Delinear y participar en la organización del servicio de alimentación en residencias y centros de día.</li><li>Coordinar la formación continua en calidad e inocuidad alimentaria para manipuladores de alimentos.</li><li>Valoración nutricional continua y seguimiento de tratamientos dietoterápicos específicos.</li><li>Habilitación de residencias y centros de día destinados a personas mayores, y auditorías de seguimiento.</li></ul></div></div><div id="tarjetas" class="tab-content"><div class="function-card-detailed"><h3>Tarjetas Sociales</h3><ul><li>Asesorar en el diseño de los proyectos en el aspecto nutricional.</li><li>Diseñar y ejecutar el plan de educación alimentaria y crear material gráfico educativo.</li><li>Participar en conversatorios e intervenciones educativas comunitarias.</li></ul></div></div><div id="celiaquia" class="tab-content"><div class="function-card-detailed"><h3>Tarjetas para Personas con Celiaquía</h3><ul><li>Orientación alimentaria y nutricional vinculada a la alimentación libre de gluten.</li><li>Elaboración de material educativo y recursos para quienes reciben la tarjeta.</li><li>Asesoramiento nutricional en menús y dietas libres de gluten.</li></ul></div></div><div id="escolares" class="tab-content"><div class="function-card-detailed"><h3>Comedores Escolares</h3><ul><li>Elaboración de proyectos y planificación periódica de menús escolares conforme a los requerimientos nutricionales por edad.</li><li>Asesoramiento nutricional en menús y dietas específicas (diabetes, enfermedad celíaca).</li><li>Educación alimentaria y nutricional.</li><li>Capacitación del personal de cocina en alimentación saludable, técnicas culinarias y Buenas Prácticas de Manufactura (BPM).</li><li>Supervisión de la calidad, inocuidad y adecuación de las porciones servidas.</li><li>Diseño y validación de herramientas de registro para diagnóstico, seguimiento y evaluación.</li></ul></div></div><div id="comunitarios" class="tab-content"><div class="function-card-detailed"><h3>Comedores Comunitarios</h3><ul><li>Elaboración de proyectos y planificación periódica de menús conforme a requerimientos nutricionales.</li><li>Asesoramiento nutricional en menús y dietas específicas (diabetes, enfermedad celíaca).</li><li>Capacitación del personal y voluntarios en alimentación saludable, técnicas culinarias y BPM.</li><li>Auditorías de seguimiento y evaluación de comedores y merenderos.</li></ul></div></div><div id="contrataciones" class="tab-content"><div class="function-card-detailed"><h3>Dirección General de Contrataciones y Compras de Alimentos</h3><ul><li>Confección de pliegos de adquisición y especificaciones técnicas de alimentos (leche, módulos, suplementos).</li><li>Evaluación técnica de los productos alimenticios ofertados y control de calidad de lo adquirido.</li></ul></div></div><div id="asistencia" class="tab-content"><div class="function-card-detailed"><h3>Asistencia Directa</h3><ul><li>Valoración de situaciones alimentarias y nutricionales de personas y familias.</li><li>Visitas domiciliarias de valoración alimentaria nutricional familiar en situaciones de vulnerabilidad.</li><li>Resolución de expedientes con necesidades alimentarias prioritarias.</li></ul></div></div>
+      </section>
+
+      <section id="areas">
+        <h2>🏢 Áreas de Intervención</h2>
+        <div class="area-grid"><div class="area-card" id="a-mayores"><span class="ic">👵</span><div><h3>Personas Mayores</h3><p>Servicios de alimentación, valoración nutricional y seguimiento. Habilitación de residencias y centros de día destinados a personas mayores.</p></div></div><div class="area-card" id="a-tarjetas"><span class="ic">💳</span><div><h3>Tarjetas Sociales</h3><p>Educación alimentaria y asesoramiento nutricional.</p></div></div><div class="area-card" id="a-celiaquia"><span class="ic">🌾</span><div><h3>Tarjetas para Personas con Celiaquía</h3><p>Orientación alimentaria y nutricional vinculada a la alimentación libre de gluten.</p></div></div><div class="area-card" id="a-escolares"><span class="ic">🏫</span><div><h3>Comedores Escolares</h3><p>Planificación, seguimiento y asesoramiento nutricional. Educación alimentaria y nutricional.</p></div></div><div class="area-card" id="a-comunitarios"><span class="ic">🍲</span><div><h3>Comedores Comunitarios</h3><p>Menús, capacitación y buenas prácticas.</p></div></div><div class="area-card" id="a-compras"><span class="ic">🛒</span><div><h3>Compras y Contrataciones</h3><p>Especificaciones técnicas y asesoramiento en adquisiciones.</p></div></div><div class="area-card" id="a-asistencia"><span class="ic">🤝</span><div><h3>Asistencia Directa</h3><p>Valoración de situaciones alimentarias y nutricionales.</p></div></div><div class="area-card" id="a-redes"><span class="ic">📣</span><div><h3>Comunicación y redes</h3><p>Difusión de material educativo y novedades del Área en los canales oficiales.</p></div></div></div>
+      </section>
+
+      <section id="programas">
+        <h2>🌾 Programas y Servicios</h2>
+        <div class="paac">
+          <span class="recipe-tag">Programa</span>
+          <h3>Programa de Asistencia Alimentaria del Celíaco (PAAC)</h3>
+          <p class="paac-sub">Tarjeta para Personas con Celiaquía</p>
+          <h4>¿A quién está destinada?</h4>
+          <p>Población con diagnóstico de enfermedad celíaca sin cobertura de obra social.</p>
+          <h4>¿Qué brinda?</h4>
+          <p>Se provee una tarjeta con arancel en pesos destinada a la compra de alimentos libres de gluten como prioridad primera, y también del resto de los alimentos que componen una alimentación saludable.</p>
+        </div>
+        <div class="res-grid">
+          <div class="res-box"><h4>🥖 Alimentación libre de gluten</h4><p class="mini">Un espacio educativo con información sobre:</p><ul><li>Qué significa una alimentación libre de gluten</li><li>Alimentos naturalmente libres de gluten</li><li>Identificación de alimentos aptos</li><li>Lectura de etiquetas</li><li>Contaminación cruzada</li><li>Manipulación y almacenamiento</li><li>Buenas prácticas en el hogar</li></ul></div>
+          <div class="res-box"><h4>📚 Material descargable</h4><ul><li>Guías</li><li>Folletos</li><li>Recetarios</li><li>Material educativo</li><li>Preguntas frecuentes</li></ul></div>
+        </div>
+        <h3 class="sub">❓ Preguntas frecuentes sobre celiaquía</h3>
+        <div class="faq-container"><details class="faq-item"><summary>¿Qué alimentos pueden contener gluten?</summary><p>El gluten está presente en el trigo, la avena, la cebada y el centeno (TACC) y en los productos que los contienen, como panes, pastas, galletitas y harinas. También puede aparecer en alimentos procesados. Ante la duda, consultá siempre con el equipo de Nutrición.</p></details><details class="faq-item"><summary>¿Cómo identificar un alimento apto?</summary><p>Leyendo la etiqueta: los alimentos aptos llevan la leyenda "Sin TACC" y el logo oficial, y figuran en el listado de alimentos libres de gluten que publica ANMAT.</p></details><details class="faq-item"><summary>¿Qué significa contaminación cruzada?</summary><p>Es el contacto de un alimento libre de gluten con gluten, por ejemplo a través de utensilios, tablas, aceites o superficies compartidas. Puede hacer que un alimento apto deje de serlo.</p></details><details class="faq-item"><summary>¿Cómo conservar y preparar alimentos libres de gluten?</summary><p>Guardándolos en recipientes cerrados y separados, usando utensilios y superficies limpios o exclusivos, y preparándolos antes que el resto de los alimentos.</p></details></div>
+      </section>
+
+      <section id="recursos">
+        <h2>📚 Recursos</h2>
+        <p class="lead">Una biblioteca para equipos técnicos, instituciones y familias.</p>
+        <div class="res-grid"><div class="res-box"><h4>🍽️ Menús</h4><ul><li>Escolares</li><li>Comunitarios</li><li>Adultos mayores</li><li>Planes especiales</li><li>Libres de gluten</li></ul></div><div class="res-box"><h4>📖 Guías</h4><ul><li>Alimentación saludable</li><li>Celiaquía</li><li>Manipulación segura</li><li>Buenas prácticas</li></ul></div><div class="res-box"><h4>📋 Herramientas profesionales</h4><ul><li>Formularios</li><li>Planillas</li><li>Cuestionarios</li><li>Instrumentos de evaluación</li></ul></div><div class="res-box"><h4>🎨 Material educativo</h4><ul><li>Infografías</li><li>Folletos</li><li>Cartelería</li><li>Material para redes</li></ul></div></div>
+      </section>
+
+      <section id="capacitacion">
+        <h2>👩‍🏫 Capacitación</h2>
+        <p class="lead">Fortalecemos a los equipos que participan de los servicios de alimentación con capacitaciones en alimentación saludable, técnicas culinarias, manipulación segura de alimentos y Buenas Prácticas de Manufactura (BPM).</p>
+        <div class="faq-container">
+          <details class="faq-item"><summary>¿Cómo se supervisa la calidad alimentaria en los comedores?</summary><p>El equipo de Licenciadas en Nutrición realiza auditorías periódicas, controlando la inocuidad de los alimentos, la conservación de la cadena de frío y la adecuación de las porciones según las guías nutricionales provinciales.</p></details>
+          <details class="faq-item"><summary>¿Quiénes pueden acceder a las capacitaciones de Manipulación de Alimentos?</summary><p>Todo el personal de cocina, responsables y voluntarios de comedores escolares, comunitarios y residencias de adultos mayores que dependan o interactúen con el Ministerio de Desarrollo Social.</p></details>
+        </div>
+      </section>
+
+      <section id="inclusion">
+        <div class="callout">
+          <span class="recipe-tag">💚 Alimentación, derechos e inclusión</span>
+          <h3>El acceso a una alimentación adecuada forma parte de un abordaje integral de las políticas sociales.</h3>
+          <p>Desde el Área de Nutrición aportamos conocimientos técnicos para que los programas y servicios de alimentación contemplen las necesidades nutricionales, culturales, sociales y económicas de las personas y comunidades destinatarias.</p>
+        </div>
+      </section>
+
+      <section id="territorio">
+        <h2>🗺️ Trabajo territorial</h2>
+        <p class="lead"><strong>Estamos donde las políticas sociales necesitan acompañamiento.</strong> El Área de Nutrición no funciona aislada: trabaja articulada con el territorio y con las diferentes áreas de Desarrollo Social.</p>
+        <div class="map-layout">
+        <div class="map-col">
+        <svg class="map-svg" viewBox="0 0 375 535" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mapa esquemático de los 27 departamentos de Santiago del Estero">
+          <defs>
+            <filter id="provShadow" x="-10%" y="-10%" width="125%" height="125%"><feDropShadow dx="4" dy="8" stdDeviation="7" flood-color="#78350f" flood-opacity=".28"/></filter>
+            <clipPath id="provClip"><path d="M135.6 11.0 L302.8 11.0 L320.4 83.0 L323.0 183.0 L320.4 263.0 L329.2 323.0 L360.0 373.0 L361.8 423.0 L346.8 463.0 L289.6 483.0 L245.6 522.0 L192.8 503.0 L148.8 478.0 L118.0 443.0 L82.8 403.0 L43.2 363.0 L10.6 313.0 L16.8 263.0 L34.4 228.0 L56.4 188.0 L82.8 158.0 L91.6 113.0 L74.0 83.0 L96.0 48.0Z"/></clipPath>
+            <g id="pin"><path d="M0 0 C-15 -17 -15 -32 0 -32 C15 -32 15 -17 0 0Z" fill="#dc2626" stroke="#fff" stroke-width="2.5"/></g>
+          </defs>
+          <path d="M135.6 11.0 L302.8 11.0 L320.4 83.0 L323.0 183.0 L320.4 263.0 L329.2 323.0 L360.0 373.0 L361.8 423.0 L346.8 463.0 L289.6 483.0 L245.6 522.0 L192.8 503.0 L148.8 478.0 L118.0 443.0 L82.8 403.0 L43.2 363.0 L10.6 313.0 L16.8 263.0 L34.4 228.0 L56.4 188.0 L82.8 158.0 L91.6 113.0 L74.0 83.0 L96.0 48.0Z" fill="#fff7dd" filter="url(#provShadow)"/>
+          <g clip-path="url(#provClip)">
+            <path class="dep dep-on" data-name="Copo" d="M133.7 -10.0 L385.0 -10.0 L385.0 75.0 L203.8 70.9Z"/>
+            <path class="dep dep-on" data-name="Robles" d="M143.5 236.2 L165.1 217.2 L176.5 219.8 L176.5 253.9 L157.8 272.2Z"/>
+            <path class="dep dep-on" data-name="La Banda" d="M135.9 186.0 L165.1 217.2 L143.5 236.2 L134.4 237.5 L106.1 204.2 L106.2 204.0Z"/>
+            <path class="dep dep-on" data-name="Capital" d="M106.1 204.2 L134.4 237.5 L118.4 258.2 L73.9 262.6 L65.0 259.5Z"/>
+            <path class="dep dep-on" data-name="Choya" d="M-10.0 487.3 L-10.0 272.8 L65.0 259.5 L73.9 262.6 L120.8 309.3 L130.4 323.7 L126.9 362.9Z"/>
+            <path class="dep dep-on" data-name="General Taboada" d="M266.6 332.5 L232.0 338.6 L231.4 311.9 L256.7 257.2 L262.2 254.2 L314.3 276.8Z"/>
+            <path class="dep dep-off" data-name="Aguirre" d="M248.3 461.0 L232.6 419.9 L228.0 341.6 L232.0 338.6 L266.6 332.5 L305.6 387.2Z"/>
+            <path class="dep dep-off" data-name="Alberdi" d="M385.0 75.0 L385.0 121.7 L255.4 168.4 L205.4 143.1 L203.8 70.9Z"/>
+            <path class="dep dep-off" data-name="Atamisqui" d="M207.3 276.6 L231.4 311.9 L232.0 338.6 L228.0 341.6 L203.1 336.5 L185.6 297.9Z"/>
+            <path class="dep dep-off" data-name="Avellaneda" d="M200.6 222.0 L181.4 217.7 L202.1 144.9 L205.4 143.1 L255.4 168.4 L247.0 206.6Z"/>
+            <path class="dep dep-off" data-name="Belgrano" d="M385.0 268.9 L385.0 356.2 L305.6 387.2 L266.6 332.5 L314.3 276.8Z"/>
+            <path class="dep dep-off" data-name="Figueroa" d="M176.5 219.8 L165.1 217.2 L135.9 186.0 L144.7 153.6 L202.1 144.9 L181.4 217.7Z"/>
+            <path class="dep dep-off" data-name="Guasayán" d="M120.8 309.3 L73.9 262.6 L118.4 258.2 L131.9 267.0Z"/>
+            <path class="dep dep-off" data-name="Jiménez" d="M144.7 153.6 L135.9 186.0 L106.2 204.0 L-10.0 85.8 L-10.0 5.5Z"/>
+            <path class="dep dep-off" data-name="Juan F. Ibarra" d="M176.5 253.9 L176.5 219.8 L181.4 217.7 L200.6 222.0 L214.9 264.5 L210.2 268.2Z"/>
+            <path class="dep dep-off" data-name="Loreto" d="M130.4 323.7 L120.8 309.3 L131.9 267.0 L157.8 272.3 L161.5 290.8Z"/>
+            <path class="dep dep-off" data-name="Mitre" d="M126.9 362.9 L130.4 323.7 L161.5 290.8 L185.6 297.9 L203.1 336.5 L146.6 361.9Z"/>
+            <path class="dep dep-off" data-name="Moreno" d="M385.0 121.7 L385.0 268.9 L314.3 276.8 L262.2 254.2 L247.0 206.6 L255.4 168.4Z"/>
+            <path class="dep dep-off" data-name="Ojo de Agua" d="M237.7 545.0 L-10.0 545.0 L-10.0 487.3 L126.9 362.9 L146.6 361.9 L232.6 419.9 L248.3 461.0Z"/>
+            <path class="dep dep-off" data-name="Pellegrini" d="M-10.0 -10.0 L133.7 -10.0 L203.8 70.9 L205.4 143.1 L202.1 144.9 L144.7 153.6 L-10.0 5.5Z"/>
+            <path class="dep dep-off" data-name="Quebrachos" d="M146.6 361.9 L203.1 336.5 L228.0 341.6 L232.6 419.9Z"/>
+            <path class="dep dep-off" data-name="Río Hondo" d="M106.2 204.0 L106.1 204.2 L65.0 259.5 L-10.0 272.8 L-10.0 85.8Z"/>
+            <path class="dep dep-off" data-name="Rivadavia" d="M385.0 356.2 L385.0 545.0 L237.7 545.0 L248.3 461.0 L305.6 387.2Z"/>
+            <path class="dep dep-off" data-name="Salavina" d="M256.7 257.2 L231.4 311.9 L207.3 276.6 L210.2 268.2 L214.9 264.5Z"/>
+            <path class="dep dep-off" data-name="San Martín" d="M157.8 272.2 L176.5 253.9 L210.2 268.2 L207.3 276.6 L185.6 297.9 L161.5 290.8 L157.8 272.3Z"/>
+            <path class="dep dep-off" data-name="Sarmiento" d="M262.2 254.2 L256.7 257.2 L214.9 264.5 L200.6 222.0 L247.0 206.6Z"/>
+            <path class="dep dep-off" data-name="Silípica" d="M118.4 258.2 L134.4 237.5 L143.5 236.2 L157.8 272.2 L157.8 272.3 L131.9 267.0Z"/>
+          </g>
+          <path d="M61 203 L122 233 L149 283 L184 353 L219 443 L241 503" fill="none" stroke="#38bdf8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1 7" opacity=".9" clip-path="url(#provClip)" style="pointer-events:none"/>
+          <path d="M135.6 11.0 L302.8 11.0 L320.4 83.0 L323.0 183.0 L320.4 263.0 L329.2 323.0 L360.0 373.0 L361.8 423.0 L346.8 463.0 L289.6 483.0 L245.6 522.0 L192.8 503.0 L148.8 478.0 L118.0 443.0 L82.8 403.0 L43.2 363.0 L10.6 313.0 L16.8 263.0 L34.4 228.0 L56.4 188.0 L82.8 158.0 L91.6 113.0 L74.0 83.0 L96.0 48.0Z" fill="none" stroke="#78350f" stroke-width="3.5" stroke-linejoin="round" style="pointer-events:none"/>
+          
+          <g transform="translate(252,33)" style="pointer-events:none">
+            <circle r="4" fill="#dc2626" opacity=".5"><animate attributeName="r" values="4;20;4" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
+            <use href="#pin"/><text y="-17" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">4</text>
+            <text class="map-label" x="16" y="-14" text-anchor="start">Copo</text>
+          </g>
+          <g transform="translate(158,246)" style="pointer-events:none">
+            <circle r="4" fill="#dc2626" opacity=".5"><animate attributeName="r" values="4;20;4" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
+            <use href="#pin"/><text y="-17" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">5</text>
+            <text class="map-label" x="16" y="-12" text-anchor="start">Robles</text>
+          </g>
+          <g transform="translate(136,221)" style="pointer-events:none">
+            <circle r="4" fill="#dc2626" opacity=".5"><animate attributeName="r" values="4;20;4" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
+            <use href="#pin"/><text y="-17" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">2</text>
+            <text class="map-label" x="16" y="-22" text-anchor="start">La Banda</text>
+          </g>
+          <g transform="translate(118,236)" style="pointer-events:none">
+            <circle r="4" fill="#dc2626" opacity=".5"><animate attributeName="r" values="4;20;4" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
+            <use href="#pin"/><text y="-17" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">1</text>
+            <text class="map-label" x="-16" y="-8" text-anchor="end">Capital</text>
+          </g>
+          <g transform="translate(92,311)" style="pointer-events:none">
+            <circle r="4" fill="#dc2626" opacity=".5"><animate attributeName="r" values="4;20;4" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
+            <use href="#pin"/><text y="-17" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">3</text>
+            <text class="map-label" x="16" y="-12" text-anchor="start">Choya</text>
+          </g>
+          <g transform="translate(252,299)" style="pointer-events:none">
+            <circle r="4" fill="#dc2626" opacity=".5"><animate attributeName="r" values="4;20;4" dur="2.6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".5;0;.5" dur="2.6s" repeatCount="indefinite"/></circle>
+            <use href="#pin"/><text y="-17" text-anchor="middle" font-size="11" font-weight="800" fill="#fff">6</text>
+            <text class="map-label" x="-16" y="-12" text-anchor="end">General Taboada</text>
+          </g>
+          <g transform="translate(338,508)" opacity=".85" style="pointer-events:none"><circle r="17" fill="#fff" stroke="#78350f" stroke-width="1.5"/><path d="M0 -12 L5 0 L0 12 L-5 0Z" fill="#78350f"/><path d="M0 -12 L5 0 L-5 0Z" fill="#dc2626"/><text y="-20" text-anchor="middle" font-size="10" font-weight="800" fill="#78350f">N</text></g>
+        </svg>
+        <p id="map-info">Pasá el mouse sobre un departamento</p>
+        <p class="map-note"><span class="sw on"></span>Con asistencia técnica continua <span class="sw off"></span>Otros departamentos · Mapa esquemático</p>
       </div>
 
-      <p><b>¿Qué servicios brindamos a los espacios comunitarios registrados?</b></p>
-      <ul>
-        <li><b>Provisión Regular:</b> Envío mensual de módulos secos de alta calidad y fondos para la adquisición de frescos (carnes y verduras).</li>
-        <li><b>Capacitación en Manipulación:</b> Talleres presenciales obligatorios de higiene y conservación de alimentos.</li>
-        <li><b>Asesoría de Licenciadas en Nutrición:</b> Planificación de recetas adaptadas a las diferentes épocas del año.</li>
-      </ul>
+        <div>
+          <p class="map-legend-title">Departamentos con asistencia técnica continua</p>
+          <ul class="map-legend">
+            <li><span class="num">1</span>Capital</li>
+            <li><span class="num">2</span>La Banda</li>
+            <li><span class="num">3</span>Choya</li>
+            <li><span class="num">4</span>Copo</li>
+            <li><span class="num">5</span>Robles</li>
+            <li><span class="num">6</span>General Taboada</li>
+          </ul>
+          <div class="testimonial-card">
+            <p class="testimonial-text">"Las capacitaciones en Buenas Prácticas nos permitieron reorganizar la cocina y garantizar que cada niño reciba la porción adecuada con la higiene correspondiente."</p>
+            <span class="testimonial-author">— Referente de Comedor Comunitario (Depto. La Banda)</span>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section id="noticias">
+        <h2>📰 Noticias y novedades</h2>
+        <!-- Reemplazar por las últimas actividades, capacitaciones, materiales o programas -->
+        <div class="news-grid">
+          <div class="news-card"><small>Próximamente</small><strong>Actividades del Área</strong><p>Novedades de intervenciones en territorio.</p></div>
+          <div class="news-card"><small>Próximamente</small><strong>Capacitaciones</strong><p>Encuentros y formaciones para equipos.</p></div>
+          <div class="news-card"><small>Próximamente</small><strong>Nuevos materiales</strong><p>Guías, menús y recursos educativos.</p></div>
+        </div>
+      </section>
+
+      <section id="contacto">
+        <h2>📩 Contacto</h2>
+        <div class="callout contact">
+          <h3>Área de Nutrición — Ministerio de Desarrollo Social</h3>
+          <p>📍 Dirección: <em>[a completar]</em> &nbsp;·&nbsp; ☎️ Teléfono: <em>[a completar]</em> &nbsp;·&nbsp; ✉️ Correo institucional: <em>[a completar]</em></p>
+          <a class="btn-link" href="#">Contactar al Área</a>
+        </div>
+      </section>
+
     </div>
 
     <div class="right-col">
       <div class="side-card">
         <h3>Registro de Nuevos Espacios</h3>
-        <p class="side-desc">Inicie la solicitud para incorporar un merendero o comedor comunitario al programa oficial de cobertura nutricional.</p>
+        <p class="side-desc">Inicie la solicitud para incorporar un merendero o comedor comunitario al programa oficial.</p>
         <form>
-          <div class="form-group">
-            <input type="text" placeholder="Ej. Merendero Caritas Felices" required>
-          </div>
-          <div class="form-group">
-            <input type="text" placeholder="Responsable / Referente" required>
-          </div>
-          <div class="form-group">
-            <input type="number" placeholder="Cantidad de niños/as en asistencia" required>
-          </div>
+          <div class="form-group"><input type="text" placeholder="Ej. Merendero Caritas Felices" required></div>
+          <div class="form-group"><input type="text" placeholder="Responsable / Referente" required></div>
+          <div class="form-group"><input type="number" placeholder="Cantidad de niños/as en asistencia" required></div>
           <div class="form-group">
             <select required>
               <option value="">Tipo de Servicio...</option>
@@ -155,25 +474,24 @@
       </div>
 
       <div class="side-card">
+        <h3>📄 Descargas Oficiales</h3>
+        <p class="side-desc">Acceda a los documentos y manuales elaborados por el equipo técnico:</p>
+        <a href="#" class="doc-btn">📥 Guía de Menús Semanales (PDF)</a>
+        <a href="#" class="doc-btn">📥 Manual de Buenas Prácticas BPM (PDF)</a>
+      </div>
+
+      <div class="side-card">
         <h3>📢 Nuestras Redes Oficiales</h3>
-        <p class="side-desc">Síguenos en nuestras plataformas para ver coberturas en vivo, fotos de los operativos e información diaria:</p>
-        
+        <p class="side-desc">Síguenos en nuestras plataformas para ver coberturas en vivo e información diaria:</p>
         <div class="social-btn-box">
-          <a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" class="social-btn btn-fb">
-            <span>Seguir en Facebook</span>
-          </a>
-          <a href="https://www.instagram.com/gobiernosde/" target="_blank" class="social-btn btn-ig">
-            <span>Seguir en Instagram</span>
-          </a>
-          <a href="https://wa.me/5493850000000" target="_blank" class="social-btn btn-wa">
-            <span>Canal de WhatsApp</span>
-          </a>
+          <a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" class="social-btn btn-fb"><span>Seguir en Facebook</span></a>
+          <a href="https://www.instagram.com/gobiernosde/" target="_blank" class="social-btn btn-ig"><span>Seguir en Instagram</span></a>
+          <a href="https://wa.me/5493850000000" target="_blank" class="social-btn btn-wa"><span>Canal de WhatsApp</span></a>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- BARRITA AZUL INFERIOR (FOOTER ESTÁNDAR) -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col">
@@ -207,15 +525,28 @@
       </div>
       <div class="footer-col">
         <h4>INSTITUCIÓN</h4>
-        <ul>
-          <li><a href="#">Autoridades</a></li>
-        </ul>
+        <ul><li><a href="#">Autoridades</a></li></ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      © 2026 SIDES — Santiago del Estero
-    </div>
+    <div class="footer-bottom"><strong style="color:#cbd5e1">Ministerio de Desarrollo Social · Área de Nutrición</strong><br><a href="#contacto">Contacto</a> | <a href="#recursos">Recursos</a> | <a href="#">Accesibilidad</a> | <a href="#">Mapa del sitio</a><br>© 2026 SIDES — Santiago del Estero</div>
   </footer>
+
+  <script>
+    var info=document.getElementById('map-info');
+    document.querySelectorAll('.dep').forEach(function(d){
+      d.addEventListener('mouseenter',function(){ info.textContent='Dpto. '+d.dataset.name+(d.classList.contains('dep-on')?' · con asistencia técnica':''); });
+      d.addEventListener('mouseleave',function(){ info.textContent='Pasá el mouse sobre un departamento'; });
+    });
+    function openTab(evt, tabName) {
+      var i, tabcontent, tablinks;
+      tabcontent = document.getElementsByClassName("tab-content");
+      for (i = 0; i < tabcontent.length; i++) { tabcontent[i].classList.remove("active"); }
+      tablinks = document.getElementsByClassName("tab-btn");
+      for (i = 0; i < tablinks.length; i++) { tablinks[i].classList.remove("active"); }
+      document.getElementById(tabName).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
 
 </body>
 </html>

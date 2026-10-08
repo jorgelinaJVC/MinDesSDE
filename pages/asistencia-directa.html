@@ -7,9 +7,8 @@
   <link rel="stylesheet" href="../css/styles.css">
   <style>
     * { box-sizing: border-box; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: #334155; }
-    
-    /* NAV SUPERIOR AZUL INSTITUCIONAL */
+    body { font-family: system-ui, -apple-system, sans-serif; background: #f1f5f9; margin: 0; padding: 0; color: #334155; }
+
     .top-header { background: #0f2b48; color: white; padding: 12px 20px; }
     .top-header-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .header-brand { display: flex; align-items: center; gap: 12px; }
@@ -17,48 +16,88 @@
     .header-brand-text { display: flex; flex-direction: column; }
     .header-brand-title { font-weight: bold; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; }
     .header-brand-sub { font-size: 10px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.5px; }
-    
     .main-nav { display: flex; gap: 24px; }
     .main-nav a { color: white; text-decoration: none; font-size: 13px; font-weight: 500; opacity: 0.9; transition: opacity 0.2s; }
     .main-nav a:hover { opacity: 1; text-decoration: underline; }
 
-    /* CONTENIDO PRINCIPAL */
     .breadcrumb { max-width: 1200px; margin: 0 auto; padding: 20px 20px 10px; font-size: 13px; color: #64748b; }
     .breadcrumb a { color: #64748b; text-decoration: none; }
-    
-    .area-banner-wrapper { max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; }
-    .area-banner { padding: 40px; color: white; border-radius: 12px; background: linear-gradient(135deg, #2563eb, #1d4ed8); }
-    .area-banner h1 { margin: 0 0 10px 0; font-size: 28px; display: flex; align-items: center; gap: 10px; }
-    .area-banner p { margin: 0; opacity: 0.95; max-width: 800px; line-height: 1.5; font-size: 15px; }
-    
-    .area-container { display: grid; grid-template-columns: 1fr 380px; gap: 30px; max-width: 1200px; margin: 0 auto 40px; padding: 0 20px; }
-    
-    .left-col { background: white; padding: 30px; border-radius: 12px; border: 1px solid #f1f5f9; }
-    .left-col h2 { margin-top: 0; color: #1d4ed8; font-size: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; }
-    .left-col p { line-height: 1.6; font-size: 14px; color: #475569; }
 
-    .info-card { background: #eff6ff; border-left: 4px solid #2563eb; padding: 15px 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
-    .info-card h4 { margin: 0 0 5px 0; color: #1e40af; font-size: 15px; }
-    .info-card p { margin: 0; font-size: 13px; color: #1e3a8a; }
+    .area-banner-wrapper { max-width: 1200px; margin: 0 auto 20px; padding: 0 20px; }
+    .area-banner { padding: 45px 40px; color: #ffffff !important; border-radius: 12px; background: linear-gradient(135deg, #0f2b48, #1d4ed8); position: relative; overflow: hidden; box-shadow: 0 4px 12px rgba(15, 43, 72, 0.15); }
+    .banner-badge { display: inline-block; background: rgba(255, 255, 255, 0.2); color: #ffffff !important; border: 1px solid rgba(255, 255, 255, 0.4); padding: 5px 14px; border-radius: 20px; font-size: 11px; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; margin-bottom: 14px; }
+    .area-banner h1 { margin: 0 0 12px 0; font-size: 34px; font-weight: 800; color: #ffffff !important; text-shadow: 0 1px 2px rgba(0,0,0,0.25); }
+    .area-banner p { margin: 0; color: #ffffff !important; opacity: 0.98; max-width: 850px; line-height: 1.6; font-size: 16px; font-weight: 400; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
 
-    /* BARRA LATERAL Y BOTONES CON EFECTO TECLA */
-    .side-card { background: #f8fafc; padding: 25px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 25px; }
-    .side-card h3 { margin-top: 0; color: #1e293b; font-size: 17px; }
-    .side-desc { font-size: 13px; color: #64748b; margin-bottom: 15px; line-height: 1.4; }
-    .form-group { margin-bottom: 12px; }
-    .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 13px; }
+    .stats-container { max-width: 1200px; margin: 0 auto 30px; padding: 0 20px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+    .stat-card { background: white; padding: 18px 20px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; flex-direction: column; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+    .stat-number { font-size: 22px; font-weight: 800; color: #1d4ed8; }
+    .stat-label { font-size: 12px; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+
+    .area-container { display: grid; grid-template-columns: 1fr 360px; gap: 30px; max-width: 1200px; margin: 0 auto 40px; padding: 0 20px; }
+
+    .tabs-wrapper { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .tab-input { display: none; }
+    .tabs-header { display: flex; border-bottom: 2px solid #f1f5f9; gap: 10px; margin-bottom: 25px; }
+    .tab-label { padding: 10px 16px; font-size: 13px; font-weight: 600; color: #64748b; cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+    .tab-label:hover { color: #1d4ed8; }
+    #tab1:checked ~ .tabs-header label[for="tab1"],
+    #tab2:checked ~ .tabs-header label[for="tab2"],
+    #tab3:checked ~ .tabs-header label[for="tab3"] { color: #1d4ed8; border-bottom-color: #1d4ed8; }
+    .tab-content { display: none; }
+    #tab1:checked ~ .tab-content-wrapper #content1,
+    #tab2:checked ~ .tab-content-wrapper #content2,
+    #tab3:checked ~ .tab-content-wrapper #content3 { display: block; }
+
+    .content-title { margin-top: 0; color: #0f2b48; font-size: 19px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; margin-bottom: 15px; }
+    p { line-height: 1.6; font-size: 14px; color: #475569; }
+
+    .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 20px 0; }
+    .bento-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 18px; position: relative; }
+    .bento-item.highlight { background: #eff6ff; border-color: #bfdbfe; }
+    .bento-tag { font-size: 10px; font-weight: bold; text-transform: uppercase; background: #cbd5e1; color: #334155; padding: 2px 8px; border-radius: 4px; display: inline-block; margin-bottom: 8px; }
+    .bento-item.highlight .bento-tag { background: #2563eb; color: white; }
+    .bento-item h4 { margin: 0 0 6px 0; font-size: 14px; color: #0f172a; }
+    .bento-item p { margin: 0; font-size: 12.5px; color: #64748b; line-height: 1.4; }
+
+    .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 25px 0; }
+    .step-box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 12px; border-radius: 8px; text-align: center; }
+    .step-num { width: 24px; height: 24px; background: #2563eb; color: white; border-radius: 50%; font-size: 11px; font-weight: bold; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+    .step-title { font-size: 12px; font-weight: bold; color: #1e293b; margin-bottom: 4px; }
+    .step-desc { font-size: 11px; color: #64748b; margin: 0; line-height: 1.3; }
+
+    .req-box { background: #fffbe0; border-left: 4px solid #d97706; padding: 20px; border-radius: 0 8px 8px 0; margin: 20px 0; }
+    .req-box h4 { margin: 0 0 10px 0; color: #92400e; font-size: 14px; text-transform: uppercase; }
+    .req-box ul { margin: 0; padding-left: 18px; font-size: 13px; color: #78350f; line-height: 1.7; }
+
+    .faq-accordion { margin-top: 20px; }
+    .faq-details { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; margin-bottom: 8px; padding: 12px 16px; }
+    .faq-details summary { font-weight: 600; font-size: 13.5px; color: #1e293b; cursor: pointer; }
+    .faq-details p { margin: 10px 0 0 0; font-size: 13px; color: #64748b; line-height: 1.5; }
+
+    .alert-banner { background: #fef2f2; border: 1px solid #fecaca; padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 12px; align-items: center; }
+    .alert-icon { font-size: 20px; }
+    .alert-text h5 { margin: 0 0 2px 0; color: #991b1b; font-size: 13px; }
+    .alert-text p { margin: 0; color: #9f1239; font-size: 12px; }
+
+    .side-card { background: white; padding: 22px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.02); }
+    .side-card h3 { margin-top: 0; color: #0f2b48; font-size: 15px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px; margin-bottom: 14px; }
+    .side-desc { font-size: 12.5px; color: #64748b; margin-bottom: 12px; line-height: 1.4; }
+    .form-group { margin-bottom: 10px; }
+    .form-group input, .form-group select { width: 100%; padding: 9px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 12.5px; background: #f8fafc; }
     .btn-sub { width: 100%; padding: 10px; color: white; background: #2563eb; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; }
     .btn-sub:hover { background: #1d4ed8; }
 
-    .social-btn-box { display: flex; flex-direction: column; gap: 12px; margin-top: 15px; }
-    .social-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 12px; border-radius: 8px; text-decoration: none; font-size: 13px; font-weight: bold; color: white; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.25s ease, opacity 0.2s ease; }
-    .social-btn:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15); opacity: 0.95; }
-    .social-btn:active { transform: translateY(-1px) scale(0.99); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); }
+    .contact-list { list-style: none; padding: 0; margin: 0; font-size: 12.5px; color: #475569; }
+    .contact-list li { margin-bottom: 10px; line-height: 1.4; }
+    .contact-list strong { color: #1e293b; display: block; }
+
+    .social-btn-box { display: flex; flex-direction: column; gap: 10px; }
+    .social-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 10px; border-radius: 6px; text-decoration: none; font-size: 12.5px; font-weight: bold; color: white; transition: transform 0.2s; }
+    .social-btn:hover { transform: translateY(-2px); }
     .btn-fb { background: #1877f2; }
     .btn-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
-    .btn-wa { background: #25d366; }
 
-    /* FOOTER AZUL INSTITUCIONAL */
     .site-footer { background: #0f2b48; color: #94a3b8; padding: 40px 20px 20px; font-size: 13px; margin-top: 60px; }
     .footer-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 40px; }
     .footer-brand-title { color: #ffffff; font-weight: bold; font-size: 16px; margin-bottom: 4px; }
@@ -72,6 +111,9 @@
 
     @media (max-width: 850px) {
       .area-container { grid-template-columns: 1fr; }
+      .stats-container { grid-template-columns: repeat(2, 1fr); }
+      .process-steps { grid-template-columns: repeat(2, 1fr); }
+      .bento-grid { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
       .main-nav { display: none; }
     }
@@ -79,7 +121,6 @@
 </head>
 <body>
 
-  <!-- BARRITA AZUL SUPERIOR (HEADER) -->
   <header class="top-header">
     <div class="top-header-inner">
       <div class="header-brand">
@@ -106,49 +147,164 @@
 
   <div class="area-banner-wrapper">
     <section class="area-banner">
-      <h1>🤝 Asistencia Directa y Contención Social</h1>
-      <p>Atención prioritaria y respuestas inmediatas frente a emergencias climáticas, habitacionales e insumos básicos para familias vulnerables de la provincia.</p>
+      <span class="banner-badge">Subsecretaría de Desarrollo Social</span>
+      <h1>Asistencia Directa</h1>
+      <p>Área operativa encargada de garantizar contención social transitoria, asistencia crítica y orientación a familias en situación de vulnerabilidad en todo el territorio provincial.</p>
     </section>
   </div>
 
-  <main class="area-container">
-    <div class="left-col">
-      <h2>Programa de Acompañamiento Inmediato</h2>
-      <p>Nuestra prioridad es intervenir ante emergencias sociales y casos críticos, canalizando recursos urgentes de manera articulada con municipios y comisiones municipales.</p>
+  <div class="stats-container">
+    <div class="stat-card">
+      <span class="stat-number">27</span>
+      <span class="stat-label">Departamentos Atendidos</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">8 a 13 hs</span>
+      <span class="stat-label">Atención de Lunes a Viernes</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">100%</span>
+      <span class="stat-label">Cobertura Territorial</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-number">428-3139</span>
+      <span class="stat-label">Central Telefónica</span>
+    </div>
+  </div>
 
-      <div class="info-card">
-        <h4>Atención Presencial de Situaciones Críticas</h4>
-        <p>Evaluación socioeconómica expedita para la entrega de materiales de construcción de primera necesidad, abrigo y módulos de contención urgente.</p>
+  <main class="area-container">
+    <div class="tabs-wrapper">
+      <input type="radio" id="tab1" name="tab-group" class="tab-input" checked>
+      <input type="radio" id="tab2" name="tab-group" class="tab-input">
+      <input type="radio" id="tab3" name="tab-group" class="tab-input">
+
+      <div class="tabs-header">
+        <label for="tab1" class="tab-label">1. Información Institucional</label>
+        <label for="tab2" class="tab-label">2. Metodología y Evaluaciones</label>
+        <label for="tab3" class="tab-label">3. Gestión de Expedientes</label>
       </div>
 
-      <p><b>¿Qué servicios brindamos?</b></p>
-      <ul>
-        <li><b>Asistencia por Emergencia Climática:</b> Entrega de chapas, tirantes y elementos de resguardo ante situaciones meteorológicas adversas.</li>
-        <li><b>Módulos de Primer Auxilio Familiar:</b> Abastecimiento alimentario e insumos de necesidad primaria.</li>
-        <li><b>Gestión de Casos Complejos:</b> Trabajo conjunto con trabajadores sociales para soluciones habitacionales progresivas.</li>
-      </ul>
+      <div class="tab-content-wrapper">
+        <div class="tab-content" id="content1">
+          <h2 class="content-title">Misión</h2>
+          <p>El Área de Asistencia Directa del Ministerio de Desarrollo Social de Santiago del Estero tiene como objetivo resolver situaciones de desequilibrio económico, social o cultural. Diseñamos e implementamos políticas públicas orientadas al bienestar integral de los ciudadanos.</p>
+
+          <h3 style="font-size: 15px; color: #1e293b; margin-top: 20px;">Servicios e Insumos Provistos</h3>
+          <div class="bento-grid">
+            <div class="bento-item highlight">
+              <span class="bento-tag">Prioridad Nutricional</span>
+              <h4>Asistencia Alimentaria</h4>
+              <p>Provisión de módulos alimentarios y productos de primera necesidad para familias en contingencia social.</p>
+            </div>
+            <div class="bento-item">
+              <span class="bento-tag">Habitacional</span>
+              <h4>Artículos del Hogar</h4>
+              <p>Entrega de camas, colchones, frazadas, calzados, mesas y sillas para la contención familiar.</p>
+            </div>
+            <div class="bento-item">
+              <span class="bento-tag">Emergencia</span>
+              <h4>Asistencia para viviendas afectadas</h4>
+              <p>Asistencia a viviendas afectadas por eventos climáticos, derrumbe, etc. Entrega de chapas previa evaluación técnica.</p>
+            </div>
+            <div class="bento-item">
+              <span class="bento-tag">Red de Apoyo</span>
+              <h4>Derivación Integral</h4>
+              <p>Orientación y articulación directa con otros organismos del Estado provincial según cada necesidad.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="content2">
+          <h2 class="content-title">Abordaje Territorial e Inspección Técnica</h2>
+          <p>Las solicitudes y demandas recibidas atraviesan un riguroso proceso de diagnóstico para garantizar la asignación transparente y equitativa de los recursos públicos.</p>
+
+          <div class="bento-grid" style="grid-template-columns: 1fr;">
+            <div class="bento-item">
+              <span class="bento-tag">Diagnóstico Humano</span>
+              <h4>Informe Social de Trabajo Social</h4>
+              <p>A través de intervenciones de profesionales en terreno y entrevistas semiestructuradas, se confecciona el Informe Social detallando la situación socioeconómica, composición y necesidades específicas del grupo familiar.</p>
+            </div>
+            <div class="bento-item">
+              <span class="bento-tag">Evaluación Edilicia</span>
+              <h4>Informe Habitacional de Maestro Mayor de Obra</h4>
+              <p>En casos de deterioro estructural, peligro de derrumbe o voladuras de techos causadas por inclemencias climáticas, un Maestro Mayor de Obra realiza la inspección edilicia para recomendar la solución técnica adecuada.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="content3">
+          <h2 class="content-title">Paso a Paso para Iniciar el Trámite</h2>
+          <p>La asistencia se canaliza mediante la apertura formal de expedientes iniciados por particulares, organizaciones civiles, comisiones municipales e intendencias.</p>
+
+          <div class="process-steps">
+            <div class="step-box"><div class="step-num">1</div><div class="step-title">Presentación</div><p class="step-desc">Ingreso de la nota y documentación completa.</p></div>
+            <div class="step-box"><div class="step-num">2</div><div class="step-title">Inspección</div><p class="step-desc">Visita técnica en terreno por profesionales.</p></div>
+            <div class="step-box"><div class="step-num">3</div><div class="step-title">Dictamen</div><p class="step-desc">Evaluación e informe de recomendación.</p></div>
+            <div class="step-box"><div class="step-num">4</div><div class="step-title">Entrega</div><p class="step-desc">Concreción de la asistencia familiar.</p></div>
+          </div>
+
+          <div class="req-box">
+            <h4>Requisitos Obligatorios</h4>
+            <ul>
+              <li><strong>Nota dirigida al Sr. Ministro Dr. Ángel Niccolai:</strong> especificando demanda, referencia de ubicación y teléfono.</li>
+              <li><strong>Fotocopia del DNI (1° y 2° hoja):</strong> del solicitante y de cada integrante del grupo familiar.</li>
+              <li><strong>Certificado de Residencia:</strong> emitido por autoridad policial competente.</li>
+              <li><strong>Teléfonos de contacto:</strong> mínimo dos (2) números actualizados.</li>
+            </ul>
+          </div>
+
+          <h3 style="font-size: 15px; color: #1e293b; margin-top: 25px;">Preguntas Frecuentes</h3>
+          <div class="faq-accordion">
+            <details class="faq-details">
+              <summary>¿Cómo solicito turno presencial?</summary>
+              <p>Los turnos presenciales se gestionan a través del Sistema de Turnos Provincial bajo la órbita de la Subsecretaría de Desarrollo Social.</p>
+            </details>
+            <details class="faq-details">
+              <summary>¿Puedo presentar la nota en mi municipio?</summary>
+              <p>Sí, las demandas pueden ser gestionadas a través de intendencias y comisiones municipales, quienes articulan la recepción de expedientes.</p>
+            </details>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="right-col">
+      <div class="alert-banner">
+        <span class="alert-icon">⚠️</span>
+        <div class="alert-text">
+          <h5>Emergencias Climáticas</h5>
+          <p>Prioridad de atención inmediata para zonas afectadas por temporales o vientos fuertes.</p>
+        </div>
+      </div>
+
       <div class="side-card">
-        <h3>📋 Registro de Solicitudes</h3>
-        <p class="side-desc">Inicie el trámite para asistencia de emergencia o evaluación socio-habitacional.</p>
+        <h3>📍 Atención Presencial</h3>
+        <ul class="contact-list">
+          <li><strong>Dirección:</strong> Sáenz Peña Nº 340, Santiago del Estero (CP 4200)</li>
+          <li><strong>Teléfonos de Contacto:</strong><br>
+            • (0385) 428-3139<br>
+            • (0385) 428-3173<br>
+            • (0385) 428-3197<br>
+            • (0385) 428-3140
+          </li>
+          <li><strong>Horarios:</strong> Lunes a Viernes de 08:00 a 13:00 hs.</li>
+        </ul>
+      </div>
+
+      <div class="side-card">
+        <h3>📋 Pre-Registro de Solicitud</h3>
+        <p class="side-desc">Inicie la carga digital de datos para la evaluación preliminar de su expediente:</p>
         <form>
-          <div class="form-group">
-            <input type="text" placeholder="Nombre Completo del Solicitante" required>
-          </div>
-          <div class="form-group">
-            <input type="text" placeholder="DNI" required>
-          </div>
-          <div class="form-group">
-            <input type="text" placeholder="Municipio / Localidad" required>
-          </div>
+          <div class="form-group"><input type="text" placeholder="Nombre Completo del Solicitante" required></div>
+          <div class="form-group"><input type="text" placeholder="Número de DNI" required></div>
+          <div class="form-group"><input type="text" placeholder="Municipio / Localidad" required></div>
           <div class="form-group">
             <select required>
               <option value="">Tipo de Solicitud...</option>
               <option value="emergencia">Emergencia Climática</option>
-              <option value="habitacional">Materiales Habitacionales</option>
-              <option value="alimentaria">Módulo de Asistencia</option>
+              <option value="habitacional">Materiales Habitacionales / Chapas</option>
+              <option value="alimentaria">Módulo Alimentario</option>
+              <option value="hogar">Artículos del Hogar (Camas/Colchones)</option>
             </select>
           </div>
           <button type="submit" class="btn-sub">Iniciar Solicitud</button>
@@ -156,25 +312,15 @@
       </div>
 
       <div class="side-card">
-        <h3>📢 Nuestras Redes Oficiales</h3>
-        <p class="side-desc">Canales directos para enterarte de los cronogramas de entrega y relevamientos:</p>
-        
+        <h3>📢 Canales Oficiales</h3>
         <div class="social-btn-box">
-          <a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" class="social-btn btn-fb">
-            <span>Seguir en Facebook</span>
-          </a>
-          <a href="https://www.instagram.com/gobiernosde/" target="_blank" class="social-btn btn-ig">
-            <span>Seguir en Instagram</span>
-          </a>
-          <a href="https://wa.me/5493850000000" target="_blank" class="social-btn btn-wa">
-            <span>Canal de WhatsApp</span>
-          </a>
+          <a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" class="social-btn btn-fb"><span>Facebook Oficial</span></a>
+          <a href="https://www.instagram.com/gobiernosde/" target="_blank" class="social-btn btn-ig"><span>Instagram Oficial</span></a>
         </div>
       </div>
     </div>
   </main>
 
-  <!-- BARRITA AZUL INFERIOR (FOOTER ESTÁNDAR) -->
   <footer class="site-footer">
     <div class="footer-grid">
       <div class="footer-col">
@@ -208,14 +354,10 @@
       </div>
       <div class="footer-col">
         <h4>INSTITUCIÓN</h4>
-        <ul>
-          <li><a href="#">Autoridades</a></li>
-        </ul>
+        <ul><li><a href="#">Autoridades</a></li></ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      © 2026 SIDES — Santiago del Estero
-    </div>
+    <div class="footer-bottom">© 2026 SIDES — Santiago del Estero</div>
   </footer>
 
 </body>
