@@ -18,57 +18,255 @@ function toggleMenu() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+/* ─────────────────────────────────────────
+1. HERO CAROUSEL DINÁMICO
+───────────────────────────────────────── */
 
-  /* ─────────────────────────────────────────
-  1. HERO CAROUSEL
-  ───────────────────────────────────────── */
-  const slides    = document.querySelectorAll('.hero__slide');
-  const dots      = document.querySelectorAll('.hero__dot');
-  const prevBtn   = document.getElementById('heroPrev');
-  const nextBtn   = document.getElementById('heroNext');
+window.iniciarCarruselPrincipal = function () {
 
-  let current     = 0;
-  let autoTimer   = null;
-  const INTERVAL  = 5000; // ms
+    const slides =
+        document.querySelectorAll(
+            '.hero__slide'
+        );
 
-  function goTo(index) {
-    if (!slides.length) return;
-    slides[current].classList.remove('active');
-    dots[current].classList.remove('active');
-    current = (index + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dots[current].classList.add('active');
-  }
+    const dots =
+        document.querySelectorAll(
+            '.hero__dot'
+        );
 
-  function startAuto() {
-    if (!slides.length) return;
-    autoTimer = setInterval(() => goTo(current + 1), INTERVAL);
-  }
+    const prevBtn =
+        document.getElementById(
+            'heroPrev'
+        );
 
-  function resetAuto() {
-    clearInterval(autoTimer);
-    startAuto();
-  }
+    const nextBtn =
+        document.getElementById(
+            'heroNext'
+        );
 
-  if (slides.length) {
-    prevBtn?.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
-    nextBtn?.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+    const hero =
+        document.querySelector(
+            '.hero'
+        );
+
+
+    let current = 0;
+
+    let autoTimer = null;
+
+    const INTERVAL = 5000;
+
+
+    /* Si MySQL no devolvió slides */
+
+    if (!slides.length) {
+
+        console.warn(
+            'Carrusel: no hay slides para iniciar'
+        );
+
+        return;
+    }
+
+
+    function goTo(index) {
+
+        slides[current]
+            ?.classList
+            .remove('active');
+
+        dots[current]
+            ?.classList
+            .remove('active');
+
+
+        current =
+            (index + slides.length)
+            % slides.length;
+
+
+        slides[current]
+            ?.classList
+            .add('active');
+
+        dots[current]
+            ?.classList
+            .add('active');
+    }
+
+
+    function startAuto() {
+
+        clearInterval(
+            autoTimer
+        );
+
+
+        if (slides.length <= 1) {
+            return;
+        }
+
+
+        autoTimer =
+            setInterval(
+                () =>
+                    goTo(current + 1),
+
+                INTERVAL
+            );
+    }
+
+
+    function resetAuto() {
+
+        clearInterval(
+            autoTimer
+        );
+
+        startAuto();
+    }
+
+
+    /* FLECHA ANTERIOR */
+
+    prevBtn?.addEventListener(
+        'click',
+        () => {
+
+            goTo(
+                current - 1
+            );
+
+            resetAuto();
+        }
+    );
+
+
+    /* FLECHA SIGUIENTE */
+
+    nextBtn?.addEventListener(
+        'click',
+        () => {
+
+            goTo(
+                current + 1
+            );
+
+            resetAuto();
+        }
+    );
+
+
+    /* PUNTOS */
 
     dots.forEach(dot => {
-      dot.addEventListener('click', () => {
-        goTo(parseInt(dot.dataset.index));
-        resetAuto();
-      });
+
+        dot.addEventListener(
+            'click',
+            () => {
+
+                goTo(
+                    Number(
+                        dot.dataset.index
+                    )
+                );
+
+                resetAuto();
+            }
+        );
     });
+
+
+    /* PAUSA AL PASAR EL MOUSE */
+
+    hero?.addEventListener(
+        'mouseenter',
+        () => {
+
+            clearInterval(
+                autoTimer
+            );
+        }
+    );
+
+
+    hero?.addEventListener(
+        'mouseleave',
+        () => {
+
+            startAuto();
+        }
+    );
+
+
+    /* TOUCH / SWIPE */
+
+    let touchStartX = 0;
+
+
+    hero?.addEventListener(
+        'touchstart',
+        event => {
+
+            touchStartX =
+                event
+                    .changedTouches[0]
+                    .clientX;
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    hero?.addEventListener(
+        'touchend',
+        event => {
+
+            const diff =
+                touchStartX -
+                event
+                    .changedTouches[0]
+                    .clientX;
+
+
+            if (
+                Math.abs(diff) > 50
+            ) {
+
+                if (diff > 0) {
+
+                    goTo(
+                        current + 1
+                    );
+
+                } else {
+
+                    goTo(
+                        current - 1
+                    );
+                }
+
+
+                resetAuto();
+            }
+
+        },
+        {
+            passive: true
+        }
+    );
+
+
+    /* INICIAR */
+
+    goTo(0);
 
     startAuto();
 
-    // Pause on hover
-    const hero = document.querySelector('.hero');
-    hero?.addEventListener('mouseenter', () => clearInterval(autoTimer));
-    hero?.addEventListener('mouseleave', startAuto);
-  }
 
+};
 
   /* ─────────────────────────────────────────
   2. BURGER MENU (Ajustes de eventos secundarios)
@@ -121,26 +319,6 @@ document.addEventListener('DOMContentLoaded', () => {
   revealTargets.forEach(el => observer.observe(el));
 
 
-  /* ─────────────────────────────────────────
-  5. TOUCH SWIPE en el carousel
-  ───────────────────────────────────────── */
-  let touchStartX = 0;
-  const heroEl = document.querySelector('.hero');
-
-  heroEl?.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].clientX;
-  }, { passive: true });
-
-  heroEl?.addEventListener('touchend', e => {
-    const diff = touchStartX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 50) {
-      diff > 0 ? goTo(current + 1) : goTo(current - 1);
-      resetAuto();
-    }
-  }, { passive: true });
-
-});
-
 /* ─────────────────────────────────────────
   CSS para las animaciones de reveal
 ───────────────────────────────────────── */
@@ -159,4 +337,4 @@ revealStyle.textContent = `
     box-shadow: 0 4px 20px rgba(0,0,0,.45);
   }
 `;
-document.head.appendChild(revealStyle);
+document.head.appendChild(revealStyle);});

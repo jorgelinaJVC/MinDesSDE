@@ -1,0 +1,23 @@
+# Variables de entorno y credenciales
+.env
+.env.*
+!.env.example
+
+# Bases de datos de prueba y backups
+backend-contenidos/database-prueba.sql
+*backup*.sql
+*backup*.zip
+*.bak
+
+# Logs y archivos temporales
+*.log
+*.tmp
+*.temp
+
+# Archivos del sistema operativo
+Thumbs.db
+.DS_Store
+
+# Configuración de editores
+.vscode/
+.idea/
