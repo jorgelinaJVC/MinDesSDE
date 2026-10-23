@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ministerio de Desarrollo Social</title>
-    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
@@ -82,50 +82,16 @@
 
 <!-- ========== HERO CAROUSEL ========== -->
 <section class="hero" id="heroCarousel">
-    <div class="hero__slides" id="heroSlides">
-        <div class="hero__slide active" style="background-image: url('img/foto1.jpg')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-            <span class="hero__tag">Institucional</span>
-            <h2 class="hero__title">Asumieron autoridades del Ministerio de Desarrollo Social, Promoción  Humana y Relaciones Institucionales con la Comunidad</h2>
-        </div>
-    </div>
-
-    <div class="hero__slide" style="background-image: url('img/5.png')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-            <span class="hero__tag">Viviendas</span>
-            <h2 class="hero__title">Entrega de viviendas en Capital y Banda</h2>
-        </div>
-    </div>
-
-    <div class="hero__slide" style="background-image: url('img/foto3.jpg')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-        <span class="hero__tag">Tarjetas Sociales</span>
-        <h2 class="hero__title">Anuncian aumentos para los beneficiarios de tarjetas sociales</h2>
-        </div>
-    </div>
-
-    <div class="hero__slide" style="background-image: url('img/elias1.jpg')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-        <span class="hero__tag">Viviendas</span>
-        <h2 class="hero__title">Entrega de viviendas en el interior de la provincia</h2>
-        </div>
-    </div>
-
-    </div>
+    <div class="hero__slides" id="heroSlides"></div>
+  
 
     <button class="hero__prev" id="heroPrev" aria-label="Anterior">&#10094;</button>
     <button class="hero__next" id="heroNext" aria-label="Siguiente">&#10095;</button>
-
-    <div class="hero__dots" id="heroDots">
-        <button class="hero__dot active" data-index="0"></button>
-        <button class="hero__dot" data-index="1"></button>
-        <button class="hero__dot" data-index="2"></button>
-        <button class="hero__dot" data-index="3"></button>
+    <div
+        class="hero__dots"
+        id="heroDots">
     </div>
+
 </section>
 
 <!-- ========== SUBSECRETARÍAS ========== -->
@@ -137,7 +103,7 @@
         <!-- Subsecretaría de Desarrollo Social -->
         <a href="pages/desarrollo-social.html" class="ingreso-card">
             <div class="ingreso-card__img">
-            <img src="img/desarrollo_social.jfif" alt="Desarrollo Social">
+            <img src="img/desarrollo.jpg" alt="Desarrollo Social">
         </div>
         <div class="ingreso-card__body" style="flex-direction:column; align-items:flex-start; gap:4px;">
             <span class="ingreso-card__label">Desarrollo Social</span>
@@ -195,7 +161,7 @@
         </a>
         <a href="pages/nutricion-comedores.html" class="area-card">
             <div class="area-icon">🍏</div>
-            <h4>Nutrición y Comedores</h4>
+            <h4>Nutrición</h4>
             <p>Control nutricional y solicitudes de insumos para comedores provinciales</p>
           </a>
 
@@ -245,43 +211,7 @@
     <div class="container">
         <h2 class="section-title">Noticias Institucionales</h2>
         
-        <div class="noticias__grid">
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/foto3.jpg" alt="Tarjetas sociales">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Anuncian aumentos para los beneficiarios de tarjetas sociales, planes de emergencia y celíacos</p>
-                </div>
-            </article>
-            
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/3.png" alt="Viviendas sociales">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Nuevas viviendas sociales para familias santiagueñas.</p>
-                </div>
-            </article>
-            
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/Ad-May-Deporte.jpg" alt="Adultos mayores">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Actividades deportivas y recreativas para adultos mayores de la provincia.</p>
-                </div>
-            </article>
-            
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/emprendedores.jpg" alt="Asistencia directa">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Capacitaciones de oficios y emprendimientos para la inclusión social.</p>
-                </div>
-            </article>
-        </div>
+        <div class="noticias__grid" id="noticiasGrid"></div>
         
     </div>
 </section>
@@ -289,31 +219,54 @@
     <!-- GALERÍA DE VIDEOS -->
     <section class="videos" id="videos">
         <div class="container">
-        <h2 class="section-title">Galería de Videos</h2>
-        <div class="videos-grid">
-            <div class="video-card">
-        <iframe 
-        src="http://www.mdssde.gob.ar/wp-content/uploads/2023/11/Viviendas-Sociales.mp4"
-        title="Más de 27.000 viviendas sociales"
-        allowfullscreen>
-        </iframe>
-        <p>Entrega de viviendas sociales</p>
-    </div>
-    <div class="video-card">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/0ErbMVybpzs?si=cGqf9WA9-JDB0Sz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>Crearon una cooperativa de mujeres para construir viviendas sociales</p>
+            <h2 class="section-title">Galería de Videos</h2>
+            <div class="videos-grid" id="videosGrid">
         </div>
-        <div class="video-card">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/i1guqem3UdA?si=0CvK_n6gu-3v9WSy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>La importancia de actuar a tiempo ante emergencias</p>
         </div>
         
-        </div>
-        
-    </div>
     </section>
-</section>
 
+<!-- MODAL DETALLE DE NOTICIA -->
+<div id="noticiaModal" class="noticia-modal" aria-hidden="true">
+
+    <div class="noticia-modal__fondo"></div>
+
+    <div class="noticia-modal__contenido">
+
+        <button
+            type="button"
+            class="noticia-modal__cerrar"
+            id="cerrarNoticiaModal"
+            aria-label="Cerrar noticia">
+            ×
+        </button>
+
+        <div class="noticia-modal__imagen" id="noticiaModalImagen"></div>
+
+        <div class="noticia-modal__informacion">
+
+            <span
+                class="noticia-modal__categoria"
+                id="noticiaModalCategoria">
+            </span>
+
+            <h2 id="noticiaModalTitulo"></h2>
+
+            <p
+                class="noticia-modal__fecha"
+                id="noticiaModalFecha">
+            </p>
+
+            <div
+                class="noticia-modal__texto"
+                id="noticiaModalTexto">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- ========== MAPA Y CONTACTO ========== -->
 <section id="contacto" style="padding: 56px 0; background: var(--color-white);">
     <div class="container">
@@ -352,7 +305,7 @@
 <footer class="footer">
     <div class="container footer__inner">
         <div class="footer__brand">
-        <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="Logo Santiago del Estero">
+        <img src="img/Logo de SDE.png" alt="Logo Santiago del Estero">
         <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
     </div>
     <div class="footer__links">
@@ -376,7 +329,18 @@
         <h5>Redes</h5>
         <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" rel="noopener noreferrer">Facebook</a></p>
         <h5 style="margin-top:16px;">Institución</h5>
-        <p><a href="pages/autoridades.html">Autoridades</a></p>
+
+<p>
+    <a href="pages/autoridades.html">
+        Autoridades
+    </a>
+</p>
+
+<p>
+    <a href="pages/login.php">
+        Acceso administrativo
+    </a>
+</p>
     </div>
     </div>
     <div class="footer__bottom">
@@ -385,5 +349,6 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/contenidos-publicos.js?v=2"></script>
 </body>
 </html>
