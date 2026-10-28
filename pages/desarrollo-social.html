@@ -7,7 +7,6 @@
         Subsecretaría de Desarrollo Social - Ministerio de Desarrollo Social
     </title>
     <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
@@ -231,6 +230,26 @@
     .breadcrumb span {
         margin: 0 6px;
     }
+    
+    .btn-adultos-mayores {
+        display: inline-block;
+        margin-top: 16px;
+        padding: 12px 22px;
+        background: linear-gradient(135deg, #7c5c1e 0%, #c8a84b 100%);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 8px;
+        font-weight: 700;
+        font-size: 0.92rem;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    .btn-adultos-mayores:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(0, 0, 0, 0.2);
+    }
+
     </style>
 </head>
 <body>
@@ -302,7 +321,7 @@
     </div>
 
     <!-- DIRECCIÓN GENERAL DE DESARROLLO SOCIAL -->
-    <div class="direccion-card">
+    <div id="desarrollo" class="direccion-card">
         <div class="direccion-card__header">
         <span class="icon">🏛️</span>
         <h2>Dirección General de Desarrollo Social</h2>
@@ -319,7 +338,7 @@
         </p>
 
         <!-- Asistencia Directa -->
-        <div class="subseccion">
+        <div id="asistencia" class="subseccion">
             <h3>Asistencia Directa</h3>
             <p style="color: #444; font-size: 0.92rem; margin-bottom: 12px">
             Intervención en problemáticas sociales. La asistencia directa es
@@ -480,6 +499,10 @@
             <li>Actividades deportivas, culturales y recreativas.</li>
             <li>Talleres de integración y participación comunitaria.</li>
             </ul>
+
+            <a href="../indexAdultos.html" class="btn-adultos-mayores">
+                👵 Ingresar al Portal de Adultos Mayores
+            </a>
         </div>
 
         <!-- Fotos de actividades -->
@@ -633,7 +656,7 @@
     <div class="container footer__inner">
         <div class="footer__brand">
         <img
-            src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png"
+            src="../img/Logo de SDE.png"
             alt="logo santiago del estero"
         />
         <p>

@@ -4,447 +4,110 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
 <title>Solicitar Servicio - Servicios Fúnebres</title> 
-<!-- ========================================== -->
-    <!-- FAVICONS - Completos y corregidos          -->
-    <!-- ========================================== -->
+
+<!-- FAVICONS -->
 <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
 <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../img/android-chrome-512x512.png" />
-    
+
 <!-- CSS -->
 <link rel="stylesheet" href="../css/funebres.css" />
-<!-- Eliminado: responsive.css no existe -->
-<!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
+<!-- Supabase SDK (Integrado para consulta/envío) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 <style>
-    /* ============================================================
-       ESTILOS DEL FORMULARIO (todos los estilos que ya tenías)
-       ============================================================ */
-    .form-container {
-        max-width: 1200px;
-        margin: 40px auto;
-        padding: 0 20px;
-    }
+    .form-container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+    .form-card { background: var(--color-white); border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden; }
+    .form-header { background: var(--color-primary); color: var(--color-white); padding: 30px 40px; }
+    .form-header h1 { font-family: var(--font-cond); font-size: 1.8rem; margin-bottom: 8px; }
+    .form-header p { opacity: 0.9; font-size: 0.95rem; }
     
-    .form-card {
-        background: var(--color-white);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-md);
-        overflow: hidden;
-    }
+    .progress-steps { display: flex; background: var(--color-bg); border-bottom: 1px solid var(--color-border); padding: 20px 40px; gap: 15px; flex-wrap: wrap; }
+    .step { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 150px; }
+    .step-number { width: 34px; height: 34px; background: var(--color-border); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--color-muted); transition: all 0.3s ease; flex-shrink: 0; }
+    .step.active .step-number { background: var(--color-accent); color: var(--color-dark); }
+    .step.completed .step-number { background: var(--color-accent-2); color: var(--color-white); }
+    .step-label { font-weight: 500; color: var(--color-text); font-size: 0.88rem; }
+    .step.active .step-label { color: var(--color-primary); font-weight: 700; }
     
-    .form-header {
-        background: var(--color-primary);
-        color: var(--color-white);
-        padding: 30px 40px;
-    }
+    .form-body { padding: 40px; }
+    .form-section { margin-bottom: 30px; }
+    .form-section h2 { font-family: var(--font-cond); font-size: 1.4rem; color: var(--color-primary); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+    .form-section h2 i { color: var(--color-accent); }
+    .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 20px; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-weight: 600; margin-bottom: 8px; color: var(--color-text); font-size: 0.9rem; }
+    .form-group label i { color: var(--color-accent); margin-right: 6px; }
+    .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 12px 16px; border: 1px solid var(--color-border); border-radius: var(--radius); font-family: var(--font-main); font-size: 0.95rem; transition: var(--transition); background: var(--color-white); }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--color-accent); box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1); }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .field-error { border-color: #e30613 !important; background: #fff5f5 !important; }
+    .conditional-field { display: none; border-left: 3px solid var(--color-accent); padding-left: 20px; margin-top: 10px; }
+    .conditional-field.visible { display: block; }
     
-    .form-header h1 {
-        font-family: var(--font-cond);
-        font-size: 1.8rem;
-        margin-bottom: 8px;
-    }
+    .document-upload { display: flex; flex-direction: column; gap: 20px; }
+    .upload-item { display: flex; align-items: center; gap: 20px; padding: 20px; background: var(--color-bg); border-radius: var(--radius); border: 1px solid var(--color-border); }
+    .upload-icon { width: 50px; height: 50px; background: var(--color-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--color-white); font-size: 1.3rem; flex-shrink: 0; }
+    .upload-info { flex: 1; }
+    .upload-info h4 { font-size: 1rem; margin-bottom: 4px; color: var(--color-primary); }
+    .upload-info p { font-size: 0.8rem; color: var(--color-muted); }
+    .file-input-wrapper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .file-input { display: none; }
+    .btn-upload { background: var(--color-white); border: 1px solid var(--color-border); padding: 10px 20px; border-radius: var(--radius); cursor: pointer; transition: var(--transition); font-size: 0.85rem; font-weight: 500; }
+    .btn-upload:hover { background: var(--color-accent); border-color: var(--color-accent); color: var(--color-dark); }
+    .file-name { font-size: 0.85rem; color: var(--color-muted); }
+    .file-preview { display: grid; grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); gap: 10px; margin-top: 10px; }
+    .file-preview-item { border: 1px solid var(--color-border); border-radius: var(--radius); padding: 10px; text-align: center; background: var(--color-white); }
+    .file-preview-item img { max-width: 100%; max-height: 80px; object-fit: cover; }
     
-    .form-header p {
-        opacity: 0.9;
-        font-size: 0.95rem;
-    }
+    /* Estilos de Resumen (Paso 4) */
+    .summary-card { background: var(--color-bg); border-radius: var(--radius); padding: 20px; margin-bottom: 20px; border: 1px solid var(--color-border); }
+    .summary-card h3 { color: var(--color-primary); font-size: 1.1rem; border-bottom: 2px solid var(--color-accent); padding-bottom: 8px; margin-bottom: 15px; }
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+    .summary-item label { font-size: 0.8rem; color: var(--color-muted); font-weight: 600; display: block; }
+    .summary-item span { font-size: 0.95rem; font-weight: 500; color: var(--color-dark); word-break: break-word; }
+
+    /* Estilos de Estado de Consulta (Paso 5) */
+    .search-status-box { background: var(--color-bg); padding: 25px; border-radius: var(--radius); text-align: center; margin-bottom: 25px; border: 1px solid var(--color-border); }
+    .status-badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 12px; }
+    .badge-pendiente { background: #fef3c7; color: #d97706; }
+    .badge-revision { background: #dbeafe; color: #2563eb; }
+    .badge-aprobado { background: #d1fae5; color: #059669; }
+    .badge-desaprobado { background: #fee2e2; color: #dc2626; }
+
+    .motivo-rechazo-box { background: #fff1f2; border: 1px solid #fecdd3; border-left: 5px solid #e11d48; border-radius: 6px; padding: 15px 20px; margin-top: 15px; text-align: left; }
+    .motivo-rechazo-box h4 { color: #9f1239; margin-bottom: 5px; font-size: 0.95rem; display: flex; align-items: center; gap: 8px; }
+    .motivo-rechazo-box p { color: #4c0519; font-size: 0.9rem; line-height: 1.4; margin: 0; }
+
+    .form-actions { display: flex; gap: 20px; justify-content: flex-end; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--color-border); flex-wrap: wrap; }
+    .btn-secondary-form { background: var(--color-white); border: 1px solid var(--color-border); padding: 12px 28px; border-radius: var(--radius); cursor: pointer; font-weight: 600; transition: var(--transition); text-decoration: none; color: var(--color-text); display: inline-flex; align-items: center; gap: 8px; }
+    .btn-secondary-form:hover { background: var(--color-bg); }
+    .btn-primary-form { background: var(--color-accent); border: none; padding: 12px 32px; border-radius: var(--radius); cursor: pointer; font-weight: 700; transition: var(--transition); display: inline-flex; align-items: center; gap: 8px; color: var(--color-dark); }
+    .btn-primary-form:hover { background: #e0bc5a; transform: translateY(-2px); }
+    .btn-primary-form:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
     
-    .progress-steps {
-        display: flex;
-        background: var(--color-bg);
-        border-bottom: 1px solid var(--color-border);
-        padding: 20px 40px;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
+    .info-sidebar { background: var(--color-bg); border-radius: var(--radius); padding: 24px; margin-top: 30px; }
+    .info-sidebar h3 { font-family: var(--font-cond); font-size: 1.2rem; color: var(--color-primary); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .info-list { list-style: none; margin-bottom: 24px; }
+    .info-list li { padding: 8px 0; padding-left: 24px; position: relative; }
+    .info-list li::before { content: "✓"; position: absolute; left: 0; color: var(--color-accent); font-weight: bold; }
+    .contact-info-form p { margin: 8px 0; display: flex; align-items: center; gap: 10px; font-size: 0.9rem; }
     
-    .step {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        flex: 1;
-        min-width: 180px;
-    }
-    
-    .step-number {
-        width: 36px;
-        height: 36px;
-        background: var(--color-border);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: 700;
-        color: var(--color-muted);
-        transition: all 0.3s ease;
-        flex-shrink: 0;
-    }
-    
-    .step.active .step-number {
-        background: var(--color-accent);
-        color: var(--color-dark);
-    }
-    
-    .step.completed .step-number {
-        background: var(--color-accent-2);
-        color: var(--color-white);
-    }
-    
-    .step-label {
-        font-weight: 500;
-        color: var(--color-text);
-    }
-    
-    .step.active .step-label {
-        color: var(--color-primary);
-        font-weight: 700;
-    }
-    
-    .form-body {
-        padding: 40px;
-    }
-    
-    .form-section {
-        margin-bottom: 40px;
-        padding-bottom: 30px;
-        border-bottom: 1px solid var(--color-border);
-    }
-    
-    .form-section:last-child {
-        border-bottom: none;
-        margin-bottom: 0;
-        padding-bottom: 0;
-    }
-    
-    .form-section h2 {
-        font-family: var(--font-cond);
-        font-size: 1.4rem;
-        color: var(--color-primary);
-        margin-bottom: 24px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .form-section h2 i {
-        color: var(--color-accent);
-    }
-    
-    .form-row {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
-        margin-bottom: 20px;
-    }
-    
-    .form-group {
-        margin-bottom: 20px;
-    }
-    
-    .form-group label {
-        display: block;
-        font-weight: 600;
-        margin-bottom: 8px;
-        color: var(--color-text);
-        font-size: 0.9rem;
-    }
-    
-    .form-group label i {
-        color: var(--color-accent);
-        margin-right: 6px;
-    }
-    
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-        width: 100%;
-        padding: 12px 16px;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius);
-        font-family: var(--font-main);
-        font-size: 0.95rem;
-        transition: var(--transition);
-        background: var(--color-white);
-    }
-    
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-        outline: none;
-        border-color: var(--color-accent);
-        box-shadow: 0 0 0 3px rgba(200, 168, 75, 0.1);
-    }
-    
-    .form-group textarea {
-        resize: vertical;
-        min-height: 80px;
-    }
-    
-    .field-error {
-        border-color: #e30613 !important;
-        background: #fff5f5 !important;
-    }
-    
-    .conditional-field {
-        display: none;
-        border-left: 3px solid var(--color-accent);
-        padding-left: 20px;
-        margin-top: 10px;
-    }
-    
-    .conditional-field.visible {
-        display: block;
-    }
-    
-    .document-upload {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .upload-item {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 20px;
-        background: var(--color-bg);
-        border-radius: var(--radius);
-        border: 1px solid var(--color-border);
-        transition: var(--transition);
-    }
-    
-    .upload-item:hover {
-        border-color: var(--color-accent);
-    }
-    
-    .upload-icon {
-        width: 50px;
-        height: 50px;
-        background: var(--color-primary);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--color-white);
-        font-size: 1.3rem;
-        flex-shrink: 0;
-    }
-    
-    .upload-info {
-        flex: 1;
-    }
-    
-    .upload-info h4 {
-        font-size: 1rem;
-        margin-bottom: 4px;
-        color: var(--color-primary);
-    }
-    
-    .upload-info p {
-        font-size: 0.8rem;
-        color: var(--color-muted);
-    }
-    
-    .file-input-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex-wrap: wrap;
-    }
-    
-    .file-input {
-        display: none;
-    }
-    
-    .btn-upload {
-        background: var(--color-white);
-        border: 1px solid var(--color-border);
-        padding: 10px 20px;
-        border-radius: var(--radius);
-        cursor: pointer;
-        transition: var(--transition);
-        font-size: 0.85rem;
-        font-weight: 500;
-        white-space: nowrap;
-    }
-    
-    .btn-upload:hover {
-        background: var(--color-accent);
-        border-color: var(--color-accent);
-        color: var(--color-dark);
-    }
-    
-    .file-name {
-        font-size: 0.85rem;
-        color: var(--color-muted);
-    }
-    
-    .file-preview {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-        gap: 10px;
-        margin-top: 10px;
-    }
-    
-    .file-preview-item {
-        position: relative;
-        border: 1px solid var(--color-border);
-        border-radius: var(--radius);
-        padding: 10px;
-        text-align: center;
-        background: var(--color-white);
-    }
-    
-    .file-preview-item img {
-        max-width: 100%;
-        max-height: 80px;
-        object-fit: cover;
-    }
-    
-    .form-actions {
-        display: flex;
-        gap: 20px;
-        justify-content: flex-end;
-        margin-top: 30px;
-        padding-top: 20px;
-        border-top: 1px solid var(--color-border);
-        flex-wrap: wrap;
-    }
-    
-    .btn-secondary-form {
-        background: var(--color-white);
-        border: 1px solid var(--color-border);
-        padding: 12px 28px;
-        border-radius: var(--radius);
-        cursor: pointer;
-        font-weight: 600;
-        transition: var(--transition);
-        text-decoration: none;
-        color: var(--color-text);
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-    }
-    
-    .btn-secondary-form:hover {
-        background: var(--color-bg);
-    }
-    
-    .btn-primary-form {
-        background: var(--color-accent);
-        border: none;
-        padding: 12px 32px;
-        border-radius: var(--radius);
-        cursor: pointer;
-        font-weight: 700;
-        transition: var(--transition);
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        color: var(--color-dark);
-    }
-    
-    .btn-primary-form:hover {
-        background: #e0bc5a;
-        transform: translateY(-2px);
-    }
-    
-    .btn-primary-form:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-    }
-    
-    .info-sidebar {
-        background: var(--color-bg);
-        border-radius: var(--radius);
-        padding: 24px;
-        margin-top: 30px;
-    }
-    
-    .info-sidebar h3 {
-        font-family: var(--font-cond);
-        font-size: 1.2rem;
-        color: var(--color-primary);
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    .info-list {
-        list-style: none;
-        margin-bottom: 24px;
-    }
-    
-    .info-list li {
-        padding: 8px 0;
-        padding-left: 24px;
-        position: relative;
-    }
-    
-    .info-list li::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        color: var(--color-accent);
-        font-weight: bold;
-    }
-    
-    .contact-info-form p {
-        margin: 8px 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 0.9rem;
-    }
-    
-    /* Responsive */
     @media (max-width: 768px) {
-        .form-row {
-            grid-template-columns: 1fr;
-            gap: 0;
-        }
-        .progress-steps {
-            flex-direction: column;
-            gap: 12px;
-            padding: 16px 20px;
-        }
-        .step {
-            min-width: auto;
-        }
-        .form-header, .form-body, .progress-steps {
-            padding: 20px;
-        }
-        .form-header h1 {
-            font-size: 1.4rem;
-        }
-        .upload-item {
-            flex-wrap: wrap;
-        }
-        .form-actions {
-            flex-direction: column;
-        }
-        .btn-primary-form, .btn-secondary-form {
-            width: 100%;
-            justify-content: center;
-        }
-        .file-input-wrapper {
-            width: 100%;
-        }
-        .btn-upload {
-            flex: 1;
-            text-align: center;
-        }
+        .form-row { grid-template-columns: 1fr; gap: 0; }
+        .progress-steps { flex-direction: column; gap: 12px; padding: 16px 20px; }
+        .step { min-width: auto; }
+        .form-header, .form-body, .progress-steps { padding: 20px; }
+        .form-header h1 { font-size: 1.4rem; }
+        .upload-item { flex-wrap: wrap; }
+        .form-actions { flex-direction: column; }
+        .btn-primary-form, .btn-secondary-form { width: 100%; justify-content: center; }
     }
 </style>
 </head>
@@ -478,31 +141,36 @@
 <div class="form-container">
     <div class="form-card">
         <div class="form-header">
-            <h1><i class="fas fa-file-alt"></i> Nueva Solicitud de Servicio Funebre</h1>
-            <p>Sistema Funebre Digital - Ministerio de Desarrollo Social de Santiago del Estero</p>
+            <h1><i class="fas fa-file-alt"></i> Nueva Solicitud de Servicio Fúnebre</h1>
+            <p>Sistema Fúnebre Digital - Ministerio de Desarrollo Social de Santiago del Estero</p>
         </div>
         
-        <!-- Progress Steps -->
+        <!-- PARTE 1: La Barra de Navegación y Pasos (5 PASOS) -->
         <div class="progress-steps">
             <div class="step active" data-step="1">
                 <span class="step-number">1</span>
-                <span class="step-label">Datos del Fallecido</span>
+                <span class="step-label">Fallecido</span>
             </div>
             <div class="step" data-step="2">
                 <span class="step-number">2</span>
-                <span class="step-label">Datos del Responsable</span>
+                <span class="step-label">Responsable</span>
             </div>
             <div class="step" data-step="3">
                 <span class="step-number">3</span>
                 <span class="step-label">Documentación</span>
             </div>
+            <div class="step" data-step="4">
+                <span class="step-number">4</span>
+                <span class="step-label">Confirmación</span>
+            </div>
+            <div class="step" data-step="5">
+                <span class="step-number">5</span>
+                <span class="step-label">Estado</span>
+            </div>
         </div>
         
         <!-- Formulario -->
-        <form id="solicitudForm" class="form-body"
-            action="../sysfun/backend/api/solicitudes.php"
-            method="POST"
-            enctype="multipart/form-data">
+        <form id="solicitudForm" class="form-body" action="../sysfun/backend/api/solicitudes.php" method="POST" enctype="multipart/form-data">
             
             <!-- ==================== PASO 1: Datos del Fallecido ==================== -->
             <div class="form-step" id="step1">
@@ -558,7 +226,7 @@
                         </div>
                     </div>
                     
-                    <!-- Campos condicionales para RNF -->
+                    <!-- Campos condicionales RNF -->
                     <div id="rnfFields" class="conditional-field">
                         <h3 style="font-size:1rem; color:var(--color-accent); margin-bottom:16px;"><i class="fas fa-baby"></i> Datos del Progenitor</h3>
                         <div class="form-row">
@@ -681,9 +349,7 @@
                             <label><i class="fas fa-envelope"></i> Email</label>
                             <input type="email" id="emailResponsable" name="emailResponsable" placeholder="correo@ejemplo.com">
                         </div>
-                        <div class="form-group">
-                            <!-- Espacio vacío -->
-                        </div>
+                        <div class="form-group"></div>
                     </div>
                 </div>
             </div>
@@ -719,6 +385,69 @@
                     <div id="filePreview" class="file-preview"></div>
                 </div>
             </div>
+
+            <!-- ==================== PASO 4: Confirmación y Resumen ==================== -->
+            <div class="form-step" id="step4" style="display: none;">
+                <div class="form-section">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                        <h2><i class="fas fa-check-circle"></i> Confirmar Datos de la Solicitud</h2>
+                        <button type="button" id="btnDownloadPDF" class="btn-secondary-form" style="padding: 6px 12px; font-size: 0.85rem;">
+                            <i class="fas fa-file-pdf" style="color: #e30613;"></i> Descargar PDF
+                        </button>
+                    </div>
+                    <p style="margin-bottom: 20px; color: var(--color-muted);">Por favor, verifique cuidadosamente la información ingresada antes de realizar el envío definitivo.</p>
+
+                    <div class="summary-card">
+                        <h3><i class="fas fa-user-injured"></i> Fallecido</h3>
+                        <div class="summary-grid">
+                            <div class="summary-item"><label>Nombre:</label><span id="resNombreFallecido">-</span></div>
+                            <div class="summary-item"><label>Documento:</label><span id="resDocFallecido">-</span></div>
+                            <div class="summary-item"><label>Fecha Fallecimiento:</label><span id="resFechaFallecimiento">-</span></div>
+                            <div class="summary-item"><label>Ubicación:</label><span id="resUbicacionFallecido">-</span></div>
+                            <div class="summary-item"><label>Servicio:</label><span id="resTipoServicio">-</span></div>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <h3><i class="fas fa-user-circle"></i> Responsable</h3>
+                        <div class="summary-grid">
+                            <div class="summary-item"><label>Nombre:</label><span id="resNombreResponsable">-</span></div>
+                            <div class="summary-item"><label>Documento:</label><span id="resDocResponsable">-</span></div>
+                            <div class="summary-item"><label>Teléfono:</label><span id="resTelResponsable">-</span></div>
+                            <div class="summary-item"><label>Email:</label><span id="resEmailResponsable">-</span></div>
+                            <div class="summary-item"><label>Ubicación:</label><span id="resUbicacionResponsable">-</span></div>
+                        </div>
+                    </div>
+
+                    <div class="summary-card">
+                        <h3><i class="fas fa-paperclip"></i> Adjuntos</h3>
+                        <div id="resArchivosList" style="font-size: 0.9rem; color: var(--color-text);">Sin archivos adjuntos</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ==================== PASO 5: Consulta de Estado ==================== -->
+            <div class="form-step" id="step5" style="display: none;">
+                <div class="form-section">
+                    <h2><i class="fas fa-search"></i> Consultar Estado de Trámite</h2>
+                    <p style="margin-bottom: 20px; color: var(--color-muted);">Ingrese el número de DNI del solicitante o responsable para conocer el estado actual de la solicitud.</p>
+
+                    <div class="search-status-box">
+                        <div class="form-row" style="max-width: 500px; margin: 0 auto 15px auto;">
+                            <div class="form-group" style="width: 100%;">
+                                <input type="text" id="searchDniInput" placeholder="Ingrese el DNI a buscar...">
+                            </div>
+                        </div>
+                        <button type="button" id="btnSearchStatus" class="btn-primary-form">
+                            <i class="fas fa-search"></i> Buscar Solicitud
+                        </button>
+                    </div>
+
+                    <div id="statusResultContainer" style="display: none;">
+                        <!-- Dinámico con JS -->
+                    </div>
+                </div>
+            </div>
             
             <!-- ==================== BOTONES DE NAVEGACIÓN ==================== -->
             <div class="form-actions">
@@ -731,7 +460,7 @@
                 <button type="submit" id="submitBtn" class="btn-primary-form" style="display: none;">
                     <i class="fas fa-paper-plane"></i> Enviar Solicitud
                 </button>
-                <a href="Inicio_funerarios.html" class="btn-secondary-form">
+                <a href="Inicio_funerarios.html" class="btn-secondary-form" id="cancelBtn">
                     <i class="fas fa-times"></i> Cancelar
                 </a>
             </div>
@@ -778,578 +507,448 @@
             </div>
         </div>
         <div class="footer__bottom">
-            <p>© 2026 SIDES — Santiago del Estero | Servicios Funebres</p>
+            <p>© 2026 SIDES — Santiago del Estero | Servicios Fúnebres</p>
         </div>
     </div>
 </footer>
 
-<!-- ============================================================ -->
-<!-- JAVASCRIPT COMPLETO (CORREGIDO Y ORGANIZADO)                  -->
-<!-- ============================================================ -->
+<!-- JAVASCRIPT COMPLETO Y CORREGIDO -->
 <script>
-// ============================================================
-// BURGER MENU
-// ============================================================
-(function() {
-    const burger = document.getElementById('burgerBtn');
-    const navMenu = document.getElementById('mainNav');
-    if (burger && navMenu) {
-        burger.addEventListener('click', function() {
-            navMenu.classList.toggle('open');
-            burger.classList.toggle('open');
-        });
-        document.querySelectorAll('.nav__link').forEach(function(link) {
-            link.addEventListener('click', function() {
-                navMenu.classList.remove('open');
-                burger.classList.remove('open');
+    // BURGER MENU
+    (function() {
+        const burger = document.getElementById('burgerBtn');
+        const navMenu = document.getElementById('mainNav');
+        if (burger && navMenu) {
+            burger.addEventListener('click', function() {
+                navMenu.classList.toggle('open');
+                burger.classList.toggle('open');
             });
+            document.querySelectorAll('.nav__link').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    navMenu.classList.remove('open');
+                    burger.classList.remove('open');
+                });
+            });
+        }
+    })();
+    
+    // COMPRESIÓN DE IMÁGENES
+    async function comprimirImagen(archivo) {
+        if (!archivo.type.startsWith('image/')) return archivo;
+        return new Promise((resolve) => {
+            const reader = new FileReader();
+            reader.readAsDataURL(archivo);
+            reader.onload = (e) => {
+                const img = new Image();
+                img.src = e.target.result;
+                img.onload = () => {
+                    const canvas = document.createElement('canvas');
+                    const MAX_WIDTH = 1200;
+                    const scaleSize = MAX_WIDTH / img.width;
+                    canvas.width = (img.width > MAX_WIDTH) ? MAX_WIDTH : img.width;
+                    canvas.height = (img.width > MAX_WIDTH) ? (img.height * scaleSize) : img.height;
+    
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    canvas.toBlob((blob) => {
+                        resolve(new File([blob], archivo.name, { type: 'image/jpeg' }));
+                    }, 'image/jpeg', 0.7);
+                };
+            };
         });
     }
-})();
-
-// ============================================================
-// MULTI-STEP FORM
-// ============================================================
-(function() {
-    let currentStep = 1;
-    const totalSteps = 3;
     
-    const step1 = document.getElementById('step1');
-    const step2 = document.getElementById('step2');
-    const step3 = document.getElementById('step3');
-    const prevBtn = document.getElementById('prevBtn');
-    const nextBtn = document.getElementById('nextBtn');
-    const submitBtn = document.getElementById('submitBtn');
-    const steps = document.querySelectorAll('.step');
-    
-    const tipoDocFallecido = document.getElementById('tipoDocFallecido');
-    const tipoServicio = document.getElementById('tipoServicio');
-    const rnfFields = document.getElementById('rnfFields');
-    const trasladoFields = document.getElementById('trasladoFields');
-    const ataudInfo = document.getElementById('ataudInfo');
-    
-    function updateConditionalFields() {
-        if (tipoDocFallecido && tipoDocFallecido.value === 'RNF') {
-            rnfFields.classList.add('visible');
-        } else {
-            rnfFields.classList.remove('visible');
-        }
-        
-        if (tipoServicio && (tipoServicio.value === 'TRASLADO' || tipoServicio.value === 'ATAUD_TRASLADO')) {
-            trasladoFields.classList.add('visible');
-        } else {
-            trasladoFields.classList.remove('visible');
-        }
-        
-        if (tipoServicio && (tipoServicio.value === 'ATAUD' || tipoServicio.value === 'ATAUD_TRASLADO')) {
-            ataudInfo.style.display = 'block';
-        } else {
-            ataudInfo.style.display = 'none';
-        }
+    // DESCARGA DE COMPROBANTE PDF
+    function generarComprobantePDF(nroTramite) {
+        const elemento = document.getElementById('step4');
+        const opt = {
+            margin:       10,
+            filename:     `Solicitud_Funebre_${nroTramite || 'Borrador'}.pdf`,
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(elemento).save();
     }
     
-    if (tipoDocFallecido) {
-        tipoDocFallecido.addEventListener('change', updateConditionalFields);
-    }
-    if (tipoServicio) {
-        tipoServicio.addEventListener('change', updateConditionalFields);
-    }
+    // MULTI-STEP FORM & AUTOGUARDADO
+    (function() {
+        let currentStep = 1;
+        const totalSteps = 5;
+        let uploadedFiles = [];
+        
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const submitBtn = document.getElementById('submitBtn');
+        const cancelBtn = document.getElementById('cancelBtn');
+        const steps = document.querySelectorAll('.step');
+        
+        const tipoDocFallecido = document.getElementById('tipoDocFallecido');
+        const tipoServicio = document.getElementById('tipoServicio');
+        const rnfFields = document.getElementById('rnfFields');
+        const trasladoFields = document.getElementById('trasladoFields');
+        const ataudInfo = document.getElementById('ataudInfo');
     
-    function updateSteps() {
-        if (step1) step1.style.display = currentStep === 1 ? 'block' : 'none';
-        if (step2) step2.style.display = currentStep === 2 ? 'block' : 'none';
-        if (step3) step3.style.display = currentStep === 3 ? 'block' : 'none';
+        // AUTOGUARDADO
+        function guardarBorrador() {
+            const inputs = document.querySelectorAll('#solicitudForm input, #solicitudForm select, #solicitudForm textarea');
+            const borradorData = {};
+            inputs.forEach(input => {
+                if (input.type !== 'file' && input.id) {
+                    borradorData[input.id] = input.value;
+                }
+            });
+            localStorage.setItem('borradorSolicitudFunebre', JSON.stringify(borradorData));
+        }
+    
+        function cargarBorrador() {
+            const borrador = JSON.parse(localStorage.getItem('borradorSolicitudFunebre') || '{}');
+            Object.keys(borrador).forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = borrador[id];
+            });
+            updateConditionalFields();
+        }
+    
+        document.querySelectorAll('#solicitudForm input, #solicitudForm select, #solicitudForm textarea').forEach(input => {
+            input.addEventListener('input', guardarBorrador);
+            input.addEventListener('change', guardarBorrador);
+        });
         
-        if (prevBtn) prevBtn.style.display = currentStep > 1 ? 'inline-flex' : 'none';
-        if (nextBtn) nextBtn.style.display = currentStep < totalSteps ? 'inline-flex' : 'none';
-        if (submitBtn) submitBtn.style.display = currentStep === totalSteps ? 'inline-flex' : 'none';
-        
-        steps.forEach(function(step, index) {
-            const stepNum = index + 1;
-            if (stepNum < currentStep) {
-                step.classList.add('completed');
-                step.classList.remove('active');
-            } else if (stepNum === currentStep) {
-                step.classList.add('active');
-                step.classList.remove('completed');
-            } else {
-                step.classList.remove('active', 'completed');
+        function updateConditionalFields() {
+            if (tipoDocFallecido && tipoDocFallecido.value === 'RNF') {
+                rnfFields.classList.add('visible');
+            } else if (rnfFields) {
+                rnfFields.classList.remove('visible');
             }
-        });
-    }
-    
-    function validateStep(stepNumber) {
-        const stepElement = document.getElementById('step' + stepNumber);
-        if (!stepElement) return true;
-        
-        const requiredFields = stepElement.querySelectorAll('[required]');
-        let valid = true;
-        
-        requiredFields.forEach(function(field) {
-            const value = field.value.trim();
-            if (!value || (field.type === 'select-one' && value === '')) {
-                field.classList.add('field-error');
-                valid = false;
-            } else {
-                field.classList.remove('field-error');
+            
+            if (tipoServicio && (tipoServicio.value === 'TRASLADO' || tipoServicio.value === 'ATAUD_TRASLADO')) {
+                trasladoFields.classList.add('visible');
+            } else if (trasladoFields) {
+                trasladoFields.classList.remove('visible');
             }
-        });
-        
-        if (!valid) {
-            alert('Por favor, complete todos los campos obligatorios (*) correctamente.');
+            
+            if (tipoServicio && (tipoServicio.value === 'ATAUD' || tipoServicio.value === 'ATAUD_TRASLADO')) {
+                if(ataudInfo) ataudInfo.style.display = 'block';
+            } else if (ataudInfo) {
+                ataudInfo.style.display = 'none';
+            }
         }
-        return valid;
-    }
+        
+        if (tipoDocFallecido) tipoDocFallecido.addEventListener('change', updateConditionalFields);
+        if (tipoServicio) tipoServicio.addEventListener('change', updateConditionalFields);
+        
+        function loadSummaryData() {
+            document.getElementById('resNombreFallecido').textContent = document.getElementById('nombreFallecido').value || '-';
+            document.getElementById('resDocFallecido').textContent = (document.getElementById('tipoDocFallecido').value + ' ' + document.getElementById('nroDocFallecido').value) || '-';
+            document.getElementById('resFechaFallecimiento').textContent = document.getElementById('fechaFallecimiento').value || '-';
+            document.getElementById('resUbicacionFallecido').textContent = `${document.getElementById('localidadFallecido').value}, ${document.getElementById('deptoFallecido').value}`;
+            document.getElementById('resTipoServicio').textContent = document.getElementById('tipoServicio').value || '-';
     
-    if (nextBtn) {
-        nextBtn.addEventListener('click', function() {
-            if (validateStep(currentStep)) {
-                updateConditionalFields();
-                if (currentStep < totalSteps) {
-                    currentStep++;
+            document.getElementById('resNombreResponsable').textContent = document.getElementById('nombreResponsable').value || '-';
+            document.getElementById('resDocResponsable').textContent = (document.getElementById('tipoDocResponsable').value + ' ' + document.getElementById('nroDocResponsable').value) || '-';
+            document.getElementById('resTelResponsable').textContent = document.getElementById('telefonoResponsable').value || '-';
+            document.getElementById('resEmailResponsable').textContent = document.getElementById('emailResponsable').value || '-';
+            document.getElementById('resUbicacionResponsable').textContent = `${document.getElementById('localidadResponsable').value}, ${document.getElementById('provinciaResponsable').value}`;
+    
+            const resArchivosList = document.getElementById('resArchivosList');
+            if (uploadedFiles.length > 0) {
+                let fileHTML = '<ul>';
+                uploadedFiles.forEach(f => {
+                    fileHTML += `<li><i class="fas fa-file"></i> ${f.name} (${(f.size/1024).toFixed(1)} KB)</li>`;
+                });
+                fileHTML += '</ul>';
+                resArchivosList.innerHTML = fileHTML;
+            } else {
+                resArchivosList.textContent = 'Sin archivos adjuntos';
+            }
+        }
+    
+        function updateSteps() {
+            for (let i = 1; i <= totalSteps; i++) {
+                const stepEl = document.getElementById('step' + i);
+                if (stepEl) stepEl.style.display = currentStep === i ? 'block' : 'none';
+            }
+            
+            if (prevBtn) prevBtn.style.display = (currentStep > 1 && currentStep <= 4) ? 'inline-flex' : 'none';
+            if (nextBtn) nextBtn.style.display = currentStep < 4 ? 'inline-flex' : 'none';
+            if (submitBtn) submitBtn.style.display = currentStep === 4 ? 'inline-flex' : 'none';
+            if (cancelBtn) cancelBtn.style.display = currentStep <= 4 ? 'inline-flex' : 'none';
+            
+            steps.forEach(function(step, index) {
+                const stepNum = index + 1;
+                if (stepNum < currentStep) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (stepNum === currentStep) {
+                    step.classList.add('active');
+                    step.classList.remove('completed');
+                } else {
+                    step.classList.remove('active', 'completed');
+                }
+            });
+    
+            if (currentStep === 4) {
+                loadSummaryData();
+            }
+        }
+        
+        function validateStep(stepNumber) {
+            if (stepNumber >= 4) return true;
+            const stepElement = document.getElementById('step' + stepNumber);
+            if (!stepElement) return true;
+            
+            const requiredFields = stepElement.querySelectorAll('[required]');
+            let valid = true;
+            
+            requiredFields.forEach(function(field) {
+                const value = field.value.trim();
+                if (!value || (field.type === 'select-one' && value === '')) {
+                    field.classList.add('field-error');
+                    valid = false;
+                } else {
+                    field.classList.remove('field-error');
+                }
+            });
+            
+            if (!valid) {
+                alert('Por favor, complete todos los campos obligatorios (*) del paso actual.');
+            }
+            return valid;
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', function() {
+                if (validateStep(currentStep)) {
+                    updateConditionalFields();
+                    if (currentStep < totalSteps) {
+                        currentStep++;
+                        updateSteps();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }
+            });
+        }
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', function() {
+                if (currentStep > 1) {
+                    currentStep--;
                     updateSteps();
                     window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
-            }
-        });
-    }
-    
-    if (prevBtn) {
-        prevBtn.addEventListener('click', function() {
-            if (currentStep > 1) {
-                currentStep--;
-                updateSteps();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-        });
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-        updateSteps();
-        updateConditionalFields();
-        
-        const fechaRegistro = document.getElementById('fechaRegistro');
-        if (fechaRegistro) {
-            const today = new Date().toISOString().split('T')[0];
-            fechaRegistro.value = today;
+            });
         }
-    });
-})();
-
-// ============================================================
-// FILE UPLOAD (hasta 10 archivos)
-// ============================================================
-(function() {
-    const fileInput = document.getElementById('archivosInput');
-    const fileList = document.getElementById('fileList');
-    const fileCount = document.getElementById('fileCount');
-    const filePreview = document.getElementById('filePreview');
-    let files = [];
-    const MAX_FILES = 10;
-    const MAX_FILE_SIZE = 5 * 1024 * 1024;
     
-    if (fileInput) {
-        fileInput.addEventListener('change', function(e) {
-            const newFiles = Array.from(e.target.files);
-            
-            if (files.length + newFiles.length > MAX_FILES) {
-                alert('Solo puedes subir hasta 10 archivos.');
-                this.value = '';
-                return;
-            }
-            
-            for (let file of newFiles) {
-                if (file.size > MAX_FILE_SIZE) {
-                    alert('El archivo "' + file.name + '" excede el tamaño máximo de 5MB.');
+        steps.forEach((step, idx) => {
+            step.style.cursor = 'pointer';
+            step.addEventListener('click', () => {
+                const targetStep = idx + 1;
+                if (targetStep < currentStep || validateStep(currentStep)) {
+                    currentStep = targetStep;
+                    updateSteps();
+                }
+            });
+        });
+    
+        // MANEJO DE ARCHIVOS ADJUNTOS
+        const fileInput = document.getElementById('archivosInput');
+        const fileList = document.getElementById('fileList');
+        const fileCount = document.getElementById('fileCount');
+        const MAX_FILES = 10;
+        
+        if (fileInput) {
+            fileInput.addEventListener('change', async function(e) {
+                const newFiles = Array.from(e.target.files);
+                if (uploadedFiles.length + newFiles.length > MAX_FILES) {
+                    alert('Solo puedes subir hasta 10 archivos.');
                     this.value = '';
                     return;
                 }
-            }
-            
-            files = files.concat(newFiles);
-            updateFileDisplay();
-            this.value = '';
-        });
-    }
-    
-    function updateFileDisplay() {
-        if (fileCount) {
-            fileCount.textContent = files.length + '/' + MAX_FILES;
-        }
-        
-        if (fileList) {
-            if (files.length === 0) {
-                fileList.innerHTML = '<span style="color: var(--color-muted); font-size: 0.85rem;">No hay archivos seleccionados</span>';
-            } else {
-                let html = '<ul style="list-style:none; padding:0; margin:0;">';
-                files.forEach(function(file, index) {
-                    const size = (file.size / 1024).toFixed(1);
-                    html += '<li style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--color-border); font-size:0.85rem;">';
-                    html += '<span><i class="fas fa-file" style="color:var(--color-accent); margin-right:8px;"></i> ' + file.name + ' (' + size + ' KB)</span>';
-                    html += '<button type="button" class="remove-file-btn" data-index="' + index + '" style="background:none; border:none; color:#e30613; cursor:pointer;"><i class="fas fa-times"></i></button>';
-                    html += '</li>';
-                });
-                html += '</ul>';
-                fileList.innerHTML = html;
                 
-                document.querySelectorAll('.remove-file-btn').forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        const index = parseInt(this.getAttribute('data-index'));
-                        files.splice(index, 1);
-                        updateFileDisplay();
-                    });
-                });
-            }
+                for (let file of newFiles) {
+                    const fileProcesado = await comprimirImagen(file);
+                    uploadedFiles.push(fileProcesado);
+                }
+                
+                updateFileDisplay();
+                this.value = '';
+            });
         }
         
-        if (filePreview) {
-            filePreview.innerHTML = '';
-            files.forEach(function(file) {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const div = document.createElement('div');
-                        div.className = 'file-preview-item';
-                        div.innerHTML = '<img src="' + e.target.result + '" alt="' + file.name + '">';
-                        filePreview.appendChild(div);
-                    };
-                    reader.readAsDataURL(file);
+        function updateFileDisplay() {
+            if (fileCount) fileCount.textContent = uploadedFiles.length + '/' + MAX_FILES;
+            if (fileList) {
+                if (uploadedFiles.length === 0) {
+                    fileList.innerHTML = '<span style="color: var(--color-muted); font-size: 0.85rem;">No hay archivos seleccionados</span>';
                 } else {
-                    const div = document.createElement('div');
-                    div.className = 'file-preview-item';
-                    div.innerHTML = '<i class="fas fa-file-pdf" style="font-size:40px; color:var(--color-accent);"></i><br><span style="font-size:0.7rem;">' + file.name.substring(0, 10) + '...</span>';
-                    filePreview.appendChild(div);
+                    let html = '<ul style="list-style:none; padding:0; margin:0;">';
+                    uploadedFiles.forEach(function(file, index) {
+                        const size = (file.size / 1024).toFixed(1);
+                        html += '<li style="display:flex; justify-content:space-between; align-items:center; padding:4px 0; border-bottom:1px solid var(--color-border); font-size:0.85rem;">';
+                        html += '<span><i class="fas fa-file" style="color:var(--color-accent); margin-right:8px;"></i> ' + file.name + ' (' + size + ' KB)</span>';
+                        html += '<button type="button" class="remove-file-btn" data-index="' + index + '" style="background:none; border:none; color:#e30613; cursor:pointer;"><i class="fas fa-times"></i></button>';
+                        html += '</li>';
+                    });
+                    html += '</ul>';
+                    fileList.innerHTML = html;
+                    
+                    document.querySelectorAll('.remove-file-btn').forEach(function(btn) {
+                        btn.addEventListener('click', function() {
+                            const index = parseInt(this.getAttribute('data-index'));
+                            uploadedFiles.splice(index, 1);
+                            updateFileDisplay();
+                        });
+                    });
+                }
+            }
+        }
+    
+        // BOTÓN REGISTRADO PARA GENERAR PDF
+        const btnDownloadPDF = document.getElementById('btnDownloadPDF');
+        if (btnDownloadPDF) {
+            btnDownloadPDF.addEventListener('click', () => {
+                generarComprobantePDF('PREVIA');
+            });
+        }
+    
+        // CONSULTAR ESTADO (PASO 5)
+        const btnSearchStatus = document.getElementById('btnSearchStatus');
+        const searchDniInput = document.getElementById('searchDniInput');
+        const statusResultContainer = document.getElementById('statusResultContainer');
+    
+        if (btnSearchStatus) {
+            btnSearchStatus.addEventListener('click', function() {
+                const dniVal = searchDniInput.value.trim();
+                if (!dniVal) {
+                    alert('Ingrese un número de DNI para realizar la búsqueda.');
+                    return;
+                }
+    
+                let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
+                let result = solicitudes.filter(s => s.datos && s.datos.nroDocResponsable === dniVal);
+    
+                if (result.length === 0) {
+                    statusResultContainer.style.display = 'block';
+                    statusResultContainer.innerHTML = `
+                        <div style="background: #fff; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid var(--color-border);">
+                            <i class="fas fa-exclamation-circle" style="font-size: 2.5rem; color: var(--color-accent); margin-bottom: 10px;"></i>
+                            <p>No se encontraron registros asociados al DNI: <strong>${dniVal}</strong>.</p>
+                        </div>
+                    `;
+                    return;
+                }
+    
+                let htmlResult = '';
+                result.forEach(sol => {
+                    let badgeClass = 'badge-pendiente';
+                    let estadoTexto = 'Pendiente';
+                    if (sol.estado === 'en_revision') { badgeClass = 'badge-revision'; estadoTexto = 'En Revisión'; }
+                    if (sol.estado === 'aprobado') { badgeClass = 'badge-aprobado'; estadoTexto = 'Aprobado'; }
+                    if (sol.estado === 'desaprobado') { badgeClass = 'badge-desaprobado'; estadoTexto = 'Desaprobado'; }
+    
+                    htmlResult += `
+                        <div class="summary-card" style="margin-top: 15px;">
+                            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 10px; margin-bottom: 15px;">
+                                <strong>Solicitud #${sol.nro_pedido}</strong>
+                                <span class="status-badge ${badgeClass}">${estadoTexto}</span>
+                            </div>
+                            <p><strong>Fallecido:</strong> ${sol.datos.nombreFallecido || 'N/D'}</p>
+                            <p><strong>Fecha Registro:</strong> ${new Date(sol.fecha).toLocaleDateString()}</p>
+                            
+                            ${sol.estado === 'desaprobado' ? `
+                                <div class="motivo-rechazo-box" style="margin-top: 10px; padding: 10px; background: #fee2e2; border-left: 4px solid #ef4444; border-radius: 4px;">
+                                    <h4 style="margin: 0 0 5px 0; color: #991b1b;"><i class="fas fa-exclamation-triangle"></i> Motivo de Rechazo:</h4>
+                                    <p style="margin: 0; color: #7f1d1d;">${sol.motivo_rechazo || 'La documentación presentada no cumple los requisitos.'}</p>
+                                </div>
+                            ` : ''}
+                        </div>
+                    `;
+                });
+    
+                statusResultContainer.style.display = 'block';
+                statusResultContainer.innerHTML = htmlResult;
+            });
+        }
+    
+        // ENVÍO DE FORMULARIO
+        const form = document.getElementById('solicitudForm');
+        if (form) {
+            form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            if (uploadedFiles.length === 0) {
+                alert('⚠️ Por favor, suba al menos un archivo de documentación antes de enviar.');
+                return;
+            }
+
+            if (submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Procesando...';
+                submitBtn.disabled = true;
+            }
+
+            try {
+                let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
+                
+                const formData = new FormData(this);
+                const datos = {};
+                for (let [key, value] of formData.entries()) {
+                    if (key !== 'archivos[]') datos[key] = value;
+                }
+
+                // Convertir los archivos cargados a Base64 para guardarlos
+                const archivosBase64 = await Promise.all(uploadedFiles.map(file => {
+                    return new Promise((resolve, reject) => {
+                        const reader = new FileReader();
+                        reader.onload = () => resolve({ name: file.name, data: reader.result });
+                        reader.onerror = error => reject(error);
+                        reader.readAsDataURL(file);
+                    });
+                }));
+
+                const nuevaSolicitud = {
+                    id: Date.now(),
+                    nro_pedido: 'SOL-' + String(Date.now()).slice(-6),
+                    fecha: new Date().toISOString(),
+                    estado: 'pendiente',
+                    datos: datos,
+                    motivo_rechazo: '',
+                    archivos: archivosBase64
+                };
+
+                solicitudes.push(nuevaSolicitud);
+                localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
+                    
+                    localStorage.removeItem('borradorSolicitudFunebre');
+    
+                    alert(`✅ ¡Solicitud enviada exitosamente!\n\n📋 N° Trámite: #${nuevaSolicitud.nro_pedido}`);
+                    
+                    generarComprobantePDF(nuevaSolicitud.nro_pedido);
+    
+                    currentStep = 5;
+                    updateSteps();
+                    if (searchDniInput) {
+                        searchDniInput.value = datos.nroDocResponsable || '';
+                        if (btnSearchStatus) btnSearchStatus.click();
+                    }
+                } catch (err) {
+                    alert('Hubo un error al procesar la solicitud.');
+                } finally {
+                    if (submitBtn) {
+                        submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Enviar Solicitud';
+                        submitBtn.disabled = false;
+                    }
                 }
             });
         }
-    }
-})();
-
-/// ============================================================
-// ENVIAR FORMULARIO - CON DETECCIÓN DE BACKEND
-// ============================================================
-(function() {
-    const form = document.getElementById('solicitudForm');
-    const fileInput = document.getElementById('archivosInput');
-    const submitBtn = document.getElementById('submitBtn');
     
-    if (!form) return;
-    
-    // ============================================================
-    // FUNCIÓN PARA GUARDAR LOCALMENTE (cuando no hay backend)
-    // ============================================================
-    function guardarLocalmente(formData, archivos) {
-        try {
-            // Obtener solicitudes guardadas
-            let solicitudes = JSON.parse(localStorage.getItem('solicitudesPendientes') || '[]');
-            
-            // Crear objeto con los datos
-            const datos = {};
-            for (let [key, value] of formData.entries()) {
-                if (key !== 'archivos[]') {
-                    datos[key] = value;
-                }
-            }
-            
-            // Agregar información de archivos
-            datos.archivos_nombres = [];
-            if (archivos && archivos.length > 0) {
-                for (let i = 0; i < archivos.length; i++) {
-                    datos.archivos_nombres.push(archivos[i].name);
-                }
-            }
-            
-            // Crear registro
-            const solicitud = {
-                id: Date.now(),
-                nro_pedido: 'PEND-' + String(Date.now()).slice(-6),
-                fecha: new Date().toISOString(),
-                estado: 'pendiente',
-                datos: datos
-            };
-            
-            // Guardar
-            solicitudes.push(solicitud);
-            localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
-            
-            return solicitud.nro_pedido;
-        } catch (error) {
-            console.error('Error guardando localmente:', error);
-            return null;
-        }
-    }
-    
-    // ============================================================
-    // FUNCIÓN PARA VERIFICAR SI EL BACKEND ESTÁ DISPONIBLE
-    // ============================================================
-    function verificarBackend() {
-        return fetch('../sysfun/backend/api/health.php', {
-            method: 'GET',
-            signal: AbortSignal.timeout(3000)
-        })
-        .then(function(response) {
-            return response.ok;
-        })
-        .catch(function() {
-            return false;
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarBorrador();
+            updateSteps();
+            const fechaRegistro = document.getElementById('fechaRegistro');
+            if (fechaRegistro) fechaRegistro.value = new Date().toISOString().split('T')[0];
         });
-    }
-    
-    // ============================================================
-    // ENVÍO DEL FORMULARIO
-    // ============================================================
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Validar archivos
-        let hasFiles = false;
-        if (fileInput && fileInput.files && fileInput.files.length > 0) {
-            hasFiles = true;
-        }
-        
-        const fileListItems = document.querySelectorAll('#fileList .remove-file-btn');
-        if (fileListItems.length > 0) {
-            hasFiles = true;
-        }
-        
-        if (!hasFiles) {
-            alert('⚠️ Por favor, suba al menos un archivo antes de enviar la solicitud.');
-            return;
-        }
-        
-        // Crear FormData
-        const formData = new FormData(this);
-        
-        // Agregar archivos
-        if (fileInput && fileInput.files) {
-            for (let i = 0; i < fileInput.files.length; i++) {
-                formData.append('archivos[]', fileInput.files[i]);
-            }
-        }
-        
-        // Mostrar carga
-        if (submitBtn) {
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-        }
-        
-        // ============================================================
-        // INTENTAR ENVIAR AL BACKEND
-        // ============================================================
-        const apiUrl = '../sysfun/backend/api/solicitudes.php';
-        
-        fetch(apiUrl, {
-            method: 'POST',
-            body: formData
-        })
-        .then(function(response) {
-            if (!response.ok) {
-                throw new Error('HTTP ' + response.status + ': ' + response.statusText);
-            }
-            return response.json();
-        })
-        .then(function(data) {
-            if (data.success) {
-                // ✅ ÉXITO - Enviado al backend
-                alert('✅ ¡Solicitud enviada con éxito al sistema!\n\n📋 Número de pedido: #' + data.nro_pedido);
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
-                    submitBtn.style.background = '#10b981';
-                }
-                // Limpiar archivos guardados localmente si existían
-                localStorage.removeItem('solicitudesPendientes');
-                setTimeout(function() {
-                    window.location.href = 'Inicio_funerarios.html';
-                }, 2000);
-            } else {
-                throw new Error(data.message || 'Error desconocido');
-            }
-        })
-        .catch(function(error) {
-            console.warn('⚠️ Error en el backend:', error.message);
-            
-            // ============================================================
-            // FALLBACK: Guardar localmente si el backend falla
-            // ============================================================
-            const nroPedido = guardarLocalmente(formData, fileInput ? fileInput.files : []);
-            
-            if (nroPedido) {
-                alert('⚠️ El sistema no pudo conectarse al servidor.\n\n' +
-                      '✅ Su solicitud ha sido guardada localmente.\n' +
-                      '📋 Número de pedido: #' + nroPedido + '\n\n' +
-                      '💡 Se enviará automáticamente cuando el sistema esté disponible.\n' +
-                      '📞 Puede comunicarse al (385) 4892389 para seguimiento.');
-                
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-save"></i> Guardado Local';
-                    submitBtn.style.background = '#f59e0b';
-                }
-                
-                setTimeout(function() {
-                    window.location.href = 'Inicio_funerarios.html';
-                }, 3000);
-            } else {
-                alert('❌ Error al guardar la solicitud. Por favor, intente nuevamente o comuníquese al (385) 4892389.');
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Reintentar';
-                    submitBtn.disabled = false;
-                    submitBtn.style.background = '#c8a84b';
-                }
-            }
-        });
-    });
-})();
-// ============================================================
-// SMOOTH SCROLL
-// ============================================================
-(function() {
-    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (href === '#' || href === '') return;
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                const header = document.querySelector('.header');
-                const headerHeight = header ? header.offsetHeight : 70;
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-                const offsetPosition = targetPosition - headerHeight - 15;
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-})();
-
-// ============================================================
-// ACCESIBILIDAD - ZOOM
-// ============================================================
-(function() {
-    function createAccessibilityButtons() {
-        let container = document.querySelector('.accesibilidad-container');
-        if (!container) {
-            container = document.createElement('div');
-            container.className = 'accesibilidad-container';
-            container.style.cssText = 'position:fixed; bottom:20px; right:20px; z-index:9999; display:flex; flex-direction:column; gap:8px;';
-            document.body.appendChild(container);
-        }
-        
-        if (!document.getElementById('btnZoomMas')) {
-            const btnMas = document.createElement('button');
-            btnMas.id = 'btnZoomMas';
-            btnMas.className = 'accesibilidad-btn';
-            btnMas.title = 'Aumentar tamaño';
-            btnMas.textContent = 'A+';
-            btnMas.style.cssText = 'background:#1a3a6b; border:none; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif;';
-            container.appendChild(btnMas);
-        }
-        
-        if (!document.getElementById('btnZoomMenos')) {
-            const btnMenos = document.createElement('button');
-            btnMenos.id = 'btnZoomMenos';
-            btnMenos.className = 'accesibilidad-btn';
-            btnMenos.title = 'Disminuir tamaño';
-            btnMenos.textContent = 'A-';
-            btnMenos.style.cssText = 'background:#1a3a6b; border:none; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif;';
-            container.appendChild(btnMenos);
-        }
-        
-        if (!document.getElementById('btnZoomNormal')) {
-            const btnNormal = document.createElement('button');
-            btnNormal.id = 'btnZoomNormal';
-            btnNormal.className = 'accesibilidad-btn';
-            btnNormal.title = 'Tamaño normal';
-            btnNormal.textContent = 'A';
-            btnNormal.style.cssText = 'background:#1a3a6b; border:none; color:white; font-weight:bold; width:48px; height:48px; border-radius:50%; cursor:pointer; font-size:1.2rem; transition:all 0.3s ease; box-shadow:0 4px 12px rgba(0,0,0,0.3); display:flex; align-items:center; justify-content:center; font-family:Arial,sans-serif;';
-            container.appendChild(btnNormal);
-        }
-        
-        return {
-            btnMas: document.getElementById('btnZoomMas'),
-            btnMenos: document.getElementById('btnZoomMenos'),
-            btnNormal: document.getElementById('btnZoomNormal')
-        };
-    }
-    
-    const buttons = createAccessibilityButtons();
-    
-    function mostrarMensaje(texto) {
-        let msg = document.getElementById('zoomMensaje');
-        if (!msg) {
-            msg = document.createElement('div');
-            msg.id = 'zoomMensaje';
-            msg.style.cssText = 'position:fixed; bottom:80px; right:20px; background:#1a3a6b; color:white; padding:8px 16px; border-radius:30px; font-size:14px; z-index:10000; font-family:Arial; box-shadow:0 2px 8px rgba(0,0,0,0.2);';
-            document.body.appendChild(msg);
-        }
-        msg.textContent = texto;
-        msg.style.display = 'block';
-        setTimeout(function() {
-            msg.style.display = 'none';
-        }, 1500);
-    }
-    
-    function cambiarZoom(tipo) {
-        document.body.classList.remove('zoom-normal', 'zoom-grande', 'zoom-muy-grande');
-        
-        if (tipo === 'mas') {
-            if (document.body.classList.contains('zoom-grande')) {
-                document.body.classList.add('zoom-muy-grande');
-                localStorage.setItem('zoom', 'muy-grande');
-                mostrarMensaje('🔍 Texto muy grande (140%)');
-            } else if (document.body.classList.contains('zoom-muy-grande')) {
-                document.body.classList.add('zoom-muy-grande');
-                mostrarMensaje('🔍🔍 Ya está en máximo');
-            } else {
-                document.body.classList.add('zoom-grande');
-                localStorage.setItem('zoom', 'grande');
-                mostrarMensaje('🔍 Texto grande (120%)');
-            }
-        } else if (tipo === 'menos') {
-            if (document.body.classList.contains('zoom-muy-grande')) {
-                document.body.classList.add('zoom-grande');
-                localStorage.setItem('zoom', 'grande');
-                mostrarMensaje('🔍 Texto grande (120%)');
-            } else if (document.body.classList.contains('zoom-grande')) {
-                document.body.classList.add('zoom-normal');
-                localStorage.setItem('zoom', 'normal');
-                mostrarMensaje('📏 Texto normal (100%)');
-            } else {
-                mostrarMensaje('📏 Ya está en tamaño normal');
-            }
-        } else if (tipo === 'normal') {
-            document.body.classList.add('zoom-normal');
-            localStorage.setItem('zoom', 'normal');
-            mostrarMensaje('📏 Texto normal (100%)');
-        }
-    }
-    
-    if (buttons.btnMas) {
-        buttons.btnMas.onclick = function() { cambiarZoom('mas'); };
-        buttons.btnMas.onmouseover = function() { this.style.background = '#c8a84b'; this.style.color = '#0d2240'; };
-        buttons.btnMas.onmouseout = function() { this.style.background = '#1a3a6b'; this.style.color = 'white'; };
-    }
-    if (buttons.btnMenos) {
-        buttons.btnMenos.onclick = function() { cambiarZoom('menos'); };
-        buttons.btnMenos.onmouseover = function() { this.style.background = '#c8a84b'; this.style.color = '#0d2240'; };
-        buttons.btnMenos.onmouseout = function() { this.style.background = '#1a3a6b'; this.style.color = 'white'; };
-    }
-    if (buttons.btnNormal) {
-        buttons.btnNormal.onclick = function() { cambiarZoom('normal'); };
-        buttons.btnNormal.onmouseover = function() { this.style.background = '#c8a84b'; this.style.color = '#0d2240'; };
-        buttons.btnNormal.onmouseout = function() { this.style.background = '#1a3a6b'; this.style.color = 'white'; };
-    }
-    
-    const zoomGuardado = localStorage.getItem('zoom');
-    if (zoomGuardado === 'grande') {
-        document.body.classList.add('zoom-grande');
-    } else if (zoomGuardado === 'muy-grande') {
-        document.body.classList.add('zoom-muy-grande');
-    } else {
-        document.body.classList.add('zoom-normal');
-    }
-})();
-</script>
+    })();
+    </script>
 </body>
 </html>

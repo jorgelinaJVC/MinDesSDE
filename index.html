@@ -2,12 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Ministerio de Desarrollo Social</title>
-    <link rel="shortcut icon" href="img/logo.jpg" type="image/x-icon">
+    <link rel="shortcut icon" href="img/logo.png" type="image/x-icon">
     <link rel="stylesheet" href="css/styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="stylesheet" href="css/responsive.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap" rel="stylesheet" />
 </head>
 <body>
@@ -30,9 +29,44 @@
             </div>
         </a>
 
-        <nav class="nav-brand" id="mainNav">
+        <nav class="nav-brand" id="mainNav" aria-label="Navegación principal">
             <ul class="nav-links">
-                <li><a href="pages/autoridades.html" class="nav-links">Institución</a></li>
+                <li class="nav-item-dropdown">
+                    <a href="pages/autoridades.html" class="nav-links nav-dropdown-toggle">Institución <span class="arrow">⌄</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="pages/autoridades.html">Autoridades</a></li>
+                        <li><a href="pages/autoridades.html#institucion">Misión y Visión</a></li>
+                    </ul>
+                </li>
+
+                <li class="nav-item-dropdown nav-areas">
+                    <a href="#subsecretarias" class="nav-links nav-dropdown-toggle">Áreas <span class="arrow">⌄</span></a>
+                    <div class="areas-mega-menu">
+                        <div class="areas-mega-column areas-mega-main">
+                            <a href="pages/desarrollo-social.html" class="areas-mega-title">Subsecretaría de Desarrollo Social <span class="arrow">›</span></a>
+                            <div class="areas-mega-submenu">
+                                <div class="areas-mega-group">
+                                    <a href="pages/desarrollo-social.html#desarrollo" class="areas-mega-title secondary">Dirección General de Desarrollo Social <span class="arrow">›</span></a>
+                                    <a href="pages/desarrollo-social.html#asistencia">Asistencia Directa</a>
+                                    <a href="pages/desarrollo-social.html#microemprendimiento">Micro Emprendimiento</a>
+                                    <a href="pages/desarrollo-social.html#comedores">Comedores Comunitarios</a>
+                                </div>
+                                <div class="areas-mega-group">
+                                    <a href="pages/desarrollo-social.html#adultos" class="areas-mega-title secondary">Dirección General de Adultos Mayores <span class="arrow">›</span></a>
+                                    <a href="indexAdultos.html">Programa Adultos Mayores</a>
+                                    <a href="indexAdultos.html">Residencia Mamá Antula</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="areas-mega-column">
+                            <a href="pages/promocion-humana.html" class="areas-mega-title">Subsecretaría de Promoción Humana</a>
+                        </div>
+                        <div class="areas-mega-column">
+                            <a href="pages/defensa-civil.html" class="areas-mega-title">Subsecretaría de Defensa Civil</a>
+                        </div>
+                    </div>
+                </li>
+
                 <li><a href="pages/programas.html" class="nav-links">Programas</a></li>
                 <li><a href="pages/requisitos.html" class="nav-links">Trámites</a></li>
                 <li><a href="#noticias" class="nav-links">Noticias</a></li>
@@ -48,50 +82,16 @@
 
 <!-- ========== HERO CAROUSEL ========== -->
 <section class="hero" id="heroCarousel">
-    <div class="hero__slides" id="heroSlides">
-        <div class="hero__slide active" style="background-image: url('img/foto1.jpg')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-            <span class="hero__tag">Institucional</span>
-            <h2 class="hero__title">Asumieron autoridades del Ministerio de Desarrollo Social, Promoción  Humana y Relaciones Institucionales con la Comunidad</h2>
-        </div>
-    </div>
-
-    <div class="hero__slide" style="background-image: url('img/5.png')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-            <span class="hero__tag">Viviendas</span>
-            <h2 class="hero__title">Entrega de viviendas en Capital y Banda</h2>
-        </div>
-    </div>
-
-    <div class="hero__slide" style="background-image: url('img/foto3.jpg')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-        <span class="hero__tag">Tarjetas Sociales</span>
-        <h2 class="hero__title">Anuncian aumentos para los beneficiarios de tarjetas sociales</h2>
-        </div>
-    </div>
-
-    <div class="hero__slide" style="background-image: url('img/1.png')">
-        <div class="hero__overlay"></div>
-        <div class="hero__content container">
-        <span class="hero__tag">Viviendas</span>
-        <h2 class="hero__title">Entrega de viviendas en el interior de la provincia</h2>
-        </div>
-    </div>
-
-    </div>
+    <div class="hero__slides" id="heroSlides"></div>
+  
 
     <button class="hero__prev" id="heroPrev" aria-label="Anterior">&#10094;</button>
     <button class="hero__next" id="heroNext" aria-label="Siguiente">&#10095;</button>
-
-    <div class="hero__dots" id="heroDots">
-        <button class="hero__dot active" data-index="0"></button>
-        <button class="hero__dot" data-index="1"></button>
-        <button class="hero__dot" data-index="2"></button>
-        <button class="hero__dot" data-index="3"></button>
+    <div
+        class="hero__dots"
+        id="heroDots">
     </div>
+
 </section>
 
 <!-- ========== SUBSECRETARÍAS ========== -->
@@ -103,11 +103,11 @@
         <!-- Subsecretaría de Desarrollo Social -->
         <a href="pages/desarrollo-social.html" class="ingreso-card">
             <div class="ingreso-card__img">
-            <img src="img/desarrollo_social.jfif" alt="Desarrollo Social">
+            <img src="img/desarrollo.jpg" alt="Desarrollo Social">
         </div>
         <div class="ingreso-card__body" style="flex-direction:column; align-items:flex-start; gap:4px;">
             <span class="ingreso-card__label">Desarrollo Social</span>
-            <span class="subsec-desc">Asistencia directa, microemprendimientos, comedores, adultos mayores, tarjetas sociales</span>
+            <span class="subsec-desc">Asistencia directa, microemprendimientos, comedores comunitarios y atención integral a adultos mayores</span>
         </div>
         </a>
 
@@ -142,12 +142,6 @@
         <h2 class="section-title">Áreas y Programas</h2>
         <div class="areas-grid">
 
-        <a href="indexAdultos.html" class="area-card">
-            <div class="area-icon">👵</div>
-            <h4>Adultos Mayores</h4>
-            <p>Atención integral y residencias para adultos mayores</p>
-        </a>
-
         <a href="pages/Inicio_funerarios.html" class="area-card">
             <div class="area-icon">🕊️</div>
             <h4>Servicios Fúnebres</h4>
@@ -165,12 +159,30 @@
             <h4>Comedores Comunitarios</h4>
             <p>Refuerzo alimentario para niños en situación de vulnerabilidad</p>
         </a>
+        <a href="pages/nutricion-comedores.html" class="area-card">
+            <div class="area-icon">🍏</div>
+            <h4>Nutrición</h4>
+            <p>Control nutricional y solicitudes de insumos para comedores provinciales</p>
+          </a>
 
         <a href="pages/promocion-humana.html" class="area-card">
             <div class="area-icon">🏠</div>
             <h4>Viviendas Sociales</h4>
             <p>Construcción de viviendas para familias en situación precaria</p>
         </a>
+        <!-- Atención Directa -->
+    <a href="pages/asistencia-directa.html" class="area-card">
+        <div class="area-icon">🚨</div>
+        <h4>Atención Directa</h4>
+        <p>Asistencia de emergencia y subsidios urgentes para familias vulnerables</p>
+      </a>
+  
+      <!-- Área Redes -->
+      <a href="pages/area-redes.html" class="area-card">
+        <div class="area-icon">🤝</div>
+        <h4>Área Redes</h4>
+        <p>Articulación institucional y registro de organizaciones comunitarias</p>
+      </a>
 
         <a href="https://proyecto-emprendedores.onrender.com/" class="area-card">
             <div class="area-icon">💼</div>
@@ -199,43 +211,7 @@
     <div class="container">
         <h2 class="section-title">Noticias Institucionales</h2>
         
-        <div class="noticias__grid">
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/foto3.jpg" alt="Tarjetas sociales">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Anuncian aumentos para los beneficiarios de tarjetas sociales, planes de emergencia y celíacos</p>
-                </div>
-            </article>
-            
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/3.png" alt="Viviendas sociales">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Nuevas viviendas sociales para familias santiagueñas.</p>
-                </div>
-            </article>
-            
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/Ad-May-Deporte.jpg" alt="Adultos mayores">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Actividades deportivas y recreativas para adultos mayores de la provincia.</p>
-                </div>
-            </article>
-            
-            <article class="noticia-card">
-                <div class="noticia-card__img">
-                    <img src="img/emprendedores.jpg" alt="Asistencia directa">
-                </div>
-                <div class="noticia-card__body">
-                    <p>Capacitaciones de oficios y emprendimientos para la inclusión social.</p>
-                </div>
-            </article>
-        </div>
+        <div class="noticias__grid" id="noticiasGrid"></div>
         
     </div>
 </section>
@@ -243,31 +219,54 @@
     <!-- GALERÍA DE VIDEOS -->
     <section class="videos" id="videos">
         <div class="container">
-        <h2 class="section-title">Galería de Videos</h2>
-        <div class="videos-grid">
-            <div class="video-card">
-        <iframe 
-        src="http://www.mdssde.gob.ar/wp-content/uploads/2023/11/Viviendas-Sociales.mp4"
-        title="Más de 27.000 viviendas sociales"
-        allowfullscreen>
-        </iframe>
-        <p>Entrega de viviendas sociales</p>
-    </div>
-    <div class="video-card">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/0ErbMVybpzs?si=cGqf9WA9-JDB0Sz8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>Crearon una cooperativa de mujeres para construir viviendas sociales</p>
+            <h2 class="section-title">Galería de Videos</h2>
+            <div class="videos-grid" id="videosGrid">
         </div>
-        <div class="video-card">
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/i1guqem3UdA?si=0CvK_n6gu-3v9WSy" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            <p>La importancia de actuar a tiempo ante emergencias</p>
         </div>
         
-        </div>
-        
-    </div>
     </section>
-</section>
 
+<!-- MODAL DETALLE DE NOTICIA -->
+<div id="noticiaModal" class="noticia-modal" aria-hidden="true">
+
+    <div class="noticia-modal__fondo"></div>
+
+    <div class="noticia-modal__contenido">
+
+        <button
+            type="button"
+            class="noticia-modal__cerrar"
+            id="cerrarNoticiaModal"
+            aria-label="Cerrar noticia">
+            ×
+        </button>
+
+        <div class="noticia-modal__imagen" id="noticiaModalImagen"></div>
+
+        <div class="noticia-modal__informacion">
+
+            <span
+                class="noticia-modal__categoria"
+                id="noticiaModalCategoria">
+            </span>
+
+            <h2 id="noticiaModalTitulo"></h2>
+
+            <p
+                class="noticia-modal__fecha"
+                id="noticiaModalFecha">
+            </p>
+
+            <div
+                class="noticia-modal__texto"
+                id="noticiaModalTexto">
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
 <!-- ========== MAPA Y CONTACTO ========== -->
 <section id="contacto" style="padding: 56px 0; background: var(--color-white);">
     <div class="container">
@@ -306,7 +305,7 @@
 <footer class="footer">
     <div class="container footer__inner">
         <div class="footer__brand">
-        <img src="http://sistemas.mdssde.gob.ar/wp-content/uploads/2018/04/rsz_logo_santiago_b.png" alt="Logo Santiago del Estero">
+        <img src="img/Logo de SDE.png" alt="Logo Santiago del Estero">
         <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
     </div>
     <div class="footer__links">
@@ -320,8 +319,8 @@
     <div class="footer__links">
         <h5>Áreas</h5>
         <ul>
-            <li><a href="indexAdultos.html">Adultos Mayores</a></li>
-            <li><a href="pages/fúnebres.html">Servicios Fúnebres</a></li>
+            <li><a href="pages/desarrollo-social.html#adultos">Dirección General de Adultos Mayores</a></li>
+            <li><a href="pages/Inicio_funerarios.html">Servicios Fúnebres</a></li>
             <li><a href="pages/programas.html">Programas</a></li>
             <li><a href="pages/contacto.html">Contacto</a></li>
         </ul>
@@ -330,7 +329,18 @@
         <h5>Redes</h5>
         <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank" rel="noopener noreferrer">Facebook</a></p>
         <h5 style="margin-top:16px;">Institución</h5>
-        <p><a href="pages/autoridades.html">Autoridades</a></p>
+
+<p>
+    <a href="pages/autoridades.html">
+        Autoridades
+    </a>
+</p>
+
+<p>
+    <a href="pages/login.php">
+        Acceso administrativo
+    </a>
+</p>
     </div>
     </div>
     <div class="footer__bottom">
@@ -339,5 +349,6 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script src="js/contenidos-publicos.js?v=2"></script>
 </body>
 </html>
