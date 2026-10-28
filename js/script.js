@@ -160,3 +160,44 @@ revealStyle.textContent = `
   }
 `;
 document.head.appendChild(revealStyle);
+
+function enviarPorEmail() {
+    if (!validarFormulario()) return;
+
+    const tipo = document.getElementById("tipo_tramite").value;
+    const areaKey = document.getElementById("servicio").value;
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const remitenteEmail = document.getElementById("email").value.trim() || "No informado";
+    const telefono = document.getElementById("telefono").value.trim() || "No informado";
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const destino = directorioContactos[areaKey] || directorioContactos.otros;
+
+    const asunto = `[${tipo.toUpperCase()}] - ${destino.nombre} - ${nombre} ${apellido}`;
+    
+    const cuerpo = `Tipo de trámite: ${tipo}\n` +
+                   `Área: ${destino.nombre}\n` +
+                   `Remitente: ${nombre} ${apellido}\n` +
+                   `Correo de contacto: ${remitenteEmail}\n` +
+                   `Teléfono: ${telefono}\n\n` +
+                   `Detalle / Descripción:\n${mensaje}`;
+
+    // 1. Mostrar el aviso visual de éxito en pantalla
+    mostrarExito();
+
+    // 2. Limpiar los campos del formulario manualmente uno por uno
+    document.getElementById("tipo_tramite").selectedIndex = 0;
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("servicio").value = "";
+    document.getElementById("mensaje").value = "";
+    document.getElementById("destinoFeedback").style.display = "none";
+
+    // 3. Abrir el cliente de correo con un leve retraso
+    setTimeout(() => {
+      window.location.href = `mailto:${destino.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    }, 300);
+  }

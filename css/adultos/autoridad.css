@@ -23,14 +23,14 @@
   padding: 16px 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 0.8125rem;
   text-align: center;
   box-shadow: var(--shadow);
   line-height: 1.4;
 }
 .autoridad-badge-float span {
   display: block;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 900;
 }
 .autoridad-story {
@@ -59,12 +59,12 @@
 .autoridad-value-content h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--slate-deeper);
   margin-bottom: 4px;
 }
 .autoridad-value-content p {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--text-medium);
   line-height: 1.5;
 }
@@ -109,7 +109,7 @@
 .autoridad-info-box h3 {
     font-family: 'Montserrat', sans-serif;
     color: #333;
-    font-size: 22px;
+    font-size: 1.375rem;
     margin-bottom: 12px;
 }
 
@@ -117,7 +117,7 @@
     font-family: 'Open Sans', sans-serif;
     color: #666;
     line-height: 1.6;
-    font-size: 15px;
+    font-size: 0.9375rem;
 }
 
 /* Responsive para celulares */

@@ -4,25 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Residencia de Larga Estadia "Mama Antula" | Espacio de Larga Estadía</title>
-    <!-- Tipografía Google e Íconos -->
+    <!-- Tipografía Google e Íconos (FontAwesome agregado para asegurar los íconos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="assets/logoMA.png" type="image/x-icon" />
     <link rel="stylesheet" href="css/adultos/mamaantula.css">
+    <!-- Conexión con Nexo: noticias, galería y proyectos aprobados para este sitio -->
+    <meta name="nexo-sitio" content="mama-antula">
+    <link rel="stylesheet" href="css/adultos/secciones-contenido.css">
+    <link rel="stylesheet" href="css/adultos/nexo.css">
+    <link rel="stylesheet" href="css/comun/accesibilidad.css">
 </head>
-<body id="page-body">
+<body id="page-body" data-sitio="mama-antula">
+
+    <!-- Accesibilidad: el mismo widget en todos los sitios de la red (js/comun/accesibilidad.js + css/comun/accesibilidad.css).
+         El script va primero en <body> para aplicar el tamaño guardado antes de dibujar la página. -->
+    <script src="js/comun/accesibilidad.js"></script>
+    <button type="button" id="accessibility-toggle" class="accessibility-toggle-btn" aria-label="Menú de accesibilidad: tamaño del texto y contraste" aria-controls="accessibility-panel" aria-expanded="false" data-tooltip="Menú de accesibilidad (Cambiar tamaño de texto y contraste)">
+        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+    </button>
+    <div id="accessibility-panel" class="accessibility-panel" role="region" aria-labelledby="accessibility-panel-title">
+        <h2 id="accessibility-panel-title" class="accessibility-panel-title">Accesibilidad</h2>
+        <div class="accessibility-section">
+            <span id="accessibility-font-label" class="accessibility-label">Tamaño del texto</span>
+            <div class="accessibility-font-controls" role="group" aria-labelledby="accessibility-font-label">
+                <button type="button" id="btn-desc-font" class="accessibility-font-btn" aria-label="Disminuir el tamaño del texto"><span aria-hidden="true">−</span></button>
+                <span id="font-size-indicator" class="accessibility-font-indicator" aria-live="polite">100%</span>
+                <button type="button" id="btn-inc-font" class="accessibility-font-btn" aria-label="Aumentar el tamaño del texto"><span aria-hidden="true">+</span></button>
+            </div>
+        </div>
+        <div class="accessibility-section-sm">
+            <button type="button" id="btn-toggle-contrast" class="accessibility-action-btn" aria-pressed="false">Modo Alto Contraste</button>
+        </div>
+        <div class="accessibility-section">
+            <button type="button" id="btn-toggle-links" class="accessibility-action-btn" aria-pressed="false">Resaltar Enlaces</button>
+        </div>
+        <button type="button" id="btn-reset-accessibility" class="accessibility-reset-btn">Restablecer valores</button>
+    </div>
 
     <!-- Accesibilidad y Topbar Rápido -->
     <div class="top-bar">
         <div class="container top-bar-content">
             <span class="top-tagline"><i class="fa-solid fa-heart-pulse"></i> Cuidado humanizado, integral y promoción de la autonomía</span>
-            <div class="top-actions">
-                <span class="acc-label">Accesibilidad:</span>
-                <button id="btn-increase-font" title="Aumentar tamaño de letra" aria-label="Aumentar fuente">A+</button>
-                <button id="btn-decrease-font" title="Disminuir tamaño de letra" aria-label="Disminuir fuente">A-</button>
-                <button id="btn-contrast" title="Modo alto contraste" aria-label="Alto contraste"><i class="fa-solid fa-circle-half-stroke"></i></button>
-            </div>
         </div>
     </div>
 
@@ -36,29 +61,56 @@
         <span class="float-tooltip">Contacto directo</span>
     </a>
 
-    <!-- Encabezado Principal / Navbar -->
-    <header class="site-header">
-        <div class="container header-wrapper">
-            <div class="brand">
-                <div class="brand-icon">
-<img src="assets/logoMA.png" alt="Logo Residencia Mama Antula" class="logo-img">                </div>
-                <div class="brand-text">
-                    <span class="brand-sub">Residencia de Larga Estadía</span>
-                    <h1 class="brand-title">Mama Antula</h1>
-                </div>
+   <header class="site-header">
+    <div class="container header-wrapper">
+        <div class="brand">
+            <div class="brand-icon">
+                <img src="assets/logoMA.png" alt="Logo" class="logo-img">
             </div>
-
-            <nav class="main-nav">
-                <a href="#servicios">Servicios</a>
-                <a href="#admision">Admisión</a>
-                <a href="#visitas">Visitas</a>
-                <a href="#proyectos">Proyectos</a>
-                <a href="#novedades">Noticias</a>
-                <a href="#galeria">Galeria</a>
-                <a href="#contacto-directo" class="nav-btn-highlight">Contacto Directo</a>
-            </nav>
+            <div class="brand-text">
+                <span class="brand-sub">Centro de Día </span>
+                <h1 class="brand-title">Virgen del Valle</h1>
+            </div>
         </div>
-    </header>
+
+        <!-- Botón Hamburguesa -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
+            <i class="fa-solid fa-bars"></i> Menú
+        </button>
+
+        <!-- Navegación -->
+        <nav class="main-nav" id="mainNav">
+            <ul class="nav-links">
+                <li><a href="../indexAdultos.html" class="nav__link">Volver al portal</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Institución <span class="arrow">▾</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#autoridad">Autoridad</a></li> 
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#admision">Admisión</a></li>
+                        <li><a href="#visitas">Visitas</a></li>
+                    </ul>
+                </li>   
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Actualidad <span class="arrow">▾</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#novedades">Noticias</a></li> 
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a href="#contacto-directo" class="nav-btn-highlight">Contacto Directo</a>
+        </nav>
+    </div>
+</header>
 
     <main>
         <!-- 1. Hero Section -->
@@ -69,7 +121,7 @@
                 <h2 class="hero-heading">Residencia de Larga Estadía</h2>
                 <h2 class="hero-heading">"Mama Antula"</h2>
                 <p class="hero-subtext">
-                    Espacio dedicado al cuidado integral, estadía prolongada y fomento activo de la autonomía funcional y social de nuestras personas mayores en un entorno cálido y profesional.Cuidado integral, dignidad y contención para nuestros adultos mayores. Un espacio dependiente de la Dirección General de Adultos Mayores del Ministerio de Desarrollo Social de Santiago del Estero.
+                    Espacio dedicado al cuidado integral, estadía prolongada y fomento activo de la autonomía funcional y social de nuestras personas mayores en un entorno cálido y profesional. Cuidado integral, dignidad y contención para nuestros adultos mayores. Un espacio dependiente de la Dirección General de Adultos Mayores del Ministerio de Desarrollo Social de Santiago del Estero.
                 </p>
                 <div class="hero-cta-group">
                     <a href="#admision" class="btn btn-gold">
@@ -117,6 +169,28 @@
         </section>
 
         <!-- 3. Servicios y Vida en la Residencia -->
+        <section id="autoridad">
+            <div class="autoridad-container fade-in container">
+                <div class="section-header centered">
+                    <span class="section-kicker">Gestión Actual</span>
+                    <h2 class="section-title">Autoridad Institucional</h2>
+                </div>
+
+                <div class="autoridad-card">
+                    <div class="autoridad-image-box">
+                        <img src="assets/direAM1.png" alt="Directora de la Dirección General de Adultos Mayores" />
+                    </div>
+                    <div class="autoridad-info-box">
+                        <h3>Directora General de Adultos Mayores</h3>
+                        <p class="autoridad-description">
+                            <strong>Lucía Wite</strong>, directora de la Dirección General de Adultos Mayores de la provincia, conduce el diseño, la articulación y la ejecución de políticas públicas orientadas a la promoción, protección y fortalecimiento de los derechos de las personas mayores en todo el territorio santiagueño.
+                            Desde una perspectiva integral e interinstitucional, lidera el trabajo del equipo interdisciplinario, impulsando acciones estratégicas que contribuyen al cumplimiento efectivo de la Ley Provincial N.º 7149 y al fortalecimiento de la red provincial de acompañamiento, inclusión y contención comunitaria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
         <section id="servicios" class="section-block">
             <div class="container">
                 <div class="section-header">
@@ -129,13 +203,13 @@
                     <article class="service-box">
                         <div class="s-icon"><i class="fa-solid fa-user-nurse"></i></div>
                         <h3>Enfermería & Guardia Médica</h3>
-                        <p>El establecimiento cuenta con servicios médicos internos que se complementan con un equipo de enfermería permanente para la administración de medicación, control de signos vitales y curaciones.Respuesta protocolizada ante emergencias 24/7.</p>
+                        <p>El establecimiento cuenta con servicios médicos internos que se complementan con un equipo de enfermería permanente para la administración de medicación, control de signos vitales y curaciones. Respuesta protocolizada ante emergencias 24/7.</p>
                     </article>
 
                     <article class="service-box">
                         <div class="s-icon"><i class="fa-solid fa-plate-wheat"></i></div>
                         <h3>Nutrición Adaptada</h3>
-                        <p>Planes dietarios personalizados confeccionados por nutricionistas, contemplando dietas hiposódicas, celiaquía o requerimientos específicos.(Por ej. Menús adaptados para residentes con diabetes o hipertensión)</p>
+                        <p>Planes dietarios personalizados confeccionados por nutricionistas, contemplando dietas hiposódicas, celiaquía o requerimientos específicos. (Por ej. Menús adaptados para residentes con diabetes o hipertensión)</p>
                     </article>
 
                     <article class="service-box">
@@ -147,7 +221,7 @@
                     <article class="service-box">
                         <div class="s-icon"><i class="fa-solid fa-person-walking-with-cane"></i></div>
                         <h3>Kinesiología y Rehabilitación</h3>
-                        <p>Se enfoca en la rehabilitación motriz para adultos mayores que han sufrido accidentes cerebrovasculares (ACV), fracturas o deterioro de la marcha.Rutinas diarias orientadas a prevenir caídas, preservar la marcha, movilidad articular y ejercicios de motricidad fina y gruesa.</p>
+                        <p>Se enfoca en la rehabilitación motriz para adultos mayores que han sufrido accidentes cerebrovasculares (ACV), fracturas o deterioro de la marcha. Rutinas diarias orientadas a prevenir caídas, preservar la marcha, movilidad articular y ejercicios de motricidad fina y gruesa.</p>
                     </article>
 
                     <article class="service-box">
@@ -163,24 +237,24 @@
                     </article>
 
                     <article class="service-box">
-                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
-                        <h3>1. Intervención en Crisis y Operativos en Terreno</h3>
+                        <div class="s-icon"><i class="fa-solid fa-shield-heart"></i></div>
+                        <h3>Intervención en Crisis y Operativos en Terreno</h3>
                         <p><strong>Rescate Ante Denuncias de Abandono:</strong> Ante alertas comunitarias, judiciales o publicaciones de vulnerabilidad extrema en redes sociales, el área social coordina operativos directamente en el domicilio del adulto mayor.</p>
                         <p><strong>Intervención Inmediata:</strong> Se evalúan las condiciones habitacionales y sanitarias en el lugar, gestionando el traslado médico inmediato del anciano y resguardando su documentación personal o pertenencias básicas.</p>
                     </article>
 
                     <article class="service-box">
-                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
-                        <h3>2. Regularización Legal e Identidad</h3>
-                        <p><strong>Casos Judicializados:</strong>  El equipo es el nexo directo con las fiscalías y juzgados de la provincia en los casos de adultos mayores que ingresan bajo medidas cautelares de protección por violencia familiar, maltrato o desamparo total.</p>
-                        <p><strong>Restitución de Derechos Civiles:</strong>  Muchos de los residentes ingresan indocumentados o en situación de calle. Trabajo Social gestiona la renovación de DNI, la tramitación de pensiones no contributivas y coberturas sociales básicas para asegurar su ciudadanía activa.</p>
+                        <div class="s-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+                        <h3>Regularización Legal e Identidad</h3>
+                        <p><strong>Casos Judicializados:</strong> El equipo es el nexo directo con las fiscalías y juzgados de la provincia en los casos de adultos mayores que ingresan bajo medidas cautelares de protección por violencia familiar, maltrato o desamparo total.</p>
+                        <p><strong>Restitución de Derechos Civiles:</strong> Muchos de los residentes ingresan indocumentados o en situación de calle. Trabajo Social gestiona la renovación de DNI, la tramitación de pensiones no contributivas y coberturas sociales básicas para asegurar su ciudadanía activa.</p>
                     </article>
 
                     <article class="service-box">
-                        <div class="s-icon"><i class="fa-solid fa-bed"></i></div>
-                        <h3>3. Acompañamiento Emocional y Vinculación Comunitaria</h3>
-                        <p><strong>Contención del Desarraigo:</strong>  Se brinda un soporte diario para mitigar el impacto psicológico que genera la institucionalización, promoviendo un ambiente hogareño de escucha afectiva.</p>
-                        <p><strong>Puertas Abiertas e Intergeneracionalidad: </strong>   El área fomenta actividades junto a escuelas primarias, secundarias y organizaciones de la sociedad civil (ONG). Esto incluye talleres recreativos ("Promoviendo un Envejecimiento Activo") y jornadas de esparcimiento para mantener a los residentes conectados con la vida comunitaria de La Banda y Santiago del Estero. </p>
+                        <div class="s-icon"><i class="fa-solid fa-comments"></i></div>
+                        <h3>Acompañamiento Emocional y Vinculación Comunitaria</h3>
+                        <p><strong>Contención del Desarraigo:</strong> Se brinda un soporte diario para mitigar el impacto psicológico que genera la institucionalización, promoviendo un ambiente hogareño de escucha afectiva.</p>
+                        <p><strong>Puertas Abiertas e Intergeneracionalidad:</strong> El área fomenta actividades junto a escuelas primarias, secundarias y organizaciones de la sociedad civil (ONG). Esto incluye talleres recreativos ("Promoviendo un Envejecimiento Activo") y jornadas de esparcimiento para mantener a los residentes conectados con la vida comunitaria de La Banda y Santiago del Estero.</p>
                     </article>
                 </div>
             </div>
@@ -192,9 +266,7 @@
                 <div class="section-header">
                     <span class="section-kicker">Transparencia y Trámites</span>
                     <h2 class="section-title">Condiciones de Admisión e Ingreso</h2>
-                    <p class="section-description">El trámite de admisión para la Residencia Mama Antula no se gestiona de forma espontánea en el edificio de La Banda, sino a través de la Dirección 
-                        General de Adultos Mayores del Ministerio de Desarrollo Social.
-                        El proceso de incorporación es coordinado por el equipo técnico para garantizar que el centro sea la respuesta idónea para la persona mayor.Puede ser presentada por un familiar referente, tutor legal o por derivación judicial/social.</p>
+                    <p class="section-description">El trámite de admisión para la Residencia Mama Antula no se gestiona de forma espontánea en el edificio de La Banda, sino a través de la Dirección General de Adultos Mayores del Ministerio de Desarrollo Social. El proceso de incorporación es coordinado por el equipo técnico para garantizar que el centro sea la respuesta idónea para la persona mayor. Puede ser presentada por un familiar referente, tutor legal o por derivación judicial/social.</p>
                 </div>
 
                 <div class="admission-grid">
@@ -205,8 +277,8 @@
                         </div>
                         <ul class="check-list">
                             <li>Tener 60 años o más.</li>
-                            <li>Residencia acreditable en la provincia de Santiago del Estero. </li>
-                            <li>Evaluación del perfil de autonomía / dependencia funcional.
+                            <li>Residencia acreditable en la provincia de Santiago del Estero.</li>
+                            <li>Evaluación del perfil de autonomía / dependencia funcional.</li>
                             <li>No registrar patologías psiquiátricas agudas no compensadas ni cuadros infectocontagiosos activos.</li>
                             <li>Consentimiento libre e informado del residente o apoderado legal.</li>
                             <li>Encontrarse en situación de vulnerabilidad social y/o carencia de red familiar de cuidados.</li>
@@ -221,7 +293,7 @@
                         <ul class="check-list">
                             <li>Fotocopia de DNI (anverso y reverso) del solicitante.</li>
                             <li>Constancia de CUIL y carnet de cobertura médica (PAMI u otra obra social).</li>
-                            <li>Resumen de Historia Clínica y estudios complementarios recientes(análisis clínicos básicos, ECG, etc.)..</li>
+                            <li>Resumen de Historia Clínica y estudios complementarios recientes (análisis clínicos básicos, ECG, etc.).</li>
                             <li>Datos de contacto y DNI del familiar responsable o referente afectivo.</li>
                         </ul>
                     </div>
@@ -280,83 +352,48 @@
             </div>
         </section>
 
-        <!-- 6. Proyectos Institucionales en Curso -->
-        <section id="proyectos" class="section-block bg-soft">
-            <div class="container">
-                <div class="section-header">
-                    <span class="section-kicker">Desarrollo y Participación</span>
-                    <h2 class="section-title">Proyectos Institucionales en Curso</h2>
-                    <p class="section-description">Iniciativas vivas que promueven la socialización, la estimulación cognitiva y el disfrute diario en la institución.</p>
-                </div>
-
-                <div class="cards-grid grid-3">
-                    <div class="project-card">
-                        <div class="project-tag">Terapéutico</div>
-                        <i class="fa-solid fa-seedling proj-icon"></i>
-                        <h3>Huerta Orgánica Comunitaria</h3>
-                        <p>Espacio al aire libre donde residentes cultivan plantas medicinales, aromáticas y verduras, combinando laborterapia y contacto con la naturaleza.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-tag">Cognitivo</div>
-                        <i class="fa-solid fa-brain proj-icon"></i>
-                        <h3>Gimnasio de la Memoria</h3>
-                        <p>Sesiones guiadas de estimulación de la memoria episódica, resolución de acertijos, narraciones de vida y literatura clásica compartida.</p>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-tag">Integración</div>
-                        <i class="fa-solid fa-map-location-dot proj-icon"></i>
-                        <h3>Paseos y Salidas Adaptadas</h3>
-                        <p>Itinerarios a paseos públicos, parroquias, ferias de artesanos y centros culturales, con movilidad y soporte profesional dedicado.</p>
-                    </div>
-                </div>
-            </div>
-            
-
         <!-- Ventana Oculta (Modal) con el Formulario -->
         <div id="projectModal" class="modal-overlay" style="display: none;">
              <div class="modal-content">
                 <span id="closeModalBtn" class="close-btn">&times;</span>
                 <h3 style="color: #4A2E80; margin-bottom: 10px;">Nuevo Proyecto Institucional</h3>
-                <p style="font-size: 14px; color: #666; margin-bottom: 20px;">El proyecto quedará pendiente de aprobación por la dirección antes de publicarse en la web.</p>
+                <p style="font-size: 0.875rem; color: #666; margin-bottom: 20px;">El proyecto quedará pendiente de aprobación por la dirección antes de publicarse en la web.</p>
         
-        <form action="guardar_proyecto.php" method="POST" enctype="multipart/form-data">
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Título del Proyecto</label>
-                <input type="text" name="titulo" required placeholder="Ej: Proyecto con Escuelas Secundarias" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-            </div>
+            <form action="guardar_proyecto.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Título del Proyecto</label>
+                    <input type="text" name="titulo" required placeholder="Ej: Proyecto con Escuelas Secundarias" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
 
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Categoría / Etiqueta</label>
-                <select name="categoria" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-                    <option value="EDUCACIÓN">Escuelas Secundarias</option>
-                    <option value="ADMINISTRACIÓN">Próximos a jubilarse</option>
-                    <option value="COMUNIDAD">Policía Comunitaria</option>
-                    <option value="INSTITUCIONAL">Otros proyectos institucionales</option>
-                </select>
-            </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Categoría / Etiqueta</label>
+                    <select name="categoria" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <option value="EDUCACIÓN">Escuelas Secundarias</option>
+                        <option value="ADMINISTRACIÓN">Próximos a jubilarse</option>
+                        <option value="COMUNIDAD">Policía Comunitaria</option>
+                        <option value="INSTITUCIONAL">Otros proyectos institucionales</option>
+                    </select>
+                </div>
 
-            <div class="form-group" style="margin-bottom: 15px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Descripción</label>
-                <textarea name="descripcion" rows="4" required placeholder="Breve detalle de la iniciativa..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
-            </div>
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Descripción</label>
+                    <textarea name="descripcion" rows="4" required placeholder="Breve detalle de la iniciativa..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+                </div>
 
-            <div class="form-group" style="margin-bottom: 20px;">
-                <label style="display: block; margin-bottom: 5px; font-weight: bold;">Imagen representativa</label>
-                <input type="file" name="imagen" accept="image/*" required style="width: 100%;">
-            </div>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Imagen representativa</label>
+                    <input type="file" name="imagen" accept="image/*" required style="width: 100%;">
+                </div>
 
-            <button type="submit" style="background: #25d366; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;">
-                Enviar a Revisión
-            </button>
-        </form>
-    </div>
-</div>
-        </section>
+                <button type="submit" style="background: #25d366; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    Enviar a Revisión
+                </button>
+            </form>
+        </div>
+        </div>
 
         <!-- 7. Noticias y Actividades del Centro -->
-        <section id="novedades" class="section-block">
+        <section id="novedades" class="section-block seccion-contenido">
             <div class="container">
                 <div class="section-header">
                     <span class="section-kicker">Vida Institucional</span>
@@ -364,7 +401,8 @@
                     <p class="section-description">Un reflejo de los momentos compartidos, aniversarios y encuentros de nuestra comunidad.</p>
                 </div>
 
-                <div class="cards-grid grid-3">
+                <!-- Nexo reemplaza estas noticias por las aprobadas; si Nexo no responde, quedan las de abajo -->
+                <div class="cards-grid grid-3" data-nexo="noticia" data-nexo-portada="6">
                     <article class="news-item">
                         <div class="news-meta">
                             <span class="news-category">Celebración</span>
@@ -396,7 +434,7 @@
         </section>
 
         <!-- 8. Galería de Fotos e Instalaciones -->
-        <section id="galeria" class="section-block bg-soft">
+        <section id="galeria" class="section-block bg-soft seccion-contenido">
             <div class="container">
                 <div class="section-header">
                     <span class="section-kicker">Conoce Nuestro Hogar</span>
@@ -404,7 +442,8 @@
                     <p class="section-description">Ambientes luminosos, seguros, climatizados y diseñados con accesibilidad motriz total.</p>
                 </div>
 
-                <div class="gallery-layout">
+                <!-- Nexo reemplaza estas fotos por las galerías aprobadas; si Nexo no responde, quedan las de abajo -->
+                <div class="gallery-layout" data-nexo="galeria" data-nexo-portada="6">
                     <figure class="gallery-cell">
                         <img src="https://picsum.photos/800/600?random=11" alt="Habitaciones luminosas y adaptadas">
                         <figcaption>Dormitorios con baño adaptado</figcaption>
@@ -433,65 +472,110 @@
             </div>
         </section>
 
+         <!-- 6. Proyectos Institucionales en Curso -->
+        <section id="proyectos" class="section-block bg-soft seccion-contenido">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Desarrollo y Participación</span>
+                    <h2 class="section-title">Proyectos Institucionales en Curso</h2>
+                    <p class="section-description">Iniciativas vivas que promueven la socialización, la estimulación cognitiva y el disfrute diario en la institución.</p>
+                </div>
+
+                <!-- Nexo reemplaza estos proyectos por los aprobados; si Nexo no responde, quedan los de abajo -->
+                <div class="cards-grid grid-3" data-nexo="proyecto" data-nexo-portada="6">
+                    <div class="project-card">
+                        <div class="project-tag">Terapéutico</div>
+                        <i class="fa-solid fa-seedling proj-icon"></i>
+                        <h3>Huerta Orgánica Comunitaria</h3>
+                        <p>Espacio al aire libre donde residentes cultivan plantas medicinales, aromáticas y verduras, combinando laborterapia y contacto con la naturaleza.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Cognitivo</div>
+                        <i class="fa-solid fa-brain proj-icon"></i>
+                        <h3>Gimnasio de la Memoria</h3>
+                        <p>Sesiones guiadas de estimulación de la memoria episódica, resolución de acertijos, narraciones de vida y literatura clásica compartida.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Integración</div>
+                        <i class="fa-solid fa-map-location-dot proj-icon"></i>
+                        <h3>Paseos y Salidas Adaptadas</h3>
+                        <p>Itinerarios a paseos públicos, parroquias, ferias de artesanos y centros culturales, con movilidad y soporte profesional dedicado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- 9. Formulario y Contacto Directo -->
         <section id="contacto-directo" class="section-block">
             <div class="container">
-                <div class="form-wrapper">
-                    <div class="form-intro">
-                        <span class="section-kicker">Comunicación Inmediata</span>
-                        <h2 class="section-title text-left">Buzón Directo de la Residencia</h2>
+                <div class="form-intro">
+                    <span class="section-kicker">Comunicación Inmediata</span>
+                    <h2 class="section-title text-left">Buzón Directo de la Residencia</h2>
+                    
+                    <div class="content-box-left">
                         <p class="mb-3">
                             Este formulario envía su mensaje de forma <strong>exclusiva e independiente</strong> a la oficina de atención y secretaría de la Residencia "Mama Antula".
                         </p>
+
                         <div class="contact-badges">
-                            <div class="c-badge"><i class="fa-solid fa-shield-halved"></i> Datos tratados con estricta confidencialidad médica e institucional.</div>
-                            <div class="c-badge"><i class="fa-solid fa-clock-rotate-left"></i> Respuestas en un lapso estimado de 24 a 48 hs hábiles.</div>
+                            <div class="c-badge">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Datos tratados con estricta confidencialidad médica e institucional.</span>
+                            </div>
+                            <div class="c-badge">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <span>Respuestas en un lapso estimado de 24 a 48 hs hábiles.</span>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div class="form-card">
-                        <form id="directContactForm" novalidate>
-                            <div class="form-row">
-                                <div class="form-field">
-                                    <label for="form-nombre">Nombre y Apellido del Solicitante *</label>
-                                    <input type="text" id="form-nombre" name="nombre" required placeholder="Ej. Mariana Gómez">
-                                </div>
-                                <div class="form-field">
-                                    <label for="form-telefono">Teléfono / Celular de Contacto *</label>
-                                    <input type="tel" id="form-telefono" name="telefono" required placeholder="Ej. 385 154 999999">
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-field">
-                                    <label for="form-email">Correo Electrónico</label>
-                                    <input type="email" id="form-email" name="email" placeholder="mariana@ejemplo.com">
-                                </div>
-                                <div class="form-field">
-                                    <label for="form-asunto">Motivo de Consulta *</label>
-                                    <select id="form-asunto" name="asunto" required>
-                                        <option value="" disabled selected>Seleccione una opción...</option>
-                                        <option value="admision">Información de requisitos y vacantes</option>
-                                        <option value="visita">Coordinar visita particular o institucional</option>
-                                        <option value="seguimiento">Consulta sobre un residente alojado</option>
-                                        <option value="voluntariado">Talleres, donaciones o voluntariado</option>
-                                        <option value="otro">Otras consultas generales</option>
-                                    </select>
-                                </div>
-                            </div>
-
+                <div class="form-card">
+                    <form id="directContactForm" novalidate>
+                        <div class="form-row">
                             <div class="form-field">
-                                <label for="form-mensaje">Detalle de la consulta *</label>
-                                <textarea id="form-mensaje" name="mensaje" rows="4" required placeholder="Describa brevemente la situación, antecedentes o preguntas específicas..."></textarea>
+                                <label for="form-nombre">Nombre del Solicitante *</label>
+                                <input type="text" id="form-nombre" name="nombre" required placeholder="Ej. Mariana">
+                                <label for="form-apellido"> Apellido del Solicitante *</label>
+                                <input type="text" id="form-apellido" name="apellido" required placeholder="Ej. Gómez">
                             </div>
+                            <div class="form-field">
+                                <label for="form-telefono">Teléfono / Celular de Contacto *</label>
+                                <input type="tel" id="form-telefono" name="telefono" required placeholder="Ej. 385 154 999999">
+                            </div>
+                        </div>
 
-                            <button type="submit" class="btn btn-gold full-width" id="btn-submit-form">
-                                <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje a la residencia de Larga Estadía Mama Antula
-                            </button>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="form-email">Correo Electrónico</label>
+                                <input type="email" id="form-email" name="email" placeholder="mariana@ejemplo.com">
+                            </div>
+                            <div class="form-field">
+                                <label for="form-asunto">Motivo de Consulta *</label>
+                                <select id="form-asunto" name="asunto" required>
+                                    <option value="" disabled selected>Seleccione una opción...</option>
+                                    <option value="admision">Información de requisitos y vacantes</option>
+                                    <option value="visita">Coordinar visita particular o institucional</option>
+                                    <option value="seguimiento">Consulta sobre un residente alojado</option>
+                                    <option value="voluntariado">Talleres, donaciones o voluntariado</option>
+                                    <option value="otro">Otras consultas generales</option>
+                                </select>
+                            </div>
+                        </div>
 
-                            <div id="form-alert" class="alert-box" style="display: none;"></div>
-                        </form>
-                    </div>
+                        <div class="form-field">
+                            <label for="form-mensaje">Detalle de la consulta *</label>
+                            <textarea id="form-mensaje" name="mensaje" rows="4" required placeholder="Describa brevemente la situación, antecedentes o preguntas específicas..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold full-width" id="btn-submit-form">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje a la residencia de Larga Estadía Mama Antula
+                        </button>
+
+                        <div id="form-alert" class="alert-box" style="display: none;"></div>
+                    </form>
                 </div>
             </div>
         </section>
@@ -530,33 +614,13 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20informaci%C3%B3n%20sobre%20los%20servicios%20de%20la%20Direcci%C3%B3n%20de%20Adultos%20Mayores." class="whatsapp-float" target="_blank" title="Contactar por WhatsApp">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-  </a>
-  <script>
-const openModalBtn = document.getElementById('openModalBtn');
-const closeModalBtn = document.getElementById('closeModalBtn');
-const projectModal = document.getElementById('projectModal');
 
-openModalBtn.addEventListener('click', () => {
-    projectModal.style.display = 'flex';
-});
+    <!-- Modal, formulario y menú del celular -->
+    <script src="js/adultos/pagina-mama-antula.js"></script>
 
-closeModalBtn.addEventListener('click', () => {
-    projectModal.style.display = 'none';
-});
-
-window.addEventListener('click', (e) => {
-    if (e.target === projectModal) {
-        projectModal.style.display = 'none';
-    }
-});
-</script>
-
-    <!-- Script de Funcionalidad -->
-    <script src="script-mamaantula.js"></script>
-    
+    <!-- Nexo institucional -->
+    <script src="js/nexo/config.js"></script>
+    <script src="js/nexo/nexo-cliente.js"></script>
+    <script src="js/nexo/secciones.js"></script>
 </body>
 </html>

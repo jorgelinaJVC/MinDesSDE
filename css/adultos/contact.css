@@ -31,13 +31,13 @@
 .contact-info-content h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--slate-deeper);
   margin-bottom: 4px;
 }
 .contact-info-content p,
 .contact-info-content a {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--text-medium);
   text-decoration: none;
   line-height: 1.5;
@@ -53,7 +53,7 @@
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9375rem;
   padding: 14px 24px;
   border-radius: 10px;
   text-decoration: none;
@@ -81,7 +81,7 @@
   margin-bottom: 0.5rem;
 }
 .contact-form-card p {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--text-medium);
   margin-bottom: 1.75rem;
   line-height: 1.5;
@@ -89,7 +89,7 @@
 .form-group { margin-bottom: 1.25rem; }
 .form-group label {
   display: block;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 700;
   color: var(--slate-deeper);
   margin-bottom: 6px;
@@ -103,7 +103,7 @@
   border: 2px solid #e2e8f0;
   border-radius: 8px;
   font-family: 'Open Sans', sans-serif;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--text-dark);
   background: #fafafa;
   transition: all 0.2s;
@@ -129,7 +129,7 @@
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9375rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -144,7 +144,7 @@
 }
 .form-note {
   text-align: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--text-medium);
   margin-top: 1rem;
 }
@@ -162,7 +162,7 @@
 }
 
 .alert-banner-icon {
-  font-size: 28px;
+  font-size: 1.75rem;
   line-height: 1;
 }
 
@@ -187,4 +187,11 @@
 
 .alert-list li {
   margin-bottom: 4px;
+}
+
+/* Texto ampliado (widget de accesibilidad): correos y usuarios largos cortan línea en vez de salirse de la pantalla */
+.contact-info-content,
+.contact-form-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
 }

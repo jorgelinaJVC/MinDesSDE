@@ -23,14 +23,14 @@
   padding: 16px 20px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: 13px;
+  font-size: 0.8125rem;
   text-align: center;
   box-shadow: var(--shadow);
   line-height: 1.4;
 }
 .about-badge-float span {
   display: block;
-  font-size: 22px;
+  font-size: 1.375rem;
   font-weight: 900;
 }
 .about-story {
@@ -59,12 +59,12 @@
 .about-value-content h4 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 0.875rem;
   color: var(--slate-deeper);
   margin-bottom: 4px;
 }
 .about-value-content p {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--text-medium);
   line-height: 1.5;
 }

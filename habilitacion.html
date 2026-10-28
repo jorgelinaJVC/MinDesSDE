@@ -24,37 +24,35 @@
   <link rel="stylesheet" href="css/adultos/acceso.css" />
   <link rel="stylesheet" href="css/adultos/buscador.css" />
   <link rel="stylesheet" href="css/adultos/accessibility.css" />
+    <link rel="stylesheet" href="css/comun/accesibilidad.css">
 </head>
 <body>
 
-  <!-- Botón de Accesibilidad -->
-  <button id="accessibility-toggle" class="accessibility-toggle-btn" aria-label="Menú de accesibilidad (Cambiar tamaño de texto y contraste)" data-tooltip="Menú de accesibilidad (Cambiar tamaño de texto y contraste)">
-  <i class="fa-solid fa-eye"></i>
-</button>
-
-  <!-- Panel de Accesibilidad -->
-  <div id="accessibility-panel" class="accessibility-panel">
-    <h2 class="accessibility-panel-title">Accesibilidad</h2>
-    
-    <div class="accessibility-section">
-      <label class="accessibility-label">Tamaño del texto</label>
-      <div class="accessibility-font-controls">
-        <button id="btn-desc-font" class="accessibility-font-btn"><i class="fa-solid fa-minus"></i></button>
-        <span id="font-size-indicator" class="accessibility-font-indicator">100%</span>
-        <button id="btn-inc-font" class="accessibility-font-btn"><i class="fa-solid fa-plus"></i></button>
-      </div>
+    <!-- Accesibilidad: el mismo widget en todos los sitios de la red (js/comun/accesibilidad.js + css/comun/accesibilidad.css).
+         El script va primero en <body> para aplicar el tamaño guardado antes de dibujar la página. -->
+    <script src="js/comun/accesibilidad.js"></script>
+    <button type="button" id="accessibility-toggle" class="accessibility-toggle-btn" aria-label="Menú de accesibilidad: tamaño del texto y contraste" aria-controls="accessibility-panel" aria-expanded="false" data-tooltip="Menú de accesibilidad (Cambiar tamaño de texto y contraste)">
+        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+    </button>
+    <div id="accessibility-panel" class="accessibility-panel" role="region" aria-labelledby="accessibility-panel-title">
+        <h2 id="accessibility-panel-title" class="accessibility-panel-title">Accesibilidad</h2>
+        <div class="accessibility-section">
+            <span id="accessibility-font-label" class="accessibility-label">Tamaño del texto</span>
+            <div class="accessibility-font-controls" role="group" aria-labelledby="accessibility-font-label">
+                <button type="button" id="btn-desc-font" class="accessibility-font-btn" aria-label="Disminuir el tamaño del texto"><span aria-hidden="true">−</span></button>
+                <span id="font-size-indicator" class="accessibility-font-indicator" aria-live="polite">100%</span>
+                <button type="button" id="btn-inc-font" class="accessibility-font-btn" aria-label="Aumentar el tamaño del texto"><span aria-hidden="true">+</span></button>
+            </div>
+        </div>
+        <div class="accessibility-section-sm">
+            <button type="button" id="btn-toggle-contrast" class="accessibility-action-btn" aria-pressed="false">Modo Alto Contraste</button>
+        </div>
+        <div class="accessibility-section">
+            <button type="button" id="btn-toggle-links" class="accessibility-action-btn" aria-pressed="false">Resaltar Enlaces</button>
+        </div>
+        <button type="button" id="btn-reset-accessibility" class="accessibility-reset-btn">Restablecer valores</button>
     </div>
 
-    <div class="accessibility-section-sm">
-      <button id="btn-toggle-contrast" class="accessibility-action-btn">Modo Alto Contraste</button>
-    </div>
-
-    <div class="accessibility-section">
-      <button id="btn-toggle-links" class="accessibility-action-btn">Resaltar Enlaces</button>
-    </div>
-
-    <button id="btn-reset-accessibility" class="accessibility-reset-btn">Restablecer valores</button>
-  </div>
 
   <!-- Navegación -->
   <nav>
@@ -360,7 +358,6 @@
   </a> 
 
   <script src="js/main.js"></script>
-  <script src="js/adultos/accessibility.js"></script>
   <script src="js/adultos/adultos.js"></script>
 </body>
 </html>

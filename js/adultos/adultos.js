@@ -36,52 +36,52 @@
     let currentAlbumImages = [];
     let currentImageIndex = 0;
 
+    let intentosGaleria = 0;
+
     function initGallery() {
         const modal = document.getElementById("gallery-modal");
         const modalTitle = document.getElementById("modal-title");
         const modalContainer = document.getElementById("modal-images-container");
         
-        // CORREGIDO: Busca la cruz de cierre específicamente dentro del modal de galería
         const closeBtn = modal ? modal.querySelector(".modal-close") : null; 
         const galleryItems = document.querySelectorAll(".gallery-item");
 
         if (!modal || !modalContainer || !modalTitle || galleryItems.length === 0) {
-            setTimeout(initGallery, 100);
+            // La galería ahora la dibuja Nexo (js/nexo/secciones.js) con su propio visor: si este modal no está,
+            // se reintenta unas pocas veces y se deja de buscar (antes quedaba reintentando para siempre).
+            if (++intentosGaleria < 20) setTimeout(initGallery, 100);
             return;
         }
 
-        // Crear las flechas de navegación dinámicamente si no existen
         let prevBtn = modal.querySelector(".modal-nav-btn.prev");
         let nextBtn = modal.querySelector(".modal-nav-btn.next");
 
         if (!prevBtn) {
             prevBtn = document.createElement("button");
             prevBtn.className = "modal-nav-btn prev";
-            prevBtn.innerHTML = "&#10094;"; // Flecha izquierda ❮
+            prevBtn.innerHTML = "&#10094;";
             modal.querySelector(".modal-content").appendChild(prevBtn);
         }
 
         if (!nextBtn) {
             nextBtn = document.createElement("button");
             nextBtn.className = "modal-nav-btn next";
-            nextBtn.innerHTML = "&#10095;"; // Flecha derecha ❯
+            nextBtn.innerHTML = "&#10095;";
             modal.querySelector(".modal-content").appendChild(nextBtn);
         }
 
-        // Función interna para renderizar la foto actual en base al índice
         function renderActiveImage() {
-            modalContainer.innerHTML = ""; // Limpia la foto anterior
+            modalContainer.innerHTML = "";
             
             if (currentAlbumImages.length > 0) {
                 const img = document.createElement("img");
                 img.src = currentAlbumImages[currentImageIndex];
                 img.alt = modalTitle.textContent;
-                img.loading = "eager"; // Carga inmediata para evitar parpadeos
+                img.loading = "eager";
                 modalContainer.appendChild(img);
             }
         }
 
-        // Eventos de las flechas
         prevBtn.onclick = (e) => {
             e.stopPropagation();
             currentImageIndex = (currentImageIndex - 1 + currentAlbumImages.length) % currentAlbumImages.length;
@@ -94,9 +94,7 @@
             renderActiveImage();
         };
 
-        // Al hacer clic en una tarjeta de la galería principal
         galleryItems.forEach(item => {
-            // Validamos que pertenezca a la galería y no a la sección de noticias
             if (item.getAttribute("data-album")) {
                 item.addEventListener("click", function() {
                     const albumKey = this.getAttribute("data-album");
@@ -105,7 +103,7 @@
                     if (albumData && albumData.images.length > 0) {
                         modalTitle.textContent = albumData.title;
                         currentAlbumImages = albumData.images;
-                        currentImageIndex = 0; // Arranca siempre mostrando la primera foto
+                        currentImageIndex = 0;
 
                         renderActiveImage();
 
@@ -116,7 +114,6 @@
             }
         });
 
-        // Lógica de cierre de la ventana modal
         const closeModal = () => {
             modal.classList.remove("active");
             document.body.style.overflow = "auto";
@@ -128,12 +125,8 @@
         };
     }
 
-    // Inicializar el módulo de galería
     initGallery();
 
-    // ==========================================================================
-    // MÓDULO DE DETALLES INTEGRADOS PARA NOTICIAS
-    // ==========================================================================
     const newsData = {
         "noti1": {
             title: "El valor del respeto: Claves para promover el buen trato hacia las personas mayores",
@@ -186,13 +179,11 @@
                     mTitle.textContent = data.title;
                     mDate.textContent = data.date;
                 
-                    // Inyección limpia y forzada de la imagen
                     mImgContainer.innerHTML = "";
                     const img = document.createElement("img");
                     img.src = data.image;
                     img.alt = data.title;
                 
-                    // Estilos en línea directos para mantener consistencia
                     img.style.width = "100%";
                     img.style.maxWidth = "100%";
                     img.style.height = "380px";
@@ -202,7 +193,6 @@
                 
                     mImgContainer.appendChild(img);
                 
-                    // Inyección limpia del texto
                     mText.innerHTML = `<p>${data.text}</p>`;
 
                     newsModal.classList.add("active");
@@ -222,52 +212,164 @@
         };
     }
 
-    /// ==========================================================================
-    // CONTROL DEL FORMULARIO DE CONTACTO (VALIDACIÓN INSTITUCIONAL)
-    // ==========================================================================
-    const formulario = document.getElementById("contactForm");
-    if (formulario) {
-        formulario.addEventListener("submit", function(event) {
-            // Evitamos el comportamiento nativo de refresco
-            event.preventDefault();
-
-            // Capturamos los valores eliminando espacios en blanco extras con .trim()
-            const nombreUser = document.getElementById("nombre").value.trim();
-            const apellidoUser = document.getElementById("apellido").value.trim();
-            const emailUser = document.getElementById("email").value.trim();
-            const servicioSelect = document.getElementById("servicio");
-            const servicioTexto = servicioSelect.options[servicioSelect.selectedIndex].text;
-
-            // Validación manual de seguridad por si falla el atributo "required" de HTML
-            if (nombreUser === "" || apellidoUser === "" || emailUser === "" || servicioSelect.value === "") {
-                alert("Por favor, completá todos los campos obligatorios marcados con asterisco (*).");
-                return; // Corta la ejecución del código si hay campos vacíos
-            }
-
-            // Si pasa la validación, muestra el cartel institucional de éxito
-            alert(`¡Muchas gracias, ${nombreUser}!\n\nTu consulta sobre "${servicioTexto}" ha sido procesada con éxito.\nEl equipo de la Dirección General se pondrá en contacto con vos en menos de 24 horas.`);
-
-            // Reseteamos el formulario limpiando los inputs
-            formulario.reset();
-        });
-    }
-
-})(); // Este es el cierre final de todo tu archivo
+})(); 
 
 /* menu */
 
 function toggleMenu(event) {
-  event.preventDefault(); // evita saltar al inicio de la página
+  event.preventDefault(); 
   const submenu = document.getElementById("submenu");
   submenu.classList.toggle("show");
 }
 
-// Cerrar el menú si se hace clic fuera de él
 document.addEventListener("click", function (e) {
   const dropdown = document.querySelector(".dropdown");
-  if (!dropdown.contains(e.target)) {
-    document.getElementById("submenu").classList.remove("show");
+  const submenu = document.getElementById("submenu");
+  // habilitacion.html no tiene menú desplegable: sin esta guarda, cada clic daba error
+  if (dropdown && submenu && !dropdown.contains(e.target)) {
+    submenu.classList.remove("show");
   }
 });
 
+/* ==========================================================================
+   CONTROL DEL FORMULARIO DE CONTACTO (ENVÍO DIRECTO INSTITUCIONAL)
+   ========================================================================== */
 
+function mostrarExito() {
+    const successBox = document.getElementById("successMessage");
+    if (successBox) {
+        successBox.style.display = "block";
+        
+        // El mensaje flotante se ocultará automáticamente después de 6 segundos
+        setTimeout(() => {
+          successBox.style.display = "none";
+        }, 6000);
+    }
+}
+
+// Función unificada para validar campos obligatorios según el medio
+function validarCamposObligatorios(medio) {
+    const nombre = document.getElementById("nombre").value.trim();
+    const servicio = document.getElementById("servicio").value;
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    if (!nombre || !servicio || !mensaje) {
+        alert(`Por favor completá los campos obligatorios antes de enviar por ${medio}.`);
+        return false;
+    }
+    return true;
+}
+
+function enviarPorWhatsApp() {
+    if (!validarCamposObligatorios("WhatsApp")) return;
+
+    const tipo = document.getElementById("tipo_tramite").value;
+    const areaKey = document.getElementById("servicio").value;
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const telefono = document.getElementById("telefono").value.trim() || "No especificado";
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const destino = directorioContactos[areaKey] || directorioContactos.otros;
+
+    const textoWA = `*NUEVA COMUNICACIÓN CIUDADANA*\n` +
+                    `------------------------------\n` +
+                    `*Tipo:* ${tipo}\n` +
+                    `*Área Destino:* ${destino.nombre}\n` +
+                    `*Nombre:* ${nombre} ${apellido}\n` +
+                    `*Teléfono:* ${telefono}\n` +
+                    `*Detalle:*\n${mensaje}`;
+
+    const url = `https://wa.me/${destino.telefono}?text=${encodeURIComponent(textoWA)}`;
+    window.open(url, "_blank");
+}
+
+function enviarPorEmail() {
+    if (!validarCamposObligatorios("Correo")) return;
+
+    const tipo = document.getElementById("tipo_tramite").value;
+    const areaKey = document.getElementById("servicio").value;
+    const nombre = document.getElementById("nombre").value.trim();
+    const apellido = document.getElementById("apellido").value.trim();
+    const remitenteEmail = document.getElementById("email").value.trim() || "No informado";
+    const telefono = document.getElementById("telefono").value.trim() || "No informado";
+    const mensaje = document.getElementById("mensaje").value.trim();
+
+    const destino = directorioContactos[areaKey] || directorioContactos.otros;
+
+    const asunto = `[${tipo.toUpperCase()}] - ${destino.nombre} - ${nombre} ${apellido}`;
+    
+    const cuerpo = `Tipo de trámite: ${tipo}\n` +
+                   `Área: ${destino.nombre}\n` +
+                   `Remitente: ${nombre} ${apellido}\n` +
+                   `Correo de contacto: ${remitenteEmail}\n` +
+                   `Teléfono: ${telefono}\n\n` +
+                   `Detalle / Descripción:\n${mensaje}`;
+
+    // 1. Muestra el mensaje flotante de éxito en la esquina
+    mostrarExito();
+
+    // 2. Limpia todos los campos del formulario automáticamente
+    document.getElementById("tipo_tramite").selectedIndex = 0;
+    document.getElementById("nombre").value = "";
+    document.getElementById("apellido").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("telefono").value = "";
+    document.getElementById("servicio").value = "";
+    document.getElementById("mensaje").value = "";
+    document.getElementById("destinoFeedback").style.display = "none";
+
+    // 3. Abre el cliente de correo del usuario apuntando directamente al email institucional
+    setTimeout(() => {
+      window.location.href = `mailto:${destino.email}?subject=${encodeURIComponent(asunto)}&body=${encodeURIComponent(cuerpo)}`;
+    }, 300);
+}
+
+/* ==========================================================================
+   CONTROL DE ENVÍO Y CONFIRMACIÓN - BUZÓN DIRECTO RESIDENCIA MAMA ANTULA
+   ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("directContactForm");
+    const formAlert = document.getElementById("form-alert");
+
+    if (form && formAlert) {
+        // Nos aseguramos de interceptar el evento submit
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Detiene por completo cualquier recarga de página
+
+            // Capturamos los valores actuales
+            const nombre = document.getElementById("form-nombre").value.trim();
+            const apellido = document.getElementById("form-apellido").value.trim();
+            const telefono = document.getElementById("form-telefono").value.trim();
+            const asunto = document.getElementById("form-asunto").value;
+            const mensaje = document.getElementById("form-mensaje").value.trim();
+
+            // Validación estricta propia (muestra aviso si falta algún campo obligatorio)
+            if (!nombre || !apellido || !telefono || !asunto || !mensaje) {
+                formAlert.className = "alert-box error";
+                formAlert.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Por favor, completá todos los campos obligatorios marcados con asterisco (*) antes de enviar.`;
+                formAlert.style.display = "block";
+                
+                // Hace scroll suave hacia la alerta para que el usuario la vea
+                formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                return; // Corta la ejecución para que no se envíe
+            }
+
+            // Si todo está completo, mostramos el mensaje de éxito institucional
+            formAlert.className = "alert-box success";
+            formAlert.innerHTML = `<i class="fa-solid fa-circle-check"></i> ¡Mensaje enviado con éxito! Su consulta fue derivada a la secretaría de la Residencia "Mama Antula". Nos pondremos en contacto en un plazo de 24 a 48 hs hábiles.`;
+            formAlert.style.display = "block";
+
+            // Limpiamos los campos del formulario
+            form.reset();
+
+            // Hace scroll suave hacia el mensaje de éxito
+            formAlert.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            // Oculta el mensaje de éxito automáticamente después de 8 segundos
+            setTimeout(() => {
+                formAlert.style.display = "none";
+            }, 8000);
+        });
+    }
+});

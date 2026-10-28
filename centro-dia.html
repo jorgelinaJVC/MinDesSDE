@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Día "Virgen del Valle" | Espacio de Larga Estadía</title>
+    <!-- Tipografía Google e Íconos (FontAwesome integrado) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lora:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="assets/Logo-CD.png" type="image/x-icon" />
+    <link rel="stylesheet" href="css/adultos/centro-dia.css">
+    <!-- Conexión con Nexo: noticias, galería y proyectos aprobados para este sitio -->
+    <meta name="nexo-sitio" content="centro-de-dia">
+    <link rel="stylesheet" href="css/adultos/secciones-contenido.css">
+    <link rel="stylesheet" href="css/adultos/nexo.css">
+    <link rel="stylesheet" href="css/comun/accesibilidad.css">
+</head>
+<body id="page-body" data-sitio="centro-de-dia">
+
+    <!-- Accesibilidad: el mismo widget en todos los sitios de la red (js/comun/accesibilidad.js + css/comun/accesibilidad.css).
+         El script va primero en <body> para aplicar el tamaño guardado antes de dibujar la página. -->
+    <script src="js/comun/accesibilidad.js"></script>
+    <button type="button" id="accessibility-toggle" class="accessibility-toggle-btn" aria-label="Menú de accesibilidad: tamaño del texto y contraste" aria-controls="accessibility-panel" aria-expanded="false" data-tooltip="Menú de accesibilidad (Cambiar tamaño de texto y contraste)">
+        <i class="fa-solid fa-eye" aria-hidden="true"></i>
+    </button>
+    <div id="accessibility-panel" class="accessibility-panel" role="region" aria-labelledby="accessibility-panel-title">
+        <h2 id="accessibility-panel-title" class="accessibility-panel-title">Accesibilidad</h2>
+        <div class="accessibility-section">
+            <span id="accessibility-font-label" class="accessibility-label">Tamaño del texto</span>
+            <div class="accessibility-font-controls" role="group" aria-labelledby="accessibility-font-label">
+                <button type="button" id="btn-desc-font" class="accessibility-font-btn" aria-label="Disminuir el tamaño del texto"><span aria-hidden="true">−</span></button>
+                <span id="font-size-indicator" class="accessibility-font-indicator" aria-live="polite">100%</span>
+                <button type="button" id="btn-inc-font" class="accessibility-font-btn" aria-label="Aumentar el tamaño del texto"><span aria-hidden="true">+</span></button>
+            </div>
+        </div>
+        <div class="accessibility-section-sm">
+            <button type="button" id="btn-toggle-contrast" class="accessibility-action-btn" aria-pressed="false">Modo Alto Contraste</button>
+        </div>
+        <div class="accessibility-section">
+            <button type="button" id="btn-toggle-links" class="accessibility-action-btn" aria-pressed="false">Resaltar Enlaces</button>
+        </div>
+        <button type="button" id="btn-reset-accessibility" class="accessibility-reset-btn">Restablecer valores</button>
+    </div>
+
+    <!-- Accesibilidad y Topbar Rápido -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <span class="top-tagline"><i class="fa-solid fa-heart-pulse"></i> Cuidado humanizado, integral y promoción de la autonomía</span>
+        </div>
+    </div>
+
+    <!-- WhatsApp Flotante Directo -->
+    <a href="https://wa.me/5493850000000?text=Hola,%20quisiera%20comunicarme%20directamente%20con%20el%20Centro%20de%20Día%20Virgen%20del%20Valle" 
+       class="whatsapp-float" 
+       target="_blank" 
+       rel="noopener noreferrer" 
+       aria-label="Contactar por WhatsApp al Centro de Día">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="float-tooltip">Contacto directo</span>
+    </a>
+
+    <!-- Encabezado Principal / Navbar -->
+    <header class="site-header">
+    <div class="container header-wrapper">
+        <div class="brand">
+            <div class="brand-icon">
+                <img src="assets/Logo-CD.png" alt="Logo" class="logo-img">
+            </div>
+            <div class="brand-text">
+                <span class="brand-sub">Centro de Día</span>
+                <h1 class="brand-title">Virgen del Valle</h1>
+            </div>
+        </div>
+
+        <!-- Botón Hamburguesa -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menú">
+            <i class="fa-solid fa-bars"></i> Menú
+        </button>
+
+        <!-- Navegación -->
+        <nav class="main-nav" id="mainNav">
+            <ul class="nav-links">
+                <li><a href="../indexAdultos.html" class="nav__link">Volver al portal</a></li>
+                
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Institución <span class="arrow">▾</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#autoridad">Autoridad</a></li> 
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#admision">Admisión</a></li>
+                        <li><a href="#visitas">Visitas</a></li>
+                    </ul>
+                </li>   
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        Actualidad <span class="arrow">▾</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#novedades">Noticias</a></li> 
+                        <li><a href="#galeria">Galería</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <a href="#contacto-directo" class="nav-btn-highlight">Contacto Directo</a>
+        </nav>
+    </div>
+</header>
+    <main>
+        <!-- 1. Hero Section -->
+        <section class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="container hero-inner">
+                <div class="hero-badge">Atención Pública y Comunitaria</div>
+                <h2 class="hero-heading">Centro de Día</h2>
+                <h2 class="hero-heading">"Virgen del Valle"</h2>
+                <p class="hero-subtext">
+                    Espacio dedicado al cuidado integral, estadía prolongada y fomento activo de la autonomía funcional y social de nuestras personas mayores en un entorno cálido y profesional. Cuidado integral, dignidad y contención para nuestros adultos mayores. Un espacio dependiente de la Dirección General de Adultos Mayores del Ministerio de Desarrollo Social de Santiago del Estero.
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#admision" class="btn btn-gold">
+                        <i class="fa-solid fa-clipboard-list"></i> Solicitar Información de Admisión
+                    </a>
+                    <a href="https://wa.me/5493850000000?text=Hola,%20quisiera%20coordinar%20una%20visita%20al%20Centro%20de%20Día%20Virgen%20del%20Valle" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-hero">
+                        <i class="fa-brands fa-whatsapp"></i> Coordinar Visita vía WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Barra de Canales Directos e Independientes -->
+        <section class="direct-channels-bar">
+            <div class="container channels-grid">
+                <div class="channel-card">
+                    <div class="ch-icon"><i class="fa-solid fa-location-dot"></i></div>
+                    <div class="ch-info">
+                        <h3>Ubicación Física</h3>
+                        <p>Calle Lamadrid 80, ciudad Capital de Santiago del Estero</p>
+                        <a href="https://maps.app.goo.gl/nXuiV6VnoqibGFFs7" target="_blank" rel="noopener noreferrer" class="ch-link">
+                            Cómo llegar en mapa <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="channel-card">
+                    <div class="ch-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <div class="ch-info">
+                        <h3>Guardia / Administración</h3>
+                        <p>Atención y seguimiento diario: <strong>+54 (385) 421-0000</strong></p>
+                        <a href="tel:+543854210000" class="ch-link">Llamar a recepción <i class="fa-solid fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="channel-card">
+                    <div class="ch-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+                    <div class="ch-info">
+                        <h3>Buzón Directo del Centro de Día</h3>
+                        <p>centro.dia@sgo.gov.ar</p>
+                        <a href="mailto:centro.dia@sgo.gov.ar" class="ch-link">Enviar correo <i class="fa-solid fa-paper-plane"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Servicios y Vida en la Residencia -->
+        <section id="autoridad">
+            <div class="autoridad-container fade-in container">
+                <div class="section-header centered">
+                    <span class="section-kicker">Gestión Actual</span>
+                    <h2 class="section-title">Autoridad Institucional</h2>
+                </div>
+
+                <div class="autoridad-card">
+                    <div class="autoridad-image-box">
+                        <img src="assets/direAM1.png" alt="Directora de la Dirección General de Adultos Mayores" />
+                    </div>
+                    <div class="autoridad-info-box">
+                        <h3>Directora General de Adultos Mayores</h3>
+                        <p class="autoridad-description">
+                            <strong>Lucía Wite</strong>, directora de la Dirección General de Adultos Mayores de la provincia, conduce el diseño, la articulación y la ejecución de políticas públicas orientadas a la promoción, protección y fortalecimiento de los derechos de las personas mayores en todo el territorio santiagueño.
+                            Desde una perspectiva integral e interinstitucional, lidera el trabajo del equipo interdisciplinario, impulsando acciones estratégicas que contribuyen al cumplimiento efectivo de la Ley Provincial N.º 7149 y al fortalecimiento de la red provincial de acompañamiento, inclusión y contención comunitaria.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="servicios" class="section-block">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Calidad de Vida</span>
+                    <h2 class="section-title">Servicios y Actividades</h2>
+                    <p class="section-description">Nuestro equipo profesional brinda abordaje interdisciplinario permanente, priorizando el bienestar físico, anímico y social de cada residente.</p>
+                </div>
+
+                <div class="cards-grid grid-3">
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-user-nurse"></i></div>
+                        <h3>Alimentación y asistencia:</h3>
+                        <p>Brinda desayuno y almuerzo con vianda de refuerzo a adultos mayores en situación de vulnerabilidad.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-plate-wheat"></i></div>
+                        <h3>Recreación y salud:</h3>
+                        <p>Ofrece actividades físicas (como plazas saludables y coreografías de baile), talleres de estimulación cognitiva, acompañamiento médico y campañas de vacunación integradas con la comunidad.</p>
+                    </article>
+
+                    <article class="service-box">
+                        <div class="s-icon"><i class="fa-solid fa-hands-holding-circle"></i></div>
+                        <h3>Articulación comunitaria</h3>
+                        <p>Participa habitualmente en encuentros intergeneracionales, procesiones religiosas (como la de la Virgen del Valle) y actividades con instituciones educativas locales como la UNSE (Pasantías de Enfermería Básica).</p>
+                    </article>                    
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Admisión e Ingreso -->
+        <section id="admision" class="section-block bg-soft">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Transparencia y Trámites</span>
+                    <h2 class="section-title">Condiciones de Admisión e Ingreso</h2>
+                    <p class="section-description">Al estar destinado principalmente a adultos mayores en situación de vulnerabilidad social, el proceso regular requiere:</p>
+                </div>
+
+                <div class="admission-grid">
+                    <div class="adm-card">
+                        <div class="adm-header">
+                            <span class="adm-step">01</span>
+                            <h3>Entrevista y Evaluación Social</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li>Un equipo de trabajadores sociales del ministerio realiza una entrevista para evaluar el contexto familiar y socioeconómico de la persona mayor.</li>
+                        </ul>
+                    </div>
+
+                    <div class="adm-card">
+                        <div class="adm-header">
+                            <span class="adm-step">02</span>
+                            <h3>Documentación Necesaria</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li>Presentar el Documento Nacional de Identidad (DNI) del solicitante y de su tutor o familiar responsable (si corresponde), junto con la certificación de la dirección real en Santiago del Estero.</li>
+                        </ul>
+                    </div>
+
+                    <div class="adm-card">
+                        <div class="adm-header">
+                            <span class="adm-step">03</span>
+                            <h3>Ficha Médica Básica</h3>
+                        </div>
+                        <ul class="check-list">
+                            <li>Certificados médicos que detallen el estado general de salud y las vacunas aplicadas para asegurar una correcta integración a las actividades físicas y los servicios del lugar.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Guía y Protocolo de Visitas -->
+        <section id="visitas" class="section-block">
+            <div class="container">
+                <div class="protocol-box">
+                    <div class="protocol-text">
+                        <span class="section-kicker">Encuentro Familiar</span>
+                        <h2 class="section-title text-left">Protocolo y Guía de Visitas</h2>
+                        <p class="mb-3">Los horarios habituales de funcionamiento del Centro Diurno Virgen del Valle y sus oficinas administrativas se distribuyen de la siguiente manera:</p>
+                        
+                        <div class="schedule-pill">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <div>
+                                <strong>Días y Franjas Horarias Habilitadas de Actividades y Comedor:</strong>
+                                <span>Lunes a Viernes: 7:30 a 13:30 hs aproximadamente</span>
+                            </div>
+                        </div>
+
+                        <ul class="rules-list">
+                            <li><i class="fa-solid fa-circle-check"></i> En esta franja horaria se concentran los servicios de desayuno, los talleres de estimulación y gimnasia, y se sirve el almuerzo antes de que los concurrentes regresen a sus hogares.</li>
+                            <li><i class="fa-solid fa-circle-check"></i> Si tenés pensado acercarte para coordinar un voluntariado o acompañar a un familiar a conocer las instalaciones, el momento ideal es a mitad de la mañana, que es cuando el personal administrativo está disponible y los talleres comunitarios se encuentran en pleno desarrollo.</li>
+                        </ul>
+                    </div>
+
+                    <div class="protocol-action">
+                        <div class="action-card">
+                            <i class="fa-brands fa-whatsapp action-card-icon"></i>
+                            <h3>Atención Administrativa y Consultas</h3>
+                            <p>La oficina de la Dirección General de Adultos Mayores (ubicada en el mismo predio de la calle Lamadrid) atiende trámites de inscripción, entrega de documentación y consultas de lunes a viernes de 8:00 a 12:00 hs.</p>
+                            <a href="https://wa.me/5493850000000?text=Hola,%20quisiera%20realizar%20una%20consulta%20sobre%20el%20Centro%20de%20Día" target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp-hero full-width">
+                                Consultar por WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ventana Oculta (Modal) con el Formulario -->
+        <div id="projectModal" class="modal-overlay" style="display: none;">
+             <div class="modal-content">
+                <span id="closeModalBtn" class="close-btn">&times;</span>
+                <h3 style="color: #4A2E80; margin-bottom: 10px;">Nuevo Proyecto Institucional</h3>
+                <p style="font-size: 0.875rem; color: #666; margin-bottom: 20px;">El proyecto quedará pendiente de aprobación por la dirección antes de publicarse en la web.</p>
+        
+            <form action="guardar_proyecto.php" method="POST" enctype="multipart/form-data">
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Título del Proyecto</label>
+                    <input type="text" name="titulo" required placeholder="Ej: Proyecto con Escuelas Secundarias" style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Categoría / Etiqueta</label>
+                    <select name="categoria" required style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <option value="EDUCACIÓN">Escuelas Secundarias</option>
+                        <option value="ADMINISTRACIÓN">Próximos a jubilarse</option>
+                        <option value="COMUNIDAD">Policía Comunitaria</option>
+                        <option value="INSTITUCIONAL">Otros proyectos institucionales</option>
+                    </select>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 15px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Descripción</label>
+                    <textarea name="descripcion" rows="4" required placeholder="Breve detalle de la iniciativa..." style="width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 6px;"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <label style="display: block; margin-bottom: 5px; font-weight: bold;">Imagen representativa</label>
+                    <input type="file" name="imagen" accept="image/*" required style="width: 100%;">
+                </div>
+
+                <button type="submit" style="background: #25d366; color: white; border: none; padding: 12px; width: 100%; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    Enviar a Revisión
+                </button>
+            </form>
+        </div>
+        </div>
+
+        <!-- 7. Noticias y Actividades del Centro -->
+        <section id="novedades" class="section-block seccion-contenido">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Vida Institucional</span>
+                    <h2 class="section-title">Noticias y Actividades Recientes</h2>
+                    <p class="section-description">Un reflejo de los momentos compartidos, aniversarios y encuentros de nuestra comunidad.</p>
+                </div>
+
+                <!-- Nexo reemplaza estas noticias por las aprobadas; si Nexo no responde, quedan las de abajo -->
+                <div class="cards-grid grid-3" data-nexo="noticia" data-nexo-portada="6">
+                    <article class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">Celebración</span>
+                            <span class="news-date">Septiembre 2026</span>
+                        </div>
+                        <h3>Cumpleaños Colectivo del Mes</h3>
+                        <p>Celebramos los natalicios de nuestros concurrentes con torta artesanal, merienda compartida y música folclórica en vivo en el salón central.</p>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">Cultura</span>
+                            <span class="news-date">Agosto 2026</span>
+                        </div>
+                        <h3>Jornada de Arte y Exposición</h3>
+                        <p>Muestra de cuadros, cerámicas y telares confeccionados por los concurrentes durante los talleres de laborterapia del ciclo invernal.</p>
+                    </article>
+
+                    <article class="news-item">
+                        <div class="news-meta">
+                            <span class="news-category">Comunidad</span>
+                            <span class="news-date">Julio 2026</span>
+                        </div>
+                        <h3>Encuentro Intergeneracional</h3>
+                        <p>Visita de jóvenes y voluntarios que compartieron juegos de mesa, charlas y anécdotas de nuestra provincia.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Galería de Fotos e Instalaciones -->
+        <section id="galeria" class="section-block bg-soft seccion-contenido">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Conoce Nuestro Hogar</span>
+                    <h2 class="section-title">Galería de Espacios e Instalaciones</h2>
+                    <p class="section-description">Ambientes luminosos, seguros, climatizados y diseñados con accesibilidad motriz total.</p>
+                </div>
+
+                <!-- Nexo reemplaza estas fotos por las galerías aprobadas; si Nexo no responde, quedan las de abajo -->
+                <div class="gallery-layout" data-nexo="galeria" data-nexo-portada="6">
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=11" alt="Habitaciones luminosas y adaptadas">
+                        <figcaption>Dormitorios con baño adaptado</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=12" alt="Galería y jardines externos">
+                        <figcaption>Patios arbolados y galerías</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=13" alt="Salón comedor principal">
+                        <figcaption>Comedor y zona de encuentros</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=14" alt="Sala de kinesiología y ejercicios">
+                        <figcaption>Gimnasio kinésico y de rehabilitación</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=15" alt="Sala de descanso y lectura">
+                        <figcaption>Salas de recreación y televisión</figcaption>
+                    </figure>
+                    <figure class="gallery-cell">
+                        <img src="https://picsum.photos/800/600?random=16" alt="Sector de enfermería y consultorios">
+                        <figcaption>Consultorios de enfermería y atención médica</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+         <!-- 6. Proyectos Institucionales en Curso -->
+        <section id="proyectos" class="section-block bg-soft seccion-contenido">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-kicker">Desarrollo y Participación</span>
+                    <h2 class="section-title">Proyectos Institucionales en Curso</h2>
+                    <p class="section-description">Iniciativas vivas que promueven la socialización, la estimulación cognitiva y el disfrute diario en la institución.</p>
+                </div>
+
+                <!-- Nexo reemplaza estos proyectos por los aprobados; si Nexo no responde, quedan los de abajo -->
+                <div class="cards-grid grid-3" data-nexo="proyecto" data-nexo-portada="6">
+                    <div class="project-card">
+                        <div class="project-tag">Terapéutico</div>
+                        <i class="fa-solid fa-seedling proj-icon"></i>
+                        <h3>Huerta Orgánica Comunitaria</h3>
+                        <p>Espacio al aire libre donde los concurrentes cultivan plantas medicinales, aromáticas y verduras, combinando laborterapia y contacto con la naturaleza.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Cognitivo</div>
+                        <i class="fa-solid fa-brain proj-icon"></i>
+                        <h3>Gimnasio de la Memoria</h3>
+                        <p>Sesiones guiadas de estimulación de la memoria episódica, resolución de acertijos, narraciones de vida y literatura clásica compartida.</p>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-tag">Integración</div>
+                        <i class="fa-solid fa-map-location-dot proj-icon"></i>
+                        <h3>Paseos y Salidas Adaptadas</h3>
+                        <p>Itinerarios a paseos públicos, parroquias, ferias de artesanos y centros culturales, con movilidad y soporte profesional dedicado.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. Formulario y Contacto Directo -->
+        <section id="contacto-directo" class="section-block">
+            <div class="container">
+                <div class="form-intro">
+                    <span class="section-kicker">Comunicación Inmediata</span>
+                    <h2 class="section-title text-left">Buzón Directo del Centro de Día</h2>
+                    
+                    <div class="content-box-left">
+                        <p class="mb-3">
+                            Este formulario envía su mensaje de forma <strong>exclusiva e independiente</strong> a la oficina de atención y secretaría del Centro de Día "Virgen del Valle".
+                        </p>
+
+                        <div class="contact-badges">
+                            <div class="c-badge">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Datos tratados con estricta confidencialidad médica e institucional.</span>
+                            </div>
+                            <div class="c-badge">
+                                <i class="fa-solid fa-clock-rotate-left"></i>
+                                <span>Respuestas en un lapso estimado de 24 a 48 hs hábiles.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-card">
+                    <form id="directContactForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="form-nombre">Nombre del Solicitante *</label>
+                                <input type="text" id="form-nombre" name="nombre" required placeholder="Ej. Mariana">
+                                <label for="form-apellido"> Apellido del Solicitante *</label>
+                                <input type="text" id="form-apellido" name="apellido" required placeholder="Ej. Gómez">
+                            </div>
+                            <div class="form-field">
+                                <label for="form-telefono">Teléfono / Celular de Contacto *</label>
+                                <input type="tel" id="form-telefono" name="telefono" required placeholder="Ej. 385 154 999999">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-field">
+                                <label for="form-email">Correo Electrónico</label>
+                                <input type="email" id="form-email" name="email" placeholder="mariana@ejemplo.com">
+                            </div>
+                            <div class="form-field">
+                                <label for="form-asunto">Motivo de Consulta *</label>
+                                <select id="form-asunto" name="asunto" required>
+                                    <option value="" disabled selected>Seleccione una opción...</option>
+                                    <option value="admision">Información de requisitos y vacantes</option>
+                                    <option value="visita">Coordinar visita particular o institucional</option>
+                                    <option value="seguimiento">Consulta sobre un concurrente</option>
+                                    <option value="voluntariado">Talleres, donaciones o voluntariado</option>
+                                    <option value="otro">Otras consultas generales</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="form-mensaje">Detalle de la consulta *</label>
+                            <textarea id="form-mensaje" name="mensaje" rows="4" required placeholder="Describa brevemente la situación, antecedentes o preguntas específicas..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-gold full-width" id="btn-submit-form">
+                            <i class="fa-solid fa-paper-plane"></i> Enviar Mensaje al Centro de Día Virgen del Valle
+                        </button>
+
+                        <div id="form-alert" class="alert-box" style="display: none;"></div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <div class="f-col">
+                <div class="brand-text text-white">
+                    <span class="brand-sub">Centro de Día</span>
+                    <h3 class="brand-title">Virgen del Valle</h3>
+                </div>
+                <p class="mt-2 text-muted-light">Institución pública abocada al amparo, acompañamiento integral y valoración activa de las personas adultas mayores.</p>
+            </div>
+            <div class="f-col">
+                <h4>Vías Rápidas</h4>
+                <ul class="f-links">
+                    <li><a href="#servicios">Servicios y Cuidados</a></li>
+                    <li><a href="#admision">Requisitos de Admisión</a></li>
+                    <li><a href="#visitas">Horarios de Visitas</a></li>
+                    <li><a href="#proyectos">Proyectos Activos</a></li>
+                </ul>
+            </div>
+            <div class="f-col">
+                <h4>Sede Institucional</h4>
+                <p class="text-muted-light">Calle Lamadrid 80</p>
+                <p class="text-muted-light">Santiago del Estero, Argentina</p>
+                <p class="text-muted-light">Tel: +54 (385) 421-0000</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2026 Centro de Día "Virgen del Valle". Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Modal, formulario y menú del celular -->
+    <script src="js/adultos/pagina-centro-dia.js"></script>
+
+    <!-- Nexo institucional -->
+    <script src="js/nexo/config.js"></script>
+    <script src="js/nexo/nexo-cliente.js"></script>
+    <script src="js/nexo/secciones.js"></script>
+</body>
+</html>

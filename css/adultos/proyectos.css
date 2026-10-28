@@ -31,7 +31,7 @@
 .proyectos-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.8rem, calc(3vw * var(--escala-texto, 1)), 2.5rem);
   color: var(--slate-deeper1);
   color: var(--slate-deeper2);
   line-height: 1.2;
@@ -114,7 +114,7 @@
   display: inline-block;
   background: #003a70;
   color: var(--gold-dark);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;

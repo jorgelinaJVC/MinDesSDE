@@ -1,0 +1,118 @@
+/* accesibilidad.css — comportamiento común del widget de accesibilidad en los sitios de la red.
+ * Se enlaza DESPUÉS de la hoja de cada sitio: cada sitio conserva sus colores del botón y del panel; acá se fija lo que
+ * tiene que ser igual en todos (abrir/cerrar, estados presionados, límites, foco) y el tamaño del propio widget.
+ *
+ * El widget queda en px a propósito: no cambia de tamaño mientras se aprietan + y −, así los botones no se mueven
+ * debajo del puntero. Todo el resto del sitio usa rem y escala con el porcentaje elegido. */
+
+/* ---------- Abrir y cerrar ---------- */
+
+.accessibility-panel {
+  display: none;
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.accessibility-panel.active {
+  display: block;
+}
+
+/* ---------- Tamaños fijos del widget ---------- */
+
+.accessibility-panel-title {
+  font-size: 18px;
+}
+
+.accessibility-label {
+  font-size: 14px;
+}
+
+/* + y − son texto (no íconos): se ven aunque no cargue la librería de íconos */
+.accessibility-font-btn {
+  width: 40px;
+  height: 40px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.accessibility-font-indicator {
+  font-size: 18px;
+  font-variant-numeric: tabular-nums; /* "100%" y "110%" ocupan lo mismo: + y − no se corren */
+}
+
+.accessibility-action-btn,
+.accessibility-reset-btn {
+  font-size: 14px;
+}
+
+/* ---------- Estados ---------- */
+
+.accessibility-font-btn[aria-disabled="true"] {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.accessibility-action-btn[aria-pressed="true"]::before {
+  content: "✓ ";
+}
+
+#btn-toggle-contrast[aria-pressed="true"] {
+  border-color: #ffff00;
+  background: #000000;
+  color: #ffff00;
+}
+
+#btn-toggle-links[aria-pressed="true"] {
+  border-color: #b45309;
+  background: #ffff00;
+  color: #000000;
+}
+
+/* foco visible con teclado, también en alto contraste */
+.accessibility-toggle-btn:focus-visible,
+.accessibility-panel button:focus-visible {
+  outline: 3px solid #f5c518;
+  outline-offset: 2px;
+}
+
+/* ---------- Celular: el panel entra en la pantalla ---------- */
+
+/* el cartel del botón (data-tooltip) es para mouse: en pantallas táctiles quedaba pegado y cortado */
+@media (hover: none), (max-width: 600px) {
+  .accessibility-toggle-btn::before,
+  .accessibility-toggle-btn::after {
+    display: none;
+  }
+}
+
+/* en el celular el botón baja, arriba del de WhatsApp: arriba tapaba el menú de cada sitio */
+@media (max-width: 600px) {
+  .accessibility-toggle-btn {
+    top: auto;
+    right: 28px;
+    bottom: 100px;
+    width: 52px;
+    height: 52px;
+  }
+
+  .accessibility-panel {
+    top: auto;
+    right: 12px;
+    bottom: 164px;
+    left: 12px;
+    width: auto;
+    max-height: calc(100vh - 184px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .accessibility-toggle-btn,
+  .accessibility-font-btn,
+  .accessibility-action-btn,
+  .accessibility-reset-btn {
+    transition: none;
+  }
+}
