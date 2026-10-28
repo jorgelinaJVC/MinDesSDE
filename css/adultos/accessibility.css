@@ -202,13 +202,13 @@
 }
 
 .repositorio-title {
-  font-size: 18px;
+  font-size: 1.125rem;
   margin: 0;
 }
 
 .repositorio-desc {
   color: #4a5568;
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-bottom: 1.5rem;
 }
 
@@ -233,12 +233,12 @@
 .repositorio-item-title {
   display: block;
   color: #2d3748;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .repositorio-item-meta {
   color: #718096;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .repositorio-download-btn {
@@ -248,7 +248,7 @@
   padding: 8px 16px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   transition: background-color 0.2s;
 }
 
