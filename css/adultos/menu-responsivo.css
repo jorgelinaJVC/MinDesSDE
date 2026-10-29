@@ -1,0 +1,92 @@
+/* ===== Variables: ajustalas a tu diseño ===== */
+:root{
+  --nav-bg:#00356b;      /* fondo del menú en celular */
+  --nav-alto:70px;       /* alto de tu barra (para ubicar el panel debajo) */
+  --nav-amarillo:#f9c613;
+  --nav-texto-sub:#1e2a5a;
+}
+
+/* ===== Escritorio: submenús ===== */
+.nav-links .dropdown{position:relative}
+.nav-links .dropdown-toggle{display:flex;align-items:center;gap:6px;cursor:pointer}
+.nav-links .arrow{display:inline-block;transition:transform .25s}
+.nav-links .dropdown-menu{
+  position:absolute;top:100%;left:0;min-width:240px;
+  background:#fff;border-radius:8px;padding:6px 0;list-style:none;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);
+  display:none;z-index:1000;
+}
+.nav-links .dropdown-menu a{display:block;padding:12px 20px;color:var(--nav-texto-sub);text-decoration:none}
+.nav-links .dropdown-menu a:hover{background:#f1f3fa}
+.nav-links .dropdown-menu li + li{border-top:1px solid #e8eaf2}
+
+@media (hover:hover) and (min-width:901px){
+  .nav-links .dropdown:hover > .dropdown-menu{display:block}
+}
+.nav-links .dropdown.open > .dropdown-menu{display:block}
+.nav-links .dropdown.open .arrow{transform:rotate(180deg)}
+
+/* ===== Botón hamburguesa ===== */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:0;padding:8px;cursor:pointer;
+}
+.nav-hamburger span{display:block;width:26px;height:3px;background:#fff;border-radius:2px;transition:transform .3s,opacity .3s}
+.nav-hamburger.active span:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.nav-hamburger.active span:nth-child(2){opacity:0}
+.nav-hamburger.active span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+
+/* ===== Celular y tablet ===== */
+@media (max-width:900px){
+  .nav-hamburger{display:flex}
+
+  nav .nav-links{
+    display:none !important;
+    position:fixed;top:var(--nav-alto);left:0;right:0;
+    flex-direction:column;align-items:stretch;gap:0;margin:0;
+    padding:8px 16px 20px;
+    background:var(--nav-bg);
+    max-height:calc(100vh - var(--nav-alto));overflow-y:auto;
+    box-shadow:0 12px 24px rgba(0,0,0,.3);
+    z-index:999;
+  }
+  nav .nav-links.open{display:flex !important}
+
+  nav .nav-links > li{width:100%}
+  nav .nav-links > li > a{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:14px 8px;border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  nav .nav-links > li > a.nav-cta{
+    justify-content:center;margin-top:12px;border-bottom:0;border-radius:8px;
+  }
+
+  /* Submenú como acordeón: empuja el contenido, no flota */
+  .nav-links .dropdown-menu{
+    position:static;min-width:0;margin:4px 0 8px;
+    box-shadow:none;display:none;
+  }
+  .nav-links .dropdown.open > .dropdown-menu{display:block}
+
+  body.menu-abierto{overflow:hidden}
+}
+@media (max-width:900px){
+  nav{ overflow:visible !important; }
+
+  nav .nav-links{
+    position:fixed !important;
+    top:var(--nav-alto) !important;
+    left:0 !important;
+    right:0 !important;
+    width:100% !important;
+    height:auto !important;
+    transform:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    clip-path:none !important;
+    z-index:2000 !important;
+  }
+
+  nav .nav-links:not(.open){ display:none !important; }
+  nav .nav-links.open{ display:flex !important; }
+}
