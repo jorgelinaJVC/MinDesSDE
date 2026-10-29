@@ -1,5 +1,5 @@
 /* ============================================================
-   styles.css — Ministerio de Desarrollo Social - SDE
+  styles.css — Ministerio de Desarrollo Social - SDE
    ============================================================ */
 
 /* Estilos adicionales para la sección de subsecretarías mejorada */
@@ -143,7 +143,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================ 
-   HEADER RESPONSIVO INTEGRADO 
+  HEADER RESPONSIVO INTEGRADO 
    ============================================================ */
 .header {
   position: sticky;
@@ -220,6 +220,157 @@ ul { list-style: none; }
   color: var(--color-accent-2);
 }
 
+/* ============================================================
+  MENÚ JERÁRQUICO DE ÁREAS
+   ============================================================ */
+.nav-item-dropdown {
+  position: relative;
+}
+
+.nav-dropdown-toggle {
+  display: flex !important;
+  align-items: center;
+  gap: 7px;
+}
+
+.arrow {
+  font-size: 1.1em;
+  line-height: 1;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 235px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: var(--color-dark);
+  box-shadow: 0 8px 18px rgba(0,0,0,.25);
+  z-index: 1100;
+}
+
+.nav-item-dropdown:hover > .dropdown-menu,
+.nav-item-dropdown:focus-within > .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 14px 20px;
+  color: #fff;
+  border-radius: 0;
+}
+
+.dropdown-menu li a:hover {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+/* ============================================================
+  MENÚ DE ÁREAS — ESTRUCTURA VERTICAL
+  Las subsecretarías quedan una debajo de otra y las dos
+  direcciones generales de Desarrollo Social se muestran
+  siempre dentro del mismo bloque.
+   ============================================================ */
+.areas-mega-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: min(720px, calc(100vw - 20px));
+  max-width: calc(100vw - 20px);
+  flex-direction: column;
+  background: var(--color-dark);
+  box-shadow: 0 10px 22px rgba(0,0,0,.28);
+  z-index: 2000;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.nav-areas:hover > .areas-mega-menu,
+.nav-areas:focus-within > .areas-mega-menu {
+  display: flex;
+}
+
+.areas-mega-column {
+  width: 100%;
+  min-width: 0;
+  flex: none;
+  border-bottom: 1px solid rgba(255,255,255,.10);
+  box-sizing: border-box;
+}
+
+.areas-mega-column:last-child {
+  border-bottom: none;
+}
+
+.areas-mega-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  color: #fff !important;
+  background: var(--color-accent);
+  font-size: .95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+}
+
+.areas-mega-title:hover {
+  background: #c53030;
+}
+
+/* Las dos direcciones generales quedan una debajo de otra. */
+.areas-mega-submenu {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.areas-mega-group {
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.areas-mega-group:last-child {
+  border-bottom: none;
+}
+
+.areas-mega-title.secondary {
+  background: rgba(255,255,255,.06);
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+
+.areas-mega-title.secondary:hover {
+  background: #c53030;
+}
+
+.areas-mega-group > a:not(.areas-mega-title) {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 38px;
+  color: rgba(255,255,255,.88);
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+.areas-mega-group > a:not(.areas-mega-title):hover {
+  background: rgba(255,255,255,.08);
+  color: #fff;
+}
+
 /* Burger / Hamburger Menú */
 .nav-hamburger, .header__burger {
   display: none;
@@ -246,7 +397,7 @@ ul { list-style: none; }
 
 
 /* ============================================================
-   HERO CAROUSEL
+  HERO CAROUSEL
    ============================================================ */
 .hero {
   position: relative;
@@ -304,6 +455,16 @@ ul { list-style: none; }
   line-height: 1.2;
   text-shadow: 0 2px 8px rgba(0,0,0,.4);
 }
+.hero__description {
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  max-width: 650px;
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 1),
+    0 3px 10px rgba(0, 0, 0, 1);
+}
 .hero__btn {
   display: inline-block;
   background: var(--color-accent);
@@ -356,7 +517,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   INGRESOS / SUBSECRETARIAS
+  INGRESOS / SUBSECRETARIAS
    ============================================================ */
 .ingresos {
   padding: 48px 0;
@@ -371,6 +532,7 @@ ul { list-style: none; }
 .ingreso-card {
   display: flex;
   flex-direction: column;
+  height: 100%; /* Fuerza a todas las tarjetas de la fila a estirarse igual */
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-sm);
@@ -382,20 +544,27 @@ ul { list-style: none; }
   transform: translateY(-3px);
 }
 .ingreso-card__img {
-  height: 180px;
+  height: 200px; /* Altura uniforme para todas las cajas */
   overflow: hidden;
-  background: var(--color-primary);
-}
-.ingreso-card__img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transition: transform .4s ease;
-}
-.ingreso-card:hover .ingreso-card__img img { transform: scale(1.04); }
-.ingreso-card__body {
+  background: #ffffff; /* Fondo blanco para que los logos no muestren franjas azules */
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+.ingreso-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Muestra el logo/imagen completo sin deformar ni recortar */
+  padding: 12px; /* Margen interno para que los logos respiren y no toquen los bordes */
+  transition: transform .4s ease;
+}
+.ingreso-card:hover .ingreso-card__img img { 
+  transform: scale(1.04); }
+.ingreso-card__body {
+  display: flex;
+  flex-direction: column;
   justify-content: space-between;
+  flex-grow: 1; /* Rellena el espacio sobrante para alinear los pies de tarjeta */
   padding: 14px 18px;
   background: var(--color-primary);
   color: var(--color-white);
@@ -413,7 +582,7 @@ ul { list-style: none; }
 }
 
 /* ============================================================
-   NOTICIAS INSTITUCIONALES & VIDEOS
+  NOTICIAS INSTITUCIONALES & VIDEOS
    ============================================================ */
 .noticias {
   padding: 56px 0;
@@ -435,6 +604,7 @@ ul { list-style: none; }
   transition: box-shadow var(--transition), transform var(--transition);
   height: 100%;
   cursor: pointer;
+  position: relative;
 }
 .noticia-card:hover {
   box-shadow: var(--shadow-md);
@@ -455,7 +625,33 @@ ul { list-style: none; }
 .noticia-card:hover .noticia-card__img img { transform: scale(1.05); }
 .noticia-card__body {
   padding: 18px;
-  flex-grow: 1;
+  padding-bottom: 65px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.noticia-card__titulo {
+    margin: 0 0 8px 0;
+}
+
+.noticia-card__descripcion {
+    margin: 0;
+}
+
+.noticia-card__leer {
+    position: absolute;
+
+    left: 18px;
+    bottom: 18px;
+
+    display: block;
+
+    margin: 0;
+    padding: 0;
+
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 .noticia-card__body p {
   font-size: .83rem;
@@ -481,19 +677,34 @@ ul { list-style: none; }
   transition: .3s;
 }
 .video-card:hover { transform: translateY(-5px); }
-.video-card iframe {
+.video-card iframe,
+.video-card video {
+  display: block;
   width: 100%;
   height: 220px;
   border: none;
+  background: #000;
+}
+
+.video-card video {
+  object-fit: contain;
 }
 .video-card p {
   padding: 15px;
   font-weight: 600;
   color: #1a3a6b;
 }
+.video-card__descripcion {
+  padding: 0 15px 18px;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  font-weight: 400;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
 
 /* ============================================================
-   AUTORIDADES 
+  AUTORIDADES 
    ============================================================ */
 .autoridades-grid {
   display: grid;
@@ -563,7 +774,7 @@ ul { list-style: none; }
 
 
 /* ============================================================
-   FOOTER
+  FOOTER
    ============================================================ */
 .footer {
   background: #07162a;
@@ -617,7 +828,7 @@ ul { list-style: none; }
 
 
 /* ============================================================
-   MEDIA QUERIES (RESPONSIVE COMPLETO)
+  MEDIA QUERIES (RESPONSIVE COMPLETO)
    ============================================================ */
 @media (max-width: 900px) {
   .footer__inner { grid-template-columns: 1fr 1fr; }
@@ -652,6 +863,25 @@ ul { list-style: none; }
     flex-direction: column; 
     gap: 6px; 
   }
+
+  .nav-item-dropdown { position: static; }
+  .dropdown-menu, .areas-mega-menu {
+    position: static;
+    width: 100%;
+    box-shadow: none;
+    background: rgba(0,0,0,.12);
+  }
+  .nav-item-dropdown:hover > .dropdown-menu,
+  .nav-item-dropdown:focus-within > .dropdown-menu,
+  .nav-areas:hover > .areas-mega-menu,
+  .nav-areas:focus-within > .areas-mega-menu {
+    display: block;
+  }
+  .areas-mega-menu { flex-direction: column; }
+  .areas-mega-column { border-right: none; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .areas-mega-submenu { grid-template-columns: 1fr; }
+  .areas-mega-group { border-right: none; }
+  .areas-mega-title, .areas-mega-column:not(.areas-mega-main) .areas-mega-title { min-height: auto; }
   
   .nav-links a, .nav__link { 
     padding: 12px 16px; 
@@ -691,4 +921,514 @@ ul { list-style: none; }
   .noticias__grid { grid-template-columns: repeat(2, 1fr); }
   .header__logo svg { height: 32px; } /* Ajuste extra para pantallas diminutas */
 }
+/* ============================================================
+  AJUSTE RESPONSIVE DEL MENÚ JERÁRQUICO
+  Evita desbordamientos y espacios blancos laterales.
+   ============================================================ */
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.header,
+.header__inner,
+.nav-brand,
+.nav-links {
+  max-width: 100%;
+}
+
+/* ============================================================
+  TABLET Y CELULAR
+   ============================================================ */
+@media (max-width: 768px) {
+  .header__inner {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 14px;
+    padding-right: 14px;
+    box-sizing: border-box;
+  }
+
+  /* Panel del menú móvil: ocupa exactamente la pantalla */
+  .nav-brand {
+    width: 100%;
+    max-width: 100vw;
+    left: 0;
+    right: 0;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: calc(100vh - var(--header-h));
+  }
+
+  .nav-links {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  .nav-links > li {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nav-links a {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Los desplegables dejan de ser menús flotantes y pasan a formar
+     parte del flujo de la pantalla. Así no aparece espacio vacío. */
+  .dropdown-menu,
+  .areas-mega-menu {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    box-shadow: none !important;
+    overflow: hidden;
+  }
+
+  .dropdown-menu {
+    padding: 0;
+  }
+
+  .areas-mega-menu {
+    display: none;
+    flex-direction: column;
+  }
+
+  .nav-areas:focus-within > .areas-mega-menu,
+  .nav-areas:hover > .areas-mega-menu {
+    display: flex;
+  }
+
+  .areas-mega-column,
+  .areas-mega-main,
+  .areas-mega-group {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+    border-right: none !important;
+  }
+
+  .areas-mega-column {
+    border-bottom: 1px solid rgba(255,255,255,.10);
+  }
+
+  .areas-mega-column:last-child {
+    border-bottom: none;
+  }
+
+  .areas-mega-submenu {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .areas-mega-title,
+  .areas-mega-group > a:not(.areas-mega-title) {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .areas-mega-title {
+    min-height: 0 !important;
+    padding: 13px 16px;
+    line-height: 1.35;
+  }
+
+  .areas-mega-group > a:not(.areas-mega-title) {
+    padding: 11px 26px;
+    line-height: 1.35;
+  }
+
+  /* El submenú secundario queda visualmente indentado */
+  .areas-mega-title.secondary {
+    padding-left: 22px;
+    background: rgba(255,255,255,.04);
+  }
+
+  /* Evita que el contenido de los desplegables pueda ensanchar la página */
+  .nav-item-dropdown,
+  .nav-areas,
+  .dropdown-menu,
+  .areas-mega-menu,
+  .areas-mega-column,
+  .areas-mega-submenu,
+  .areas-mega-group {
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-brand {
+    padding: 12px;
+  }
+
+  .nav-links {
+    gap: 3px;
+  }
+
+  .nav-links a {
+    padding: 11px 13px;
+    font-size: .9rem;
+  }
+
+  .areas-mega-title {
+    padding: 12px 13px;
+    font-size: .9rem;
+  }
+
+  .areas-mega-group > a:not(.areas-mega-title) {
+    padding: 10px 22px;
+    font-size: .86rem;
+  }
+}
+/* ============================================================
+   MODAL - DETALLE DE NOTICIA
+
+.modal-noticia-abierto {
+    overflow: hidden;
+}
+
+.noticia-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px;
+}
+
+.noticia-modal.activo {
+    display: flex;
+}
+
+.noticia-modal__fondo {
+    position: absolute;
+    inset: 0;
+    background: rgba(7, 22, 42, 0.82);
+    backdrop-filter: blur(3px);
+}
+
+.noticia-modal__contenido {
+    position: relative;
+    z-index: 1;
+
+    width: min(1050px, 95vw);
+    max-height: 90vh;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #fff;
+    border-radius: 14px;
+    overflow: auto;
+
+    box-shadow:
+        0 24px 70px rgba(0, 0, 0, 0.35);
+}
+
+.noticia-modal__cerrar {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    z-index: 5;
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #fff;
+    color: #0d2240;
+
+    font-size: 28px;
+    line-height: 1;
+
+    cursor: pointer;
+
+    box-shadow: 0 3px 12px rgba(0,0,0,.18);
+}
+
+.noticia-modal__imagen {
+    min-height: 500px;
+    background: #0d2240;
+}
+
+.noticia-modal__imagen img {
+    width: 100%;
+    height: 100%;
+    min-height: 500px;
+
+    object-fit: cover;
+}
+
+.noticia-modal__informacion {
+    padding: 55px 45px 45px;
+}
+
+.noticia-modal__categoria {
+    display: inline-block;
+
+    margin-bottom: 15px;
+    padding: 5px 12px;
+
+    background: var(--color-accent);
+    color: var(--color-dark);
+
+    border-radius: 3px;
+
+    font-size: .78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.noticia-modal__informacion h2 {
+    color: var(--color-primary);
+
+    font-family: var(--font-cond);
+    font-size: clamp(1.7rem, 3vw, 2.4rem);
+
+    line-height: 1.15;
+
+    margin-bottom: 10px;
+}
+
+.noticia-modal__fecha {
+    color: var(--color-muted);
+    font-size: .9rem;
+
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+
+    border-bottom: 1px solid var(--color-border);
+}
+
+.noticia-modal__texto {
+    color: var(--color-text);
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.noticia-modal__texto p {
+    margin-bottom: 15px;
+}
+
+.noticia-card__leer {
+    display: inline-block;
+
+    margin-top: 15px;
+
+    color: var(--color-primary);
+
+    font-size: .85rem;
+    font-weight: 700;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+
+    .noticia-modal {
+        padding: 15px;
+    }
+
+    .noticia-modal__contenido {
+        grid-template-columns: 1fr;
+        width: 100%;
+        max-height: 94vh;
+    }
+
+    .noticia-modal__imagen {
+        min-height: 230px;
+        height: 230px;
+    }
+
+    .noticia-modal__imagen img {
+        min-height: 230px;
+        height: 230px;
+    }
+
+    .noticia-modal__informacion {
+        padding: 30px 22px;
+    }
+
+    .noticia-modal__cerrar {
+        top: 10px;
+        right: 10px;
+    }
+}
+/* ============================================================
+   MODAL DE NOTICIA - MEJORAR LECTURA
+
+/* Ventana principal */
+.noticia-modal__contenido {
+    width: min(900px, 92vw);
+    max-height: 90vh;
+
+    display: block;
+
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: #fff;
+    border-radius: 14px;
+}
+
+/* Información de la noticia */
+.noticia-modal__informacion {
+    width: 100%;
+    max-width: 820px;
+
+    margin: 0 auto;
+    padding: 50px 45px 45px;
+
+    box-sizing: border-box;
+}
+
+/* Título */
+.noticia-modal__informacion h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2rem;
+    line-height: 1.2;
+
+    color: var(--color-primary);
+}
+
+/* Fecha */
+.noticia-modal__fecha {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Contenido completo */
+.noticia-modal__texto {
+    width: 100%;
+    max-width: 100%;
+
+    font-family: Arial, Helvetica, sans-serif !important;
+    font-size: 1.05rem;
+    line-height: 1.8;
+
+    color: #333;
+
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Párrafos creados desde el editor */
+.noticia-modal__texto p {
+    margin: 0 0 18px;
+    max-width: 100%;
+
+    font-family: Arial, Helvetica, sans-serif !important;
+
+    white-space: normal;
+    overflow-wrap: break-word;
+}
+
+/* Evitar que elementos del editor ensanchen el modal */
+.noticia-modal__texto * {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* Imágenes dentro del contenido */
+.noticia-modal__texto img {
+    height: auto;
+}
+
+/* Celular */
+@media (max-width: 768px) {
+
+    .noticia-modal__contenido {
+        width: 95vw;
+        max-height: 92vh;
+    }
+
+    .noticia-modal__informacion {
+        padding: 45px 22px 30px;
+    }
+
+    .noticia-modal__informacion h2 {
+        font-size: 1.6rem;
+    }
+
+    .noticia-modal__texto {
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+}
+/* ============================================================
+   NOTICIA COMPLETA - FORMATO DE LECTURA
+
+.noticia-modal__texto,
+.noticia-modal__texto *,
+.noticia-modal__texto p,
+.noticia-modal__texto div,
+.noticia-modal__texto span {
+    font-family: Arial, Helvetica, sans-serif !important;
+
+    white-space: normal !important;
+    word-break: normal !important;
+    overflow-wrap: anywhere !important;
+
+    max-width: 100% !important;
+}
+
+/* Contenedor del texto */
+.noticia-modal__texto {
+    width: 100%;
+    box-sizing: border-box;
+
+    font-size: 17px;
+    line-height: 1.75;
+
+    text-align: left;
+
+    overflow-x: hidden !important;
+}
+
+/* Párrafos */
+.noticia-modal__texto p,
+.noticia-modal__texto div {
+    width: 100% !important;
+
+    margin: 0 0 20px 0;
+
+    line-height: 1.75;
+}
+
+/* Encabezado y contenido centrados dentro del modal */
+.noticia-modal__informacion {
+    width: 100%;
+    max-width: 820px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 50px 45px;
+
+    box-sizing: border-box;
+
+    overflow-x: hidden;
+}
