@@ -1099,6 +1099,7 @@ html, body {
 }
 /* ============================================================
    MODAL - DETALLE DE NOTICIA
+============================================================*/
 
 .modal-noticia-abierto {
     overflow: hidden;
@@ -1380,7 +1381,7 @@ html, body {
 }
 /* ============================================================
    NOTICIA COMPLETA - FORMATO DE LECTURA
-
+ ===========================================================*/
 .noticia-modal__texto,
 .noticia-modal__texto *,
 .noticia-modal__texto p,
