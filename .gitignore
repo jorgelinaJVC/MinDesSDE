@@ -1,0 +1,12 @@
+# Datos secretos: contraseñas y conexiones a la base de datos. NUNCA subir.
+.env
+.env.*
+!.env.example
+
+# Dependencias (se instalan con "npm install")
+node_modules/
+
+# Archivos del sistema y registros
+*.log
+.DS_Store
+Thumbs.db
