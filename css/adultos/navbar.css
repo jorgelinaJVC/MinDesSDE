@@ -7,11 +7,13 @@ nav {
   min-height: 68px; /* crece si el texto se agranda con el widget de accesibilidad */
   display: flex;
   align-items: center;
-  
-  /* --- CAMBIOS PARA CENTRAR SIN TOCAR EL HTML --- */
-    justify-content: space-between;
+
+  /* Mismo orden que el header de Mama Antula: logo a la izquierda y botón a la
+     derecha, alineados con el ancho del contenido de la página */
+  justify-content: space-between;
   gap: 2rem;
   padding: 6px max(2rem, calc((100% - 1200px) / 2 + 2rem));
+  box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
 
 .nav-brand { 
