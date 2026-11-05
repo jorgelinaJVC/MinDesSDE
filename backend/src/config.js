@@ -15,7 +15,8 @@ module.exports = {
   produccion: env.NODE_ENV === "production",
   puerto: Number(env.PORT || 3000),
   mongo: {
-    uri: env.MONGODB_URI || "mongodb://127.0.0.1:27017",
+    // MONGODB_URI es el nombre oficial; MONGO_URI se acepta por compatibilidad con .env viejos
+    uri: env.MONGODB_URI || env.MONGO_URI || "mongodb://127.0.0.1:27017",
     base: env.DB_NAME || "nexo_institucional",
   },
   sesionHoras: Number(env.SESION_HORAS || 8),

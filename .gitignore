@@ -3,6 +3,10 @@
 .env.*
 !.env.example
 
+# Archivos que suben los usuarios del panel (incluye adjuntos NO aprobados todavía).
+# Solo deben verse a través del servidor, que controla quién puede abrir cada uno.
+almacen/
+
 # Dependencias (se instalan con "npm install")
 node_modules/
 
