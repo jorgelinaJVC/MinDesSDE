@@ -31,7 +31,25 @@ body {
 /* ===== SECTION COMMON ===== */
 section { padding: 5rem 2rem; }
 .section-container { max-width: 1200px; margin: 0 auto; }
-
+/* ===== ANCHO COMÚN DEL CONTENIDO =====
+   Todas las secciones y el footer usan el mismo ancho que el navbar y el hero */
+.section-container,
+footer .footer-container {
+  max-width: calc(1200px - 4rem);
+}
+#hero .hero-container {
+  max-width: calc(1200px - 4rem);
+  padding-left: 0;
+  padding-right: 0;
+}
+/* Noticias, Galería y Proyectos */
+section.seccion-contenido .container {
+  width: calc(100% - 4rem);
+  max-width: calc(1200px - 4rem);
+}
+@media (max-width: 600px) {
+  section.seccion-contenido .container { width: calc(100% - 2.5rem); }
+}
 .section-label {
   display: inline-block;
   background: #003a70;
