@@ -230,8 +230,28 @@ describe("gestión del equipo", () => {
     assert.equal((await admin.post("/api/usuarios", { ...nueva, email: "otra@prueba.edu.ar", rol: "superusuario" })).estado, 400);
     assert.equal((await admin.post("/api/usuarios", { ...nueva, email: { $ne: null } })).estado, 400, "sin operadores de MongoDB");
 
+    assert.equal(r.datos.debeCambiarClave, true, "la contraseña que pone el administrador es provisional");
+
     const lucia = cliente(entorno.url);
-    assert.equal((await lucia.post("/api/auth/login", { email: nueva.email, password: nueva.password })).estado, 200);
+    const ingreso = await lucia.post("/api/auth/login", { email: nueva.email, password: nueva.password });
+    assert.equal(ingreso.estado, 200);
+    assert.equal(ingreso.datos.usuario.debeCambiarClave, true);
+  });
+
+  it("con contraseña provisional no puede usar el panel hasta cambiarla por una propia", async () => {
+    const lucia = cliente(entorno.url);
+    await lucia.post("/api/auth/login", { email: nueva.email, password: nueva.password });
+    const bloqueado = await lucia.get("/api/contenidos");
+    assert.equal(bloqueado.estado, 403);
+    assert.equal(bloqueado.datos.error.codigo, "clave_provisional");
+    assert.equal((await lucia.post("/api/contenidos", datosContenido())).estado, 403);
+    assert.equal((await lucia.get("/api/auth/sesion")).estado, 200, "puede ver su sesión");
+
+    const cambio = await lucia.post("/api/auth/cambiar-clave", { actual: nueva.password, nueva: "Clave-propia-de-Lucia" });
+    assert.equal(cambio.estado, 200);
+    assert.equal(cambio.datos.usuario.debeCambiarClave, false);
+    assert.equal((await lucia.get("/api/contenidos")).estado, 200, "ya puede trabajar, sin volver a ingresar");
+    nueva.password = "Clave-propia-de-Lucia";
   });
 
   it("edición de nombre y correo, y restablecer contraseña cierra sus sesiones", async () => {
@@ -248,7 +268,9 @@ describe("gestión del equipo", () => {
 
     assert.equal((await admin.patch(`/api/usuarios/${id}`, { nombre: "Lucía B. Paz", email: "lbpaz@prueba.edu.ar", password: "Otra-clave-segura" })).estado, 200);
     assert.equal((await lucia.get("/api/contenidos")).estado, 401, "la sesión anterior se cerró");
-    assert.equal((await cliente(entorno.url).post("/api/auth/login", { email: "lbpaz@prueba.edu.ar", password: "Otra-clave-segura" })).estado, 200);
+    const reingreso = await cliente(entorno.url).post("/api/auth/login", { email: "lbpaz@prueba.edu.ar", password: "Otra-clave-segura" });
+    assert.equal(reingreso.estado, 200);
+    assert.equal(reingreso.datos.usuario.debeCambiarClave, true, "la contraseña restablecida también es provisional");
   });
 
   it("baja lógica: no ingresa, sale del listado, se conserva en la base y se puede reactivar", async () => {
@@ -277,6 +299,41 @@ describe("gestión del equipo", () => {
     assert.equal(propia.estado, 409);
     assert.match(propia.datos.error.mensaje, /vos mismo/);
     assert.equal((await admin.delete("/api/usuarios/99999")).estado, 404);
+  });
+});
+
+describe("cambiar la propia contraseña", () => {
+  const OTRA = "Clave-nueva-del-director";
+
+  it("requiere sesión, la contraseña actual correcta y una nueva válida y distinta", async () => {
+    assert.equal((await cliente(entorno.url).post("/api/auth/cambiar-clave", { actual: PASSWORD, nueva: OTRA })).estado, 401);
+    const mal = await director.post("/api/auth/cambiar-clave", { actual: "incorrecta", nueva: OTRA });
+    assert.equal(mal.estado, 400);
+    assert.match(mal.datos.error.mensaje, /actual no es correcta/);
+    assert.equal((await director.post("/api/auth/cambiar-clave", { actual: PASSWORD, nueva: "corta" })).estado, 400);
+    assert.equal((await director.post("/api/auth/cambiar-clave", { actual: PASSWORD, nueva: PASSWORD })).estado, 400, "igual a la actual");
+    assert.equal((await director.post("/api/auth/cambiar-clave", { actual: { $ne: null }, nueva: OTRA })).estado, 400, "sin operadores");
+  });
+
+  it("mantiene la sesión actual, cierra las otras y la contraseña anterior deja de servir", async () => {
+    const otraCompu = cliente(entorno.url);
+    await otraCompu.post("/api/auth/login", { email: "director@prueba.edu.ar", password: PASSWORD });
+    assert.equal((await otraCompu.get("/api/contenidos")).estado, 200);
+
+    assert.equal((await director.post("/api/auth/cambiar-clave", { actual: PASSWORD, nueva: OTRA })).estado, 200);
+    assert.equal((await director.get("/api/contenidos")).estado, 200, "esta sesión sigue");
+    assert.equal((await otraCompu.get("/api/contenidos")).estado, 401, "la otra sesión se cerró");
+    assert.equal((await cliente(entorno.url).post("/api/auth/login", { email: "director@prueba.edu.ar", password: PASSWORD })).estado, 401);
+    assert.equal((await cliente(entorno.url).post("/api/auth/login", { email: "director@prueba.edu.ar", password: OTRA })).estado, 200);
+
+    // se deja como estaba para el resto de las pruebas
+    assert.equal((await director.post("/api/auth/cambiar-clave", { actual: OTRA, nueva: PASSWORD })).estado, 200);
+  });
+
+  it("bloquea después de varios intentos con la contraseña actual equivocada", async () => {
+    let ultimo;
+    for (let i = 0; i < 6; i += 1) ultimo = await colab.post("/api/auth/cambiar-clave", { actual: "equivocada", nueva: OTRA });
+    assert.equal(ultimo.estado, 429);
   });
 });
 

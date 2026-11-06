@@ -21,6 +21,12 @@ router.post("/login", async (req, res) => {
   res.json({ usuario });
 });
 
+// La persona cambia su propia contraseña: { actual, nueva }. Mantiene esta sesión y cierra las demás.
+router.post("/cambiar-clave", auth.requerirSesion, async (req, res) => {
+  const { actual, nueva } = req.body || {};
+  res.json({ usuario: await auth.cambiarClave(req.usuario, req.token, actual, nueva, req.ip) });
+});
+
 router.post("/logout", async (req, res) => {
   await auth.cerrarSesion(req.token);
   res.setHeader("Set-Cookie", auth.cookieVencida());

@@ -21,6 +21,7 @@ const ACCIONES = {
   "sesion.inicio": { etiqueta: "Inició sesión", modulo: "Acceso" },
   "sesion.fallida": { etiqueta: "Intento de ingreso fallido", modulo: "Acceso" },
   "sesion.cierre": { etiqueta: "Cerró sesión", modulo: "Acceso" },
+  "sesion.cambio_clave": { etiqueta: "Cambió su contraseña", modulo: "Acceso" },
 
   "borrador.crear": { etiqueta: "Creó borrador de contenido", modulo: "Borradores" },
   "borrador.nueva_version": { etiqueta: "Empezó una nueva versión", modulo: "Borradores" },
@@ -129,6 +130,11 @@ const REGLAS = [
       : res.statusCode === 429 ? "Ingreso bloqueado por demasiados intentos" : "Intento de ingreso con correo o contraseña incorrectos"),
   },
   { metodo: "POST", ruta: "/api/auth/logout", accion: "sesion.cierre", detalle: () => "Cerró sesión" },
+  {
+    metodo: "POST", ruta: "/api/auth/cambiar-clave", accion: "sesion.cambio_clave",
+    detalle: ({ ok, res }) => (ok ? "Cambió su contraseña (se cerraron sus otras sesiones)"
+      : res.statusCode === 429 ? "Cambio de contraseña bloqueado por demasiados intentos" : "Intentó cambiar su contraseña"),
+  },
 
   {
     metodo: "POST", ruta: "/api/borradores", accion: "borrador.crear",

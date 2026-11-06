@@ -52,7 +52,7 @@ function crearApp() {
   }));
 
   // API
-  app.use("/api", auth.verificarOrigen, express.json({ limit: "400kb" }), auth.cargarUsuario);
+  app.use("/api", auth.verificarOrigen, express.json({ limit: "400kb" }), auth.cargarUsuario, auth.exigirClaveDefinitiva);
   app.use("/api", auditar); // registra automáticamente cada movimiento relevante (ver auditoria/catalogo.js)
   app.get("/api/salud", (req, res) => res.json({ ok: true }));
   app.use("/api/auth", rutasAuth);

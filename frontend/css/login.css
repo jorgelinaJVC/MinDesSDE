@@ -137,3 +137,11 @@
     font-size: 28px;
   }
 }
+
+/* Ayuda para quien olvidó la contraseña (solo con servidor: va dentro de los campos de ingreso) */
+.ayuda-clave {
+  margin: -4px 0 0;
+  font-size: 13px;
+  color: var(--texto-tenue);
+  text-align: left;
+}

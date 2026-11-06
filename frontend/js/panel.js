@@ -1384,6 +1384,80 @@
       </section>`;
   }
 
+  /* ---------- Cambiar mi contraseña ---------- */
+
+  /**
+   * Abre el diálogo para cambiar la propia contraseña.
+   * obligatorio = true: la contraseña es provisional (la dio el administrador). No se puede cerrar ni cancelar:
+   * solo cambiarla o cerrar sesión. El servidor además rechaza cualquier otro pedido hasta que se cambie.
+   * Devuelve una promesa que se resuelve cuando la contraseña quedó cambiada.
+   */
+  function abrirCambioClave(obligatorio = false) {
+    const dialogo = $("#dialogo-clave");
+    $("#form-clave").reset();
+    $("#clave-errores").hidden = true;
+    dialogo.dataset.obligatorio = obligatorio ? "1" : "";
+    $("#clave-titulo").textContent = obligatorio ? "Elegí tu contraseña" : "Cambiar mi contraseña";
+    $("#clave-sub").textContent = obligatorio
+      ? "Entraste con una contraseña provisional que te dio el administrador. Por seguridad, antes de seguir elegí una propia que solo vos conozcas."
+      : "Ingresá tu contraseña actual y la nueva.";
+    $("#clave-actual-etiqueta").innerHTML = obligatorio ? "Contraseña provisional <i>*</i>" : "Contraseña actual <i>*</i>";
+    $("#btn-clave-cancelar").hidden = obligatorio;
+    $("#btn-clave-salir").hidden = !obligatorio;
+    dialogo.showModal();
+    $("#c-actual").focus();
+    return new Promise((resolver) => { estado.alCambiarClave = resolver; });
+  }
+
+  function erroresClave(mensajes) {
+    const caja = $("#clave-errores");
+    caja.innerHTML = mensajes.length === 1 ? esc(mensajes[0]) : `<ul>${mensajes.map((m) => `<li>${esc(m)}</li>`).join("")}</ul>`;
+    caja.hidden = false;
+  }
+
+  async function guardarClave(evento) {
+    evento.preventDefault();
+    const actual = $("#c-actual").value;
+    const nueva = $("#c-nueva").value;
+    const repetir = $("#c-repetir").value;
+    const errores = [];
+    if (!actual) errores.push("Ingresá tu contraseña actual.");
+    if (nueva.length < 10) errores.push("La contraseña nueva debe tener al menos 10 caracteres.");
+    else if (new TextEncoder().encode(nueva).length > 72) errores.push("La contraseña nueva es demasiado larga.");
+    if (nueva !== repetir) errores.push("Las dos contraseñas nuevas no coinciden.");
+    if (actual && nueva && actual === nueva) errores.push("La contraseña nueva tiene que ser distinta de la actual.");
+    if (errores.length) { erroresClave(errores); return; }
+
+    const boton = $("#btn-clave-guardar");
+    boton.disabled = true;
+    try {
+      estado.usuario = await api.cambiarClave({ actual, nueva });
+      $("#form-clave").reset();
+      $("#dialogo-clave").dataset.obligatorio = "";
+      $("#dialogo-clave").close();
+      aviso("Listo: tu contraseña se cambió. Tus otras sesiones abiertas se cerraron.", "ok");
+      if (estado.alCambiarClave) { estado.alCambiarClave(); estado.alCambiarClave = null; }
+    } catch (err) {
+      erroresClave([err.message || "No se pudo cambiar la contraseña. Probá de nuevo."]);
+    } finally {
+      boton.disabled = false;
+    }
+  }
+
+  /** Los eventos del diálogo se enlazan aparte: tiene que funcionar antes de que se arme el resto del panel. */
+  function prepararDialogoClave() {
+    const dialogo = $("#dialogo-clave");
+    $("#form-clave").addEventListener("submit", guardarClave);
+    $("#btn-clave-cancelar").addEventListener("click", () => dialogo.close());
+    $("#btn-clave-salir").addEventListener("click", async () => {
+      await api.cerrarSesion();
+      location.replace("index.html");
+    });
+    // Con contraseña provisional, Escape no lo cierra.
+    dialogo.addEventListener("cancel", (e) => { if (dialogo.dataset.obligatorio) e.preventDefault(); });
+    $("#btn-cambiar-clave").hidden = api.modoDemo;
+  }
+
   /* ---------- Formulario de integrante (alta y edición) ---------- */
 
   /** Contraseña provisional legible: sin caracteres que se confunden (0/O, 1/l/I). */
@@ -1433,8 +1507,8 @@
     $("#i-clave").placeholder = edicion ? "Dejala vacía para no cambiarla" : "";
     $("#i-clave-etiqueta").innerHTML = edicion ? "Restablecer contraseña (opcional)" : "Contraseña provisional <i>*</i>";
     $("#i-clave-ayuda").textContent = edicion
-      ? (esYo ? "Mínimo 10 caracteres. Tu sesión actual sigue abierta." : "Mínimo 10 caracteres. Al cambiarla se cierran las sesiones abiertas de esta persona.")
-      : "Mínimo 10 caracteres. Compartila con la persona por un canal seguro.";
+      ? (esYo ? "Mínimo 10 caracteres. Tu sesión actual sigue abierta." : "Mínimo 10 caracteres. Al cambiarla se cierran las sesiones abiertas de esta persona y, al ingresar, va a tener que elegir una propia.")
+      : "Mínimo 10 caracteres. Compartila con la persona por un canal seguro: al ingresar, el sistema le va a pedir que la cambie por una propia.";
 
     $("#dialogo-integrante").showModal();
     $("#i-nombre").focus();
@@ -2665,6 +2739,7 @@
         case "cerrar-integrante": cerrarIntegrante(); break;
         case "generar-clave": $("#i-clave").value = generarClave(); $("#i-clave").select(); break;
         case "reiniciar-demo": await reiniciarDemo(); break;
+        case "cambiar-clave": abrirCambioClave(false); break;
         case "cerrar-sesion":
           await api.cerrarSesion();
           location.replace("index.html");
@@ -2774,6 +2849,9 @@
     const usuario = await api.sesion();
     if (!usuario) { location.replace("index.html"); return; }
     estado.usuario = usuario;
+    prepararDialogoClave();
+    // Contraseña provisional: primero hay que elegir una propia (el servidor no atiende nada más hasta entonces).
+    if (usuario.debeCambiarClave) await abrirCambioClave(true);
     estado.vista = vistaDesdeHash();
     await api.iniciarArchivos(); // en la demo: los archivos guardados en el navegador
     construirMenu();

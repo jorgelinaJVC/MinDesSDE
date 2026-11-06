@@ -5,6 +5,7 @@ const ESTADO_HTTP = {
   sin_sesion: 401,
   credenciales: 401,
   prohibido: 403,
+  clave_provisional: 403,
   origen_invalido: 403,
   no_encontrado: 404,
   slug_duplicado: 409,

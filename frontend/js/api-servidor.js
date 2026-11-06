@@ -69,6 +69,11 @@
       await pedir("POST", "/auth/logout");
     },
 
+    /** Cambia la propia contraseña. Devuelve el usuario actualizado (ya sin contraseña provisional). */
+    async cambiarClave({ actual, nueva }) {
+      return (await pedir("POST", "/auth/cambiar-clave", { actual, nueva })).usuario;
+    },
+
     async reiniciarDemo() {
       throw new ErrorNexo("Esta acción solo existe en el modo demostración.", "no_disponible");
     },

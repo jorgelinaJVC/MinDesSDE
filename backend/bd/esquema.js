@@ -84,6 +84,8 @@ const usuarios = {
     // datos de contacto opcionales (directorio del administrador)
     telefono: { bsonType: ["string", "null"], maxLength: 40 },
     area: { bsonType: ["string", "null"], maxLength: 120 },
+    // true cuando el administrador le dio una contraseña provisional: hasta cambiarla no puede usar el panel
+    debeCambiarClave: { bsonType: "bool" },
   },
 };
 

@@ -688,6 +688,10 @@ window.Nexo = window.Nexo || {};
       guardarSesion(null);
     },
 
+    async cambiarClave() {
+      throw new ErrorNexo("En la demostración no hay contraseñas.", "no_disponible");
+    },
+
     async reiniciarDemo() {
       await demora();
       if (archivos()) await archivos().vaciar();
@@ -1200,6 +1204,7 @@ window.Nexo = window.Nexo || {};
     "sesion.inicio": ["Inició sesión", "Acceso"],
     "sesion.fallida": ["Intento de ingreso fallido", "Acceso"],
     "sesion.cierre": ["Cerró sesión", "Acceso"],
+    "sesion.cambio_clave": ["Cambió su contraseña", "Acceso"],
     "borrador.crear": ["Creó borrador de contenido", "Borradores"],
     "borrador.nueva_version": ["Empezó una nueva versión", "Borradores"],
     "borrador.editar": ["Editó un borrador", "Borradores"],

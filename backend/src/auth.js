@@ -63,6 +63,7 @@ function usuarioPublico(doc) {
     email: doc.email,
     rol: doc.rol,
     ultimoAcceso: iso(doc.ultimoAcceso),
+    debeCambiarClave: Boolean(doc.debeCambiarClave),
   };
 }
 
@@ -115,6 +116,45 @@ async function usuarioDesdeToken(token) {
   return usuario ? usuarioPublico(usuario) : null;
 }
 
+/**
+ * La persona cambia su propia contraseña. Pide la actual (así nadie que encuentre la sesión abierta puede
+ * cambiarla), aplica el mismo límite de intentos que el ingreso y, al terminar, cierra todas sus otras
+ * sesiones: quien hubiera entrado con la contraseña anterior (o con la provisional) queda afuera en el acto.
+ */
+async function cambiarClave(usuario, token, actual, nueva, ip) {
+  if (!usuario) throw crear("sin_sesion", "Tu sesión expiró. Volvé a ingresar.");
+  const clave = `${ip}|cambio-clave|${usuario.id}`;
+  verificarLimite(clave);
+  if (typeof actual !== "string" || !actual) throw crear("datos_invalidos", "Ingresá tu contraseña actual.");
+  if (typeof nueva !== "string") throw crear("datos_invalidos", "Ingresá la contraseña nueva.");
+  validarPassword(nueva);
+
+  const usuarios = await coleccion("usuarios");
+  const doc = await usuarios.findOne({ _id: aId(usuario.id), activo: true });
+  if (!doc) throw crear("sin_sesion", "Tu sesión expiró. Volvé a ingresar.");
+
+  const coincide = actual.length <= 200 && await bcrypt.compare(actual, doc.passwordHash);
+  if (!coincide) {
+    registrarFallo(clave);
+    throw crear("datos_invalidos", "La contraseña actual no es correcta.");
+  }
+  fallos.delete(clave);
+  if (await bcrypt.compare(nueva, doc.passwordHash)) {
+    throw crear("datos_invalidos", "La contraseña nueva tiene que ser distinta de la actual.");
+  }
+
+  const actualizado = await usuarios.findOneAndUpdate(
+    { _id: doc._id, activo: true },
+    { $set: { passwordHash: await hashPassword(nueva), debeCambiarClave: false } },
+    { returnDocument: "after" }
+  );
+  if (!actualizado) throw crear("sin_sesion", "Tu sesión expiró. Volvé a ingresar.");
+
+  const sesiones = await coleccion("sesiones");
+  await sesiones.deleteMany({ usuarioId: doc._id, tokenHash: { $ne: hashToken(token || "") } });
+  return usuarioPublico(actualizado);
+}
+
 async function cerrarSesion(token) {
   if (!token) return;
   const sesiones = await coleccion("sesiones");
@@ -154,6 +194,17 @@ function requerirSesion(req, res, next) {
   next();
 }
 
+/* Lo único que puede hacer alguien con contraseña provisional: ver su sesión, cambiarla o salir.
+ * (y lo público, que no necesita sesión). Rutas relativas a /api. */
+const PERMITIDO_CON_PROVISIONAL = new Set(["GET /auth/sesion", "POST /auth/logout", "POST /auth/cambiar-clave", "GET /salud"]);
+
+/** Con contraseña provisional, el servidor corta cualquier otro pedido: no alcanza con ocultar el panel. */
+function exigirClaveDefinitiva(req, res, next) {
+  if (!req.usuario || !req.usuario.debeCambiarClave) return next();
+  if (PERMITIDO_CON_PROVISIONAL.has(`${req.method} ${req.path}`) || req.path.startsWith("/publico/")) return next();
+  throw crear("clave_provisional", "Antes de seguir tenés que cambiar tu contraseña provisional por una propia.");
+}
+
 /** Defensa extra contra CSRF: en pedidos que modifican datos, el Origin debe ser este mismo sitio. */
 function verificarOrigen(req, res, next) {
   if (["GET", "HEAD", "OPTIONS"].includes(req.method)) return next();
@@ -167,6 +218,6 @@ function verificarOrigen(req, res, next) {
 }
 
 module.exports = {
-  validarPassword, hashPassword, iniciarSesion, cerrarSesion, usuarioPublico,
-  cookieSesion, cookieVencida, cargarUsuario, requerirSesion, verificarOrigen, reiniciarLimites,
+  validarPassword, hashPassword, iniciarSesion, cerrarSesion, cambiarClave, usuarioPublico,
+  cookieSesion, cookieVencida, cargarUsuario, requerirSesion, exigirClaveDefinitiva, verificarOrigen, reiniciarLimites,
 };

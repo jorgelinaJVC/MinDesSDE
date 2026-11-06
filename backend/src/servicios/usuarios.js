@@ -116,7 +116,7 @@ async function cambiarRol(actor, usuarioId, rol) {
 /* ---------- Alta ---------- */
 
 /** Alta de una persona sin controlar permisos (la usan los scripts de backend/scripts y las pruebas). */
-async function crearUsuario({ nombre, email, password, rol = "observador", ...extra }) {
+async function crearUsuario({ nombre, email, password, rol = "observador", debeCambiarClave = false, ...extra }) {
   const identidad = validarIdentidad({ nombre, email });
   const contacto = validarContacto(extra);
   validarRol(rol);
@@ -131,6 +131,7 @@ async function crearUsuario({ nombre, email, password, rol = "observador", ...ex
     creadoEn: new Date(),
     telefono: contacto.telefono ?? null,
     area: contacto.area ?? null,
+    debeCambiarClave: Boolean(debeCambiarClave),
   };
   const usuarios = await coleccion("usuarios");
   try {
@@ -143,7 +144,8 @@ async function crearUsuario({ nombre, email, password, rol = "observador", ...ex
 }
 
 /**
- * Alta desde el panel (solo administrador).
+ * Alta desde el panel (solo administrador). La contraseña que pone el administrador es provisional:
+ * la persona tiene que cambiarla por una propia en su primer ingreso.
  * Si el correo pertenece a alguien dado de baja, se lo reactiva con los datos nuevos: conserva su id,
  * así los contenidos que cargó antes vuelven a mostrar su nombre en vez de "Usuario dado de baja".
  */
@@ -161,18 +163,19 @@ async function agregarIntegrante(actor, entrada = {}) {
   if (existente) {
     const reactivado = await usuarios.findOneAndUpdate(
       { _id: existente._id, activo: false },
-      { $set: { ...identidad, ...contacto, rol, activo: true, passwordHash: await hashPassword(entrada.password) } },
+      { $set: { ...identidad, ...contacto, rol, activo: true, passwordHash: await hashPassword(entrada.password), debeCambiarClave: true } },
       { returnDocument: "after" }
     );
     if (!reactivado) throw correoDuplicado(); // alguien lo reactivó mientras tanto
     return { ...conContacto(reactivado), reactivado: true };
   }
-  return crearUsuario({ ...identidad, ...contacto, rol, password: entrada.password });
+  return crearUsuario({ ...identidad, ...contacto, rol, password: entrada.password, debeCambiarClave: true });
 }
 
 /* ---------- Edición ---------- */
 
-/** Actualiza nombre y correo; si viene "password" con texto, también la restablece. */
+/** Actualiza nombre y correo; si viene "password" con texto, también la restablece (queda provisional para
+ * la otra persona: la tiene que cambiar al ingresar. Si el administrador cambia la suya, queda definitiva). */
 async function editarIntegrante(actor, usuarioId, entrada = {}) {
   exigir(actor, "roles");
   const identidad = validarIdentidad(entrada);
@@ -183,7 +186,10 @@ async function editarIntegrante(actor, usuarioId, entrada = {}) {
   const objetivo = await buscarActivo(usuarios, usuarioId);
 
   const cambios = { ...identidad, ...validarContacto(entrada) };
-  if (nuevaClave !== null) cambios.passwordHash = await hashPassword(nuevaClave);
+  if (nuevaClave !== null) {
+    cambios.passwordHash = await hashPassword(nuevaClave);
+    cambios.debeCambiarClave = String(objetivo._id) !== actor.id;
+  }
 
   let actualizado;
   try {
