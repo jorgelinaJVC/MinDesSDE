@@ -62,7 +62,9 @@
   display: block;
   font-size: 9px;
   font-weight: 600;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.08em; /* el subtítulo es largo: menos espacio entre letras para que entre en pocas líneas */
+  line-height: 1.35;
+  margin-top: 3px;
   text-transform: uppercase;
   color: var(--texto-tenue);
 }
