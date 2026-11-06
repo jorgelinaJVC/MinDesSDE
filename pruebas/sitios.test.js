@@ -314,7 +314,7 @@ describe("API pública por sitio", () => {
     const r = await publico.get("/api/publico/sitios");
     assert.equal(r.estado, 200);
     assert.deepEqual(r.datos.sitios.map((s) => s.id), SITIOS);
-    assert.equal(r.datos.sitios[2].nombre, "Centro de Día");
+    assert.equal(r.datos.sitios[2].nombre, "Centro de Día Virgen del Valle");
     assert.equal(r.datos.sitios[2].activo, true);
     assert.deepEqual(r.datos.tipos.map((t) => t.id), ["noticia", "proyecto", "galeria"]);
   });

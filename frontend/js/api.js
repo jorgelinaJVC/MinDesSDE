@@ -63,7 +63,7 @@ window.Nexo = window.Nexo || {};
   const SITIOS = [
     { id: "adultos-mayores", nombre: "Portal Dirección General de Adultos Mayores", corto: "Adultos Mayores", activo: true },
     { id: "mama-antula", nombre: "Residencia de Larga Estadía Mama Antula", corto: "Mama Antula", activo: true },
-    { id: "centro-de-dia", nombre: "Centro de Día", corto: "Centro de Día", activo: true },
+    { id: "centro-de-dia", nombre: "Centro de Día Virgen del Valle", corto: "Centro de Día", activo: true },
   ];
 
   const TIPOS = [

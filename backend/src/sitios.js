@@ -11,7 +11,7 @@
 const SITIOS = [
   { id: "adultos-mayores", nombre: "Portal Dirección General de Adultos Mayores", corto: "Adultos Mayores", activo: true },
   { id: "mama-antula", nombre: "Residencia de Larga Estadía Mama Antula", corto: "Mama Antula", activo: true },
-  { id: "centro-de-dia", nombre: "Centro de Día", corto: "Centro de Día", activo: true },
+  { id: "centro-de-dia", nombre: "Centro de Día Virgen del Valle", corto: "Centro de Día", activo: true },
 ];
 
 /* Ids anteriores que cambiaron de nombre: "npm run bd:iniciar" los reemplaza en los contenidos guardados. */
