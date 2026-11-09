@@ -1046,7 +1046,7 @@ async function enviarCarruselAprobacion(id) {
     }
 
     const confirmar = confirm(
-        '¿Querés enviar este slide a Sosa para su aprobación?'
+        '¿Querés enviar este slide al SuperAdministrador para su aprobación?'
     );
 
     if (!confirmar) {
@@ -2036,7 +2036,7 @@ async function enviarVideoAprobacion(id) {
     }
 
     const confirmar = confirm(
-        `¿Querés enviar este video a Sosa para su aprobación?\n\n${video.titulo}`
+        `¿Querés enviar este video al SuperAdministrador para su aprobación?\n\n${video.titulo}`
     );
 
     if (!confirmar) {
@@ -3777,7 +3777,7 @@ async function abrirEditarUsuario(id) {
 
 
     /*
-       Sosa no se modifica desde
+       SuperAdministrador no se modifica desde
        este formulario.
     */
 
@@ -5647,7 +5647,7 @@ async function rechazarCarrusel(id) {
 
 
     /*
-       Pedir el motivo a Sosa.
+       Pedir el motivo a SuperAdministrador.
     */
 
     const motivo = prompt(
