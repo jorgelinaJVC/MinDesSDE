@@ -2609,7 +2609,7 @@ try {
         /*
        SEGURIDAD
 
-       Solamente Sosa / SuperAdministrador
+       Solamente SuperAdministrador
        puede aprobar publicaciones.
     */
 
@@ -2716,7 +2716,7 @@ try {
     if ($action === 'approve-video') {
 
         /*
-       Solamente Sosa / SuperAdministrador
+       Solamente SuperAdministrador
        puede aprobar videos.
     */
 
@@ -2876,7 +2876,7 @@ try {
         /*
        SEGURIDAD
 
-       Solamente Sosa / SuperAdministrador
+       Solamente SuperAdministrador
        puede rechazar publicaciones.
     */
 
@@ -3004,7 +3004,7 @@ try {
     if ($action === 'reject-video') {
 
         /*
-       Solamente Sosa / SuperAdministrador
+       Solamente SuperAdministrador
        puede rechazar videos.
     */
 
@@ -3324,7 +3324,7 @@ try {
    CARRUSEL RECHAZADO
 
    Si un administrador de área está corrigiendo
-   un slide rechazado por Sosa, la edición NO
+   un slide rechazado por SuperAdministrador, la edición NO
    cambia su estado.
 
    Debe continuar como Rechazada y conservar
@@ -3762,7 +3762,7 @@ try {
 
         /*
        Un Admin de área no debería retirar
-       una noticia que está esperando a Sosa.
+       una noticia que está esperando a SuperAdministrador.
     */
 
         if (
