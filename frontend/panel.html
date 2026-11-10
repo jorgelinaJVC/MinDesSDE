@@ -28,6 +28,13 @@
         </span>
       </a>
 
+      <!-- Solo en celulares y tablets: abre y cierra el menú (en pantallas grandes el menú siempre está a la vista) -->
+      <button type="button" class="lateral__boton" id="btn-menu" aria-expanded="false" aria-controls="lateral-desplegable" aria-label="Abrir menú">
+        <svg class="icono icono--abrir" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg class="icono icono--cerrar" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="lateral__desplegable" id="lateral-desplegable">
       <p class="lateral__titulo">Espacio de trabajo</p>
       <nav class="menu" id="menu" aria-label="Navegación principal"></nav>
 
@@ -51,6 +58,7 @@
             <svg class="icono" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
           </button>
         </div>
+      </div>
       </div>
     </aside>
 

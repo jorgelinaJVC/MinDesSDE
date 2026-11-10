@@ -69,6 +69,31 @@
   color: var(--texto-tenue);
 }
 
+/* En escritorio el desplegable es solo un contenedor: ocupa el alto para que el usuario quede abajo */
+.lateral__desplegable {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.lateral__boton {
+  display: none;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  background: var(--superficie);
+  color: var(--verde-oscuro);
+  cursor: pointer;
+}
+
+.lateral__boton:hover { background: var(--superficie-suave); }
+.lateral__boton .icono--cerrar { display: none; }
+.lateral.abierto .lateral__boton .icono--abrir { display: none; }
+.lateral.abierto .lateral__boton .icono--cerrar { display: block; }
+
 .lateral__titulo {
   margin: 6px 10px 8px;
   font-size: 9px;
@@ -2776,17 +2801,48 @@ select.campo {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  /* Celulares y tablets: barra superior fija con la marca y el botón ☰; el menú se despliega hacia abajo */
   .lateral {
-    position: static;
+    position: sticky;
+    top: 0;
+    z-index: 40;
     height: auto;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
     border-right: 0;
     border-bottom: 1px solid var(--borde);
+    overflow: visible;
   }
 
-  .menu {
-    grid-auto-flow: column;
-    grid-auto-columns: max-content;
-    overflow-x: auto;
+  .marca {
+    flex: 1;
+    min-width: 0;
+    padding: 0;
+  }
+
+  .lateral__boton {
+    display: grid;
+  }
+
+  .lateral__desplegable {
+    display: none;
+    flex-basis: 100%;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding: 8px 0 6px;
+    border-top: 1px solid var(--borde);
+  }
+
+  .lateral.abierto .lateral__desplegable {
+    display: flex;
+  }
+
+  .menu__enlace {
+    padding: 12px;
+    font-size: 15px;
   }
 
   .usuario {

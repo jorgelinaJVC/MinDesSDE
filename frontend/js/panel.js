@@ -1384,6 +1384,28 @@
       </section>`;
   }
 
+  /* ---------- Menú en celulares y tablets ---------- */
+
+  /** En pantallas de hasta 900px el menú lateral se abre y se cierra con el botón ☰. */
+  function prepararMenuMovil() {
+    const lateral = $(".lateral");
+    const boton = $("#btn-menu");
+    const pantallaChica = window.matchMedia("(max-width: 900px)");
+
+    function abrir(si) {
+      lateral.classList.toggle("abierto", si);
+      boton.setAttribute("aria-expanded", String(si));
+      boton.setAttribute("aria-label", si ? "Cerrar menú" : "Abrir menú");
+    }
+
+    boton.addEventListener("click", () => abrir(!lateral.classList.contains("abierto")));
+    // al elegir una opción, se cierra para que se vea la pantalla elegida
+    $("#menu").addEventListener("click", (e) => { if (e.target.closest(".menu__enlace")) abrir(false); });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && lateral.classList.contains("abierto")) abrir(false); });
+    document.addEventListener("click", (e) => { if (lateral.classList.contains("abierto") && !lateral.contains(e.target)) abrir(false); });
+    pantallaChica.addEventListener("change", () => abrir(false));
+  }
+
   /* ---------- Cambiar mi contraseña ---------- */
 
   /**
@@ -2850,6 +2872,7 @@
     if (!usuario) { location.replace("index.html"); return; }
     estado.usuario = usuario;
     prepararDialogoClave();
+    prepararMenuMovil();
     // Contraseña provisional: primero hay que elegir una propia (el servidor no atiende nada más hasta entonces).
     if (usuario.debeCambiarClave) await abrirCambioClave(true);
     estado.vista = vistaDesdeHash();
