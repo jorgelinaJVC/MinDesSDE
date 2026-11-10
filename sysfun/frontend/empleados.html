@@ -4,32 +4,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Empleados - Servicios Funebres</title>
+    <link rel="icon" type="image/x-icon" href="../../img/sf_favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../../img/sf_favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/sf_favicon-32x32.png" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
     <!-- MENÚ SUPERIOR -->
     <nav class="top-nav">
-        <div class="logo">
-            <i class="fas fa-cross"></i>
-            <span>Sistema Funebre</span>
-        </div>
-        <button class="hamburger" id="hamburgerBtn"><i class="fas fa-bars"></i></button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="panel_datos.html"><i class="fas fa-home"></i> Panel de Datos</a></li>
-            <li><a href="solicitudes.html"><i class="fas fa-file-alt"></i> Solicitudes</a></li>
-            <li><a href="empleados.html" class="active"><i class="fas fa-users"></i> Empleados</a></li>
-            <li><a href="ataudes.html"><i class="fas fa-box"></i> Ataúdes</a></li>
-            <li><a href="vehiculos.html"><i class="fas fa-truck"></i> Vehículos</a></li>
-            <li><a href="proveedores.html"><i class="fas fa-building"></i> Proveedores</a></li>
-            <li><a href="reportes.html"><i class="fas fa-chart-bar"></i> Reportes</a></li>
-        </ul>
-        <div class="user-menu">
+    <div class="logo">
+        <i class="fas fa-cross"></i>
+        <span>Sistema Funebre</span>
+    </div>
+    
+    <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+        <i class="fas fa-bars"></i>
+    </button>
+    
+    <ul class="nav-links" id="navLinks">
+        <li><a href="panel_datos.html"><i class="fas fa-home"></i> <span class="nav-text">Panel de Datos</span></a></li>
+        <li><a href="solicitudes.html"><i class="fas fa-file-alt"></i> <span class="nav-text">Solicitudes</span></a></li>
+        <li><a href="empleados.html"><i class="fas fa-users"></i> <span class="nav-text">Empleados</span></a></li>
+        <li><a href="ataudes.html"><i class="fas fa-box"></i> <span class="nav-text">Ataúdes</span></a></li>
+        <li><a href="vehiculos.html"><i class="fas fa-truck"></i> <span class="nav-text">Vehículos</span></a></li>
+        <li><a href="proveedores.html"><i class="fas fa-building"></i> <span class="nav-text">Proveedores</span></a></li>
+        <li><a href="reportes.html"><i class="fas fa-chart-bar"></i> <span class="nav-text">Reportes</span></a></li>
+        <li><a href="configuracion_sitio.html"><i class="fas fa-cog"></i> <span class="nav-text">Configuración</span></a></li>
+    </ul>
+    
+    <div class="user-menu">
+        <a href="perfil.html" id="userProfileLink" title="Mi Perfil" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 6px; transition: background 0.3s;">
+            <i class="fas fa-user-circle" style="font-size: 18px;"></i>
             <span id="userName">Usuario</span>
-            <button class="btn-logout" id="btnLogout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button>
-        </div>
-    </nav>
-
+        </a>
+        <button class="btn-logout" id="btnLogout" title="Cerrar Sesión">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Cerrar Sesión</span>
+        </button>
+    </div>
+</nav>
     <!-- CONTENIDO PRINCIPAL -->
     <main class="main-content">
         <header class="page-header">
@@ -48,6 +62,7 @@
         <div id="formContainer" class="form-container hidden">
             <h2 id="formTitle">Nuevo Empleado</h2>
             <form id="empleadoForm">
+                <input type="hidden" name="csrf_token" id="csrf_token" value="">
                 <input type="hidden" id="editId" value="">
                 <div class="form-row">
                     <div class="form-group">
@@ -127,16 +142,5 @@
     </main>
 
     <script src="js/app.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const hamburger = document.getElementById('hamburgerBtn');
-            const navLinks = document.getElementById('navLinks');
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', function() {
-                    navLinks.classList.toggle('open');
-                });
-            }
-        });
-    </script>
 </body>
 </html>

@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer-when-downgrade">
     <title>Login - Servicios Funebres</title>
+    <link rel="icon" type="image/x-icon" href="../../img/sf_favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../../img/sf_favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../../img/sf_favicon-32x32.png" />
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -17,6 +20,7 @@
                 <p>Sistema de Gestión</p>
             </div>
             <form id="loginForm" autocomplete="off">
+                <input type="hidden" name="csrf_token" id="csrf_token" value="">
                 <div class="form-group">
                     <label for="username"><i class="fas fa-user"></i> Usuario</label>
                     <input type="text" id="username" placeholder="Ingrese su usuario" required>

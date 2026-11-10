@@ -3,6 +3,33 @@
  * Clase para manejar la conexión a la base de datos
  * usando el patrón Singleton
  */
+// Función para parsear .env 
+function cargarVariablesEntorno($file) {
+    $vars = [];
+    if (file_exists($file)) {
+        $lines = file($file, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        foreach ($lines as $line) {
+            if (strpos(trim($line), '#') === 0) continue;
+            $parts = explode('=', $line, 2);
+            if (count($parts) === 2) {
+                $vars[trim($parts[0])] = trim($parts[1]);
+            }
+        }
+    }
+    return $vars;
+}
+
+// Cargar variables de entorno
+$envFile = __DIR__ . '/../../.env';
+if (file_exists($envFile)) {
+    $envVars = cargarVariablesEntorno($envFile);
+    foreach ($envVars as $key => $value) {
+        if (!defined($key)) {
+            define($key, $value);
+        }
+    }
+}
+
 class Database {
     /**
      * @var Database|null Instancia única de la clase
