@@ -1,0 +1,16 @@
+# Datos secretos: contraseñas y conexiones a la base de datos. NUNCA subir.
+.env
+.env.*
+!.env.example
+
+# Archivos que suben los usuarios del panel (incluye adjuntos NO aprobados todavía).
+# Solo deben verse a través del servidor, que controla quién puede abrir cada uno.
+almacen/
+
+# Dependencias (se instalan con "npm install")
+node_modules/
+
+# Archivos del sistema y registros
+*.log
+.DS_Store
+Thumbs.db
