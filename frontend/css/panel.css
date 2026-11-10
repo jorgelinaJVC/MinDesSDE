@@ -49,6 +49,13 @@
   color: var(--lima);
 }
 
+/* Logo de la Dirección General de Adultos Mayores al lado del nombre del portal */
+.marca__logo {
+  width: 46px;
+  height: 46px;
+  flex: none;
+}
+
 .marca__nombre {
   display: block;
   font-family: var(--fuente-titulo);

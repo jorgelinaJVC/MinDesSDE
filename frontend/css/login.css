@@ -17,20 +17,12 @@
   text-align: center;
 }
 
-.icono-marca {
-  width: 48px;
-  height: 48px;
-  margin: 0 auto 26px;
-  display: grid;
-  place-items: center;
-  background: var(--verde-oscuro);
-  color: var(--lima);
-  border-radius: 14px;
-}
-
-.icono-marca .icono {
-  width: 24px;
-  height: 24px;
+/* Logo de la Dirección General de Adultos Mayores arriba del título */
+.logo-login {
+  display: block;
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 20px;
 }
 
 .etiqueta--login {
