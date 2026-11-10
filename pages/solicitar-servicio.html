@@ -13,10 +13,11 @@
     
     <!-- FAVICONS -->
     <link rel="icon" type="image/x-icon" href="../img/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="../img/apple-touch-icon.png" />
     
-    <!-- CSS ÚNICO -->
+    <!-- CSS EXTERNO (Unificado) -->
     <link rel="stylesheet" href="../css/funebres.css" />
     
     <!-- GOOGLE FONTS & ICONS -->
@@ -24,6 +25,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <!-- 1. Content Security Policy (Actualizada para permitir fuentes, estilos en línea y conexiones locales) -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self' http://localhost:* http://127.0.0.1:* ws://localhost:* ws://127.0.0.1:*;">
+
+    <!-- 2. Prevenir que el navegador adivine el tipo MIME de un archivo (Anti-Sniffing) -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+
+    <!-- 3. Controlar la información de referencia (Referrer) -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
 </head>
 <body>
 
@@ -111,6 +120,35 @@
             </div>
             
             <form id="solicitudForm" class="form-body" action="../sysfun/backend/api/solicitudes.php" method="POST" enctype="multipart/form-data">
+
+                <!-- PASO 0: ¿Quién completa este formulario? -->
+                <div class="form-section" style="background: #f0f9ff; padding: 24px; border-radius: var(--radius); border-left: 4px solid var(--color-accent-2); margin-bottom: 30px;">
+                    <h2><i class="fas fa-user-tag"></i> ¿Quién está completando este formulario?</h2>
+                    <p style="margin-bottom: 20px; color: var(--color-muted);">
+                        Esta información nos ayuda a brindar un mejor servicio. Si usted es un funcionario completando el formulario en nombre de la familia, seleccione su institución.
+                    </p>
+                    
+                    <div class="form-group">
+                        <label>Institución o Tipo de Solicitante *</label>
+                        <select id="fuenteSolicitudId" name="fuenteSolicitudId" class="realtime-validate" required>
+                            <option value="">Cargando instituciones...</option>
+                        </select>
+                    </div>
+
+                    <!-- Campos extra solo si es institución -->
+                    <div id="camposInstitucion" style="display: none; margin-top: 20px; padding-top: 20px; border-top: 1px dashed #ccc;">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Nombre del funcionario que completa *</label>
+                                <input type="text" id="nombreFuncionario" name="nombreFuncionario" placeholder="Su nombre y apellido">
+                            </div>
+                            <div class="form-group">
+                                <label>Cargo / Sector</label>
+                                <input type="text" id="cargoFuncionario" name="cargoFuncionario" placeholder="Ej: Trabajador social, Enfermero/a">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 
                 <!-- PASO 1: Datos del Fallecido -->
                 <div class="form-step" id="step1">
@@ -124,6 +162,7 @@
                                     <option value="DNI">DNI</option>
                                     <option value="RNF">RNF (Recién nacido)</option>
                                     <option value="SD">S/D (Sin documento)</option>
+                                    <option value="PASAPORTE">Pasaporte</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -133,12 +172,22 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Nombre Completo *</label>
-                                <input type="text" id="nombreFallecido" name="nombreFallecido" placeholder="Nombre y Apellido" class="realtime-validate" required>
+                                <label>Nombre *</label>
+                                <input type="text" id="nombreFallecido" name="nombreFallecido" placeholder="Nombre" class="realtime-validate" required>
                             </div>
+                            <div class="form-group">
+                                <label>Apellido *</label>
+                                <input type="text" id="apellidoFallecido" name="apellidoFallecido" placeholder="Apellido" class="realtime-validate" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
                                 <label>Fecha de Fallecimiento *</label>
                                 <input type="date" id="fechaFallecimiento" name="fechaFallecimiento" class="realtime-validate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Edad (Opcional)</label>
+                                <input type="number" id="edadFallecido" name="edadFallecido" placeholder="Ej: 75" min="0">
                             </div>
                         </div>
                         <div class="form-row">
@@ -151,33 +200,56 @@
                                 <input type="text" id="localidadFallecido" name="localidadFallecido" placeholder="Ej: Termas de Río Hondo" class="realtime-validate" required>
                             </div>
                         </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Barrio</label>
+                                <input type="text" id="barrioFallecido" name="barrioFallecido" placeholder="Ej: Centro">
+                            </div>
+                            <div class="form-group">
+                                <label>Domicilio</label>
+                                <input type="text" id="domicilioFallecido" name="domicilioFallecido" placeholder="Calle y número">
+                            </div>
+                        </div>
                         
-                        <!-- Campos condicionales -->
+                        <!-- Campos condicionales RNF -->
                         <div id="rnfFields" class="conditional-field">
                             <h3><i class="fas fa-baby"></i> Datos del Progenitor</h3>
                             <div class="form-row">
                                 <div class="form-group">
+                                    <label>Tipo Doc. Progenitor</label>
+                                    <select id="tipoDocProgenitor" name="tipoDocProgenitor">
+                                        <option value="DNI">DNI</option>
+                                        <option value="PASAPORTE">Pasaporte</option>
+                                        <option value="OTRO">Otro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label>Nº Documento Progenitor</label>
                                     <input type="text" id="nroDocProgenitor" name="nroDocProgenitor" placeholder="DNI del progenitor">
                                 </div>
-                                <div class="form-group">
-                                    <label>Nombre del Progenitor</label>
-                                    <input type="text" id="nombreProgenitor" name="nombreProgenitor" placeholder="Nombre completo">
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Nombre del Progenitor</label>
+                                <input type="text" id="nombreProgenitor" name="nombreProgenitor" placeholder="Nombre completo">
                             </div>
                         </div>
                         
+                        <!-- Campos condicionales Traslado -->
                         <div id="trasladoFields" class="conditional-field">
                             <h3><i class="fas fa-truck"></i> Datos de Traslado</h3>
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label>Lugar donde se encuentra</label>
+                                    <label>Lugar donde se encuentra (Origen)</label>
                                     <input type="text" id="lugarOrigen" name="lugarOrigen" placeholder="Dirección actual">
                                 </div>
                                 <div class="form-group">
                                     <label>Lugar de destino</label>
                                     <input type="text" id="lugarDestino" name="lugarDestino" placeholder="Dirección de destino">
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Distancia aproximada (km)</label>
+                                <input type="number" id="distanciaKm" name="distanciaKm" placeholder="Ej: 150">
                             </div>
                         </div>
                         
@@ -188,12 +260,15 @@
                                     <option value="">Seleccionar...</option>
                                     <option value="ATAUD">Provisión de Ataúd</option>
                                     <option value="TRASLADO">Traslado</option>
-                                    <option value="ATAUD_TRASLADO">Ataúd y Traslado</option>
+                                    <option value="ATAUD_Y_TRASLADO">Ataúd y Traslado</option>
+                                    <option value="CREMACION">Cremación</option>
+                                    <option value="REPATRIACION">Repatriación</option>
+                                    <option value="SERVICIO_CALLE">Servicio en Calle</option>
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label>Observaciones (Opcional)</label>
-                                <textarea id="observaciones" name="observaciones" rows="3" placeholder="Algún detalle adicional que debamos saber..."></textarea>
+                                <label>Observaciones del Pedido *</label>
+                                <textarea id="observaciones" name="observaciones" rows="3" placeholder="Detalles adicionales..." class="realtime-validate" required></textarea>
                             </div>
                         </div>
                         
@@ -206,7 +281,7 @@
                 <!-- PASO 2: Datos del Solicitante -->
                 <div class="form-step" id="step2" style="display: none;">
                     <div class="form-section">
-                        <h2><i class="fas fa-user-shield"></i> Sus Datos (Solicitante)</h2>
+                        <h2><i class="fas fa-user-shield"></i> Sus Datos (Solicitante / Responsable)</h2>
                         <div class="form-row">
                             <div class="form-group">
                                 <label>Tipo de Documento *</label>
@@ -215,6 +290,7 @@
                                     <option value="DNI">DNI</option>
                                     <option value="LC">Libreta Cívica</option>
                                     <option value="LE">Libreta de Enrolamiento</option>
+                                    <option value="PASAPORTE">Pasaporte</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -224,31 +300,59 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group">
-                                <label>Nombre Completo *</label>
-                                <input type="text" id="nombreResponsable" name="nombreResponsable" placeholder="Su nombre y apellido" class="realtime-validate" required>
+                                <label>Nombre *</label>
+                                <input type="text" id="nombreResponsable" name="nombreResponsable" placeholder="Su nombre" class="realtime-validate" required>
                             </div>
                             <div class="form-group">
-                                <label>Parentesco con el fallecido *</label>
-                                <input type="text" id="parentesco" name="parentesco" placeholder="Ej: Hijo, Cónyuge, Hermano" class="realtime-validate" required>
+                                <label>Apellido *</label>
+                                <input type="text" id="apellidoResponsable" name="apellidoResponsable" placeholder="Su apellido" class="realtime-validate" required>
                             </div>
                         </div>
                         <div class="form-row">
+                            <div class="form-group">
+                                <label>Parentesco con el fallecido *</label>
+                                <select id="parentesco" name="parentesco" class="realtime-validate" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="hijo/a">Hijo/a</option>
+                                    <option value="conyugue">Cónyuge</option>
+                                    <option value="padre/madre">Padre/Madre</option>
+                                    <option value="hermano/a">Hermano/a</option>
+                                    <option value="otro">Otro</option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label>Teléfono de Contacto *</label>
                                 <input type="tel" id="telefonoResponsable" name="telefonoResponsable" placeholder="Ej: 385-1234567" class="realtime-validate" required>
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
                                 <label>Teléfono de Respaldo (Opcional)</label>
                                 <input type="tel" id="telefonoSecundario" name="telefonoSecundario" placeholder="Otro número de contacto">
                             </div>
-                        </div>
-                        <div class="form-row">
                             <div class="form-group">
                                 <label>Correo Electrónico (Opcional)</label>
                                 <input type="email" id="emailResponsable" name="emailResponsable" placeholder="correo@ejemplo.com" class="realtime-validate">
                             </div>
+                        </div>
+                        <div class="form-row">
                             <div class="form-group">
-                                <!-- Espacio vacío para mantener grid -->
+                                <label>Departamento *</label>
+                                <input type="text" id="deptoResponsable" name="deptoResponsable" placeholder="Ej: Capital" class="realtime-validate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Localidad *</label>
+                                <input type="text" id="localidadResponsable" name="localidadResponsable" placeholder="Ej: Termas de Río Hondo" class="realtime-validate" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Barrio</label>
+                                <input type="text" id="barrioResponsable" name="barrioResponsable" placeholder="Ej: Centro">
+                            </div>
+                            <div class="form-group">
+                                <label>Domicilio</label>
+                                <input type="text" id="domicilioResponsable" name="domicilioResponsable" placeholder="Calle y número">
                             </div>
                         </div>
                     </div>
@@ -258,14 +362,14 @@
                 <div class="form-step" id="step3" style="display: none;">
                     <div class="form-section">
                         <h2><i class="fas fa-paperclip"></i> Adjuntar Documentación</h2>
-                        <p style="margin-bottom: 24px; color: var(--color-muted);">Puede tomar fotos de los documentos con su celular y subirlas aquí. Formatos: PDF, JPG, PNG.</p>
+                        <p style="margin-bottom: 24px; color: var(--color-muted);">Puede tomar fotos de los documentos con su celular y subirlas aquí. Formatos: PDF, JPG, PNG (Máx. 5MB por archivo).</p>
                         
                         <div class="document-upload" id="documentUpload">
                             <div class="upload-item">
                                 <div class="upload-icon"><i class="fas fa-cloud-upload-alt"></i></div>
                                 <div class="upload-info">
                                     <h4>Archivos adjuntos</h4>
-                                    <p>Máximo 10 archivos (5MB c/u)</p>
+                                    <p>Máximo 10 archivos</p>
                                     <div id="fileList" style="margin-top: 8px;">
                                         <span style="color: var(--color-muted); font-size: 0.85rem;">No hay archivos seleccionados aún</span>
                                     </div>
@@ -311,8 +415,7 @@
                         <!-- Política de Privacidad -->
                         <div class="privacy-policy-box">
                             <label class="checkbox-container">
-                                <input type="checkbox" id="aceptaPrivacidad" required>
-                                <span class="checkmark"></span>
+                                <input type="checkbox" id="aceptaPrivacidad" name="aceptaPrivacidad" required>
                                 <span class="checkbox-text">
                                     Declaro que los datos proporcionados son verdaderos y autorizo al Ministerio de Desarrollo Social a tratarlos conforme a la <strong>Ley de Protección de Datos Personales N° 25.326</strong> exclusivamente para la gestión de este trámite. *
                                 </span>
@@ -335,6 +438,12 @@
                     <a href="Inicio_funerarios.html" class="btn-secondary-form">
                         <i class="fas fa-times"></i> Cancelar
                     </a>
+                </div>
+
+                <!-- Campo Honeypot - Debe estar oculto visualmente -->
+                <div style="position: absolute; left: -9999px; opacity: 0;" aria-hidden="true">
+                    <label for="website">No llenar este campo</label>
+                    <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
                 </div>
             </form>
         </div>
@@ -396,7 +505,7 @@
     </button>
 
     <!-- Botón flotante WhatsApp -->
-    <a href="https://wa.me/543854892389" target="_blank" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <a href="https://wa.me/543854892389" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Contactar por WhatsApp">
         <i class="fab fa-whatsapp"></i>
     </a>
 
@@ -405,12 +514,13 @@
         <button id="btnContraste" class="accesibilidad-btn" title="Alternar alto contraste" aria-label="Alternar modo de alto contraste">
             <i class="fas fa-adjust"></i>
         </button>
-        <button id="btnZoom" class="accesibilidad-btn" title="Cambiar tamaño de texto" aria-label="Cambiar tamaño de texto">
-            <i class="fas fa-text-height"></i> <span style="font-size: 0.7rem; margin-left: 4px;">100%</span>
+        <button id="btnZoomToggle" class="accesibilidad-btn" title="Cambiar tamaño de texto" aria-label="Cambiar tamaño de texto">
+            <i class="fas fa-text-height"></i>
         </button>
     </div>
 
-    <!-- JAVASCRIPT EXTERNO -->
+    <!-- JAVASCRIPT EXTERNO (Maneja toda la lógica del formulario, validación y pasos) -->
     <script src="../js/funebres.js"></script>
+    <script src="../js/sol_servicio.js"></script>
 </body>
 </html>

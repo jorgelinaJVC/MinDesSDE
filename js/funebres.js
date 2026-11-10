@@ -1,10 +1,29 @@
 /* ============================================================
-   funebres.js — Servicios Fúnebres (Versión 8.0 - Completa)
-   Incluye: Menú, Scroll, Zoom, Formulario 4 pasos, FAQ, 
-   Scroll Reveal, Alto Contraste, Validación en tiempo real.
+   funebres.js — Servicios Fúnebres (Versión 10.1 - Corregida)
+   Incluye: Menú, Scroll, Zoom, Contraste, Formulario 4 pasos, 
+   Validaciones de seguridad (Honeypot, Archivos), FAQ y Fallback local.
    ============================================================ */
 
 'use strict';
+
+// ============================================================
+// UTILIDAD: Mostrar mensaje flotante (Toast)
+// ============================================================
+function mostrarMensajeAccesibilidad(texto) {
+    let msg = document.getElementById('msgAccesibilidad');
+    if (!msg) {
+        msg = document.createElement('div');
+        msg.id = 'msgAccesibilidad';
+        msg.style.cssText = 'position:fixed; bottom:160px; right:24px; background:#1a3a6b; color:white; padding:12px 20px; border-radius:30px; font-size:14px; z-index:100000; font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: opacity 0.3s ease; pointer-events: none; opacity: 0;';
+        document.body.appendChild(msg);
+    }
+    msg.textContent = texto;
+    msg.style.opacity = '1';
+    clearTimeout(msg._timeout);
+    msg._timeout = setTimeout(function() {
+        msg.style.opacity = '0';
+    }, 2500);
+}
 
 // ============================================================
 // 1. BURGER MENU
@@ -116,13 +135,11 @@
             button.addEventListener('click', function() {
                 const expanded = this.getAttribute('aria-expanded') === 'true';
                 
-                // Cerrar todos los demás (comportamiento acordeón)
                 faqButtons.forEach(function(btn) {
                     btn.setAttribute('aria-expanded', 'false');
                     btn.nextElementSibling.classList.remove('active');
                 });
 
-                // Abrir el actual si estaba cerrado
                 if (!expanded) {
                     this.setAttribute('aria-expanded', 'true');
                     this.nextElementSibling.classList.add('active');
@@ -153,88 +170,53 @@
 })();
 
 // ============================================================
-// 7. ACCESIBILIDAD: ZOOM Y ALTO CONTRASTE
+// 7. ACCESIBILIDAD: ZOOM Y CONTRASTE
 // ============================================================
 (function() {
-    const btnZoom = document.getElementById('btnZoom');
+    const btnZoom = document.getElementById('btnZoomToggle');
     const btnContraste = document.getElementById('btnContraste');
     
-    if (!btnZoom || !btnContraste) return; 
-    
-    function mostrarMensaje(texto) {
-        let msg = document.getElementById('zoomMensaje');
-        if (!msg) {
-            msg = document.createElement('div');
-            msg.id = 'zoomMensaje';
-            msg.style.cssText = 'position:fixed; bottom:160px; right:24px; background:#1a3a6b; color:white; padding:10px 20px; border-radius:30px; font-size:14px; z-index:100000; font-family:sans-serif; box-shadow:0 4px 12px rgba(0,0,0,0.3); transition: opacity 0.3s ease; pointer-events: none;';
-            document.body.appendChild(msg);
+    if (btnContraste) {
+        if (localStorage.getItem('altoContraste') === 'true') {
+            document.body.classList.add('alto-contraste');
+            btnContraste.classList.add('activo');
         }
-        msg.textContent = texto;
-        msg.style.display = 'block';
-        msg.style.opacity = '1';
-        clearTimeout(msg._timeout);
-        msg._timeout = setTimeout(function() {
-            msg.style.opacity = '0';
-            setTimeout(() => { msg.style.display = 'none'; }, 300);
-        }, 2000);
+        
+        btnContraste.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.toggle('alto-contraste');
+            this.classList.toggle('activo');
+            
+            const isActive = document.body.classList.contains('alto-contraste');
+            localStorage.setItem('altoContraste', isActive);
+            mostrarMensajeAccesibilidad(isActive ? '🌗 Alto contraste activado' : '☀️ Modo normal activado');
+        });
     }
-    
-    // Lógica de Zoom Cíclico (100% -> 115% -> 130% -> 100%)
-    function cambiarZoom() {
-        let currentZoom = localStorage.getItem('zoom') || 'normal';
-        let nextZoom = 'normal';
-        let mensaje = '';
 
-        if (currentZoom === 'normal') {
-            nextZoom = 'grande';
-            mensaje = '🔍 Texto grande (115%)';
-        } else if (currentZoom === 'grande') {
-            nextZoom = 'muy-grande';
-            mensaje = '🔍🔍 Texto muy grande (130%)';
+    if (btnZoom) {
+        const niveles = ['zoom-normal', 'zoom-grande', 'zoom-muy-grande'];
+        const mensajes = ['📏 Texto normal (100%)', '🔍 Texto grande (120%)', '🔍🔍 Texto muy grande (140%)'];
+        
+        let nivelActual = parseInt(localStorage.getItem('nivelZoom') || '0');
+        if (nivelActual > 0) {
+            document.body.classList.add(niveles[nivelActual]);
         } else {
-            nextZoom = 'normal';
-            mensaje = '📏 Texto normal (100%)';
+            document.body.classList.add('zoom-normal');
         }
 
-        document.documentElement.classList.remove('zoom-normal', 'zoom-grande', 'zoom-muy-grande');
-        if (nextZoom !== 'normal') {
-            document.documentElement.classList.add('zoom-' + nextZoom);
-        }
-        localStorage.setItem('zoom', nextZoom);
-        
-        // Actualizar el texto del botón
-        const textos = { 'normal': '100%', 'grande': '115%', 'muy-grande': '130%' };
-        const span = btnZoom.querySelector('span');
-        if (span) span.textContent = textos[nextZoom];
-        
-        mostrarMensaje(mensaje);
+        btnZoom.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.body.classList.remove(niveles[nivelActual]);
+            nivelActual = (nivelActual + 1) % niveles.length;
+            document.body.classList.add(niveles[nivelActual]);
+            localStorage.setItem('nivelZoom', nivelActual);
+            mostrarMensajeAccesibilidad(mensajes[nivelActual]);
+        });
     }
-    
-    btnZoom.addEventListener('click', (e) => { e.preventDefault(); cambiarZoom(); });
-    
-    // Restaurar estado de Zoom al cargar
-    const zoomGuardado = localStorage.getItem('zoom') || 'normal';
-    if (zoomGuardado !== 'normal') {
-        document.documentElement.classList.add('zoom-' + zoomGuardado);
-        const span = btnZoom.querySelector('span');
-        if (span) span.textContent = zoomGuardado === 'grande' ? '115%' : '130%';
-    }
-
-    // Lógica de Alto Contraste
-    if (localStorage.getItem('highContrast') === 'true') {
-        document.body.classList.add('high-contrast');
-    }
-    
-    btnContraste.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.body.classList.toggle('high-contrast');
-        const isActive = document.body.classList.contains('high-contrast');
-        localStorage.setItem('highContrast', isActive);
-        mostrarMensaje(isActive ? '🌗 Alto contraste activado' : '☀️ Modo normal activado');
-    });
 })();
+
 // ============================================================
-// 8. LÓGICA DEL FORMULARIO MULTIPASO (4 PASOS)
+// 8. LÓGICA DEL FORMULARIO MULTIPASO CON VALIDACIONES
 // ============================================================
 (function() {
     const form = document.getElementById('solicitudForm');
@@ -260,48 +242,119 @@
     
     function updateConditionalFields() {
         if (tipoDocFallecido && tipoDocFallecido.value === 'RNF') {
-            rnfFields.classList.add('visible');
+            if(rnfFields) rnfFields.classList.add('visible');
         } else {
-            rnfFields.classList.remove('visible');
+            if(rnfFields) rnfFields.classList.remove('visible');
         }
         
-        if (tipoServicio && (tipoServicio.value === 'TRASLADO' || tipoServicio.value === 'ATAUD_TRASLADO')) {
-            trasladoFields.classList.add('visible');
+        if (tipoServicio && (tipoServicio.value === 'TRASLADO' || tipoServicio.value === 'ATAUD_Y_TRASLADO')) {
+            if(trasladoFields) trasladoFields.classList.add('visible');
         } else {
-            trasladoFields.classList.remove('visible');
+            if(trasladoFields) trasladoFields.classList.remove('visible');
         }
         
-        if (tipoServicio && (tipoServicio.value === 'ATAUD' || tipoServicio.value === 'ATAUD_TRASLADO')) {
-            ataudInfo.style.display = 'block';
-        } else {
-            ataudInfo.style.display = 'none';
+        if (ataudInfo) {
+            if (tipoServicio && (tipoServicio.value === 'ATAUD' || tipoServicio.value === 'ATAUD_Y_TRASLADO')) {
+                ataudInfo.style.display = 'block';
+            } else {
+                ataudInfo.style.display = 'none';
+            }
         }
     }
     
     if (tipoDocFallecido) tipoDocFallecido.addEventListener('change', updateConditionalFields);
     if (tipoServicio) tipoServicio.addEventListener('change', updateConditionalFields);
+
+    // ============================================================
+    // VALIDACIÓN DE DNI: Solo números para DNI, alfanumérico para otros
+    // ============================================================
+    function configurarValidacionDocumento(selectTipoDoc, inputNroDoc) {
+        if (!selectTipoDoc || !inputNroDoc) return;
+
+        selectTipoDoc.addEventListener('change', function() {
+            const tipo = this.value;
+            
+            if (tipo === 'DNI') {
+                inputNroDoc.setAttribute('pattern', '[0-9]{1,8}');
+                inputNroDoc.setAttribute('title', 'El DNI debe contener solo números (máximo 8 dígitos)');
+                inputNroDoc.setAttribute('maxlength', '8');
+                inputNroDoc.setAttribute('inputmode', 'numeric');
+                inputNroDoc.placeholder = 'Ej: 20123456';
+            } else if (tipo === 'PASAPORTE') {
+                inputNroDoc.setAttribute('pattern', '[A-Za-z0-9]{1,20}');
+                inputNroDoc.setAttribute('title', 'El pasaporte puede contener letras y números');
+                inputNroDoc.setAttribute('maxlength', '20');
+                inputNroDoc.setAttribute('inputmode', 'text');
+                inputNroDoc.placeholder = 'Ej: AA1234567';
+            } else if (tipo === 'RNF') {
+                inputNroDoc.setAttribute('pattern', '[A-Za-z0-9\\-]{1,20}');
+                inputNroDoc.setAttribute('title', 'RNF puede contener letras, números y guiones');
+                inputNroDoc.setAttribute('maxlength', '20');
+                inputNroDoc.setAttribute('inputmode', 'text');
+                inputNroDoc.placeholder = 'Número de RNF';
+            } else {
+                inputNroDoc.removeAttribute('pattern');
+                inputNroDoc.removeAttribute('maxlength');
+                inputNroDoc.placeholder = 'Número de documento';
+            }
+        });
+
+        // Validación en tiempo real
+        inputNroDoc.addEventListener('input', function() {
+            const tipo = selectTipoDoc.value;
+            if (tipo === 'DNI') {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            } else if (tipo === 'PASAPORTE' || tipo === 'RNF') {
+                this.value = this.value.replace(/[^A-Za-z0-9\-]/g, '');
+            }
+        });
+    }
+
+    configurarValidacionDocumento(
+        document.getElementById('tipoDocFallecido'),
+        document.getElementById('nroDocFallecido')
+    );
+
+    configurarValidacionDocumento(
+        document.getElementById('tipoDocResponsable'),
+        document.getElementById('nroDocResponsable')
+    );
     
-    // Función para poblar el resumen (Paso 4)
     function populateSummary() {
         const getVal = (id) => {
             const el = document.getElementById(id);
             return el ? (el.value.trim() || '-') : '-';
         };
 
-        // Mapeo de IDs a elementos del resumen
-        document.getElementById('sum-nombre-fallecido').textContent = getVal('nombreFallecido');
-        document.getElementById('sum-doc-fallecido').textContent = getVal('tipoDocFallecido') + ': ' + getVal('nroDocFallecido');
-        document.getElementById('sum-fecha-fallecido').textContent = getVal('fechaFallecimiento');
-        document.getElementById('sum-localidad-fallecido').textContent = getVal('localidadFallecido') + ', ' + getVal('deptoFallecido');
+        const sumNombreF = document.getElementById('sum-nombre-fallecido');
+        if(sumNombreF) sumNombreF.textContent = getVal('nombreFallecido') + ' ' + getVal('apellidoFallecido');
         
-        const tipoServicioText = tipoServicio ? tipoServicio.options[tipoServicio.selectedIndex].text : '-';
-        document.getElementById('sum-tipo-servicio').textContent = tipoServicioText;
+        const sumDocF = document.getElementById('sum-doc-fallecido');
+        if(sumDocF) sumDocF.textContent = getVal('tipoDocFallecido') + ': ' + getVal('nroDocFallecido');
+        
+        const sumFechaF = document.getElementById('sum-fecha-fallecido');
+        if(sumFechaF) sumFechaF.textContent = getVal('fechaFallecimiento');
+        
+        const sumLocF = document.getElementById('sum-localidad-fallecido');
+        if(sumLocF) sumLocF.textContent = getVal('localidadFallecido') + ', ' + getVal('deptoFallecido');
+        
+        const sumTipoServ = document.getElementById('sum-tipo-servicio');
+        if(sumTipoServ && tipoServicio) sumTipoServ.textContent = tipoServicio.options[tipoServicio.selectedIndex].text;
 
-        document.getElementById('sum-nombre-responsable').textContent = getVal('nombreResponsable');
-        document.getElementById('sum-doc-responsable').textContent = getVal('tipoDocResponsable') + ': ' + getVal('nroDocResponsable');
-        document.getElementById('sum-parentesco').textContent = getVal('parentesco');
-        document.getElementById('sum-telefono-responsable').textContent = getVal('telefonoResponsable');
-        document.getElementById('sum-email-responsable').textContent = getVal('emailResponsable');
+        const sumNombreR = document.getElementById('sum-nombre-responsable');
+        if(sumNombreR) sumNombreR.textContent = getVal('nombreResponsable') + ' ' + getVal('apellidoResponsable');
+        
+        const sumDocR = document.getElementById('sum-doc-responsable');
+        if(sumDocR) sumDocR.textContent = getVal('tipoDocResponsable') + ': ' + getVal('nroDocResponsable');
+        
+        const sumParent = document.getElementById('sum-parentesco');
+        if(sumParent) sumParent.textContent = getVal('parentesco');
+        
+        const sumTelR = document.getElementById('sum-telefono-responsable');
+        if(sumTelR) sumTelR.textContent = getVal('telefonoResponsable');
+        
+        const sumEmailR = document.getElementById('sum-email-responsable');
+        if(sumEmailR) sumEmailR.textContent = getVal('emailResponsable');
     }
 
     function updateSteps() {
@@ -321,7 +374,6 @@
             else if (stepNum === currentStep) step.classList.add('active');
         });
 
-        // Si llegamos al paso 4, poblar resumen
         if (currentStep === 4) {
             populateSummary();
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -336,7 +388,7 @@
         let valid = true;
         
         requiredFields.forEach(function(field) {
-            // Ignorar el checkbox de privacidad en la validación de pasos 1-3
+            if (field.offsetParent === null) return;
             if (field.type === 'checkbox' && stepNumber < 4) return;
 
             const value = field.value.trim();
@@ -349,7 +401,7 @@
         });
         
         if (!valid) {
-            alert('Por favor, complete todos los campos obligatorios (*) para continuar.');
+            alert('⚠️ Por favor, complete todos los campos obligatorios (*) marcados en rojo para continuar.');
         }
         return valid;
     }
@@ -376,10 +428,8 @@
         });
     }
     
-    document.addEventListener('DOMContentLoaded', function() {
-        updateSteps();
-        updateConditionalFields();
-    });
+    updateSteps();
+    updateConditionalFields();
 
     // ============================================================
     // 9. VALIDACIÓN EN TIEMPO REAL
@@ -387,15 +437,6 @@
     const realtimeFields = document.querySelectorAll('.realtime-validate');
     realtimeFields.forEach(function(field) {
         field.addEventListener('input', function() {
-            if (this.checkValidity() && this.value.trim() !== '') {
-                this.classList.add('is-valid');
-                this.classList.remove('is-invalid');
-            } else {
-                this.classList.add('is-invalid');
-                this.classList.remove('is-valid');
-            }
-        });
-        field.addEventListener('change', function() {
             if (this.checkValidity() && this.value.trim() !== '') {
                 this.classList.add('is-valid');
                 this.classList.remove('is-invalid');
@@ -412,7 +453,6 @@
     const fileInput = document.getElementById('archivosInput');
     const fileList = document.getElementById('fileList');
     const fileCount = document.getElementById('fileCount');
-    const filePreview = document.getElementById('filePreview');
     let files = [];
     const MAX_FILES = 10;
     const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
@@ -422,14 +462,14 @@
             const newFiles = Array.from(e.target.files);
             
             if (files.length + newFiles.length > MAX_FILES) {
-                alert('Solo puede adjuntar hasta 10 archivos en total.');
+                alert('⚠️ Solo puede adjuntar hasta 10 archivos en total.');
                 this.value = '';
                 return;
             }
             
             for (let file of newFiles) {
                 if (file.size > MAX_FILE_SIZE) {
-                    alert('El archivo "' + file.name + '" excede el límite de 5MB.');
+                    alert('⚠️ El archivo "' + file.name + '" excede el límite de 5MB.');
                     this.value = '';
                     return;
                 }
@@ -437,7 +477,7 @@
             
             files = files.concat(newFiles);
             updateFileDisplay();
-            this.value = ''; 
+            this.value = '';
         });
     }
     
@@ -446,14 +486,14 @@
         
         if (fileList) {
             if (files.length === 0) {
-                fileList.innerHTML = '<span style="color: var(--color-muted); font-size: 0.85rem;">No hay archivos seleccionados aún</span>';
+                fileList.innerHTML = '<span style="color: #666; font-size: 0.85rem;">No hay archivos seleccionados aún</span>';
             } else {
                 let html = '<ul style="list-style:none; padding:0; margin:0;">';
                 files.forEach(function(file, index) {
                     const size = (file.size / 1024).toFixed(1);
-                    html += '<li style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid var(--color-border); font-size:0.85rem;">';
-                    html += '<span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px;"><i class="fas fa-file" style="color:var(--color-accent-2); margin-right:8px;"></i> ' + file.name + ' (' + size + ' KB)</span>';
-                    html += '<button type="button" class="remove-file-btn" data-index="' + index + '" style="background:none; border:none; color:#e30613; cursor:pointer; padding:4px;" title="Eliminar"><i class="fas fa-times"></i></button>';
+                    html += '<li style="display:flex; justify-content:space-between; align-items:center; padding:6px 0; border-bottom:1px solid #eee; font-size:0.85rem;">';
+                    html += '<span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:200px;"><i class="fas fa-file" style="color:#c9a962; margin-right:8px;"></i> ' + file.name + ' (' + size + ' KB)</span>';
+                    html += '<button type="button" class="remove-file-btn" data-index="' + index + '" style="background:none; border:none; color:#e30613; cursor:pointer; padding: 4px;" title="Eliminar"><i class="fas fa-times"></i></button>';
                     html += '</li>';
                 });
                 html += '</ul>';
@@ -468,44 +508,40 @@
                 });
             }
         }
-        
-        if (filePreview) {
-            filePreview.innerHTML = '';
-            files.forEach(function(file) {
-                if (file.type.startsWith('image/')) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        const div = document.createElement('div');
-                        div.className = 'file-preview-item';
-                        div.innerHTML = '<img src="' + e.target.result + '" alt="Vista previa">';
-                        filePreview.appendChild(div);
-                    };
-                    reader.readAsDataURL(file);
-                } else {
-                    const div = document.createElement('div');
-                    div.className = 'file-preview-item';
-                    div.innerHTML = '<i class="fas fa-file-pdf" style="font-size:32px; color:var(--color-accent-2); margin-top:10px;"></i><br><span style="font-size:0.7rem; word-break:break-all;">' + file.name + '</span>';
-                    filePreview.appendChild(div);
-                }
-            });
-        }
     }
 
     // ============================================================
-    // 11. ENVÍO DEL FORMULARIO CON FALLBACK LOCAL
+    // 11. ENVÍO DEL FORMULARIO CON VALIDACIONES DE SEGURIDAD
     // ============================================================
     form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Validar checkbox de privacidad
-        const aceptaPrivacidad = document.getElementById('aceptaPrivacidad');
-        if (aceptaPrivacidad && !aceptaPrivacidad.checked) {
-            alert('️ Debe aceptar la Política de Privacidad para enviar la solicitud.');
-            return;
+
+        const honeypot = document.getElementById('website');
+        if (honeypot && honeypot.value.trim() !== '') {
+            console.warn('🤖 Actividad de bot detectada. Solicitud bloqueada silenciosamente.');
+            return; 
         }
 
         if (files.length === 0) {
-            alert('⚠️ Por favor, adjunte al menos una foto o copia del certificado de defunción o DNI antes de enviar.');
+            alert('⚠️ Por favor, adjunte al menos un documento (Certificado de defunción o DNI).');
+            return;
+        }
+
+        const allowedMimes = ['application/pdf', 'image/jpeg', 'image/png', 'image/jpg'];
+        for (let file of files) {
+            if (!allowedMimes.includes(file.type)) {
+                alert(`⚠️ El archivo "${file.name}" tiene un formato no permitido. Solo PDF, JPG o PNG.`);
+                return;
+            }
+            if (file.size > MAX_FILE_SIZE) {
+                alert(`⚠️ El archivo "${file.name}" excede el límite de 5MB.`);
+                return;
+            }
+        }
+        
+        const aceptaPrivacidad = document.getElementById('aceptaPrivacidad');
+        if (aceptaPrivacidad && !aceptaPrivacidad.checked) {
+            alert('⚠️ Debe aceptar la Política de Privacidad para enviar la solicitud.');
             return;
         }
         
@@ -529,11 +565,6 @@
         .then(function(data) {
             if (data.success) {
                 alert('✅ ¡Solicitud enviada con éxito!\n\n📋 Número de pedido: #' + (data.nro_pedido || 'Generado') + '\n\nUn asesor se comunicará con usted a la brevedad.');
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-check"></i> ¡Enviado!';
-                    submitBtn.style.background = '#10b981';
-                    submitBtn.style.color = 'white';
-                }
                 setTimeout(function() { window.location.href = 'Inicio_funerarios.html'; }, 2500);
             } else {
                 throw new Error(data.message || 'Error desconocido');
@@ -557,13 +588,8 @@
                 });
                 localStorage.setItem('solicitudesPendientes', JSON.stringify(solicitudes));
                 
-                alert('⚠️ No pudimos conectar con el servidor en este momento.\n\n✅ Su solicitud ha sido GUARDADA de forma segura en este dispositivo.\n Número de referencia: #' + nroPedido + '\n\n💡 Por favor, llámenos al (385) 4892389 para confirmar su trámite mencionando este número.');
+                alert('⚠️ No pudimos conectar con el servidor en este momento.\n\n✅ Su solicitud ha sido GUARDADA de forma segura en este dispositivo.\n📋 Número de referencia: #' + nroPedido + '\n\n💡 Por favor, llámenos al (385) 4892389 para confirmar su trámite mencionando este número.');
                 
-                if (submitBtn) {
-                    submitBtn.innerHTML = '<i class="fas fa-save"></i> Guardado Local';
-                    submitBtn.style.background = '#f59e0b';
-                    submitBtn.style.color = 'white';
-                }
                 setTimeout(function() { window.location.href = 'Inicio_funerarios.html'; }, 4000);
             } catch (err) {
                 alert('❌ Error al guardar la solicitud. Por favor, comuníquese directamente al (385) 4892389.');
@@ -574,6 +600,151 @@
             }
         });
     });
+
+    // ============================================================
+    // 12. CARGA DINÁMICA DE FUENTES DE SOLICITUD (Paso 0)
+    // ============================================================
+    (function() {
+        const selectFuente = document.getElementById('fuenteSolicitudId');
+        if (!selectFuente) return;
+
+        async function cargarFuentesEnFormulario() {
+            try {
+                const response = await fetch('../sysfun/backend/api/fuentes_solicitud.php?activas=1');
+                const fuentes = await response.json();
+                
+                selectFuente.innerHTML = '<option value="">Seleccionar...</option>';
+                fuentes.forEach(f => {
+                    selectFuente.innerHTML += `<option value="${f.id_fuente}">${f.nombre} (${f.tipo.replace('_', ' ')})</option>`;
+                });
+            } catch (error) {
+                console.error('Error cargando fuentes:', error);
+                selectFuente.innerHTML = '<option value="">Error al cargar instituciones</option>';
+            }
+        }
+
+        window.mostrarCamposSegunFuente = function() {
+            const opcionTexto = selectFuente.options[selectFuente.selectedIndex].text;
+            const camposInst = document.getElementById('camposInstitucion');
+            const nombreFunc = document.getElementById('nombreFuncionario');
+            
+            if (selectFuente.value && !opcionTexto.includes('FAMILIAR')) {
+                camposInst.style.display = 'block';
+                if(nombreFunc) nombreFunc.required = true;
+            } else {
+                camposInst.style.display = 'none';
+                if(nombreFunc) nombreFunc.required = false;
+            }
+        };
+
+        cargarFuentesEnFormulario();
+        selectFuente.addEventListener('change', window.mostrarCamposSegunFuente);
+    })();
 })();
 
-console.log('✅ Servicios Funerarios - Sistema cargado correctamente');
+// ============================================
+// VALIDACIONES EN TIEMPO REAL POR TIPO DE CAMPO (GLOBAL)
+// ============================================
+function aplicarReglasValidacion() {
+    
+    // 1. NOMBRES Y APELLIDOS (Solo letras, espacios, acentos y guiones)
+    const camposNombre = document.querySelectorAll(
+        '#nombreFallecido, #apellidoFallecido, #nombreResponsable, #apellidoResponsable, ' +
+        '#progenitor_nombre, #nombreFuncionario, #cfg_beneficios_1_titulo, #razon_social, #nombre_comercial, #contacto_nombre'
+    );
+    camposNombre.forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^a-zA-ZáéíóúÁÉÍÓÚñÑ\s\-]/g, '');
+        });
+    });
+
+    // 2. LOCALIDADES, BARRIOS Y DIRECCIONES
+    const camposUbicacion = document.querySelectorAll(
+        '#fallecido_departamento, #fallecido_localidad, #fallecido_barrio, #fallecido_domicilio, ' +
+        '#responsable_provincia, #responsable_localidad, #responsable_barrio, #responsable_domicilio, ' +
+        '#lugar_origen, #lugar_destino, #direccion, #fuenteDireccion'
+    );
+    camposUbicacion.forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s\.\-]/g, '');
+        });
+    });
+
+    // 3. TELÉFONOS (Solo números, espacios, guiones y el signo +)
+    const camposTelefono = document.querySelectorAll(
+        '#responsable_telefono, #telefonoSecundario, #contacto_telefono, #fuenteTelefono, #telefono'
+    );
+    camposTelefono.forEach(input => {
+        input.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9\s\-\+]/g, '');
+        });
+    });
+
+    // 4. NÚMEROS DE DOCUMENTO (Fallecido y Responsable)
+    const camposDocumento = document.querySelectorAll('#nroDocFallecido, #nroDocResponsable');
+    camposDocumento.forEach(input => {
+        input.addEventListener('input', function() {
+            const selectId = input.id === 'nroDocFallecido' ? 'tipoDocFallecido' : 'tipoDocResponsable';
+            const tipoDocSelect = document.getElementById(selectId);
+            const tipoDoc = tipoDocSelect ? tipoDocSelect.value : 'DNI';
+
+            if (tipoDoc === 'DNI') {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);
+            } else if (tipoDoc === 'PASAPORTE') {
+                this.value = this.value.replace(/[^A-Za-z0-9\-]/g, '').slice(0, 20);
+            } else if (tipoDoc === 'RNF' || tipoDoc === 'S/D') {
+                this.value = this.value.replace(/[^A-Za-z0-9\-\/]/g, '').slice(0, 20);
+            }
+        });
+    });
+
+    // 5. DOCUMENTO DEL PROGENITOR (Siempre DNI en el formulario público)
+    const nroDocProgenitor = document.getElementById('nroDocProgenitor');
+    if (nroDocProgenitor) {
+        nroDocProgenitor.addEventListener('input', function() {
+            this.value = this.value.replace(/[^0-9]/g, '').slice(0, 8);
+        });
+    }
+
+    // 6. CORREOS ELECTRÓNICOS (Validación al salir del campo)
+    const camposEmail = document.querySelectorAll(
+        '#responsable_email, #cfg_contacto_email, #emailNotificaciones, #email'
+    );
+    camposEmail.forEach(input => {
+        input.addEventListener('blur', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (this.value && !emailRegex.test(this.value)) {
+                this.setCustomValidity('Por favor, ingrese un correo electrónico válido.');
+                this.style.borderColor = '#e74c3c';
+            } else {
+                this.setCustomValidity('');
+                this.style.borderColor = '';
+            }
+        });
+        input.addEventListener('input', function() {
+            if (this.style.borderColor === 'rgb(231, 76, 60)') {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (emailRegex.test(this.value)) {
+                    this.setCustomValidity('');
+                    this.style.borderColor = '';
+                }
+            }
+        });
+    });
+
+    // 7. CAMPOS NUMÉRICOS PUROS (Edad, Stock, Orden, Capacidad, etc.)
+    // ✅ CORREGIDO: Se agregó #edadFallecido para evitar que tome la letra "e"
+    const camposNumericos = document.querySelectorAll(
+        '#edadFallecido, #año, #stock_actual, #stock_minimo, #fuenteOrden, #capacidad_ataudes, #capacidad_acompañantes'
+    );
+    camposNumericos.forEach(input => {
+        input.addEventListener('input', function() {
+            // Elimina cualquier carácter que no sea un número (incluye la 'e' de notación científica)
+            this.value = this.value.replace(/[^0-9]/g, '');
+        });
+    });
+}
+
+// Ejecutar la validación cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', aplicarReglasValidacion);
+console.log('✅ Servicios Funerarios - Sistema v10.1 (Validaciones corregidas) cargado correctamente');
