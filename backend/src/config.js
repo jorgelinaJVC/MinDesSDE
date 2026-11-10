@@ -28,6 +28,9 @@ module.exports = {
   intentosLogin: { maximo: 5, ventanaMs: 15 * 60 * 1000 },
   // Detrás de un proxy (nginx, Cloudflare): cuántos saltos creerle a X-Forwarded-For para obtener la IP real.
   confiarProxy: env.CONFIAR_PROXY ? Number(env.CONFIAR_PROXY) || env.CONFIAR_PROXY : false,
+  // Direcciones extra desde las que se permite operar (ej. el túnel de VS Code para una demo):
+  // "https://abc-3000.brs.devtunnels.ms". Separadas por coma. Solo el esquema y el host, sin barra final.
+  origenesPermitidos: String(env.ORIGENES_PERMITIDOS || "").split(",").map((o) => o.trim().replace(/\/+$/, "")).filter(Boolean),
   auditoria: {
     // "10.0.1.0/24=Sede Central;10.0.2.0/24=Residencia Mama Antula": nombra la sede según la IP
     sedes: String(env.AUDITORIA_SEDES || "").split(";").map((par) => par.split("="))

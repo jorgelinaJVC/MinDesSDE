@@ -210,9 +210,12 @@ function verificarOrigen(req, res, next) {
   if (["GET", "HEAD", "OPTIONS"].includes(req.method)) return next();
   const origen = req.get("origin");
   if (origen) {
-    let host = null;
-    try { host = new URL(origen).host; } catch (e) { /* origen ilegible */ }
-    if (host !== req.get("host")) throw crear("origen_invalido", "Origen no permitido.");
+    let url = null;
+    try { url = new URL(origen); } catch (e) { /* origen ilegible */ }
+    const mismoSitio = url && url.host === req.get("host");
+    // además, las direcciones que el administrador del servidor autorizó a mano en ORIGENES_PERMITIDOS
+    const autorizado = url && config.origenesPermitidos.includes(url.origin);
+    if (!mismoSitio && !autorizado) throw crear("origen_invalido", "Origen no permitido.");
   }
   return next();
 }
