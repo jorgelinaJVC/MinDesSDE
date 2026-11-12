@@ -8,6 +8,7 @@ const config = require("../config");
 const { coleccion, aId } = require("../db");
 const { crear } = require("../errores");
 const { puedeVerAdjunto } = require("../permisos");
+const almacen = require("./almacen");
 
 /** WEBP: contenedor RIFF ("RIFF" + tamaño + "WEBP"). */
 const esWebp = (c) => c.length >= 12 && c.toString("latin1", 0, 4) === "RIFF" && c.toString("latin1", 8, 12) === "WEBP";
@@ -53,10 +54,12 @@ function limpiarNombre(original) {
 
 /* ---------- Subida (multer) ---------- */
 
+/* Los archivos llegan primero a una carpeta temporal; recién cuando pasan la validación se guardan en el
+ * almacén definitivo (disco o MongoDB, ver almacen.js). */
 const almacenamiento = multer.diskStorage({
   destination(req, file, cb) {
-    fs.mkdirSync(config.carpetaAdjuntos, { recursive: true });
-    cb(null, config.carpetaAdjuntos);
+    fs.mkdirSync(config.carpetaTemporal, { recursive: true });
+    cb(null, config.carpetaTemporal);
   },
   // el nombre en disco lo genera el servidor: nada que venga del cliente
   filename: (req, file, cb) => cb(null, crypto.randomUUID()),
@@ -92,7 +95,7 @@ async function leerCabecera(ruta) {
   }
 }
 
-/** Verifica extensión, tipo MIME y firma real del archivo. Devuelve los datos a guardar. */
+/** Verifica extensión, tipo MIME y firma real del archivo y lo guarda en el almacén. Devuelve los datos a guardar. */
 async function validarArchivos(archivos) {
   const validos = [];
   for (const archivo of archivos) {
@@ -107,6 +110,12 @@ async function validarArchivos(archivos) {
     else if (formato.firma) firmaOk = formato.firma.every((byte, i) => cabecera[i] === byte);
     else firmaOk = !cabecera.includes(0);
     if (!firmaOk) throw crear("datos_invalidos", `${nombre}: el contenido no coincide con el formato del archivo.`);
+  }
+  // Recién con todos validados se pasan al almacén definitivo (si uno falla, no se guarda ninguno)
+  for (const archivo of archivos) {
+    const nombre = limpiarNombre(archivo.originalname);
+    const formato = FORMATOS[extension(nombre)];
+    await almacen.guardar(archivo.path, archivo.filename);
     validos.push({
       nombreOriginal: nombre,
       nombreAlmacenado: archivo.filename,
@@ -117,14 +126,16 @@ async function validarArchivos(archivos) {
   return validos;
 }
 
-/** Borra archivos subidos cuando la operación falla (no quedan huérfanos en disco). */
+/** Borra archivos subidos cuando la operación falla: de la carpeta temporal y, si ya se habían guardado, del almacén. */
 async function descartar(archivos = []) {
-  await Promise.all(archivos.map((a) => fs.promises.unlink(a.path).catch(() => {})));
+  await Promise.all(archivos.map(async (a) => {
+    await fs.promises.unlink(a.path).catch(() => {});
+    if (a.filename) await almacen.borrar(a.filename).catch(() => {});
+  }));
 }
 
 /* ---------- Descarga ---------- */
 
-const rutaEnDisco = (adjunto) => path.join(config.carpetaAdjuntos, path.basename(adjunto.nombreAlmacenado));
 
 /** Dónde vive un adjunto dentro de su contenido: en qué versiones, si está publicado y si está en un borrador. */
 function ubicar(doc, _id) {
@@ -168,17 +179,37 @@ async function buscarParaDescarga(id, { soloPublicados, lector = null }) {
     }
   }
 
-  return { ruta: rutaEnDisco(adjunto), nombre: adjunto.nombreOriginal, mime: adjunto.tipoMime };
+  return { nombreAlmacenado: adjunto.nombreAlmacenado, nombre: adjunto.nombreOriginal, mime: adjunto.tipoMime };
+}
+
+/**
+ * Envía un adjunto al navegador desde el almacén (disco o MongoDB).
+ * enLinea: se muestra en la página (imágenes, PDF); si no, se descarga con su nombre original.
+ */
+async function enviar(res, archivo, { enLinea = false } = {}) {
+  const abierto = await almacen.abrir(archivo.nombreAlmacenado);
+  if (!abierto) throw crear("no_encontrado", "El archivo no existe.");
+  res.type(archivo.mime);
+  if (abierto.tamano != null) res.set("Content-Length", String(abierto.tamano));
+  res.set("Content-Disposition", `${enLinea ? "inline" : "attachment"}; filename*=UTF-8''${encodeURIComponent(archivo.nombre)}`);
+  res.set("X-Content-Type-Options", "nosniff");
+  await new Promise((resolver, rechazar) => {
+    abierto.flujo.on("error", rechazar);
+    res.on("finish", resolver);
+    // si el navegador corta la descarga, se deja de leer el archivo
+    res.on("close", () => { abierto.flujo.destroy(); resolver(); });
+    abierto.flujo.pipe(res);
+  });
 }
 
 /** Formatos que el navegador puede mostrar sin riesgo dentro de la página (el resto siempre se descarga). */
 const SE_PUEDE_VER = ["image/jpeg", "image/png", "image/webp", "image/avif", "application/pdf", "text/plain"];
 
-/** Borra del disco archivos que ya no están en el documento (después de quitarlos de un borrador). */
+/** Borra del almacén archivos que ya no están en el documento (después de quitarlos de un borrador). */
 async function borrarDelDisco(adjuntos = []) {
-  await Promise.all(adjuntos.map((a) => fs.promises.unlink(rutaEnDisco(a)).catch(() => {})));
+  await Promise.all(adjuntos.map((a) => almacen.borrar(a.nombreAlmacenado).catch(() => {})));
 }
 
 module.exports = {
-  subida, validarArchivos, descartar, buscarParaDescarga, borrarDelDisco, limpiarNombre, SE_PUEDE_VER,
+  subida, validarArchivos, descartar, buscarParaDescarga, enviar, borrarDelDisco, limpiarNombre, SE_PUEDE_VER,
 };

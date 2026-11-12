@@ -1390,7 +1390,7 @@
   function prepararMenuMovil() {
     const lateral = $(".lateral");
     const boton = $("#btn-menu");
-    const pantallaChica = window.matchMedia("(max-width: 900px)");
+    const pantallaChica = typeof window.matchMedia === "function" ? window.matchMedia("(max-width: 900px)") : null;
 
     function abrir(si) {
       lateral.classList.toggle("abierto", si);
@@ -1403,7 +1403,7 @@
     $("#menu").addEventListener("click", (e) => { if (e.target.closest(".menu__enlace")) abrir(false); });
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && lateral.classList.contains("abierto")) abrir(false); });
     document.addEventListener("click", (e) => { if (lateral.classList.contains("abierto") && !lateral.contains(e.target)) abrir(false); });
-    pantallaChica.addEventListener("change", () => abrir(false));
+    if (pantallaChica) pantallaChica.addEventListener("change", () => abrir(false));
   }
 
   /* ---------- Cambiar mi contraseña ---------- */

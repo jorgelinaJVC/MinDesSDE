@@ -203,3 +203,29 @@ btn-inc-font, btn-toggle-contrast, btn-toggle-links, btn-reset-accessibility.
 
 Ya no se usan (se pueden borrar): js/adultos/accessibility.js, js/adultos/style-mamaantula.js y js/adultos/centro-dia.js.
 
+## Publicar en Render
+
+El portal corre en Render (plan gratis) con la base en MongoDB Atlas. Como en el plan gratis el disco se borra
+cada vez que el servicio se reinicia, las fotos y documentos se guardan **dentro de MongoDB** (`ALMACENAMIENTO=mongo`).
+
+1. **Render → New → Web Service**, repositorio `jorgelinaJVC/MinDesSDE`, rama `portal-interno-publicacionesAM`.
+   - Runtime: Node · Build command: `npm install` · Start command: `npm start` · Plan: Free.
+2. **Environment** (variables del servicio; nunca en el repositorio):
+
+   | Variable | Valor |
+   |---|---|
+   | `MONGODB_URI` | la conexión de Atlas (con la contraseña) |
+   | `DB_NAME` | `nexo_institucional` |
+   | `ALMACENAMIENTO` | `mongo` |
+   | `NODE_ENV` | `production` (cookies seguras y HSTS) |
+   | `CONFIAR_PROXY` | `1` (Render está detrás de un proxy: así se registra la IP real) |
+
+   `PORT` no hace falta: lo pone Render.
+3. **Atlas → Network Access**: agregar las IP de salida que muestra Render en el servicio (**Connect → Outbound**).
+4. Las fotos que ya estaban en la carpeta `almacen/` de una computadora se pasan a la base una sola vez, desde esa
+   computadora, con `ALMACENAMIENTO=mongo` en su `.env`: `npm run adjuntos:migrar`.
+5. En los sitios, `js/nexo/config.js` → `api: "https://<servicio>.onrender.com"`. En SIDES, el botón del portal
+   apunta a la misma dirección.
+
+En el plan gratis el servicio "se duerme" después de 15 minutos sin uso: la primera visita tarda cerca de un minuto.
+

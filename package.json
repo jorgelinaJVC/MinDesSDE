@@ -11,7 +11,8 @@
     "bd:iniciar": "node backend/scripts/iniciar-bd.js",
     "bd:sembrar": "node backend/scripts/sembrar.js",
     "usuario:crear": "node backend/scripts/crear-usuario.js",
-    "test": "node --test --test-concurrency=1 \"pruebas/*.test.js\""
+    "test": "node --test --test-concurrency=1 \"pruebas/*.test.js\"",
+    "adjuntos:migrar": "node backend/scripts/migrar-adjuntos.js"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

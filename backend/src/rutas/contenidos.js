@@ -142,12 +142,8 @@ router.post("/contenidos/:id/restaurar", requerirBaja, async (req, res) => {
 router.get("/adjuntos/:id", async (req, res) => {
   const archivo = await adjuntos.buscarParaDescarga(req.params.id, { soloPublicados: false, lector: req.usuario });
   res.set("Cache-Control", "private, no-store"); // no queda en cachés compartidas: puede ser material no publicado
-  if (req.query.ver === "1" && adjuntos.SE_PUEDE_VER.includes(archivo.mime)) {
-    res.type(archivo.mime);
-    res.set("Content-Disposition", `inline; filename*=UTF-8''${encodeURIComponent(archivo.nombre)}`);
-    return res.sendFile(archivo.ruta);
-  }
-  return res.download(archivo.ruta, archivo.nombre);
+  const ver = req.query.ver === "1" && adjuntos.SE_PUEDE_VER.includes(archivo.mime);
+  await adjuntos.enviar(res, archivo, { enLinea: ver });
 });
 
 module.exports = router;

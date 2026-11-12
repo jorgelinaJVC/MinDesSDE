@@ -3,7 +3,7 @@
 const { Router } = require("express");
 const { crear } = require("../errores");
 const { listarPublicaciones, obtenerPublicacion, listarSitios, LIMITE_PUBLICACIONES } = require("../repositorio");
-const { buscarParaDescarga } = require("../servicios/adjuntos");
+const { buscarParaDescarga, enviar } = require("../servicios/adjuntos");
 const { existeSitio, existeTipo } = require("../sitios");
 
 const router = Router();
@@ -91,13 +91,9 @@ router.get(["/publicaciones", "/publicaciones/:slug"], () => {
 // Solo se descargan adjuntos de la versión publicada. Las imágenes se muestran en la página (no se descargan).
 router.get("/adjuntos/:id", async (req, res) => {
   const archivo = await buscarParaDescarga(req.params.id, { soloPublicados: true });
-  if (archivo.mime.startsWith("image/")) {
-    res.set("Cache-Control", "public, max-age=300");
-    res.type(archivo.mime);
-    res.set("Content-Disposition", `inline; filename*=UTF-8''${encodeURIComponent(archivo.nombre)}`);
-    return res.sendFile(archivo.ruta);
-  }
-  return res.download(archivo.ruta, archivo.nombre);
+  const imagen = archivo.mime.startsWith("image/");
+  if (imagen) res.set("Cache-Control", "public, max-age=300");
+  await enviar(res, archivo, { enLinea: imagen });
 });
 
 module.exports = router;

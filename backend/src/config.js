@@ -22,6 +22,10 @@ module.exports = {
   sesionHoras: Number(env.SESION_HORAS || 8),
   costoBcrypt: Number(env.BCRYPT_COSTO || 12),
   carpetaAdjuntos: path.resolve(env.CARPETA_ADJUNTOS || path.join(__dirname, "..", "..", "almacen")),
+  // "disco" (carpeta almacen/) o "mongo" (dentro de la base: para Render gratis, donde el disco se borra)
+  almacenamiento: String(env.ALMACENAMIENTO || "disco").trim().toLowerCase(),
+  // donde quedan los archivos recién subidos mientras se validan (después pasan al almacén elegido)
+  carpetaTemporal: path.join(require("node:os").tmpdir(), "nexo-subidas"),
   carpetaFrontend: path.join(__dirname, "..", "..", "frontend"),
   maxAdjuntoBytes: 10 * 1024 * 1024,
   maxAdjuntos: 8,
