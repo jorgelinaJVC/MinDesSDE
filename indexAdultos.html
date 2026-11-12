@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Portal de la Direccion General de Adultos Mayores</title>
-  <link rel="shortcut icon" href="assets/LogoAM.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="assets/LogoAM.jpg" type="image/x-icon" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
@@ -26,6 +26,7 @@
   <link rel="stylesheet" href="css/adultos/acceso.css" />
   <link rel="stylesheet" href="css/adultos/accessibility.css" />
   <link rel="stylesheet" href="css/adultos/mapa-territorial.css" />
+  <link rel="stylesheet" href="css/adultos/menu-responsivo.css" />
   <!-- Conexión con Nexo: noticias, galería y proyectos aprobados para este sitio -->
   <meta name="nexo-sitio" content="adultos-mayores" />
   <link rel="stylesheet" href="css/adultos/secciones-contenido.css" />
@@ -33,6 +34,7 @@
   <!-- <a href="http://localhost:3000" class="btn btn-primary">Acceso Interno</a> -->
 
     <link rel="stylesheet" href="css/comun/accesibilidad.css">
+    
 </head>
 <body data-sitio="adultos-mayores">
 
@@ -65,25 +67,61 @@
   <nav>
     <a href="#hero" class="nav-brand">
       <div class="nav-logo-box">
-        <img src="assets/LogoAM.png" alt="Logo de la Direccion Gral. de Adultos Mayores" />
+        <img src="assets/logoNuevoAM.png" alt="Logo de la Direccion Gral. de Adultos Mayores" />
       </div>
       <span class="nav-brand-text">Portal de la Direccion Gral. de Adultos Mayores</span>
     </a>
-    <ul class="nav-links">
-      <li>
-        <div class="nav-logo-extra-box">
-          <img src="assets/LogoSantiago.png" alt="Logo de Santiago" />
-        </div>
-      </li>
+    
+    <ul class="nav-links">      
       <li><a href="index.html" class="nav__link">Inicio</a></li>
-      <li><a href="#news">Noticias</a></li>
-      <li><a href="#about">Nosotros</a><li>
-      <li><a href="#services">Servicios</a></li>
-      <li><a href="#mapa-territorial">Ubicación</a></li>
-      <li><a href="#methodology">Metodología</a></li>      
-      <li><a href="#gallery">Galeria</a></li>
-      <li><a href="#contact" class="nav-cta">Consultar ahora</a></li>
-    </ul>
+       <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            Institución
+            <span class="arrow">▾</span>
+          </a>
+
+            <ul class="dropdown-menu">
+                <li><a href="#about">Nosotros</a></li> 
+                <li><a href="#autoridad">Autoridad</a></li> 
+                <li><a href="#methodology">Metodologia de trabajo</a></li> 
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#mapa-territorial">Ubicación</a></li>
+            </ul>
+       </li>               
+       <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            Instituciones Dependientes
+            <span class="arrow">▾</span>
+          </a>
+         <ul class="dropdown-menu">
+           <li>
+              <a href="mama-antula.html">
+                Residencia de Adultos Mayores "Mama Antula"
+              </a>
+           </li>
+           <li>
+              <a href="centro-dia.html">
+                Centro de Día
+              </a>
+           </li>
+     </ul>
+</li>
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle">
+            Actualidad
+            <span class="arrow">▾</span>
+          </a>
+
+            <ul class="dropdown-menu">
+                <li><a href="#novedades">Noticias</a></li> 
+                 <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+             </ul>
+       </li>               
+  
+      <li><a href="#contact" class="nav-cta">Consultas</a></li>
+      <!-- <a href="http://localhost:3000" class="btn-acceso-navbar" target="_blank" rel="noopener noreferrer">Acceso Interno</a> -->   
+      </ul>
     <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
       <span></span><span></span><span></span>
     </button>
@@ -863,10 +901,12 @@
   <script src="js/main.js"></script>
   <script src="js/adultos/adultos.js"></script>
   <script src="js/adultos/script.js"></script>
+   <script src="js/adultos/menu-responsivo.js"></script>
   <!-- Nexo institucional -->
   <script src="js/nexo/config.js"></script>
   <script src="js/nexo/nexo-cliente.js"></script>
   <script src="js/nexo/secciones.js"></script>
+
 
 </body>
 </html>

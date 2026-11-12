@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Portal de la Direccion General de Adultos Mayores</title>
-  <link rel="shortcut icon" href="assets/LogoAM.png" type="image/x-icon" />
+  <link rel="shortcut icon" href="assets/LogoAM.jpg" type="image/x-icon" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -17,13 +17,13 @@
   <link rel="stylesheet" href="css/adultos/about.css" />
   <link rel="stylesheet" href="css/adultos/services.css" />
   <link rel="stylesheet" href="css/adultos/contact.css" />
-  <link rel="stylesheet" href="css/contact-habil.css" />
   <link rel="stylesheet" href="css/adultos/footer.css" />
   <link rel="stylesheet" href="css/adultos/floating.css" />
   <link rel="stylesheet" href="css/adultos/responsive.css" />
   <link rel="stylesheet" href="css/adultos/acceso.css" />
   <link rel="stylesheet" href="css/adultos/buscador.css" />
   <link rel="stylesheet" href="css/adultos/accessibility.css" />
+  <link rel="stylesheet" href="css/adultos/menu-responsivo.css" />
     <link rel="stylesheet" href="css/comun/accesibilidad.css">
 </head>
 <body>
@@ -58,20 +58,14 @@
   <nav>
      <a href="indexAdultos.html#hero" class="nav-brand">
       <div class="nav-logo-box">
-        <img src="assets/LogoMin.png" alt="Logo del Ministerio" />
+        <img src="assets/logoNuevoAM.png" alt="Logo del Ministerio" />
       </div>
       <span class="nav-brand-text">Ministerio de Desarrollo Social Promoción Humana y Relaciones Institucionales</span>
     </a>
     <ul class="nav-links">
-      <li>
-        <div class="nav-logo-extra-box">
-          <img src="assets/LogoSantiago.png" alt="Logo de Santiago" />
-        </div>
-      </li>
-  <li><a href="../index.html" class="nav__link">Inicio</a></li>
+      <li><a href="indexAdultos.html">Volver al portal</a></li>
       <li><a href="#habilitacion">Habilitación</a></li>
-      <li><a href="#buscador">Instituciones Habilitadas</a></li>
-      <li><a href="indexAdultos.html">Volver</a></li>
+      <li><a href="#buscador">Instituciones Habilitadas</a></li>    
       <li><a href="#contact" class="nav-cta">Consultar ahora</a></li> 
 
     </ul>
@@ -195,99 +189,262 @@
   </section>
 
   <!-- ===== CONTACTO ===== -->
+  <!-- Formulario de contacto: mismo que indexAdultos.html -->
   <section id="contact">
-    <div class="section-container">
-      <div class="section-header centered fade-in">
-        <span class="section-label">Contacto</span>
-        <h2 class="section-title">Iniciá tu <span>trámite hoy</span></h2>
-        <p class="section-desc">Completá el formulario o escribinos directamente por WhatsApp. Te respondemos en menos de 24 horas.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-info fade-in">
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📍</div>
-            <div class="contact-info-content">
-              <h4>Ubicación</h4>
-              <p>Santiago del Estero, Argentina</p>
-              <p>Atención Presencial y Online</p>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📱</div>
-            <div class="contact-info-content">
-              <h4>Teléfono / WhatsApp</h4>
-              <a href="tel:+5493854169685">+54 9 385 416-9685</a>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">✉️</div>
-            <div class="contact-info-content">
-              <h4>Correo Electrónico</h4>
-              <a href="mailto:Adultosmayores@gmail.com">Adultosmayores@gmail.com</a>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <div class="contact-info-icon">📸</div>
-            <div class="contact-info-content">
-              <h4>Instagram</h4>
-              <a href="https://www.instagram.com/direcciondeadultosmayores.sgo/" target="_blank">@direcciondeadultosmayores.sgo</a>
-            </div>
-          </div>
-          <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-            Escribinos por WhatsApp
-          </a>
-        </div>
+  <div class="section-container">
+    <div class="section-header centered fade-in">
+      <span class="section-label">Contacto y Denuncias</span>
+      <h2 class="section-title">Canal de <span>Atención y Alertas</span></h2>
+      <p class="section-desc">Completá el formulario para consultas o denuncias ciudadanas. Derivamos tu mensaje al área correspondiente.</p>
+    </div>
 
-        <div class="contact-form-card fade-in fade-in-delay-2">
-          <h3>Solicitar información</h3>
-          <p>Completá el formulario y nos pondremos en contacto con vos a la brevedad.</p>
-          <form id="contactForm">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-              </div>
-              <div class="form-group">
-                <label for="apellido">Apellido *</label>
-                <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" required />
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico *</label>
-              <input type="email" id="email" name="email" placeholder="tu@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="telefono">WhatsApp / Teléfono</label>
-              <input type="tel" id="telefono" name="telefono" placeholder="+54 9 385 000-0000" />
-            </div>
-            <div class="form-group">
-              <label for="servicio">Servicio de interés *</label>
-              <select id="servicio" name="servicio" required>
-                <option value="">Seleccioná un servicio</option>
-                <option value="asesoramiento">Asesoramiento y Asistencia Integral</option>
-                <option value="supervision">Supervisión de Residencias y Centro de día</option>
-                <option value="formacion">Capacitación y Formación Gerontológica</option>
-                <option value="fortalecimiento">Fortalecimiento de Organizaciones</option>
-                <option value="promocion">Promoción de Derechos y Buen Trato</option>
-                <option value="interdisciplinario">Nuestro Equipo Interdisciplinario</option>
-                <option value="articulacion">Red de Articulacion Institucional</option>
-                <option value="habilitacion">Habilitacion de Residencia de larga estadía</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" placeholder="Contanos brevemente tu situación o consulta..."></textarea>
-            </div>
-            <button type="submit" class="form-submit">Enviar consulta →</button>
-            <p class="form-note">Te respondemos en menos de 24 horas. Tu información es confidencial.</p>
-          </form>
-        </div>
+    <div class="alert-banner-public fade-in">
+      <div class="alert-banner-icon">⚠️</div>
+      <div class="alert-banner-body">
+        <h4>Canal de Alerta y Denuncia Ciudadana</h4>
+        <p>Tu reporte ayuda a cuidar a las personas mayores. Informá de manera confidencial sobre:</p>
+        <ul class="alert-list">
+          <li><strong>Lugares clandestinos</strong> sin autorización.</li>
+          <li><strong>Residencias no habilitadas</strong> o que no cumplan normas mínimas.</li>
+          <li><strong>Situaciones irregulares</strong>, maltrato o vulneración de derechos.</li>
+        </ul>
       </div>
     </div>
-  </section>
+
+    <div class="contact-grid">
+      <div class="contact-info fade-in">
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📍</div>
+          <div class="contact-info-content">
+            <h4>Ubicación</h4>
+            <p>Santiago del Estero, Argentina</p>
+            <p>Atención Presencial y Online</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📱</div>
+          <div class="contact-info-content">
+            <h4>Teléfono / WhatsApp Central</h4>
+            <a href="tel:+5493854169685">+54 9 385 416-9685</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">✉️</div>
+          <div class="contact-info-content">
+            <h4>Correo Electrónico Central</h4>
+            <a href="mailto:Adultosmayores@gmail.com">Adultosmayores@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="contact-info-icon">📸</div>
+          <div class="contact-info-content">
+            <h4>Instagram</h4>
+            <a href="https://www.instagram.com/direcciondeadultosmayores.sgo/" target="_blank">@direcciondeadultosmayores.sgo</a>
+          </div>
+        </div>
+        <a href="https://wa.me/5493854169685?text=Hola%2C%20necesito%20realizar%20una%20consulta%20a%20la%20Direcci%C3%B3n%20General%20de%20Adultos%20Mayores." class="contact-whatsapp-btn" target="_blank">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          Escribinos por WhatsApp
+        </a>
+      </div>
+
+<div class="contact-form-card fade-in fade-in-delay-2">
+    <h3>Formulario de Atención y Denuncias</h3>
+    <p>Completá los datos y seleccioná el medio por el cual querés gestionar el trámite.</p>
+    
+    <!-- Contenedor del mensaje de éxito (se muestra al enviar) -->
+    <div id="successMessage" style="display:none; position: fixed; bottom: 30px; right: 30px; z-index: 9999; background-color: #d4edda; color: #155724; padding: 18px 22px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border: 1px solid #c3e6cb; max-width: 350px;">
+    🎉 <strong>¡Mensaje preparado!</strong> Tu consulta ha sido derivada al área correspondiente. Se abrirá tu aplicación de correo.
+</div>
+
+    <!-- Formulario HTML nativo apuntando a tu endpoint de Formspree -->
+        <form id="contactForm" action="https://formspree.io/f/xzedvyoq" method="POST" onsubmit="manejarEnvio(event)">
+        <div class="form-group">
+        <label for="tipo_tramite">Tipo de mensaje *</label>
+        <select id="tipo_tramite" name="tipo_tramite" required>
+          <option value="Consulta / Solicitud">Consulta o Solicitud de Información</option>
+          <option value="Denuncia / Alerta">Denuncia o Alerta Ciudadana</option>
+        </select>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre *</label>
+          <input type="text" id="nombre" name="nombre" placeholder="Tu nombre (o 'Anónimo')" required />
+        </div>
+        <div class="form-group">
+          <label for="apellido">Apellido</label>
+          <input type="text" id="apellido" name="apellido" placeholder="Tu apellido" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Correo electrónico</label>
+        <input type="email" id="email" name="email" placeholder="tu@email.com" />
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">WhatsApp / Teléfono de contacto</label>
+        <input type="tel" id="telefono" name="telefono" placeholder="+54 9 385 000-0000" />
+      </div>
+
+      <div class="form-group">
+        <label for="servicio">Área / Motivo de interés *</label>
+        <select id="servicio" name="servicio" required onchange="mostrarInfoDestino()">
+          <option value="">Seleccioná un área o motivo...</option>
+          <option value="adultos">Dirección Gral. de Adultos Mayores</option>
+          <option value="mama_antula">Residencia Mama Antula</option>
+          <option value="centro_dia">Centro de Día</option>
+          <option value="otros">Otros</option>
+        </select>
+        <div id="destinoFeedback" class="destino-feedback" style="display:none;"></div>
+      </div>
+
+      <div class="form-group">
+        <label for="mensaje">Detalle del mensaje o denuncia *</label>
+        <textarea id="mensaje" name="mensaje" required placeholder="Describí tu consulta o detallá la dirección y características del lugar a informar..."></textarea>
+      </div>
+
+      <style>
+  /* Contenedor principal para alinear los botones */
+  .form-actions-grid {
+    display: flex;
+    gap: 15px; /* Espacio entre botones */
+    margin-top: 30px;
+    width: 100%;
+    justify-content: flex-start; /* Alineado a la izquierda */
+  }
+
+  /* Estilos base comunes para ambos botones */
+  .btn-action {
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    font-family: inherit; /* Hereda la fuente del formulario */
+    border-radius: 8px;   /* Esquinas redondeadas modernas */
+    border: none;         /* Elimina el borde feo por defecto */
+    cursor: pointer;
+    transition: all 0.3s ease; /* Transición suave para animaciones */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Sombra muy suave */
+  }
+
+  /* Estilo específico para el botón de WhatsApp */
+  .btn-wa-action {
+    background-color: #f5f5f5; /* Gris claro neutro */
+    color: #333; /* Texto oscuro */
+    border: 1px solid #e0e0e0;
+  }
+
+  .btn-wa-action:hover {
+    background-color: #e8e8e8; /* Gris un poco más oscuro al pasar el mouse */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Sombra más pronunciada al hacer hover */
+  }
+
+  /* Estilo específico para el botón de Correo (Usando el morado del header) */
+  .btn-mail-action {
+    background-color: #1a237e; /* Color morado institucional de tu web */
+    color: white; /* Texto blanco para contraste */
+  }
+
+  .btn-mail-action:hover {
+    background-color: #0d155b; /* Un tono más oscuro de morado al hacer hover */
+    box-shadow: 0 4px 8px rgba(26, 35, 126, 0.3); /* Sombra con tinte morado */
+  }
+</style>
+
+<!-- Tu HTML actualizado con las clases CSS -->
+<div class="form-actions-grid">
+  <button type="button" class="btn-action btn-wa-action" onclick="enviarPorWhatsApp()">
+    Enviar por WhatsApp
+  </button>
+  <button type="button" class="btn-action btn-mail-action" onclick="enviarPorEmail()">
+    Enviar por Correo
+  </button>
+</div>
+
+      <p class="form-note">La información remitida como denuncia es tratada de manera reservada y confidencial.</p>
+    </form>
+</div>
+</div> <!-- 👈 ESTE ES EL DIV QUE FALTABA PARA CERRAR .contact-grid -->
+</div> <!-- Cierra .section-container -->
+</section>
+
+<script>
+  const directorioContactos = {
+    adultos: { nombre: "Dirección Gral. de Adultos Mayores", telefono: "5493854169685" },
+    mama_antula: { nombre: "Residencia Mama Antula", telefono: "5493851111111" },
+    centro_dia: { nombre: "Centro de Día", telefono: "5493852222222" },
+    otros: { nombre: "Dirección General (Mesa de Entradas)", telefono: "5493854169685" }
+  };
+
+  function mostrarInfoDestino() {
+    const areaKey = document.getElementById("servicio").value;
+    const feedback = document.getElementById("destinoFeedback");
+    if (directorioContactos[areaKey]) {
+      const destino = directorioContactos[areaKey];
+      feedback.style.display = "block";
+      feedback.innerHTML = `📌 <strong>Derivación directa:</strong> ${destino.nombre}`;
+    } else {
+      feedback.style.display = "none";
+    }
+  }
+
+  function enviarPorWhatsApp() {
+    const servicio = document.getElementById("servicio").value;
+    const mensaje = document.getElementById("mensaje").value.trim();
+    const nombre = document.getElementById("nombre").value.trim();
+
+    if (!nombre || !servicio || !mensaje) {
+      alert("Por favor completá los campos obligatorios antes de enviar por WhatsApp.");
+      return;
+    }
+
+    const tipo = document.getElementById("tipo_tramite").value;
+    const apellido = document.getElementById("apellido").value.trim();
+    const telefono = document.getElementById("telefono").value.trim() || "No especificado";
+    const destino = directorioContactos[servicio] || directorioContactos.otros;
+
+    const textoWA = `*GRACIAS POR COMUNICARTE*\n` +
+                    `"El mensaje será derivado automáticamente al WhatsApp del área seleccionada."\n`;
+
+    const url = `https://wa.me/${destino.telefono}?text=${encodeURIComponent(textoWA)}`;
+    window.open(url, "_blank");
+  }
+
+  // Envío tradicional optimizado mediante fetch para procesar Formspree en segundo plano
+  async function manejarEnvio(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        // Muestra el mensaje de éxito
+        document.getElementById("successMessage").style.display = "block";
+        // Limpia el formulario
+        form.reset();
+        document.getElementById("destinoFeedback").style.display = "none";
+        
+        // Oculta el mensaje de éxito a los 6 segundos
+        setTimeout(() => {
+          document.getElementById("successMessage").style.display = "none";
+        }, 6000);
+      } else {
+        alert("Hubo un error al enviar el formulario. Intenta nuevamente.");
+      }
+    } catch (error) {
+      alert("Error de conexión con el servidor.");
+    }
+  }
+</script>
 
   <!-- Footer -->
   <footer>
@@ -336,7 +493,7 @@
             <li><a href="indexAdultos.html#about">Sobre nosotros</a></li>
             <li><a href="indexAdultos.html#methodology">Metodología</a></li>
             <li><a href="indexAdultos.html#gallery">Galería de Imágenes</a></li>
-            <li><a href="#contact-habil">Contacto</a></li>
+            <li><a href="#contact">Contacto</a></li>
             <li><a href="https://web.facebook.com/profile.php?id=61575731258247" target="_blank">Facebook</a></li>
             <li><a href="https://www.instagram.com/direcciondeadultosmayores.sgo" target="_blank">Instagram</a></li>
           </ul>
@@ -359,5 +516,6 @@
 
   <script src="js/main.js"></script>
   <script src="js/adultos/adultos.js"></script>
+  <script src="js/adultos/menu-responsivo.js"></script>
 </body>
 </html>

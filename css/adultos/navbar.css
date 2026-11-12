@@ -4,14 +4,15 @@ nav {
   z-index: 1000;
   background: rgb(0, 51, 102);
   backdrop-filter: blur(10px);
-  padding: 6px 2rem;
   min-height: 68px; /* crece si el texto se agranda con el widget de accesibilidad */
   display: flex;
   align-items: center;
-  
-  /* --- CAMBIOS PARA CENTRAR SIN TOCAR EL HTML --- */
-  justify-content: center; /* En lugar de space-between */
-  gap: 4rem;               /* Espacio armónico entre tu logo y los enlaces */
+
+  /* Mismo orden que el header de Mama Antula: logo a la izquierda y botón a la
+     derecha, alineados con el ancho del contenido de la página */
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 6px max(2rem, calc((100% - 1200px) / 2 + 2rem));
   box-shadow: 0 2px 16px rgba(0,0,0,0.25);
 }
 
@@ -20,6 +21,7 @@ nav {
   align-items: center; 
   gap: 2rem; 
   list-style: none; 
+  text-decoration: none !important;
   margin-right: 0; /* Cambiar los 50px por 0 para que no quede inclinado hacia la izquierda */
 }
 
@@ -67,6 +69,7 @@ nav {
   font-weight: 700; font-size: 0.8125rem;
   color: var(--white);
   line-height: 1.3;
+  text-decoration: none !important;
   max-width: 16em; /* en em: el nombre sigue ocupando dos líneas al agrandar el texto */
 }
 .nav-links { 
@@ -74,7 +77,7 @@ nav {
   align-items: center; 
   gap: 2rem; 
   list-style: none; 
-  margin-right: 50px;
+  margin-right: 0;
 }
 .nav-links a {
   color: rgba(255,255,255,0.85);

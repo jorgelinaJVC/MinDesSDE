@@ -14,6 +14,8 @@
 
 @media (max-width: 600px) {
   section { padding: 3.5rem 1.25rem; }
+  nav { padding-left: 1.25rem; padding-right: 1.25rem; }
+  footer { padding-left: 1.25rem; padding-right: 1.25rem; }
   .hero-features { grid-template-columns: 1fr; }
   .hero-stats { flex-direction: column; }
   .form-row { grid-template-columns: 1fr; }

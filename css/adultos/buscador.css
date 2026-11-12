@@ -225,3 +225,29 @@
     padding: 12px;
   }
 }
+/* ===== AJUSTES DE habilitacion.html ===== */
+/* La primera sección empieza debajo del navbar fijo (antes el título quedaba tapado) */
+#habilitacion { padding-top: calc(68px + 3rem); }
+
+/* Separación entre los campos del buscador */
+.buscador-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* El mapa ocupa todo el alto de su caja */
+.mapa-centralizado iframe { display: block; height: 100%; min-height: 350px; }
+.mapa-centralizado { height: 480px; }
+
+@media (max-width: 768px) {
+  /* Buscador y mapa con el mismo ancho que el resto del contenido */
+  #buscador .container { padding: 0; }
+  .buscador-wrapper { padding: 0; margin: 1.5rem auto; }
+  .buscador-card { padding: 1.5rem 1.25rem; }
+  .mapa-centralizado { margin: 1.5rem 0; height: 350px; }
+}
+
+@media (max-width: 600px) {
+  #habilitacion { padding-top: calc(68px + 2rem); }
+}
