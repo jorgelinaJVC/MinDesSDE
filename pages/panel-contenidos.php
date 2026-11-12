@@ -42,7 +42,7 @@ if ($esSuperAdmin) {
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Panel de Contenidos - Ministerio de Desarrollo Social</title>
-<link rel="stylesheet" href="../css/panel-contenidos.css?v=4">
+<link rel="stylesheet" href="../css/panel-contenidos.css?v=5">
 </head>
 <body>
 <div class="admin-layout">
