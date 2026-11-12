@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Panel de control | Nexo institucional</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="img/icono-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/icono-180.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Gelasio:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="vendor/quill/quill.snow.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/panel.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- Barra lateral -->
+    <aside class="lateral">
+      <a class="marca" href="#resumen">
+        <img class="marca__logo" src="img/logo-am.png" alt="" width="46" height="46">
+        <span>
+          <span class="marca__nombre">Nexo institucional</span>
+          <span class="marca__sub">Portal de Publicaciones de la Dir. Gral. de Adultos Mayores</span>
+        </span>
+      </a>
+
+      <!-- Solo en celulares y tablets: abre y cierra el menú (en pantallas grandes el menú siempre está a la vista) -->
+      <button type="button" class="lateral__boton" id="btn-menu" aria-expanded="false" aria-controls="lateral-desplegable" aria-label="Abrir menú">
+        <svg class="icono icono--abrir" viewBox="0 0 24 24" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg class="icono icono--cerrar" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <div class="lateral__desplegable" id="lateral-desplegable">
+      <p class="lateral__titulo">Espacio de trabajo</p>
+      <nav class="menu" id="menu" aria-label="Navegación principal"></nav>
+
+      <div class="usuario">
+        <div class="demo" id="demo">
+          <label class="demo__etiqueta" for="selector-demo">Modo demostración · ver como</label>
+          <select class="select select--chico" id="selector-demo"></select>
+          <button type="button" class="btn-texto" data-accion="reiniciar-demo">Restablecer datos de ejemplo</button>
+        </div>
+
+        <div class="usuario__perfil">
+          <span class="usuario__avatar" id="usuario-avatar" aria-hidden="true"></span>
+          <span class="usuario__datos">
+            <span class="usuario__nombre" id="usuario-nombre"></span>
+            <span class="usuario__rol" id="usuario-rol"></span>
+          </span>
+          <button type="button" class="btn-icono" data-accion="cambiar-clave" id="btn-cambiar-clave" aria-label="Cambiar mi contraseña" title="Cambiar mi contraseña" hidden>
+            <svg class="icono" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </button>
+          <button type="button" class="btn-icono" data-accion="cerrar-sesion" aria-label="Cerrar sesión" title="Cerrar sesión">
+            <svg class="icono" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+          </button>
+        </div>
+      </div>
+      </div>
+    </aside>
+
+    <!-- Contenido principal -->
+    <main class="contenido">
+      <div class="contenido__interior">
+
+        <header class="cabecera">
+          <div class="cabecera__texto">
+            <nav class="migas" aria-label="Ruta">
+              <span>Espacio editorial</span>
+              <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+              <strong>Contenidos institucionales</strong>
+            </nav>
+            <h1 class="cabecera__titulo" id="saludo">Buenos días</h1>
+            <p class="cabecera__bajada">Coordiná el circuito de información pública de tu institución.</p>
+          </div>
+
+          <div class="cabecera__acciones">
+            <span class="sistema"><span class="sistema__punto" aria-hidden="true"></span>Sistema operativo</span>
+            <button type="button" class="btn btn--claro" id="btn-nuevo" data-accion="abrir-carga">
+              <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><polyline points="9 15 11 17 15 13"></polyline></svg>
+              Nuevo contenido
+            </button>
+          </div>
+        </header>
+
+        <hr class="separador">
+
+        <!-- Editor de borradores: carga nueva o nueva versión. Se guarda como borrador privado hasta enviarlo. -->
+        <section class="carga" id="panel-carga" aria-labelledby="carga-titulo" hidden>
+          <header class="carga__cabecera">
+            <div>
+              <p class="carga__tipo"><span class="estado estado--borrador"><span class="estado__punto"></span>Borrador</span><span id="carga-contexto">Contenido nuevo</span></p>
+              <h2 class="carga__titulo" id="carga-titulo">Cargar información institucional</h2>
+              <p class="carga__sub" id="carga-sub">Solo vos lo ves hasta que lo envíes. Podés guardarlo incompleto y seguir después desde «Borradores».</p>
+            </div>
+            <div class="carga__cabecera-acciones">
+              <span class="guardado" id="carga-guardado" role="status" aria-live="polite"></span>
+              <button type="button" class="btn-icono" data-accion="cerrar-carga" aria-label="Cerrar el editor (se guarda el borrador)" title="Cerrar (se guarda el borrador)">
+                <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+          </header>
+
+          <form class="carga__cuerpo" id="form-carga" novalidate>
+            <!-- Al corregir algo observado: lo que pidieron los revisores (lo arma panel.js) -->
+            <div class="carga__observaciones" id="carga-observaciones" aria-live="polite" hidden></div>
+            <!-- Prioridad: arriba de todo, para decidirla al redactar y no al final -->
+            <fieldset class="prioridad" id="c-prioridad">
+              <legend class="solo-lectores">Prioridad del contenido</legend>
+              <label class="interruptor">
+                <input type="checkbox" id="c-urgente" role="switch" aria-describedby="c-urgente-ayuda">
+                <span class="interruptor__pista" aria-hidden="true"><span class="interruptor__perilla"></span></span>
+                <span class="interruptor__texto">
+                  <strong><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Prioritario / urgente</strong>
+                  <small id="c-urgente-ayuda">Va primero en las bandejas de dirección y de la autoridad superior, y al publicarse se destaca en el sitio.</small>
+                </span>
+              </label>
+              <div class="prioridad__detalle" id="c-urgente-detalle" hidden>
+                <label class="campo-grupo">
+                  <span>¿Por qué es urgente? <em>Opcional · lo ven solo quienes revisan</em></span>
+                  <input class="campo" id="c-motivo" maxlength="200" autocomplete="off" placeholder="Ej. La inscripción cierra el viernes">
+                </label>
+                <label class="campo-grupo campo-grupo--fecha">
+                  <span>Destacar en el sitio hasta <em>Opcional</em></span>
+                  <input class="campo" id="c-vence" type="date">
+                </label>
+              </div>
+            </fieldset>
+
+            <div class="carga__col">
+              <!-- Destino: uno o varios sitios. Se ve en ellos recién cuando la autoridad superior lo aprueba. -->
+              <fieldset class="sitios-destino" id="c-sitios" aria-describedby="c-sitios-ayuda">
+                <legend>Sitios donde se publica <i>*</i></legend>
+                <div class="sitios-destino__opciones" id="c-sitios-opciones"></div>
+                <small class="sitios-destino__ayuda" id="c-sitios-ayuda">Podés elegir varios. No se ve en ningún sitio hasta que la Autoridad Superior lo apruebe.</small>
+              </fieldset>
+              <div class="fila-campos">
+                <label class="campo-grupo">
+                  <span>Tipo de contenido <i>*</i></span>
+                  <select class="campo" id="c-tipo"></select>
+                </label>
+              </div>
+              <p class="campo-ayuda" id="c-ayuda-tipo" hidden></p>
+
+              <div class="fila-campos">
+                <label class="campo-grupo">
+                  <span>Categoría o etiqueta <i>*</i></span>
+                  <input class="campo" id="c-seccion" list="lista-secciones" maxlength="60" placeholder="Ej. Locales, Terapéutico, Celebración" autocomplete="off">
+                  <datalist id="lista-secciones"></datalist>
+                </label>
+                <label class="campo-grupo">
+                  <span>Identificador web <i>*</i></span>
+                  <input class="campo" id="c-slug" maxlength="80" placeholder="convocatoria-becas-2026" autocomplete="off">
+                </label>
+              </div>
+
+              <label class="campo-grupo">
+                <span>Título público <i>*</i></span>
+                <input class="campo" id="c-titulo" maxlength="120" placeholder="Título visible en la web" autocomplete="off">
+              </label>
+
+              <label class="campo-grupo">
+                <span>Bajada / resumen <i>*</i></span>
+                <textarea class="campo" id="c-resumen" rows="4" maxlength="280" placeholder="Describí el contenido en una o dos líneas."></textarea>
+              </label>
+            </div>
+
+            <div class="carga__col">
+              <!-- Contenido completo: editor con formato (Quill). Si el editor no carga, queda el cuadro de texto simple. -->
+              <div class="campo-grupo">
+                <span id="c-cuerpo-etiqueta">Contenido completo <i>*</i></span>
+                <div class="editor-texto" id="c-cuerpo-editor">
+                  <div class="editor-texto__barra" id="c-cuerpo-barra" role="toolbar" aria-label="Formato del contenido" hidden>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-header" value="2" aria-label="Título (H2)" title="Título (H2)"></button>
+                      <button type="button" class="ql-header" value="3" aria-label="Subtítulo (H3)" title="Subtítulo (H3)"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-bold" aria-label="Negrita" title="Negrita (Ctrl+B)"></button>
+                      <button type="button" class="ql-italic" aria-label="Cursiva" title="Cursiva (Ctrl+I)"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-list" value="bullet" aria-label="Lista con viñetas" title="Lista con viñetas"></button>
+                      <button type="button" class="ql-list" value="ordered" aria-label="Lista numerada" title="Lista numerada"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-link" aria-label="Enlace" title="Agregar o quitar un enlace (Ctrl+K)"></button>
+                    </span>
+                    <span class="ql-formats">
+                      <select class="ql-align" aria-label="Alineación del texto" title="Alineación del texto">
+                        <option selected></option>
+                        <option value="center"></option>
+                        <option value="right"></option>
+                        <option value="justify"></option>
+                      </select>
+                    </span>
+                    <span class="ql-formats">
+                      <button type="button" class="ql-clean" aria-label="Quitar formato" title="Quitar formato"></button>
+                    </span>
+                  </div>
+                  <textarea class="campo campo--alto" id="c-cuerpo" rows="8" aria-labelledby="c-cuerpo-etiqueta" placeholder="Escribí la información que se publicará en el sitio institucional…"></textarea>
+                </div>
+              </div>
+
+              <div class="adjuntos-carga">
+                <div class="zona-adjuntos" id="zona-adjuntos">
+                  <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path></svg>
+                  <div class="zona-adjuntos__texto">
+                    <strong>Imágenes y documentos</strong>
+                    <small>Arrastralos acá o elegilos. Imágenes JPG, PNG, WEBP o AVIF; documentos PDF, Word o TXT. Hasta 10 MB cada uno, máximo 8.</small>
+                  </div>
+                  <button type="button" class="btn btn--suave btn--mini" data-accion="elegir-archivos">Seleccionar archivos</button>
+                  <input type="file" id="c-archivos" accept=".jpg,.jpeg,.png,.webp,.avif,.pdf,.doc,.docx,.txt" multiple hidden>
+                </div>
+                <ul class="lista-adjuntos" id="lista-adjuntos" aria-label="Archivos del borrador"></ul>
+              </div>
+
+              <div class="errores" id="carga-errores" role="alert" hidden></div>
+            </div>
+
+            <div class="carga__pie">
+              <div class="faltantes" id="carga-faltantes" aria-live="polite"></div>
+              <div class="carga__acciones">
+                <button type="button" class="btn-texto btn-texto--peligro" data-accion="descartar-borrador" id="btn-descartar" hidden>Descartar borrador</button>
+                <button type="button" class="btn btn--claro" data-accion="guardar-borrador" id="btn-guardar">
+                  <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path><polyline points="17 21 17 13 7 13 7 21"></polyline><polyline points="7 3 7 8 15 8"></polyline></svg>
+                  Guardar borrador
+                </button>
+                <button type="submit" class="btn btn--primario" id="btn-enviar">
+                  <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+                  <span id="btn-enviar-texto">Enviar a revisión</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <nav class="pestanas" id="pestanas" aria-label="Secciones del panel"></nav>
+
+        <!-- Búsqueda y filtros -->
+        <div class="filtros" id="filtros">
+          <label class="filtros__buscar">
+            <span class="solo-lectores">Buscar contenidos</span>
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+            <input type="search" id="f-q" class="filtros__input" placeholder="Buscar por título, sitio, categoría, autor o identificador…" autocomplete="off">
+          </label>
+
+          <select class="select" id="f-estado" aria-label="Filtrar por estado">
+            <option value="todos">Todos los estados</option>
+            <option value="en_revision">Revisión de dirección</option>
+            <option value="elevado">Elevado a autoridad</option>
+            <option value="devuelto">Devuelto</option>
+            <option value="aprobado">Aprobado</option>
+            <option value="rechazado">Rechazado</option>
+            <option value="publicado">Publicado</option>
+            <option value="archivado">Archivado</option>
+          </select>
+
+          <select class="select" id="f-sitio" aria-label="Filtrar por sitio"></select>
+
+          <select class="select" id="f-seccion" aria-label="Filtrar por categoría"></select>
+
+          <select class="select" id="f-orden" aria-label="Ordenar">
+            <option value="recientes">Más recientes</option>
+            <option value="antiguos">Más antiguos</option>
+            <option value="prioridad">Urgentes primero</option>
+            <option value="titulo">Título (A-Z)</option>
+          </select>
+
+          <select class="select" id="f-prioridad" aria-label="Filtrar por prioridad">
+            <option value="todas">Toda prioridad</option>
+            <option value="urgente">Solo urgentes</option>
+            <option value="normal">Solo normales</option>
+          </select>
+
+          <span class="filtros__total">
+            <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><line x1="4" y1="21" x2="4" y2="14"></line><line x1="4" y1="10" x2="4" y2="3"></line><line x1="12" y1="21" x2="12" y2="12"></line><line x1="12" y1="8" x2="12" y2="3"></line><line x1="20" y1="21" x2="20" y2="16"></line><line x1="20" y1="12" x2="20" y2="3"></line><line x1="1" y1="14" x2="7" y2="14"></line><line x1="9" y1="8" x2="15" y2="8"></line><line x1="17" y1="16" x2="23" y2="16"></line></svg>
+            <span id="f-total"></span>
+          </span>
+        </div>
+
+        <!-- Vista activa (la genera panel.js) -->
+        <div class="vista" id="vista" tabindex="-1"></div>
+      </div>
+    </main>
+  </div>
+
+  <div class="avisos" id="avisos" role="status" aria-live="polite"></div>
+
+  <dialog class="dialogo" id="dialogo" aria-labelledby="dialogo-titulo">
+    <form method="dialog">
+      <h2 class="dialogo__titulo" id="dialogo-titulo"></h2>
+      <p class="dialogo__texto" id="dialogo-texto"></p>
+      <label class="campo-grupo" id="dialogo-motivo-caja" hidden>
+        <span id="dialogo-motivo-etiqueta">Motivo (opcional)</span>
+        <textarea class="campo" id="dialogo-motivo" rows="3" maxlength="240"></textarea>
+      </label>
+      <div class="dialogo__acciones">
+        <button class="btn btn--claro" value="cancelar">Cancelar</button>
+        <button class="btn btn--primario" value="ok" id="dialogo-ok">Confirmar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Alta y edición de integrantes (solo administrador). panel.js decide el modo y qué campos mostrar. -->
+  <dialog class="dialogo dialogo--formulario" id="dialogo-integrante" aria-labelledby="integrante-titulo" aria-describedby="integrante-sub">
+    <form id="form-integrante" novalidate>
+      <header class="dialogo__cabecera">
+        <div>
+          <h2 class="dialogo__titulo" id="integrante-titulo">Agregar integrante</h2>
+          <p class="dialogo__texto" id="integrante-sub"></p>
+        </div>
+        <button type="button" class="btn-icono" data-accion="cerrar-integrante" aria-label="Cerrar formulario">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </header>
+
+      <div class="dialogo__campos">
+        <label class="campo-grupo">
+          <span>Nombre y apellido <i>*</i></span>
+          <input class="campo" id="i-nombre" maxlength="120" autocomplete="off" placeholder="Ej. Lucía Paz">
+        </label>
+
+        <label class="campo-grupo">
+          <span>Correo institucional <i>*</i></span>
+          <input class="campo" id="i-email" type="email" maxlength="160" autocomplete="off" placeholder="nombre.apellido@institucion.gob.ar">
+        </label>
+
+        <div class="fila-campos">
+          <label class="campo-grupo">
+            <span>Teléfono de contacto</span>
+            <input class="campo" id="i-telefono" type="tel" maxlength="40" autocomplete="off" placeholder="+54 385 421-0000">
+          </label>
+          <label class="campo-grupo">
+            <span>Área o dependencia</span>
+            <input class="campo" id="i-area" maxlength="120" autocomplete="off" placeholder="Ej. Prensa y contenidos">
+          </label>
+        </div>
+
+        <label class="campo-grupo" id="i-rol-caja">
+          <span>Rol inicial <i>*</i></span>
+          <select class="campo" id="i-rol"></select>
+        </label>
+        <p class="campo-ayuda" id="i-rol-ayuda"></p>
+
+        <div class="campo-grupo" id="i-clave-caja">
+          <label for="i-clave" id="i-clave-etiqueta">Contraseña provisional <i>*</i></label>
+          <div class="campo-clave">
+            <input class="campo" id="i-clave" type="text" maxlength="72" autocomplete="new-password" spellcheck="false">
+            <button type="button" class="btn btn--suave btn--mini" data-accion="generar-clave">Generar</button>
+          </div>
+          <small class="campo-ayuda" id="i-clave-ayuda">Mínimo 10 caracteres. Compartila con la persona por un canal seguro.</small>
+        </div>
+      </div>
+
+      <div class="errores" id="integrante-errores" role="alert" hidden></div>
+
+      <div class="dialogo__acciones">
+        <button type="button" class="btn btn--claro" data-accion="cerrar-integrante">Cancelar</button>
+        <button type="submit" class="btn btn--primario" id="btn-integrante">Agregar integrante</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Cambiar la propia contraseña. Obligatorio (sin poder cerrarlo) cuando la contraseña es provisional. -->
+  <dialog class="dialogo dialogo--formulario" id="dialogo-clave" aria-labelledby="clave-titulo" aria-describedby="clave-sub">
+    <form id="form-clave" novalidate>
+      <header class="dialogo__cabecera">
+        <div>
+          <h2 class="dialogo__titulo" id="clave-titulo">Cambiar mi contraseña</h2>
+          <p class="dialogo__texto" id="clave-sub"></p>
+        </div>
+      </header>
+
+      <div class="dialogo__campos">
+        <label class="campo-grupo">
+          <span id="clave-actual-etiqueta">Contraseña actual <i>*</i></span>
+          <input class="campo" id="c-actual" type="password" maxlength="200" autocomplete="current-password">
+        </label>
+        <label class="campo-grupo">
+          <span>Contraseña nueva <i>*</i></span>
+          <input class="campo" id="c-nueva" type="password" maxlength="72" autocomplete="new-password">
+        </label>
+        <label class="campo-grupo">
+          <span>Repetí la contraseña nueva <i>*</i></span>
+          <input class="campo" id="c-repetir" type="password" maxlength="72" autocomplete="new-password">
+        </label>
+        <small class="campo-ayuda">Mínimo 10 caracteres. Usá una que no uses en otros sitios. Al guardarla se cierran tus sesiones abiertas en otras computadoras.</small>
+      </div>
+
+      <div class="errores" id="clave-errores" role="alert" hidden></div>
+
+      <div class="dialogo__acciones">
+        <button type="button" class="btn btn--claro" id="btn-clave-cancelar">Cancelar</button>
+        <button type="button" class="btn btn--claro" id="btn-clave-salir" hidden>Cerrar sesión</button>
+        <button type="submit" class="btn btn--primario" id="btn-clave-guardar">Guardar contraseña</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Cambiar la prioridad de algo ya enviado (dirección y autoridad superior) -->
+  <dialog class="dialogo" id="dialogo-prioridad" aria-labelledby="prioridad-titulo">
+    <form id="form-prioridad" novalidate>
+      <h2 class="dialogo__titulo" id="prioridad-titulo">Prioridad del contenido</h2>
+      <p class="dialogo__texto" id="prioridad-sub"></p>
+      <fieldset class="prioridad prioridad--dialogo">
+        <legend class="solo-lectores">Prioridad</legend>
+        <label class="interruptor">
+          <input type="checkbox" id="p-urgente" role="switch">
+          <span class="interruptor__pista" aria-hidden="true"><span class="interruptor__perilla"></span></span>
+          <span class="interruptor__texto"><strong><svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>Prioritario / urgente</strong><small>Va primero en las bandejas y se destaca en el sitio al publicarse.</small></span>
+        </label>
+        <div class="prioridad__detalle" id="p-urgente-detalle" hidden>
+          <label class="campo-grupo">
+            <span>¿Por qué es urgente? <em>Opcional · lo ven solo quienes revisan</em></span>
+            <input class="campo" id="p-motivo" maxlength="200" autocomplete="off">
+          </label>
+          <label class="campo-grupo campo-grupo--fecha">
+            <span>Destacar en el sitio hasta <em>Opcional</em></span>
+            <input class="campo" id="p-vence" type="date">
+          </label>
+        </div>
+      </fieldset>
+      <div class="errores" id="prioridad-errores" role="alert" hidden></div>
+      <div class="dialogo__acciones">
+        <button type="button" class="btn btn--claro" data-accion="cerrar-prioridad">Cancelar</button>
+        <button type="submit" class="btn btn--primario" id="btn-prioridad">Guardar prioridad</button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Visor de adjuntos: imágenes, PDF y texto se ven acá mismo; cualquier archivo se puede descargar. -->
+  <dialog class="dialogo dialogo--visor" id="visor" aria-labelledby="visor-nombre">
+    <header class="visor__cabecera">
+      <div class="visor__titulos">
+        <h2 class="visor__nombre" id="visor-nombre">Archivo</h2>
+        <p class="visor__detalle" id="visor-detalle"></p>
+      </div>
+      <div class="visor__acciones">
+        <a class="btn btn--claro btn--mini" id="visor-pestana" target="_blank" rel="noopener">Abrir en pestaña nueva</a>
+        <a class="btn btn--primario btn--mini" id="visor-descargar">Descargar</a>
+        <button type="button" class="btn-icono" data-accion="cerrar-visor" aria-label="Cerrar el visor">
+          <svg class="icono" viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+    </header>
+    <div class="visor__cuerpo" id="visor-cuerpo"></div>
+  </dialog>
+
+  <script src="js/util.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/archivos-demo.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/api-servidor.js"></script>
+  <script src="vendor/quill/quill.js"></script>
+  <script src="js/editor-texto.js"></script>
+  <script src="js/panel.js"></script>
+</body>
+</html>

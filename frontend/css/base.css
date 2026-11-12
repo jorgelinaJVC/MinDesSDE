@@ -1,0 +1,304 @@
+:root {
+  --fondo: #f4f7f6;
+  --superficie: #ffffff;
+  --superficie-suave: #f7faf8;
+  --borde: #e3e9e6;
+  --borde-fuerte: #cfd9d4;
+
+  --verde-oscuro: #173f33;
+  --verde-medio: #1f5443;
+  --verde-menta: #e4efe8;
+  --verde-texto: #2f7d61;
+  --lima: #d6f26c;
+
+  --texto: #22322c;
+  --texto-suave: #6f7773;
+  --texto-tenue: #9aa39f;
+
+  --ambar-fondo: #fdf0d2;
+  --ambar-texto: #8f5d06;
+  --ambar-punto: #e0a100;
+  --rojo-fondo: #fbe7e3;
+  --rojo-texto: #a5392c;
+  --azul-fondo: #e3edf8;
+  --azul-texto: #285a91;
+
+  /* Urgencia: un color propio (no es el rojo de "devuelto/rechazado" ni el ámbar de "en revisión")
+   * y una sola marca gráfica, la cinta diagonal de aviso, reservada para lo urgente. */
+  --urgente: #c4320a;
+  --urgente-oscuro: #8f2405;
+  --urgente-fondo: #fff1ea;
+  --urgente-borde: #f3b59a;
+  --cinta-urgente: repeating-linear-gradient(-45deg, var(--urgente) 0 9px, #ffd9c7 9px 18px);
+
+  --fuente-cuerpo: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fuente-titulo: "Gelasio", Georgia, "Times New Roman", serif;
+
+  --sombra-suave: 0 1px 2px rgba(23, 63, 51, 0.04), 0 10px 28px rgba(23, 63, 51, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+html,
+body {
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: var(--fuente-cuerpo);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, p, ul, ol, dl, dd {
+  margin: 0;
+}
+
+ul, ol {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--verde-texto);
+  outline-offset: 2px;
+}
+
+.solo-lectores {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* Iconos SVG en línea */
+.icono {
+  width: 16px;
+  height: 16px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Etiqueta pequeña sobre los títulos */
+.etiqueta {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+}
+
+/* Botones */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 0 18px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.btn--urgente {
+  background: var(--urgente);
+  color: #ffffff;
+}
+
+.btn--urgente:hover:not(:disabled) {
+  background: var(--urgente-oscuro);
+}
+
+.btn--primario {
+  background: var(--verde-oscuro);
+  color: #ffffff;
+}
+
+.btn--primario:hover:not(:disabled) {
+  background: var(--verde-medio);
+}
+
+.btn--claro {
+  background: var(--superficie);
+  border-color: var(--borde-fuerte);
+  color: var(--verde-oscuro);
+}
+
+.btn--claro:hover:not(:disabled) {
+  background: var(--superficie-suave);
+  border-color: var(--verde-texto);
+}
+
+.btn--suave {
+  background: var(--verde-menta);
+  color: var(--verde-oscuro);
+}
+
+.btn--suave:hover:not(:disabled) {
+  background: #d8e8de;
+}
+
+.btn--lima {
+  background: var(--lima);
+  color: var(--verde-oscuro);
+}
+
+.btn--lima:hover:not(:disabled) {
+  background: #e0f68b;
+}
+
+.btn--peligro {
+  background: var(--superficie);
+  border-color: #e7c3bd;
+  color: var(--rojo-texto);
+}
+
+.btn--peligro:hover:not(:disabled) {
+  background: var(--rojo-fondo);
+}
+
+.btn--mini {
+  min-height: 30px;
+  padding: 0 14px;
+  font-size: 12px;
+}
+
+.btn--bloque {
+  width: 100%;
+}
+
+.btn-icono {
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--texto-suave);
+}
+
+.btn-icono:hover {
+  background: var(--verde-menta);
+  color: var(--verde-oscuro);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation-duration: 1ms !important;
+  }
+}
+
+/* ---------- Contenido completo con formato (editor del panel) ----------
+ * El mismo aspecto en la revisión del panel y en la vista pública. Solo llega HTML filtrado por la lista blanca:
+ * párrafos, H2, H3, negrita, cursiva, listas, enlaces y alineación. */
+
+.texto-con-formato {
+  overflow-wrap: anywhere;
+}
+
+.texto-con-formato > * {
+  margin: 0 0 0.85em;
+}
+
+.texto-con-formato > :last-child {
+  margin-bottom: 0;
+}
+
+.texto-con-formato h2,
+.texto-con-formato h3 {
+  margin-top: 1.2em;
+  color: var(--verde-oscuro);
+  line-height: 1.3;
+}
+
+.texto-con-formato > :first-child {
+  margin-top: 0;
+}
+
+.texto-con-formato h2 {
+  font-family: var(--fuente-titulo);
+  font-size: 1.4em;
+}
+
+.texto-con-formato h3 {
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.texto-con-formato ul,
+.texto-con-formato ol {
+  padding-left: 1.5em;
+}
+
+.texto-con-formato ul {
+  list-style: disc;
+}
+
+.texto-con-formato ol {
+  list-style: decimal;
+}
+
+.texto-con-formato li + li {
+  margin-top: 0.3em;
+}
+
+.texto-con-formato a {
+  color: var(--verde-texto);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.texto-con-formato strong {
+  font-weight: 700;
+}

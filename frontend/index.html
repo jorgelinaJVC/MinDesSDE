@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Portal interno | Inicia sesión</title>
+  <link rel="icon" href="favicon.ico" sizes="any">
+  <link rel="icon" href="img/icono-32.png" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="img/icono-180.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Gelasio:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+  <main class="pagina">
+    <section class="tarjeta" aria-labelledby="titulo-login">
+      <img class="logo-login" src="img/logo-am.png" alt="Dirección General de Adultos Mayores · Santiago del Estero" width="96" height="96">
+
+      <p class="etiqueta etiqueta--login">Portal interno</p>
+
+      <h1 class="titulo" id="titulo-login">Inicia sesión para continuar</h1>
+
+      <p class="descripcion">
+        El panel de contenidos requiere una cuenta institucional
+        para registrar autores, revisores y decisiones.
+      </p>
+
+      <form id="form-login" novalidate>
+        <!-- Solo se muestran cuando la página corre con el servidor (ver js/config.js) -->
+        <div class="campos-login" id="campos-login" hidden>
+          <label class="campo-grupo">
+            <span>Correo institucional</span>
+            <input class="campo" id="l-email" type="email" autocomplete="username" placeholder="nombre@institucion.edu.ar">
+          </label>
+          <label class="campo-grupo">
+            <span>Contraseña</span>
+            <input class="campo" id="l-password" type="password" autocomplete="current-password">
+          </label>
+          <p class="ayuda-clave">¿Olvidaste tu contraseña? Pedile al administrador del portal que la restablezca.</p>
+        </div>
+
+        <button type="submit" class="btn btn--primario btn--bloque btn--login" id="btn-ingresar">
+          <span class="btn__texto">Ingresar con cuenta institucional</span>
+        </button>
+      </form>
+
+      <p class="error" id="error-login" role="alert" hidden></p>
+
+      <p class="nota">
+        Puedes explorar la <a href="publico.html">vista pública</a> sin iniciar sesión.
+      </p>
+    </section>
+  </main>
+
+  <script src="js/util.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/archivos-demo.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/api-servidor.js"></script>
+  <script src="js/login.js"></script>
+</body>
+</html>
