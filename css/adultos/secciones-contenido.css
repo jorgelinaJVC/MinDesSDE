@@ -1,0 +1,309 @@
+/* secciones-contenido.css — Noticias, Galería y Proyectos: la misma maquetación en los tres sitios
+ * (indexAdultos.html, mama-antula.html y centro-dia.html).
+ *
+ * Toma como modelo las cuadrículas del Centro de Día (mismas clases, medidas, espaciados y tarjetas) y es la
+ * única fuente de estilo de estas tres secciones: todo cuelga de .seccion-contenido, así que no cambia nada
+ * del resto de cada página y le gana a las reglas viejas de cada sitio con el mismo nombre de clase.
+ *
+ * Estructura (idéntica en los tres HTML):
+ *   section#novedades.section-block.seccion-contenido
+ *     .container > .section-header (.section-kicker, .section-title, .section-description)
+ *     .cards-grid.grid-3[data-nexo="noticia"]   > article.news-item
+ *   section#galeria.section-block.bg-soft.seccion-contenido
+ *     .container > .section-header + .gallery-layout[data-nexo="galeria"] > figure.gallery-cell
+ *   section#proyectos.section-block.bg-soft.seccion-contenido
+ *     .container > .section-header + .cards-grid.grid-3[data-nexo="proyecto"] > .project-card
+ *
+ * Colores y tipografía de títulos salen de cada sitio (su paleta y su fuente); medidas, espacios y tarjetas son
+ * iguales en los tres. Columnas: 3 en escritorio, 2 en tablet y 1 en celular.
+ */
+
+/* ---------- Valores de cada sitio ---------- */
+
+.seccion-contenido {
+  --sc-primario: var(--primary, var(--purple, #5b2d8e));
+  --sc-primario-oscuro: var(--primary-dark, var(--sc-primario));
+  --sc-acento: var(--gold, #c2882c);
+  --sc-texto-suave: var(--text-muted, var(--text-medium, #5c6c74));
+  --sc-fondo: #ffffff;
+  --sc-fondo-suave: var(--bg-soft, #f4f8f9);
+  --sc-borde: var(--border-color, #dce5e8);
+  --sc-sombra: var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.06));
+  --sc-radio: 10px;
+  --sc-fuente-titulo: "Lora", serif;
+}
+
+/* Adultos Mayores: su dorado (#F5C518) no se lee sobre blanco; se usa un dorado oscuro con buen contraste,
+ * y los títulos van en Montserrat, la fuente del resto de su página. */
+body[data-sitio="adultos-mayores"] .seccion-contenido {
+  --sc-acento: #8a6a00;
+  --sc-fuente-titulo: "Montserrat", sans-serif;
+}
+
+/* ---------- Sección y encabezado ---------- */
+
+.seccion-contenido {
+  line-height: 1.65; /* el interlineado del Centro de Día (cada sitio tenía uno distinto en body) */
+}
+
+.seccion-contenido.section-block {
+  padding: 85px 0;
+  background-color: var(--sc-fondo);
+}
+
+.seccion-contenido.section-block.bg-soft {
+  background-color: var(--sc-fondo-suave);
+}
+
+.seccion-contenido .container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.seccion-contenido .section-header {
+  display: block;
+  width: auto;
+  max-width: 720px;
+  margin: 0 auto 50px;
+  text-align: center;
+}
+
+.seccion-contenido .section-kicker {
+  display: block;
+  margin: 0 0 8px;
+  color: var(--sc-acento);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.seccion-contenido .section-title {
+  display: block;
+  width: auto;
+  margin: 0 0 12px;
+  color: var(--sc-primario);
+  font-family: var(--sc-fuente-titulo);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.seccion-contenido .section-description {
+  margin: 0;
+  color: var(--sc-texto-suave);
+  font-size: 1.05rem;
+}
+
+/* ---------- Cuadrículas ---------- */
+
+.seccion-contenido .cards-grid,
+.seccion-contenido .gallery-layout {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important; /* centro-dia.css usa !important en tablet */
+  align-items: stretch;
+}
+
+.seccion-contenido .cards-grid {
+  gap: 25px;
+}
+
+.seccion-contenido .gallery-layout {
+  gap: 20px;
+}
+
+/* ---------- Noticia ---------- */
+
+.seccion-contenido .news-item {
+  display: flex;
+  flex-direction: column;
+  padding: 26px;
+  border-left: 4px solid var(--sc-primario);
+  border-radius: var(--sc-radio);
+  background: var(--sc-fondo);
+  box-shadow: var(--sc-sombra);
+}
+
+.seccion-contenido .news-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.seccion-contenido .news-category {
+  color: var(--sc-acento);
+  text-transform: uppercase;
+}
+
+.seccion-contenido .news-date {
+  color: var(--sc-texto-suave);
+  white-space: nowrap;
+}
+
+.seccion-contenido .news-item h3 {
+  margin: 0 0 8px;
+  color: var(--sc-primario-oscuro);
+  font-size: 1.15rem;
+  line-height: 1.35;
+}
+
+.seccion-contenido .news-item p {
+  margin: 0;
+  color: var(--sc-texto-suave);
+  font-size: 0.92rem;
+}
+
+/* ---------- Galería ---------- */
+
+.seccion-contenido .gallery-cell {
+  position: relative;
+  height: 230px;
+  margin: 0;
+  overflow: hidden;
+  border-radius: var(--sc-radio);
+  box-shadow: var(--sc-sombra);
+}
+
+.seccion-contenido .gallery-cell img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.seccion-contenido .gallery-cell:hover img {
+  transform: scale(1.06);
+}
+
+.seccion-contenido .gallery-cell figcaption {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 12px 16px;
+  background: linear-gradient(transparent, rgba(15, 46, 57, 0.85));
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+/* ---------- Proyecto ---------- */
+
+.seccion-contenido .project-card {
+  position: relative;
+  padding: 30px;
+  border: 1px solid var(--sc-borde);
+  border-radius: var(--sc-radio);
+  background: var(--sc-fondo);
+  box-shadow: var(--sc-sombra);
+}
+
+.seccion-contenido .project-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  background: var(--sc-fondo-suave);
+  color: var(--sc-primario);
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.seccion-contenido .proj-icon {
+  display: block;
+  margin-bottom: 16px;
+  color: var(--sc-acento);
+  font-size: 2.2rem;
+}
+
+.seccion-contenido .project-card h3 {
+  margin: 0 0 10px;
+  padding-right: 80px; /* deja lugar para la etiqueta */
+  color: var(--sc-primario-oscuro);
+  font-size: 1.25rem;
+  line-height: 1.35;
+}
+
+.seccion-contenido .project-card p {
+  margin: 0;
+  color: var(--sc-texto-suave);
+  font-size: 0.95rem;
+}
+
+/* ---------- Adaptable ---------- */
+
+/* tablet: dos columnas */
+@media (max-width: 991px) {
+  .seccion-contenido .cards-grid,
+  .seccion-contenido .gallery-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* celular: una columna, márgenes más chicos */
+@media (max-width: 599px) {
+  .seccion-contenido.section-block {
+    padding: 56px 0;
+  }
+
+  .seccion-contenido .container {
+    width: 92%;
+  }
+
+  .seccion-contenido .section-header {
+    margin-bottom: 32px;
+  }
+
+  .seccion-contenido .section-title {
+    font-size: 1.8rem;
+  }
+
+  .seccion-contenido .cards-grid,
+  .seccion-contenido .gallery-layout {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  .seccion-contenido .cards-grid {
+    gap: 18px;
+  }
+
+  .seccion-contenido .news-item {
+    padding: 22px;
+  }
+
+  .seccion-contenido .project-card {
+    padding: 24px;
+  }
+}
+
+/* ---------- Alto contraste (clase .high-contrast en <html> o <body>, según el sitio) ---------- */
+
+.high-contrast .seccion-contenido.section-block,
+.high-contrast .seccion-contenido .news-item,
+.high-contrast .seccion-contenido .project-card {
+  background: #000;
+}
+
+.high-contrast .seccion-contenido .section-title,
+.high-contrast .seccion-contenido .news-item h3,
+.high-contrast .seccion-contenido .project-card h3,
+.high-contrast .seccion-contenido .news-category,
+.high-contrast .seccion-contenido .section-kicker {
+  color: #ff0;
+}
+
+.high-contrast .seccion-contenido .news-item p,
+.high-contrast .seccion-contenido .project-card p,
+.high-contrast .seccion-contenido .section-description,
+.high-contrast .seccion-contenido .news-date {
+  color: #fff;
+}

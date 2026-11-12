@@ -1,1 +1,0 @@
-ALTER TABLE `alertas` MODIFY COLUMN `tipoAlerta` enum('falta_medicacion','salud_critica','abandono','abuso_economico','abuso_psicologico','abuso_fisico','otro') NOT NULL;

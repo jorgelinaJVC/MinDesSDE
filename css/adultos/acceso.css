@@ -41,13 +41,13 @@
 .acceso-texto h3 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9375rem;
   color: #1a202c;
   margin-bottom: 6px;
 }
 
 .acceso-texto p {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: #718096;
   line-height: 1.5;
 }
@@ -67,7 +67,7 @@
   border-radius: 8px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-decoration: none;
   border: 1px solid transparent;
   transition: all 0.2s;

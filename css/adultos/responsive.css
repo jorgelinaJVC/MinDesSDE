@@ -2,7 +2,7 @@
   .hero-container { grid-template-columns: 1fr; gap: 2.5rem; }
   .hero-image-wrapper { order: -1; }
   .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-  .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .contact-grid { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   
   /* Ajuste para las secciones unificadas */

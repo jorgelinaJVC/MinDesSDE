@@ -36,7 +36,7 @@ section { padding: 5rem 2rem; }
   display: inline-block;
   background: #003a70;
   color: var(--gold-dark);
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -48,7 +48,7 @@ section { padding: 5rem 2rem; }
 .section-title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-size: clamp(1.8rem, calc(3vw * var(--escala-texto, 1)), 2.5rem);
   color: var(--slate-deeper1);
   color: var(--slate-deeper2);
   line-height: 1.2;
@@ -74,13 +74,13 @@ section { padding: 5rem 2rem; }
 .section-header { 
   display: flex;
   flex-direction: column; /* Apila la etiqueta arriba y el título abajo */
-  align-items: center;    /* ¡Este es el que centra horizontalmente ambos elementos! */
+ align-items: center;    /* ¡Este es el que centra horizontalmente ambos elementos! */
   text-align: center;     /* Centra el texto por si acaso */
   width: 100%;            /* Asegura que tome todo el ancho del contenedor */
   margin-bottom: 20px;    /* Un espacio opcional abajo si notas que se junta mucho con el texto */
   margin-bottom: 3rem; }
 .section-header.centered { text-align: center; }
-.section-header.centered .section-desc { margin: 0 auto; }
+.section-header.centered .section-desc { margin: 0 auto; } 
 
 /* ===== BOTONES GLOBALES ===== */
 .btn-primary {
@@ -91,8 +91,24 @@ section { padding: 5rem 2rem; }
       color: var(--slate-deeper);
       font-family: 'Montserrat', sans-serif;
       font-weight: 700;
-      font-size: 15px;
-      padding: 14px 28px;
+      font-size: 0.9375rem;
+      padding: 10px 18px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primario {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--gold);
+      color: var(--slate-deeper);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.9375rem;
+      padding: 10px 18px;
       border-radius: 8px;
       text-decoration: none;
       transition: all 0.3s;
@@ -112,7 +128,7 @@ section { padding: 5rem 2rem; }
   color: var(--white);
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 0.9375rem;
   padding: 14px 28px;
   border-radius: 8px;
   text-decoration: none;
@@ -139,7 +155,7 @@ section { padding: 5rem 2rem; }
   border-radius: 50px;       /* Forma redondeada de píldora[cite: 1] */
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   transition: all 0.3s ease;
   border: 1px solid transparent;

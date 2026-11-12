@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portal — Ministerio de Desarrollo Social</title>
+    <link rel="shortcut icon" href="../img/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700&display=swap"
+        rel="stylesheet" />
+
+    <style>
+        /* ===== PORTAL (estilos propios, prefijo portal- para no chocar con styles.css) ===== */
+        .portal {
+            padding: 64px 0 72px;
+            background: #fff;
+            font-family: 'Barlow', sans-serif;
+        }
+
+        .portal__intro {
+            text-align: center;
+            max-width: 640px;
+            margin: 0 auto 40px;
+            color: #475569;
+            font-size: 1.05rem;
+        }
+
+        .portal__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            /* sin align-items: las 3 cards se estiran a la misma altura */
+        }
+
+        .portal-card {
+            --c: #0a1fd6;
+            --bg1: #eef4ff;
+            --bg2: #dbe7fd;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 36px 28px 32px;
+            border: 1.5px solid var(--c);
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--bg1), var(--bg2));
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+
+        .portal-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(15, 23, 42, .12);
+        }
+
+        .portal-card--muni {
+            --c: #a020f0;
+            --bg1: #fcf7ff;
+            --bg2: #f3e8ff;
+        }
+
+        .portal-card--noticias {
+            --c: #e30613;
+            --bg1: #fff7f7;
+            --bg2: #ffe4e4;
+        }
+
+        .portal-card__icon {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            background: var(--c);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .portal-card--muni .portal-card__icon {
+            background: #b44cf5;
+        }
+
+        .portal-card__icon svg {
+            width: 44px;
+            height: 44px;
+            stroke: #fff;
+            fill: none;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .portal-card--muni .portal-card__icon svg {
+            stroke: #7a00c9;
+        }
+
+        .portal-card h3 {
+            margin: 0 0 12px;
+            font-size: 1.8rem;
+            line-height: 1.2;
+            font-weight: 700;
+            color: #1f1a17;
+            letter-spacing: .5px;
+        }
+
+        .portal-card p {
+            margin: 0 0 24px;
+            color: #333;
+            line-height: 1.55;
+        }
+
+        .portal-btn {
+            display: inline-block;
+            padding: 11px 26px;
+            border-radius: 8px;
+            background: var(--c, #0a1fd6);
+            color: #fff;
+            font-weight: 600;
+            text-decoration: none;
+            transition: filter .2s ease;
+        }
+
+        .portal-btn:hover {
+            filter: brightness(1.12);
+        }
+
+        /* Grupo de botones (tarjeta con más de una opción) */
+        .portal-card__actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+
+        .portal-btn--sm {
+            width: 100%;
+            max-width: 260px;
+            padding: 9px 16px;
+            font-size: .92rem;
+            line-height: 1.3;
+            text-align: center;
+        }
+
+        .portal-ayuda {
+            margin-top: 64px;
+            padding: 36px;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #eef4ff, #fff);
+        }
+
+        .portal-ayuda h3 {
+            margin: 0 0 14px;
+            font-size: 1.5rem;
+            color: #1f1a17;
+        }
+
+        .portal-ayuda p {
+            margin: 0 0 24px;
+            color: #333;
+        }
+
+        .portal-ayuda .portal-btn {
+            --c: #0a1fd6;
+            padding: 14px 34px;
+        }
+
+        @media (max-width: 960px) {
+            .portal__grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .portal__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portal-ayuda {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== HEADER ========== -->
+    <header class="header" id="header">
+        <div class="header__inner container">
+            <a href="../index.html" class="header__logo">
+                <svg width="150" height="60" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M70,25 C40,25 20,45 20,75 C20,110 60,140 130,155 C110,145 45,125 45,75 C45,55 55,45 70,45 C85,45 95,55 95,55 L105,40 C105,40 90,25 70,25 Z"
+                        fill="#526685" />
+                    <circle cx="75" cy="20" r="18" fill="#526685" />
+                    <path
+                        d="M130,55 C130,55 140,45 155,45 C170,45 180,55 180,75 C180,110 140,150 70,165 C90,155 155,135 155,85 C155,65 145,55 130,55 Z"
+                        fill="#7C96C4" />
+                    <circle cx="125" cy="30" r="18" fill="#7C96C4" />
+                    <path
+                        d="M100,80 C85,80 75,90 75,105 C75,125 100,135 135,125 C120,135 85,135 85,110 C85,95 95,90 105,90 C115,90 125,95 125,95 L135,80 C135,80 115,80 100,80 Z"
+                        fill="#E30613" />
+                    <circle cx="95" cy="85" r="12" fill="#E30613" />
+                </svg>
+                <div class="logo-titles">
+                    <span class="logo-text">Ministerio de Desarrollo Social</span>
+                    <span class="logo-sub">Santiago del Estero</span>
+                </div>
+            </a>
+
+            <nav class="nav-brand" id="mainNav" aria-label="Navegación principal">
+                <ul class="nav-links">
+                    <li class="nav-item-dropdown">
+                        <a href="../index.html" class="nav-links nav-dropdown-toggle">Inicio <span
+                                class="arrow">⌄</span></a>
+                    </li>
+                </ul>
+            </nav>
+            <button class="nav-hamburger" onclick="toggleMenu()" aria-label="Menú">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ========== PORTAL ========== -->
+    <main class="portal">
+        <div class="container">
+            <h2 class="section-title">Portales Digitales</h2>
+            <p class="portal__intro">Elegí el portal al que querés ingresar.</p>
+
+            <div class="portal__grid">
+
+                <!-- SIDES -->
+                <article class="portal-card">
+                    <div class="portal-card__icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="16" rx="2" />
+                            <path d="M3 9h18M8 13h8M8 16h5" />
+                        </svg>
+                    </div>
+                    <h3>SIDES</h3>
+                    <p>Accedé al Sistema Integrado de Desarrollo Social para gestionar trámites administrativos y
+                        servicios</p>
+                    <a href="https://sides-u0gq.onrender.com/login" class="portal-btn">Ingresar</a>
+                </article>
+
+                <!-- MUNIDIGITAL -->
+                <article class="portal-card portal-card--muni">
+                    <div class="portal-card__icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path
+                                d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" />
+                        </svg>
+                    </div>
+                    <h3>MUNIDIGITAL</h3>
+                    <p>Plataforma digital municipal para acceder a servicios e información de la administración pública
+                    </p>
+                    <!-- TODO: reemplazar "#" por la URL real de MuniDigital -->
+                    <a href="https://id.munidigital.com/security/realms/internal/protocol/openid-connect/auth?response_type=code&client_id=munidigital-web&redirect_uri=https%3A%2F%2Fmunidigital.com%2FMuniDigitalCore%2Fopenid-connect%2Fmuni-auth%2Fcallback&state=dYRkSqeK9Yvb9gTHmw1czdDG49UclulI99WDnVSTMhwt7hOdx9K5iNFOOZG3S0ls#menu-inicio"
+                        class="portal-btn">Ingresar</a>
+                </article>
+
+                <!-- PORTAL DE NOTICIAS -->
+                <article class="portal-card portal-card--noticias">
+                    <div class="portal-card__icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 5h13v14H6a2 2 0 0 1-2-2V5z" />
+                            <path d="M17 9h3v8a2 2 0 0 1-2 2h-1" />
+                            <path d="M7 9h7M7 12h7M7 15h4" />
+                        </svg>
+                    </div>
+                    <h3>PORTAL DE NOTICIAS</h3>
+                    <p>Solo personal autorizado pueden acceder al portal y enviar una solicitud.</p>
+                    <div class="portal-card__actions">
+                        <a href="../pages/login.php" class="portal-btn portal-btn--sm">Ministerio de Desarrollo Social</a>
+                        <a href="https://87h75b1r-3000.brs.devtunnels.ms/" class="portal-btn portal-btn--sm">Dirección General de Adultos Mayores</a>
+                    </div>
+                </article>
+
+            </div>
+
+            <!-- AYUDA 
+            <div class="portal-ayuda">
+                <h3>¿Necesitás ayuda?</h3>
+                <p>Si tenés dudas sobre cómo acceder a los portales o necesitás asistencia técnica, no dudes en
+                    contactarnos.</p>
+                <a href="../pages/contacto.html" class="portal-btn">Contactanos</a>
+            </div>-->
+        </div>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container footer__inner">
+            <div class="footer__brand">
+                <img src="../img/Logo de SDE.png" alt="Logo Santiago del Estero">
+                <p><strong>Ministerio de Desarrollo Social</strong><br><span>Gobierno de Santiago del Estero</span></p>
+            </div>
+            <div class="footer__links">
+                <h5>Subsecretarías</h5>
+                <ul>
+                    <li><a href="../pages/desarrollo-social.html">Desarrollo Social</a></li>
+                    <li><a href="../pages/promocion-humana.html">Promoción Humana</a></li>
+                    <li><a href="../pages/defensa-civil.html">Defensa Civil</a></li>
+                </ul>
+            </div>
+            <div class="footer__links">
+                <h5>Áreas</h5>
+                <ul>
+                    <li><a href="../pages/desarrollo-social.html#adultos">Dirección General de Adultos Mayores</a></li>
+                    <li><a href="../pages/Inicio_funerarios.html">Servicios Fúnebres</a></li>
+                    <li><a href="../pages/programas.html">Programas</a></li>
+                    <li><a href="../pages/contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer__contact">
+                <h5>Redes</h5>
+                <p><a href="https://www.facebook.com/profile.php?id=61555557497190" target="_blank"
+                        rel="noopener noreferrer">Facebook</a></p>
+                <h5 style="margin-top:16px;">Institución</h5>
+                <p><a href="../pages/autoridades.html">Autoridades</a></p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2026 SIDES — Santiago del Estero</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+
+</html>

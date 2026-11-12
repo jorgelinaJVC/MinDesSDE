@@ -1,0 +1,798 @@
+/* nexo.css — lo que agrega la conexión con Nexo a los tres sitios (indexAdultos, mama-antula y centro-dia).
+ * La maquetación de las secciones y tarjetas está en secciones-contenido.css; acá va lo que suma Nexo: la marca de
+ * prioritario, la franja de avisos, el estado de carga, el botón «Ver todas», el detalle, el álbum y el visor.
+ * Toma los colores de cada sitio (--primary en las residencias, --purple en Adultos Mayores).
+ */
+
+:root {
+  --nexo-acento: var(--primary, var(--purple, #5B2D8E));
+  --nexo-dorado: var(--gold, #c2882c);
+  --nexo-texto-suave: var(--text-muted, var(--text-medium, #5c6c74));
+  --nexo-borde: var(--border-color, #e2e8f0);
+  --nexo-prioritario: #b42d08;
+  --nexo-prioritario-oscuro: #8a2206;
+  --nexo-prioritario-fondo: #fff3ec;
+  --nexo-prioritario-borde: #f2b49a;
+}
+
+/* ---------- Carga ---------- */
+
+[data-nexo][aria-busy="true"] {
+  opacity: 0.55;
+  transition: opacity 0.2s ease;
+}
+
+.nexo-vacio {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 1.25rem 1.5rem;
+  border: 1px dashed var(--nexo-borde);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--nexo-texto-suave);
+  text-align: center;
+}
+
+/* ---------- Tarjetas que abren un detalle ---------- */
+
+.nexo-clicable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.nexo-clicable:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md, 0 8px 24px rgba(0, 0, 0, 0.1));
+}
+
+.nexo-clicable:focus-visible,
+.nexo-aviso__enlace:focus-visible {
+  outline: 3px solid var(--nexo-acento);
+  outline-offset: 3px;
+}
+
+/* Noticias: foto opcional arriba y "Leer más" */
+.news-item.nexo-clicable {
+  display: flex;
+  flex-direction: column;
+}
+
+.nexo-news-img {
+  display: block;
+  width: calc(100% + 52px);
+  max-width: none;
+  height: 180px;
+  margin: -26px -26px 18px;
+  border-radius: var(--radius, 10px) var(--radius, 10px) 0 0;
+  object-fit: cover;
+}
+
+.nexo-leer-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 12px;
+  color: var(--nexo-acento);
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.nexo-leer-mas i {
+  font-size: 0.8em;
+}
+
+/* Sin foto: un recuadro neutro con ícono, en lugar de un hueco */
+.nexo-sin-imagen {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 160px;
+  background: #f1f3f5;
+  color: var(--nexo-acento);
+  font-size: 2.5rem;
+  opacity: 0.6;
+}
+
+/* Cantidad de fotos de un álbum, sobre la portada */
+.nexo-cantidad {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 20, 30, 0.72);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* ---------- Botón "Ver todas" debajo de cada sección ---------- */
+
+.nexo-ver-mas-caja {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.nexo-ver-mas-caja[hidden] {
+  display: none;
+}
+
+.nexo-ver-mas {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px; /* objetivo cómodo para el dedo y para manos con poca precisión */
+  padding: 0.75rem 1.75rem;
+  border: 2px solid var(--nexo-acento);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--nexo-acento);
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nexo-ver-mas:hover {
+  background: var(--nexo-acento);
+  color: #fff;
+}
+
+.nexo-ver-mas:focus-visible {
+  outline: 3px solid var(--nexo-dorado);
+  outline-offset: 3px;
+}
+
+.nexo-ver-mas:disabled {
+  cursor: progress;
+  opacity: 0.7;
+}
+
+.nexo-ver-mas i {
+  font-size: 0.85em;
+}
+
+.high-contrast .nexo-visor__boton {
+  background: #000;
+  color: #ff0;
+  border: 2px solid #ff0;
+}
+
+.high-contrast .nexo-ver-mas {
+  background: #000;
+  color: #ff0;
+  border-color: #ff0;
+}
+
+/* ---------- Prioritarios ---------- */
+
+.nexo-prioritario {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: 6px;
+  width: fit-content;
+  margin-bottom: 8px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--nexo-prioritario);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nexo-card--prioritario {
+  outline: 2px solid var(--nexo-prioritario-borde);
+  box-shadow: inset 4px 0 0 var(--nexo-prioritario), var(--shadow-sm, 0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+.news-item.nexo-card--prioritario {
+  border-left-color: var(--nexo-prioritario);
+  background: linear-gradient(var(--nexo-prioritario-fondo), #fff 60%);
+}
+
+.project-card.nexo-card--prioritario {
+  border-color: var(--nexo-prioritario-borde);
+  background: linear-gradient(var(--nexo-prioritario-fondo), #fff 55%);
+}
+
+/* En la galería de las residencias la marca va dentro del pie de foto */
+.gallery-cell figcaption .nexo-prioritario {
+  display: flex;
+  margin-bottom: 6px;
+}
+
+/* Franja de avisos arriba de las noticias */
+.nexo-aviso {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--nexo-prioritario-borde);
+  border-radius: 14px;
+  background: var(--nexo-prioritario-fondo);
+  box-shadow: inset 0 4px 0 var(--nexo-prioritario);
+}
+
+.nexo-aviso__rotulo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 0.5rem;
+  color: var(--nexo-prioritario-oscuro);
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.nexo-aviso ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nexo-aviso li + li {
+  border-top: 1px solid var(--nexo-prioritario-borde);
+}
+
+.nexo-aviso__enlace {
+  display: grid;
+  gap: 2px;
+  padding: 0.6rem 0;
+  border-radius: 6px;
+  color: inherit;
+  cursor: pointer;
+}
+
+.nexo-aviso__enlace strong {
+  color: var(--text-main, var(--text-dark, #1a1a2e));
+  font-size: 1.05rem;
+}
+
+.nexo-aviso__enlace:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.nexo-aviso__enlace span {
+  color: var(--nexo-prioritario-oscuro);
+  font-size: 0.9rem;
+}
+
+/* ---------- Contenido del detalle (modal de noticias de Adultos y diálogo de las residencias) ---------- */
+
+.nexo-aviso-detalle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 1rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: var(--nexo-prioritario-fondo);
+  box-shadow: inset 4px 0 0 var(--nexo-prioritario);
+  color: var(--nexo-prioritario-oscuro);
+  font-size: 0.92rem;
+}
+
+.nexo-resumen {
+  font-weight: 600;
+}
+
+.nexo-documentos h4 {
+  margin: 1.25rem 0 0.5rem;
+  color: var(--nexo-texto-suave);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.nexo-documentos ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nexo-documentos a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 0;
+  color: var(--nexo-acento);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+/* ---------- Diálogo de detalle de las residencias ---------- */
+
+/* Centrado: un <dialog> se centra con "margin: auto", pero las hojas de las residencias tienen un reset
+ * "* { margin: 0 }" que se lo quita y lo deja arriba a la izquierda. Acá se fija explícitamente. */
+.nexo-modal {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(760px, calc(100% - 32px));
+  height: fit-content;
+  max-height: calc(100vh - 32px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-lg, 16px);
+  background: #fff;
+  color: var(--text-main, #233138);
+  box-shadow: var(--shadow-lg, 0 14px 35px rgba(0, 0, 0, 0.2));
+}
+
+.nexo-modal::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* el detalle de una galería es más ancho, para que el álbum respire */
+.nexo-modal.nexo-modal--galeria {
+  width: min(1040px, calc(100% - 32px));
+}
+
+@media (max-width: 560px) {
+  .nexo-modal {
+    width: calc(100% - 20px);
+    max-height: calc(100dvh - 20px);
+  }
+}
+
+.nexo-modal__contenido {
+  position: relative;
+  display: grid;
+  gap: 0.75rem;
+  padding: 2rem clamp(1.25rem, 5vw, 2.5rem) 2.25rem;
+}
+
+.nexo-modal__contenido .news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.25rem 1rem;
+  margin: 0 3rem 0 0;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+/* el detalle se abre fuera de .seccion-contenido: categoría y fecha con los mismos colores que la tarjeta */
+.nexo-modal__contenido .news-category {
+  color: var(--nexo-dorado);
+  text-transform: uppercase;
+}
+
+body[data-sitio="adultos-mayores"] .nexo-modal__contenido .news-category {
+  color: #8a6a00;
+}
+
+.nexo-modal__contenido .news-date {
+  color: var(--nexo-texto-suave);
+}
+
+.nexo-modal__cerrar {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--nexo-borde);
+  border-radius: 50%;
+  background: #fff;
+  color: var(--text-main, #233138);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.nexo-modal__cerrar:focus-visible {
+  outline: 3px solid var(--nexo-acento);
+  outline-offset: 2px;
+}
+
+.nexo-modal__titulo {
+  margin: 0 2.5rem 0 0;
+  color: var(--primary-dark, var(--nexo-acento));
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.nexo-modal__portada {
+  display: block;
+  width: 100%;
+  max-height: 360px;
+  border-radius: var(--radius, 10px);
+  object-fit: cover;
+}
+
+.nexo-modal__texto {
+  color: var(--nexo-texto-suave);
+  line-height: 1.65;
+}
+
+.nexo-modal__texto p {
+  margin: 0 0 0.9em;
+}
+
+/* ---------- Contenido completo con formato (editor de Nexo) ----------
+ * Títulos H2 y H3, negrita, cursiva, listas, enlaces y alineación, con la paleta de cada sitio. */
+
+.nexo-texto-formato {
+  overflow-wrap: anywhere;
+}
+
+.nexo-texto-formato > * {
+  margin: 0 0 0.9em;
+  text-align: left; /* la alineación elegida en el editor llega como estilo propio y tiene prioridad */
+}
+
+.nexo-texto-formato > :last-child {
+  margin-bottom: 0;
+}
+
+.nexo-texto-formato h2,
+.nexo-texto-formato h3 {
+  margin-top: 1.2em;
+  color: var(--nexo-acento);
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.nexo-texto-formato > :first-child {
+  margin-top: 0;
+}
+
+.nexo-texto-formato h2 {
+  font-size: 1.35em;
+}
+
+.nexo-texto-formato h3 {
+  font-size: 1.15em;
+}
+
+.nexo-texto-formato ul,
+.nexo-texto-formato ol {
+  padding-left: 1.5em;
+}
+
+.nexo-texto-formato ul {
+  list-style: disc;
+}
+
+.nexo-texto-formato ol {
+  list-style: decimal;
+}
+
+.nexo-texto-formato li {
+  margin: 0;
+}
+
+.nexo-texto-formato li + li {
+  margin-top: 0.3em;
+}
+
+.nexo-texto-formato strong {
+  font-weight: 700;
+}
+
+.nexo-texto-formato em {
+  font-style: italic;
+}
+
+.nexo-texto-formato a {
+  color: var(--nexo-acento);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.nexo-texto-formato a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+/* ---------- Foto principal que se amplía ---------- */
+
+.nexo-portada {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius, 10px);
+  background: none;
+  cursor: zoom-in;
+}
+
+.nexo-portada img {
+  display: block;
+  width: 100%;
+}
+
+.nexo-portada:focus-visible {
+  outline: 3px solid var(--nexo-acento);
+  outline-offset: 3px;
+}
+
+/* ---------- Álbum: cuadrícula de miniaturas ---------- */
+
+.nexo-album {
+  margin-top: 1rem;
+}
+
+.nexo-album__ayuda {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 0.75rem;
+  color: var(--nexo-texto-suave);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.nexo-album__grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nexo-album__foto {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 10px;
+  background: #eef0f2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: zoom-in;
+}
+
+.nexo-album__foto img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.nexo-album__foto::after {
+  /* velo suave al pasar el mouse, para que se note que se puede tocar */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0);
+  transition: background-color 0.2s ease;
+}
+
+.nexo-album__foto:hover img {
+  transform: scale(1.06);
+}
+
+.nexo-album__foto:hover::after {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.nexo-album__foto:focus-visible {
+  outline: 3px solid var(--nexo-acento);
+  outline-offset: 3px;
+}
+
+@media (max-width: 560px) {
+  .nexo-album__grilla {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+}
+
+/* ---------- Visor de fotos (lightbox) ----------
+ * Ocupa toda la pantalla con un fondo oscuro translúcido y centra la foto con flex.
+ * Se fija margin/inset/tamaño a mano por el mismo reset "* { margin: 0 }" de los sitios. */
+
+.nexo-visor {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: rgba(8, 10, 14, 0.9);
+  color: #fff;
+  overflow: hidden;
+}
+
+.nexo-visor[open] {
+  display: block;
+}
+
+.nexo-visor::backdrop {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.nexo-visor__marco {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 80px 88px; /* igual arriba y abajo: la foto queda en el centro exacto */
+}
+
+.nexo-visor__figura {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0;
+}
+
+.nexo-visor__img {
+  display: block;
+  max-width: min(100%, 1400px);
+  max-height: calc(100vh - 180px);
+  max-height: calc(100dvh - 180px);
+  width: auto;
+  height: auto;
+  border-radius: 8px;
+  object-fit: contain;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.5);
+  animation: nexo-visor-entrada 0.2s ease;
+}
+
+.nexo-visor__pie {
+  max-width: 60ch;
+  color: #f2f2f2;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.nexo-visor__boton {
+  position: absolute;
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font: inherit;
+  font-size: 1.6rem;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nexo-visor__boton:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.nexo-visor__boton:focus-visible {
+  outline: 3px solid var(--nexo-dorado);
+  outline-offset: 3px;
+}
+
+.nexo-visor__boton[hidden] {
+  display: none;
+}
+
+.nexo-visor__cerrar {
+  top: 16px;
+  right: 16px;
+  font-size: 1.3rem;
+}
+
+.nexo-visor__nav {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+}
+
+.nexo-visor__nav--anterior {
+  left: 16px;
+}
+
+.nexo-visor__nav--siguiente {
+  right: 16px;
+}
+
+/* sin scroll de la página mientras el visor está abierto */
+html.nexo-visor-abierto {
+  overflow: hidden;
+}
+
+@keyframes nexo-visor-entrada {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+  .nexo-visor__marco {
+    padding: 92px 12px; /* arriba la X, abajo las flechas; parejo para que la foto quede centrada */
+  }
+
+  .nexo-visor__img {
+    max-height: calc(100dvh - 200px);
+  }
+
+  .nexo-visor__nav {
+    top: auto;
+    bottom: 20px;
+    transform: none;
+    width: 52px;
+    height: 52px;
+  }
+
+  .nexo-visor__nav--anterior {
+    left: calc(50% - 64px);
+  }
+
+  .nexo-visor__nav--siguiente {
+    right: calc(50% - 64px);
+  }
+}
+
+/* ---------- Alto contraste (clase .high-contrast en <html> o <body>, según el sitio) ---------- */
+
+.high-contrast .nexo-prioritario {
+  background: #000;
+  color: #ff0;
+  outline: 2px solid #ff0;
+}
+
+.high-contrast .nexo-aviso,
+.high-contrast .nexo-aviso-detalle {
+  background: #000;
+  color: #fff;
+  border-color: #ff0;
+}
+
+.high-contrast .nexo-aviso__enlace strong,
+.high-contrast .nexo-aviso__enlace span,
+.high-contrast .nexo-aviso__rotulo {
+  color: #ff0;
+}
+
+@media (max-width: 560px) {
+  .nexo-news-img {
+    height: 150px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nexo-clicable,
+  .nexo-album__foto img,
+  .nexo-visor__img {
+    animation: none;
+    transition: none;
+  }
+}
+
+.high-contrast .nexo-texto-formato h2,
+.high-contrast .nexo-texto-formato h3,
+.high-contrast .nexo-texto-formato a {
+  color: #ff0;
+}
