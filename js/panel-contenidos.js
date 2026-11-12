@@ -2525,7 +2525,7 @@ function openNews(item = null) {
                             )
                     }
                 );
-            
+
                 if (!respuesta.ok) {
 
                     throw new Error(
@@ -2901,7 +2901,19 @@ function renderSolicitudesPendientes() {
             const descripcionSolicitud =
                 item.tipoSolicitud === 'carrusel'
                     ? (item.texto || '')
-                    : (item.descripcion || '');
+                    : item.tipoSolicitud === 'video'
+                        ? (item.descripcion || '')
+                        : (item.resumen || item.descripcion || '');
+
+            const elementoTemporal = document.createElement('div');
+
+            elementoTemporal.innerHTML = descripcionSolicitud;
+
+            const descripcionLimpia =
+                (elementoTemporal.textContent || '')
+                    .replace(/\s+/g, ' ')
+                    .trim()
+                    .slice(0, 180);
 
 
             /*
@@ -2986,27 +2998,12 @@ function renderSolicitudesPendientes() {
                         </h3>
 
 
-                        ${item.resumen
+                    ${descripcionLimpia
                     ? `
-                                    <p class="solicitud-resumen">
-                                        ${escapeHTML(
-                        item.resumen
-                    )}
-                                    </p>
-                                  `
-                    : ''
-                }
-
-
-                        ${item.tipoSolicitud === 'noticia' &&
-                    descripcionSolicitud
-                    ? `
-                                    <p class="solicitud-resumen">
-                                        ${escapeHTML(
-                        descripcionSolicitud
-                    )}
-                                    </p>
-                                  `
+        <p class="solicitud-resumen">
+            ${escapeHTML(descripcionLimpia)}
+        </p>
+      `
                     : ''
                 }
 
